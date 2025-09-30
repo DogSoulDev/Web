@@ -28,7 +28,7 @@ export class ProfileView {
         </div>
         <div class="action-quote">
           <div class="speech-bubble action-bubble">
-            <p>"Code is my superpower! 💻⚡"</p>
+            <p>"I love breaking things!"</p>
           </div>
         </div>
         <p class="profile-desc">${profile.description}</p>

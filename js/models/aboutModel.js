@@ -2,7 +2,7 @@ export class AboutModel {
   getAbout() {
     return {
       title: 'About Me',
-      content: `Highly accomplished Cybersecurity professional backed by a triple academic foundation: a Master's Degree in Cybersecurity, a Master's in Software Development, and a Higher Technical Degree in IT Systems Management. My technical expertise is complemented by a strong team orientation and relentless determination—qualities forged through dedicated sports participation. I excel at collaborative problem-solving and possess the willpower to achieve challenging objectives in vulnerability analysis and complex risk mitigation. Seeking to leverage this blend of advanced technical skills and a proven team-first, goal-driven mindset to enhance organizational security.
+      content: `Aspiring Cybersecurity Analyst with a strong academic foundation: a Master's Degree in Cybersecurity, a Master's in Software Development, and a Higher Technical Degree in IT Systems Management. My technical skills are complemented by a strong team orientation and determination—qualities developed through dedicated sports participation. I enjoy collaborative problem-solving and have the drive to achieve challenging objectives in vulnerability analysis and risk mitigation. Looking to apply this combination of technical skills and a team-first, goal-driven approach to strengthen organizational security.
 
 Work permit: Spanish | Gender: Male | Date of birth: 31/10/1985 | Place of birth: La Coruña, Spain | Nationality: Spanish | Home: 15008, La Coruña, Spain
 
@@ -15,8 +15,8 @@ Languages:
 Driving Licence: Cars B
 
 Hobbies and Interests:
-- Sport: Dedicated sports participation has been instrumental in developing core professional competencies. My background in sports is directly reflected in a team-first mentality, relentless determination to achieve goals, and a strong focus on continuous personal improvement.
-- Traveling: Extensive personal experience living and traveling across multiple countries has cultivated cultural awareness, adaptability, and critical thinking.
+- Sport: Dedicated sports participation has helped develop core competencies. My sports background is reflected in a team-first mentality, determination to achieve goals, and a focus on continuous personal improvement.
+- Traveling: Extensive experience living and traveling across multiple countries has cultivated cultural awareness, adaptability, and critical thinking.
 - Reading: Interests focus on Technical Literature (IT/Cybersecurity) and Japanese Manga.
 - Music: Particularly Blues, Rock, and Metal. Playing the guitar has sharpened concentration and creative problem-solving.`
     };
