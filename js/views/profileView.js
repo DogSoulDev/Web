@@ -36,9 +36,6 @@ export class ProfileView {
             </div>
           `).join('')}
         </div>
-        <ul class="social-list">
-          ${profile.social.map(s => `<li><a href="${s.url}" target="_blank"><img src="${s.icon}" alt="${s.name}"></a></li>`).join('')}
-        </ul>
       </div>
     `;
   }
