@@ -1,15 +1,4 @@
-# Cyberpunk Hacker Portfolio# Portfolio Web README
-
-
-
-Portfolio profesional para experto en ciberseguridad, inspirado en la arquitectura de [said7388/developer-portfolio](https://github.com/said7388/developer-portfolio), pero con temática hacker/cyberpunk y sin dependencias externas (solo HTML, CSS y JS puro).
-
-
-
-## CaracterísticasEsta web sigue la estructura de los portfolios más populares en GitHub, optimizada para GitHub Pages y con arquitectura MVC.
-
-
-# Manga Portfolio - Akira Yamada
+## Portfolio
 
 Portfolio profesional inspirado en el arte manga japonés, con estructura modular MVC y visuales dibujados a mano. Sin dependencias externas: solo HTML, CSS y JS puro. Optimizado para GitHub Pages.
 
