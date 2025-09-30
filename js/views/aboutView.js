@@ -9,8 +9,10 @@ export class AboutView {
     const about = this.model.getAbout();
     return `
       <div class="section about">
-        <h2 class="section-title">${about.title}</h2>
-        <p>${about.content.replace(/\n/g, '<br>')}</p>
+        <h2 class="section-title">About Me</h2>
+        <div class="speech-bubble">
+          <p>${about.content.replace(/\n/g, '<br>')}</p>
+        </div>
       </div>
     `;
   }
