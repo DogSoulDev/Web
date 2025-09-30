@@ -1,9 +1,9 @@
 // ProfileView - Renderiza el perfil
 export const ProfileView = {
-  render(profile) {
-    const app = document.getElementById('app');
-    app.innerHTML += `
-      <section class="header section">
+  render(profile, containerId = 'app') {
+    const container = document.getElementById(containerId);
+    container.innerHTML = `
+      <section class="header">
         <img src="${profile.img}" alt="Profile" class="profile-img" loading="lazy"/>
         <div>
           <h1 class="title glitch">${profile.name}</h1>

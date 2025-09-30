@@ -1,3 +1,44 @@
+.navbar {
+  width: 100vw;
+  background: linear-gradient(90deg, var(--bg-panel) 80%, var(--neon-blue) 100%);
+  box-shadow: 0 2px 12px 0 rgba(57,255,20,0.12);
+  padding: 0.5rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.navbar-list {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0 2vw;
+  list-style: none;
+}
+.nav-btn {
+  background: none;
+  border: none;
+  color: var(--neon-green);
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 0 8px var(--neon-green) inset;
+}
+.nav-btn.active, .nav-btn:hover {
+  background: var(--neon-blue);
+  color: var(--bg-main);
+  box-shadow: 0 0 16px var(--neon-blue);
+}
+.section {
+  display: none;
+}
+.section.active {
+  display: block;
+}
 .profile-img {
   width: 80px;
   height: 80px;

@@ -1,15 +1,15 @@
 // ProjectsView - Renderiza los proyectos
 export const ProjectsView = {
-  async render() {
-    const app = document.getElementById('app');
-    app.innerHTML += `
-      <section class="section">
+  async render(containerId = 'app') {
+    const container = document.getElementById(containerId);
+    container.innerHTML = `
+      <section>
         <h2 class="section-title">Projects</h2>
         <div class="projects-list" id="projects-list"></div>
       </section>
     `;
     const projects = await window.ProjectsModel.getProjects();
-    const list = document.getElementById('projects-list');
+    const list = container.querySelector('#projects-list');
     list.innerHTML = projects.map(project => `
       <div class="project">
         <img src="${project.icon}" alt="${project.name}" class="skill-icon"/>

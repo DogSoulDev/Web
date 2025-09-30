@@ -11,12 +11,52 @@ import { ContactView } from '../views/contactView.js';
 
 export const AppController = {
   async init() {
-    // Renderizar cada sección usando MVC
-    window.ProjectsModel = ProjectsModel; // Para acceso global en ProjectsView
-    ProfileView.render(ProfileModel.getProfile());
-    SkillsView.render(SkillsModel.getSkills());
-    await ProjectsView.render();
-    ExperienceView.render(ExperienceModel.getExperience());
-    ContactView.render();
+    window.ProjectsModel = ProjectsModel;
+    // Renderizar contenedores vacíos para cada sección
+    const app = document.getElementById('app');
+    app.innerHTML = `
+      <div id="profile-section" class="section"></div>
+      <div id="skills-section" class="section"></div>
+      <div id="projects-section" class="section"></div>
+      <div id="experience-section" class="section"></div>
+      <div id="contact-section" class="section"></div>
+    `;
+    // Renderizar contenido en cada sección
+    ProfileView.render(ProfileModel.getProfile(), 'profile-section');
+    SkillsView.render(SkillsModel.getSkills(), 'skills-section');
+    await ProjectsView.render('projects-section');
+    ExperienceView.render(ExperienceModel.getExperience(), 'experience-section');
+    ContactView.render('contact-section');
+    // Mostrar solo la sección activa
+    AppController.setupNavigation();
+  },
+  setupNavigation() {
+    const buttons = document.querySelectorAll('.nav-btn');
+    const sections = {
+      profile: document.getElementById('profile-section'),
+      skills: document.getElementById('skills-section'),
+      projects: document.getElementById('projects-section'),
+      experience: document.getElementById('experience-section'),
+      contact: document.getElementById('contact-section')
+    };
+    function showSection(key) {
+      Object.entries(sections).forEach(([k, sec]) => {
+        if (k === key) {
+          sec.classList.add('active');
+        } else {
+          sec.classList.remove('active');
+        }
+      });
+      buttons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.section === key);
+      });
+    }
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        showSection(btn.dataset.section);
+      });
+    });
+    // Mostrar perfil por defecto
+    showSection('profile');
   }
 };

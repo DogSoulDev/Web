@@ -1,9 +1,9 @@
 // SkillsView - Renderiza las habilidades
 export const SkillsView = {
-  render(skills) {
-    const app = document.getElementById('app');
-    app.innerHTML += `
-      <section class="section">
+  render(skills, containerId = 'app') {
+    const container = document.getElementById(containerId);
+    container.innerHTML = `
+      <section>
         <h2 class="section-title">Skills</h2>
         <div class="skills-list">
           ${skills.map(skill => `
