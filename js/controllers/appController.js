@@ -10,11 +10,12 @@ import { ExperienceView } from '../views/experienceView.js';
 import { ContactView } from '../views/contactView.js';
 
 export const AppController = {
-  init() {
+  async init() {
     // Renderizar cada sección usando MVC
+    window.ProjectsModel = ProjectsModel; // Para acceso global en ProjectsView
     ProfileView.render(ProfileModel.getProfile());
     SkillsView.render(SkillsModel.getSkills());
-    ProjectsView.render(ProjectsModel.getProjects());
+    await ProjectsView.render();
     ExperienceView.render(ExperienceModel.getExperience());
     ContactView.render();
   }
