@@ -1,7 +1,9 @@
 import { ProfileView } from '../views/profileView.js';
+import { AboutView } from '../views/aboutView.js';
 import { SkillsView } from '../views/skillsView.js';
 import { ProjectsView } from '../views/projectsView.js';
 import { ExperienceView } from '../views/experienceView.js';
+import { EducationView } from '../views/educationView.js';
 import { ContactView } from '../views/contactView.js';
 
 export class AppController {
@@ -10,9 +12,11 @@ export class AppController {
     this.currentSection = 'profile';
     this.views = {
       profile: new ProfileView(),
+      about: new AboutView(),
       skills: new SkillsView(),
       projects: new ProjectsView(),
       experience: new ExperienceView(),
+      education: new EducationView(),
       contact: new ContactView()
     };
   }

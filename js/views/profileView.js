@@ -1,15 +1,12 @@
 import { ProfileModel } from '../models/profileModel.js';
-import { AboutModel } from '../models/aboutModel.js';
 
 export class ProfileView {
   constructor() {
-    this.profileModel = new ProfileModel();
-    this.aboutModel = new AboutModel();
+    this.model = new ProfileModel();
   }
 
   render() {
-    const profile = this.profileModel.getProfile();
-    const about = this.aboutModel.getAbout();
+    const profile = this.model.getProfile();
     return `
       <div class="section profile active">
         <div class="header">
@@ -21,8 +18,6 @@ export class ProfileView {
           </div>
         </div>
         <p>${profile.description}</p>
-        <h2 class="section-title">${about.title}</h2>
-        <p>${about.content}</p>
         <ul class="social-list">
           ${profile.social.map(s => `<li><a href="${s.url}" target="_blank"><img src="${s.icon}" alt="${s.name}"></a></li>`).join('')}
         </ul>

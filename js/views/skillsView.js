@@ -13,7 +13,6 @@ export class SkillsView {
         <ul class="skills-list">
           ${skills.map(skill => `
             <li class="skill-item">
-              <img src="${skill.icon}" alt="${skill.name}">
               <h3>${skill.name}</h3>
               <p>${skill.level}</p>
             </li>

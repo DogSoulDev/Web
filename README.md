@@ -1,4 +1,4 @@
-# Manga Portfolio - Hiroshi Tanaka# Manga Portfolio - Hiroshi Tanaka# Manga Portfolio - Akira Yamada
+# Manga Portfolio - Javier Fernández# Manga Portfolio - Hiroshi Tanaka# Manga Portfolio - Hiroshi Tanaka# Manga Portfolio - Akira Yamada
 
 
 
@@ -6,7 +6,7 @@ A clean, minimalist portfolio inspired by manga art and clean web design. Built 
 
 
 
-## FeaturesA clean, minimalist portfolio inspired by manga art and clean web design. Built with pure HTML, CSS, and JavaScript, optimized for GitHub Pages.A professional portfolio inspired by Japanese manga art, featuring a clean, hand-drawn style. Built with pure HTML, CSS, and JavaScript, optimized for GitHub Pages.
+## FeaturesA clean, minimalist portfolio inspired by manga art and clean web design. Built with pure HTML, CSS, and JavaScript, optimized for GitHub Pages.
 
 
 
@@ -14,53 +14,115 @@ A clean, minimalist portfolio inspired by manga art and clean web design. Built 
 
 - Dynamic project fetching from GitHub
 
-- Single-page application with MVC architecture## Features## Features
+- Single-page application with MVC architecture## FeaturesA clean, minimalist portfolio inspired by manga art and clean web design. Built with pure HTML, CSS, and JavaScript, optimized for GitHub Pages.A professional portfolio inspired by Japanese manga art, featuring a clean, hand-drawn style. Built with pure HTML, CSS, and JavaScript, optimized for GitHub Pages.
 
 - Responsive and user-friendly
 
-- No external dependencies- Clean manga-inspired design with subtle illustrations- Manga-inspired design: White, black, and chalk colors, pencil-drawn aesthetics
+- No external dependencies
 
 - Security-focused: Strict CSP
 
-- Dynamic project fetching from GitHub- Hand-drawn avatar and icons
+- Clean manga-inspired design with subtle illustrations
 
 ## Folder Structure
 
-- Single-page application with MVC architecture- Single-page application with navigation tabs
+- Dynamic project fetching from GitHub
 
 ```
 
-css/            # Stylesheets (base, layout, components, effects)- Responsive and user-friendly- MVC architecture for clean code
+css/            # Stylesheets (base, layout, components, effects)- Single-page application with MVC architecture## Features## Features
 
 js/
 
-  controllers/  # MVC Controllers- No external dependencies- Security-focused: Strict CSP, no external dependencies
+  controllers/  # MVC Controllers- Responsive and user-friendly
 
   models/       # Data Models
 
-  views/        # View Renderers- Responsive and easy to navigate
+  views/        # View Renderers- No external dependencies- Clean manga-inspired design with subtle illustrations- Manga-inspired design: White, black, and chalk colors, pencil-drawn aesthetics
 
 img/            # Images and avatar
 
-icons/          # SVG icons## Folder Structure
+icons/          # SVG icons- Security-focused: Strict CSP
 
 index.html      # Main page
 
-README.md       # Project info```## Folder Structure
+README.md       # Project info- Dynamic project fetching from GitHub- Hand-drawn avatar and icons
 
 ```
 
-css/            # Stylesheets```
+## Folder Structure
 
 ## Security
 
-js/css/            # Stylesheets (base, layout, components, effects)
+- Single-page application with MVC architecture- Single-page application with navigation tabs
 
 - Strict CSP
 
-- Safe rendering  controllers/  # MVC Controllersjs/
+- Safe rendering```
 
 - No unsafe functions
+
+- No eval, innerHTML, or unsafe functionscss/            # Stylesheets (base, layout, components, effects)- Responsive and user-friendly- MVC architecture for clean code
+
+
+
+## Sectionsjs/
+
+
+
+- Profile: Avatar, name, bio, social links  controllers/  # MVC Controllers- No external dependencies- Security-focused: Strict CSP, no external dependencies
+
+- About: Personal information, languages, hobbies
+
+- Skills: Technical and cybersecurity skills  models/       # Data Models
+
+- Projects: Portfolio projects from GitHub
+
+- Experience: Work history  views/        # View Renderers- Responsive and easy to navigate
+
+- Education: Academic background
+
+- Contact: Email, phone, websiteimg/            # Images and avatar
+
+
+
+## Best Practicesicons/          # SVG icons## Folder Structure
+
+
+
+- SOLID, DRY, KISS principlesindex.html      # Main page
+
+- Clean, modular code
+
+- Input validation and sanitizationREADME.md       # Project info```## Folder Structure
+
+- Ready for scalability
+
+```
+
+## Deployment on GitHub Pages
+
+css/            # Stylesheets```
+
+1. Push to main branch.
+
+2. Enable GitHub Pages in repo settings.## Security
+
+3. Set main branch as source.
+
+js/css/            # Stylesheets (base, layout, components, effects)
+
+## Author
+
+- Strict CSP
+
+Javier Fernández
+
+- Safe rendering  controllers/  # MVC Controllersjs/
+
+---
+
+Created with GitHub Copilot. Clean manga portfolio, MVC, secure.- No unsafe functions
 
 - No eval, innerHTML, or unsafe functions  models/       # Data Models  controllers/  # MVC Controllers
 
