@@ -8,24 +8,23 @@ export class ProjectsView {
   async render() {
     const projects = await this.model.getProjects();
     const cardVariations = [
-      { theme: 'fire', sound: 'BOOM!', color: 'red', shape: 'wide', position: 'top-left' },
-      { theme: 'electric', sound: 'ZAP!', color: 'blue', shape: 'tall', position: 'top-right' },
-      { theme: 'wind', sound: 'SWISH!', color: 'green', shape: 'square', position: 'middle' },
-      { theme: 'earth', sound: 'CRASH!', color: 'brown', shape: 'wide', position: 'bottom-left' },
-      { theme: 'water', sound: 'SPLASH!', color: 'cyan', shape: 'tall', position: 'bottom-right' },
-      { theme: 'light', sound: 'FLASH!', color: 'yellow', shape: 'square', position: 'middle' }
+      { theme: 'fire', sound: 'BOOM!', color: 'red', size: 'large' },
+      { theme: 'electric', sound: 'ZAP!', color: 'blue', size: 'medium' },
+      { theme: 'wind', sound: 'SWISH!', color: 'green', size: 'small' },
+      { theme: 'earth', sound: 'CRASH!', color: 'brown', size: 'large' },
+      { theme: 'water', sound: 'SPLASH!', color: 'cyan', size: 'medium' },
+      { theme: 'light', sound: 'FLASH!', color: 'yellow', size: 'small' }
     ];
 
     return `
       <div class="section projects manga-background">
         <div class="manga-page-border">
           <h2 class="section-title manga-title">Projects</h2>
-          <div class="projects-manga-layout">
+          <div class="projects-manga-flow">
             ${projects.map((project, index) => {
               const variation = cardVariations[index % cardVariations.length];
               return `
-                <div class="comic-panel project-panel ${variation.shape} ${variation.theme} ${variation.position}">
-                  <div class="panel-gutter"></div>
+                <div class="comic-panel project-panel ${variation.theme} ${variation.size}">
                   <div class="panel-header">
                     <span class="panel-number">${index + 1}</span>
                     <span class="sound-effect ${variation.color}">${variation.sound}</span>
@@ -48,7 +47,6 @@ export class ProjectsView {
                   <div class="panel-footer">
                     <div class="speed-lines ${variation.theme}"></div>
                   </div>
-                  <div class="panel-connector"></div>
                 </div>
               `;
             }).join('')}
