@@ -1,11 +1,11 @@
 
-import TerminalController from './Controllers/terminalController.js';
-import TerminalView from './Views/terminalView.js';
-import ChallengeController from './Controllers/challengeController.js';
-import ChallengeView from './Views/challengeView.js';
-import { showSubtitle } from './Views/subtitleView.js';
-import { applyGlitch } from './Views/glitchView.js';
-import { renderParticles } from './Views/particleView.js';
+import TerminalController from './controllers/terminalController.js';
+import TerminalView from './views/terminalView.js';
+import ChallengeController from './controllers/challengeController.js';
+import ChallengeView from './views/challengeView.js';
+import { showSubtitle } from './views/subtitleView.js';
+import { applyGlitch } from './views/glitchView.js';
+import { renderParticles } from './views/particleView.js';
 
 function setupThemeToggle() {
   const btn = document.getElementById('theme-toggle');
