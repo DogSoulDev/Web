@@ -1,34 +1,64 @@
 // terminalView.js
 // View rendering for hacker terminal animation
 
-export function renderTerminal(messages, onComplete) {
-  const terminal = document.getElementById('terminal-overlay');
-  if (!terminal) return;
-  terminal.style.display = 'block';
-  terminal.innerHTML = '<div class="terminal-window"></div>';
-  const win = terminal.querySelector('.terminal-window');
-  win.style.background = '#111';
-  win.style.color = '#39ff14';
-  win.style.fontFamily = 'Fira Mono, Consolas, monospace';
-  win.style.padding = '2rem';
-  win.style.borderRadius = '10px';
-  win.style.boxShadow = '0 0 30px #39ff1444';
-  win.style.maxWidth = '600px';
-  win.style.margin = '10vh auto';
-  win.style.fontSize = '1.1rem';
-  win.style.minHeight = '200px';
-  let i = 0;
-  function typeLine() {
-    if (i < messages.length) {
-      win.innerHTML += `<div><span class="prompt">$</span> <span class="typed">${messages[i]}</span></div>`;
-      i++;
-      setTimeout(typeLine, 700);
-    } else {
-      setTimeout(() => {
-        terminal.style.display = 'none';
-        if (onComplete) onComplete();
-      }, 1000);
+// terminalView.js
+// View rendering for hacker terminal animation and interactive commands
+
+class TerminalView {
+  constructor() {
+    this.terminal = document.getElementById('terminal-overlay');
+    if (!this.terminal) {
+      this.terminal = document.createElement('div');
+      this.terminal.id = 'terminal-overlay';
+      document.body.appendChild(this.terminal);
     }
+    this.terminal.className = 'terminal-window';
+    this.terminal.style.display = 'block';
+    this.terminal.innerHTML = '';
   }
-  typeLine();
+
+  print(text) {
+    this.terminal.innerHTML += `<div><span class="prompt">$</span> <span class="typed">${text}</span></div>`;
+    this.terminal.scrollTop = this.terminal.scrollHeight;
+  }
+
+  printHelp(commands) {
+    this.print('Available commands:');
+    commands.forEach(cmd => this.print(`- ${cmd}`));
+  }
+
+  printAbout(profile) {
+    this.print(`Name: ${profile.name}`);
+    this.print(`Role: ${profile.role}`);
+    this.print(`Bio: ${profile.bio}`);
+  }
+
+  printSkills(skills) {
+    this.print('Cybersecurity Skills:');
+    skills.forEach(skill => this.print(`- ${skill}`));
+  }
+
+  printExperience(experience) {
+    this.print('Professional Experience:');
+    experience.forEach(exp => this.print(`- ${exp}`));
+  }
+
+  printContact(contact) {
+    this.print('Contact Information:');
+    Object.entries(contact).forEach(([key, value]) => this.print(`${key}: ${value}`));
+  }
+
+  printError(msg) {
+    this.print(`Error: ${msg}`);
+  }
+
+  printEasterEgg() {
+    this.print('You found the hidden flag! 🏴‍☠️');
+  }
+
+  clear() {
+    this.terminal.innerHTML = '';
+  }
 }
+
+export default TerminalView;
