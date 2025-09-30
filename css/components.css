@@ -36,6 +36,19 @@
   color: var(--bg-main);
 }
 
+/* Responsive navbar */
+@media (max-width: 768px) {
+  .navbar-list {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .nav-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
 
 
 .profile-img {
@@ -74,4 +87,16 @@
   border: 1px solid var(--manga-gray);
   border-radius: 6px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Responsive grids */
+@media (max-width: 768px) {
+  .skills-list, .projects-list, .experience-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .skill-item, .project-item, .experience-item {
+    padding: 1rem;
+  }
 }
