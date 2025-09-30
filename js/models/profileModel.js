@@ -2,15 +2,15 @@
 export const ProfileModel = {
   getProfile() {
     return {
-      name: 'DogSoulDev',
-      title: 'Cybersecurity Expert & Ethical Hacker',
-      subtitle: 'Innovador en IA, Gemini Nano Banana, y defensa digital',
-      description: 'Apasionado por la ciberseguridad, hacking ético y la creatividad digital. Experto en proteger sistemas, crear soluciones seguras y liderar proyectos innovadores. Siempre explorando nuevas tecnologías como Gemini Nano Banana.',
-    img: 'img/imagrenprincipal.png',
+      name: 'Akira Yamada',
+      title: 'Manga Developer & Ethical Hacker',
+      subtitle: 'Creador de mundos digitales y defensor de la seguridad',
+      description: 'Mangaka y desarrollador web especializado en ciberseguridad, pentesting y programación. Apasionado por el arte japonés, la tecnología y la creatividad. Siempre explorando nuevas herramientas y técnicas para proteger y crear.',
+      img: 'img/profile.jpg', // Avatar manga ficticio
       social: [
-        { name: 'GitHub', url: 'https://github.com/DogSoulDev', icon: 'icons/github.svg' },
-        { name: 'LinkedIn', url: 'https://linkedin.com/in/dogsouldev', icon: 'icons/linkedin.svg' },
-        { name: 'Gemini', url: 'https://gemini.google.com/app', icon: 'icons/gemini.svg' }
+        { name: 'GitHub', url: 'https://github.com/akirayamada', icon: 'icons/python.svg' },
+        { name: 'LinkedIn', url: 'https://linkedin.com/in/akirayamada', icon: 'icons/java.svg' },
+        { name: 'Portfolio', url: 'https://akirayamada.dev', icon: 'icons/html.svg' }
       ]
     };
   }

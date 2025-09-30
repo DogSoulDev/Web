@@ -17,13 +17,29 @@ export const ProjectsModel = {
           stars: repo.stargazers_count
         }));
     } catch (e) {
-      return [{
-        name: 'Error loading projects',
-        description: 'Could not fetch GitHub repositories.',
-        url: '#',
-        icon: 'icons/github.svg',
-        stars: 0
-      }];
+      return [
+        {
+          name: 'MangaPortfolio',
+          description: 'Portfolio web dibujado a mano, con navegación SPA y estilo manga japonés.',
+          url: 'https://github.com/akirayamada/MangaPortfolio',
+          stars: 210,
+          icon: 'icons/html.svg'
+        },
+        {
+          name: 'OtakuSec',
+          description: 'Herramienta de pentesting y defensa digital para artistas y desarrolladores manga.',
+          url: 'https://github.com/akirayamada/OtakuSec',
+          stars: 180,
+          icon: 'icons/pentesting.svg'
+        },
+        {
+          name: 'HandDrawnUI',
+          description: 'Framework para crear interfaces web con componentes dibujados a mano.',
+          url: 'https://github.com/akirayamada/HandDrawnUI',
+          stars: 150,
+          icon: 'icons/css.svg'
+        }
+      ];
     }
-  }
-};
+      }
+    }

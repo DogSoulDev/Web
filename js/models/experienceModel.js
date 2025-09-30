@@ -3,22 +3,22 @@ export const ExperienceModel = {
   getExperience() {
     return [
       {
-        company: 'Cyberpunk Security',
-        role: 'Lead Pentester',
-        years: '2022-2025',
-        description: 'Lideré auditorías de seguridad y simulaciones de ataques avanzados.'
+        company: 'MangaSec Studios',
+        role: 'Lead Manga Developer',
+        years: '2023-2025',
+        description: 'Desarrollo de interfaces web dibujadas a mano y sistemas de seguridad para portafolios manga.'
       },
       {
-        company: 'Gemini Labs',
-        role: 'IA Security Architect',
-        years: '2020-2022',
-        description: 'Diseñé sistemas de defensa basados en IA y Gemini Nano Banana.'
+        company: 'Tokyo Cyber Art',
+        role: 'Ethical Hacker',
+        years: '2021-2023',
+        description: 'Pentesting y defensa digital en proyectos artísticos y tecnológicos.'
       },
       {
-        company: 'BlueShield',
-        role: 'Malware Analyst',
-        years: '2018-2020',
-        description: 'Analicé y neutralicé amenazas de malware en grandes infraestructuras.'
+        company: 'Otaku Web',
+        role: 'UI Mangaka',
+        years: '2019-2021',
+        description: 'Diseño de interfaces y componentes web con estilo manga japonés.'
       }
     ];
   }

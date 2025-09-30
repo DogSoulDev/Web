@@ -14,7 +14,9 @@ export const SkillsModel = {
       { name: 'Reverse Engineering', icon: 'icons/reverse.svg' },
       { name: 'Web Security', icon: 'icons/websec.svg' },
       { name: 'Cryptography', icon: 'icons/crypto.svg' },
-      { name: 'Malware Analysis', icon: 'icons/malware.svg' }
+      { name: 'Malware Analysis', icon: 'icons/malware.svg' },
+      { name: 'Manga Drawing', icon: 'icons/html.svg' },
+      { name: 'Hand-drawn UI', icon: 'icons/css.svg' }
     ];
   }
 };
