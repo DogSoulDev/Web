@@ -29,12 +29,16 @@ export class ProfileView {
         </div>
         <h3>Skills</h3>
         <div class="skills-grid">
-          ${skills.map(skill => `
-            <div class="comic-panel skill-panel">
-              <h4>${skill.name}</h4>
-              <p>${skill.level}</p>
-            </div>
-          `).join('')}
+          ${skills.map((skill, index) => {
+            const positions = ['top', 'bottom', 'left', 'right'];
+            const position = positions[index % positions.length];
+            return `
+              <div class="skill-speech-bubble ${position}">
+                <h4>${skill.name}</h4>
+                <p>${skill.level}</p>
+              </div>
+            `;
+          }).join('')}
         </div>
       </div>
     `;
