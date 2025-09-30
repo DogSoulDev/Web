@@ -1,7 +1,7 @@
 export class ProfileModel {
   getProfile() {
     return {
-      name: 'Javier Fernández',
+      name: 'Javier Fernández (DogSoulDev / DsD)',
       title: 'Cybersecurity Professional',
       subtitle: 'Master\'s in Cybersecurity & Software Development',
       description: 'Cybersecurity professional with expertise in penetration testing, incident response, and secure software development. Passionate about team collaboration and continuous learning.',

@@ -8,7 +8,7 @@ export class ProfileView {
   render() {
     const profile = this.model.getProfile();
     return `
-      <div class="section profile active">
+      <div class="section profile">
         <div class="header">
           <img src="${profile.img}" alt="Avatar" class="profile-img">
           <div>

@@ -36,13 +36,7 @@
   color: var(--bg-main);
 }
 
-.section {
-  display: none;
-}
 
-.section.active {
-  display: block;
-}
 
 .profile-img {
   width: 140px;
