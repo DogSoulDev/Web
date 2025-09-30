@@ -1,0 +1,40 @@
+.handdrawn {
+  border: 2px double var(--manga-gray);
+  box-shadow: 3px 3px 0 var(--manga-chalk), 1px 1px 0 var(--manga-black);
+  background: var(--bg-panel);
+  transform: skewX(-0.5deg);
+}
+
+.sketch {
+  position: relative;
+  animation: jitter 0.1s infinite alternate;
+}
+
+@keyframes jitter {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(1px); }
+}
+
+.sketch::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    var(--manga-chalk) 2px,
+    var(--manga-chalk) 4px
+  );
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.5;
+}
+
+.rough-border {
+  border: 2px solid var(--manga-black);
+  border-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><path d="M0,5 Q5,0 10,5 Q5,10 0,5" stroke="%23000" fill="none"/></svg>') 2;
+}
