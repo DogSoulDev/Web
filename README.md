@@ -1,5 +1,4 @@
-# Cybersecurity Portfolio - Javier Fernández# Manga Portfolio - Javier Fernández# Manga Portfolio - Hiroshi Tanaka# Manga Portfolio - Hiroshi Tanaka# Manga Portfolio - Akira Yamada
-
+# Cybersecurity Portfolio - Javier Fernández
 
 
 A clean, minimalist portfolio website built with pure HTML, CSS, and JavaScript, optimized for GitHub Pages. Features a single-page application with MVC architecture, dynamic GitHub project fetching, and strict security policies.
@@ -11,8 +10,6 @@ A clean, minimalist portfolio website built with pure HTML, CSS, and JavaScript,
 
 
 - Clean and responsive design
-
-- Dynamic project fetching from GitHub API
 
 - Single-page application with MVC architecture## FeaturesA clean, minimalist portfolio inspired by manga art and clean web design. Built with pure HTML, CSS, and JavaScript, optimized for GitHub Pages.
 
@@ -26,7 +23,7 @@ A clean, minimalist portfolio website built with pure HTML, CSS, and JavaScript,
 
 ## Folder Structure
 
-- Dynamic project fetching from GitHub
+- Dynamic project
 
 ```
 
