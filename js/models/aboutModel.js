@@ -2,7 +2,9 @@ export class AboutModel {
   getAbout() {
     return {
       title: 'About Me',
-      content: `Work permit: Spanish | Gender: Male | Date of birth: 31/10/1985 | Place of birth: La Coruña, Spain | Nationality: Spanish | Home: 15008, La Coruña, Spain
+      content: `Highly accomplished Cybersecurity professional backed by a triple academic foundation: a Master's Degree in Cybersecurity, a Master's in Software Development, and a Higher Technical Degree in IT Systems Management. My technical expertise is complemented by a strong team orientation and relentless determination—qualities forged through dedicated sports participation. I excel at collaborative problem-solving and possess the willpower to achieve challenging objectives in vulnerability analysis and complex risk mitigation. Seeking to leverage this blend of advanced technical skills and a proven team-first, goal-driven mindset to enhance organizational security.
+
+Work permit: Spanish | Gender: Male | Date of birth: 31/10/1985 | Place of birth: La Coruña, Spain | Nationality: Spanish | Home: 15008, La Coruña, Spain
 
 Languages:
 - Mother tongue: Spanish
