@@ -2,14 +2,14 @@ export class BlogModel {
   getPosts() {
     return [
       {
-        title: 'Building Clean Manga Portfolios',
+        title: 'The Art of Clean Manga Portfolios',
         date: '2023-10-01',
-        excerpt: 'How to create hand-drawn web designs using pure CSS and JS.'
+        excerpt: 'Tips for designing minimalist manga-inspired websites.'
       },
       {
-        title: 'Legacy Code Best Practices',
+        title: 'Blending Art and Code',
         date: '2023-09-15',
-        excerpt: 'Applying SOLID principles in modern web development.'
+        excerpt: 'How to integrate illustrations into web development.'
       }
     ];
   }

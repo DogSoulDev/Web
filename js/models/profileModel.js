@@ -1,15 +1,15 @@
 export class ProfileModel {
   getProfile() {
     return {
-      name: 'Akira Yamada',
-      title: 'Manga Web Developer & Mangaka',
-      subtitle: 'Hand-drawn interfaces and creative digital art',
-      description: 'Mangaka and web developer specializing in manga-style portfolios, hand-drawn UIs, and digital creativity. Passionate about Japanese art, technology, and clean, legacy code.',
+      name: 'Hiroshi Tanaka',
+      title: 'Manga Illustrator & Web Designer',
+      subtitle: 'Creating digital art and clean web experiences',
+      description: 'Manga artist and web developer blending traditional illustration with modern design. Passionate about storytelling through visuals and code.',
       img: 'img/avatar.svg',
       social: [
-        { name: 'GitHub', url: 'https://github.com/akirayamada', icon: 'icons/github.svg' },
-        { name: 'LinkedIn', url: 'https://linkedin.com/in/akirayamada', icon: 'icons/linkedin.svg' },
-        { name: 'Portfolio', url: 'https://akirayamada.dev', icon: 'icons/portfolio.svg' }
+        { name: 'GitHub', url: 'https://github.com/hiroshit', icon: 'icons/github.svg' },
+        { name: 'LinkedIn', url: 'https://linkedin.com/in/hiroshit', icon: 'icons/linkedin.svg' },
+        { name: 'Portfolio', url: 'https://hiroshit.dev', icon: 'icons/portfolio.svg' }
       ]
     };
   }

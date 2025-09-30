@@ -10,9 +10,7 @@ export class AboutView {
     return `
       <div class="section about">
         <h2 class="section-title">${about.title}</h2>
-        <div class="speech-bubble">
-          <p>${about.content}</p>
-        </div>
+        <p>${about.content}</p>
       </div>
     `;
   }

@@ -2,16 +2,16 @@ export class ExperienceModel {
   getExperience() {
     return [
       {
-        title: 'Web Developer',
-        company: 'Manga Studios',
+        title: 'Freelance Manga Illustrator',
+        company: 'Self-Employed',
         period: '2020 - Present',
-        description: 'Developing manga-inspired web applications using legacy technologies.'
+        description: 'Creating digital manga art and web designs.'
       },
       {
-        title: 'Mangaka',
-        company: 'Freelance',
-        period: '2018 - Present',
-        description: 'Creating hand-drawn illustrations and digital art.'
+        title: 'Web Designer',
+        company: 'Creative Studio',
+        period: '2018 - 2020',
+        description: 'Designing user interfaces and portfolios.'
       }
     ];
   }

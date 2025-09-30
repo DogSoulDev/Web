@@ -1,55 +1,106 @@
-# Manga Portfolio - Akira Yamada
+# Manga Portfolio - Hiroshi Tanaka# Manga Portfolio - Akira Yamada
 
-A professional portfolio inspired by Japanese manga art, featuring a clean, hand-drawn style. Built with pure HTML, CSS, and JavaScript, optimized for GitHub Pages.
 
-## Features
-- Manga-inspired design: White, black, and chalk colors, pencil-drawn aesthetics
-- Hand-drawn avatar and icons
-- Single-page application with navigation tabs
-- MVC architecture for clean code
-- Security-focused: Strict CSP, no external dependencies
+
+A clean, minimalist portfolio inspired by manga art and clean web design. Built with pure HTML, CSS, and JavaScript, optimized for GitHub Pages.A professional portfolio inspired by Japanese manga art, featuring a clean, hand-drawn style. Built with pure HTML, CSS, and JavaScript, optimized for GitHub Pages.
+
+
+
+## Features## Features
+
+- Clean manga-inspired design with subtle illustrations- Manga-inspired design: White, black, and chalk colors, pencil-drawn aesthetics
+
+- Dynamic project fetching from GitHub- Hand-drawn avatar and icons
+
+- Single-page application with MVC architecture- Single-page application with navigation tabs
+
+- Responsive and user-friendly- MVC architecture for clean code
+
+- No external dependencies- Security-focused: Strict CSP, no external dependencies
+
 - Responsive and easy to navigate
 
 ## Folder Structure
-```
-css/            # Stylesheets (base, layout, components, effects)
-js/
-  controllers/  # MVC Controllers
-  models/       # Data Models
-  views/        # View Renderers
-img/            # Images and avatar
-icons/          # SVG icons
-index.html      # Main page
-README.md       # Project info
+
+```## Folder Structure
+
+css/            # Stylesheets```
+
+js/css/            # Stylesheets (base, layout, components, effects)
+
+  controllers/  # MVC Controllersjs/
+
+  models/       # Data Models  controllers/  # MVC Controllers
+
+  views/        # View Renderers  models/       # Data Models
+
+img/            # Images  views/        # View Renderers
+
+icons/          # Iconsimg/            # Images and avatar
+
+index.html      # Main pageicons/          # SVG icons
+
+README.md       # Project infoindex.html      # Main page
+
+```README.md       # Project info
+
 ```
 
 ## Security
-- Strict data validation
-- Safe content rendering
+
+- Strict CSP## Security
+
+- Safe rendering- Strict data validation
+
+- No unsafe functions- Safe content rendering
+
 - No eval, innerHTML, or unsafe functions
-- No external libraries
-- Content Security Policy (CSP)
 
-## Sections
-- Profile: Avatar, name, bio, social links
-- About: Personal description
-- Skills: Technical and artistic skills
-- Projects: Portfolio projects
-- Experience: Work history
+## Sections- No external libraries
+
+- Profile: Bio and social links- Content Security Policy (CSP)
+
+- About: Personal info
+
+- Skills: Abilities## Sections
+
+- Projects: GitHub repos- Profile: Avatar, name, bio, social links
+
+- Experience: Work history- About: Personal description
+
+- Education: Background- Skills: Technical and artistic skills
+
+- Blog: Posts- Projects: Portfolio projects
+
+- Contact: Email- Experience: Work history
+
 - Education: Academic background
-- Blog: Articles and posts
-- Contact: Email
 
-## Best Practices
+## Best Practices- Blog: Articles and posts
+
+- SOLID, DRY, KISS- Contact: Email
+
+- Clean code
+
+- MVC pattern## Best Practices
+
 - SOLID, DRY, KISS principles
-- Clean, modular code
-- Input validation and sanitization
+
+## Deployment- Clean, modular code
+
+Push to main branch, enable GitHub Pages.- Input validation and sanitization
+
 - Ready for scalability
 
-## Deployment on GitHub Pages
+## Author
+
+Hiroshi Tanaka (fictional)## Deployment on GitHub Pages
+
 1. Push to main branch.
-2. Enable GitHub Pages in repo settings.
-3. Set main branch as source.
+
+---2. Enable GitHub Pages in repo settings.
+
+Built with inspiration from clean manga portfolios.3. Set main branch as source.
 
 ## Author
 Akira Yamada (fictional)

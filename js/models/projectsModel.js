@@ -6,25 +6,24 @@ export class ProjectsModel {
       const repos = await response.json();
       return repos.map(repo => ({
         title: repo.name,
-        description: repo.description || 'No description available.',
+        description: repo.description || 'A creative project.',
         url: repo.html_url,
         tech: repo.language ? [repo.language] : ['Various']
       }));
     } catch (error) {
       console.error('Error fetching projects:', error);
-      // Fallback to static data
       return [
         {
-          title: 'Manga Portfolio Site',
-          description: 'A hand-drawn manga-style portfolio built with pure HTML, CSS, and JS. Features MVC architecture and clean code principles.',
+          title: 'Manga Web Portfolio',
+          description: 'A clean, manga-inspired portfolio site.',
           url: '#',
           tech: ['HTML', 'CSS', 'JavaScript']
         },
         {
           title: 'Illustrated Blog',
-          description: 'A blog with manga illustrations, focusing on web development and art.',
+          description: 'Blog with manga illustrations.',
           url: '#',
-          tech: ['HTML', 'CSS', 'JS']
+          tech: ['HTML', 'CSS']
         }
       ];
     }

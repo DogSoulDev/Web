@@ -3,7 +3,7 @@ export class ContactView {
     return `
       <div class="section contact">
         <h2 class="section-title">Contact</h2>
-        <p>Email: akira.yamada@example.com</p>
+        <p>Email: hiroshi.tanaka@example.com</p>
       </div>
     `;
   }
