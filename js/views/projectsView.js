@@ -5,8 +5,8 @@ export class ProjectsView {
     this.model = new ProjectsModel();
   }
 
-  render() {
-    const projects = this.model.getProjects();
+  async render() {
+    const projects = await this.model.getProjects();
     return `
       <div class="section projects">
         <h2 class="section-title">Projects</h2>
@@ -16,7 +16,7 @@ export class ProjectsView {
               <h3>${project.title}</h3>
               <p>${project.description}</p>
               <p>Tech: ${project.tech.join(', ')}</p>
-              <a href="${project.url}">View Project</a>
+              <a href="${project.url}" target="_blank">View Project</a>
             </li>
           `).join('')}
         </ul>

@@ -1,14 +1,7 @@
 import { AppController } from './controllers/appController.js';
 
-import { AppController } from './controllers/appController.js';
-
-document.addEventListener('DOMContentLoaded', () => {
-
-  const app = new AppController();'use strict';
-
-  app.init();
-
-});window.addEventListener('DOMContentLoaded', () => {
-  AppController.init();
+document.addEventListener('DOMContentLoaded', async () => {
+  const app = new AppController();
+  await app.init();
 });
 

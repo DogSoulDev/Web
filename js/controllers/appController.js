@@ -23,9 +23,9 @@ export class AppController {
     };
   }
 
-  init() {
+  async init() {
     this.bindEvents();
-    this.renderSection(this.currentSection);
+    await this.renderSection(this.currentSection);
   }
 
   bindEvents() {
@@ -43,8 +43,9 @@ export class AppController {
     this.renderSection(section);
   }
 
-  renderSection(section) {
+  async renderSection(section) {
     const view = this.views[section];
-    this.appElement.innerHTML = view.render();
+    const html = await view.render();
+    this.appElement.innerHTML = html;
   }
 }
