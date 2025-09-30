@@ -60,6 +60,31 @@
   background: var(--manga-gray);
 }
 
+.avatar-container {
+  position: relative;
+  display: inline-block;
+}
+
+.sound-effect {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  background: var(--manga-red);
+  color: var(--bg-main);
+  font-family: var(--font-manga);
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 50%;
+  border: 2px solid var(--manga-black);
+  transform: rotate(-15deg);
+  box-shadow: 2px 2px 0 var(--manga-gray);
+}
+
+.name-section {
+  margin-left: 1rem;
+}
+
 .title {
   font-size: 2.5rem;
   color: var(--manga-black);
@@ -71,6 +96,54 @@
   font-size: 1.3rem;
   color: var(--text-muted);
   margin: 0.5rem 0;
+}
+
+.action-quote {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.action-bubble {
+  display: inline-block;
+  background: var(--manga-yellow) !important;
+  border-color: var(--manga-red) !important;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.profile-desc {
+  font-size: 1.1rem;
+  text-align: center;
+  margin: 20px 0;
+  font-style: italic;
+}
+
+.about-bubble {
+  background: linear-gradient(135deg, var(--bg-main) 0%, #e6f3ff 100%) !important;
+}
+
+.skills-section {
+  margin-top: 30px;
+}
+
+.skills-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--manga-black);
+  text-decoration: underline;
+  text-decoration-color: var(--manga-red);
 }
 
 .skills-list, .projects-list, .experience-list {

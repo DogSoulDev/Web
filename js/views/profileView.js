@@ -16,29 +16,39 @@ export class ProfileView {
     return `
       <div class="section profile">
         <div class="header">
-          <img src="${profile.img}" alt="Avatar" class="profile-img">
-          <div>
+          <div class="avatar-container">
+            <img src="${profile.img}" alt="Avatar" class="profile-img speed-lines">
+            <div class="sound-effect">HI!</div>
+          </div>
+          <div class="name-section">
             <h1 class="title">${profile.name}</h1>
             <p class="subtitle">${profile.title}</p>
             <p class="subtitle">${profile.subtitle}</p>
           </div>
         </div>
-        <p>${profile.description}</p>
-        <div class="speech-bubble">
+        <div class="action-quote">
+          <div class="speech-bubble action-bubble">
+            <p>"Code is my superpower! 💻⚡"</p>
+          </div>
+        </div>
+        <p class="profile-desc">${profile.description}</p>
+        <div class="speech-bubble about-bubble">
           <p>${about.content.replace(/\n/g, '<br>')}</p>
         </div>
-        <h3>Skills</h3>
-        <div class="skills-grid">
-          ${skills.map((skill, index) => {
-            const positions = ['top', 'bottom', 'left', 'right'];
-            const position = positions[index % positions.length];
-            return `
-              <div class="skill-speech-bubble ${position}">
-                <h4>${skill.name}</h4>
-                <p>${skill.level}</p>
-              </div>
-            `;
-          }).join('')}
+        <div class="skills-section">
+          <h3 class="skills-title">Skills</h3>
+          <div class="skills-grid">
+            ${skills.map((skill, index) => {
+              const positions = ['top', 'bottom', 'left', 'right'];
+              const position = positions[index % positions.length];
+              return `
+                <div class="skill-speech-bubble ${position}">
+                  <h4>${skill.name}</h4>
+                  <p>${skill.level}</p>
+                </div>
+              `;
+            }).join('')}
+          </div>
         </div>
       </div>
     `;
