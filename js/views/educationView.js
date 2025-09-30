@@ -10,15 +10,31 @@ export class EducationView {
     return `
       <div class="section education speed-lines">
         <h2 class="section-title">Education</h2>
-        ${education.map(edu => `
-          <div class="comic-panel">
-            <h3>${edu.degree}</h3>
-            <p><strong>${edu.institution}</strong></p>
-            <p>${edu.location}</p>
-            <p>${edu.period}</p>
-            ${edu.url ? `<a href="${edu.url}" target="_blank">More info</a>` : ''}
-          </div>
-        `).join('')}
+        <div class="education-grid">
+          ${education.map((edu, index) => `
+            <div class="comic-panel education-panel">
+              <div class="panel-header">
+                <span class="panel-number">${index + 1}</span>
+              </div>
+              <div class="education-content">
+                <h3 class="education-title">${edu.degree}</h3>
+                <div class="education-meta">
+                  <p class="institution"><strong>${edu.institution}</strong></p>
+                  <p class="location">${edu.location}</p>
+                  <p class="period">${edu.period}</p>
+                </div>
+                ${edu.url ? `
+                  <div class="education-actions">
+                    <a href="${edu.url}" target="_blank" class="education-link">
+                      <span class="link-text">LEARN MORE</span>
+                      <span class="action-lines">▶▶▶</span>
+                    </a>
+                  </div>
+                ` : ''}
+              </div>
+            </div>
+          `).join('')}
+        </div>
       </div>
     `;
   }
