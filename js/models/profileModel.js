@@ -2,11 +2,11 @@
 export const ProfileModel = {
   getProfile() {
     return {
-      name: 'Akira Yamada',
-      title: 'Manga Developer & Ethical Hacker',
-      subtitle: 'Creador de mundos digitales y defensor de la seguridad',
-      description: 'Mangaka y desarrollador web especializado en ciberseguridad, pentesting y programación. Apasionado por el arte japonés, la tecnología y la creatividad. Siempre explorando nuevas herramientas y técnicas para proteger y crear.',
-      img: 'img/profile.jpg', // Avatar manga ficticio
+    name: 'Akira Yamada',
+    title: 'Manga Web Developer & Mangaka',
+    subtitle: 'Arte japonés, interfaces dibujadas a mano y creatividad digital',
+    description: 'Mangaka y desarrollador web especializado en portafolios manga, interfaces ilustradas y creatividad digital. Apasionado por el arte japonés, la tecnología y el diseño dibujado a mano. Siempre explorando nuevas técnicas para crear y proteger.',
+    img: 'img/profile.jpg', // Avatar manga ficticio
       social: [
         { name: 'GitHub', url: 'https://github.com/akirayamada', icon: 'icons/python.svg' },
         { name: 'LinkedIn', url: 'https://linkedin.com/in/akirayamada', icon: 'icons/java.svg' },
