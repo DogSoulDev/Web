@@ -1,10 +1,10 @@
-import TerminalController from './controllers/terminalController.js';
-import TerminalView from './views/terminalView.js';
-import ChallengeController from './controllers/challengeController.js';
-import ChallengeView from './views/challengeView.js';
-import { showSubtitle } from './views/subtitleView.js';
-import { applyGlitch } from './views/glitchView.js';
-import { renderParticles } from './views/particleView.js';
+// ...existing code...
+
+import HomeController from './controllers/homeController.js';
+import ProjectsController from './controllers/projectsController.js';
+import ExperienceController from './controllers/experienceController.js';
+import SkillsController from './controllers/skillsController.js';
+import ContactController from './controllers/contactController.js';
 
 function setupThemeToggle() {
   const btn = document.getElementById('theme-toggle');
@@ -14,7 +14,6 @@ function setupThemeToggle() {
     btn.classList.toggle('light');
     btn.textContent = document.body.classList.contains('light') ? '🌞' : '🌙';
   });
-}
 
 function setupCursorCyberpunk() {
   // El cursor ya está definido en CSS, pero aquí puedes personalizarlo dinámicamente si lo deseas
@@ -96,7 +95,15 @@ function setupChallengeButton() {
   };
 }
 
-function setupTerminalInput() {
+    function renderPortfolioSections() {
+      // Renderiza cada sección usando su controlador
+      new HomeController().render();
+      new ProjectsController().render();
+      new ExperienceController().render();
+      new SkillsController().render();
+      new ContactController().render();
+    }
+
   let input = document.getElementById('terminal-input');
   if (!input) {
     input = document.createElement('input');
