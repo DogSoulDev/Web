@@ -1,0 +1,13 @@
+.glitch {
+  color: var(--neon-pink);
+  position: relative;
+  animation: glitch 1s infinite linear alternate-reverse;
+}
+@keyframes glitch {
+  0% { text-shadow: 2px 0 var(--neon-green), -2px 0 var(--neon-blue); }
+  20% { text-shadow: -2px 0 var(--neon-green), 2px 0 var(--neon-blue); }
+  40% { text-shadow: 2px 2px var(--neon-pink), -2px -2px var(--neon-blue); }
+  60% { text-shadow: -2px 2px var(--neon-green), 2px -2px var(--neon-pink); }
+  80% { text-shadow: 0 0 var(--neon-blue), 0 0 var(--neon-green); }
+  100% { text-shadow: 2px 0 var(--neon-green), -2px 0 var(--neon-blue); }
+}

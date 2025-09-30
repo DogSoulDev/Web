@@ -1,24 +1,7 @@
-/* Cyberpunk Hacker Portfolio Styles *//* Theme toggle button */
-
-:root {#theme-toggle {
-
-  --bg-main: #0a0f1c;  position: fixed;
-
-  --bg-panel: #181c2b;  top: 20px;
-
-  --neon-green: #39ff14;  right: 30px;
-
-  --neon-pink: #ff00c8;  z-index: 1001;
-
-  --neon-blue: #00eaff;  background: #222;
-
-  --text-main: #e0e0e0;  color: #39ff14;
-
-  --text-muted: #7f8fa6;  border: 2px solid #39ff14;
-
-  --font-mono: 'Fira Mono', 'Consolas', monospace;  border-radius: 50%;
-
-}  width: 48px;
+@import url('base.css');
+@import url('layout.css');
+@import url('components.css');
+@import url('effects.css');
 
 body {  height: 48px;
 

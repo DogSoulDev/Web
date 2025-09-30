@@ -1,0 +1,23 @@
+#app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(24,28,43,0.95);
+  border-radius: 16px;
+  box-shadow: 0 0 32px var(--neon-pink);
+}
+.header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.section {
+  margin-bottom: 2rem;
+}
+.section-title {
+  font-size: 1.5rem;
+  color: var(--neon-blue);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 6px var(--neon-blue);
+}
