@@ -50,6 +50,9 @@ export class ProfileView {
             }).join('')}
           </div>
         </div>
+        <div class="copyright">
+          <p>© 2025 DogSoulDev. All rights reserved.</p>
+        </div>
       </div>
     `;
   }

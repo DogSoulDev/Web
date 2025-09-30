@@ -146,6 +146,16 @@
   text-decoration-color: var(--manga-red);
 }
 
+.copyright {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  border-top: 2px solid var(--manga-gray);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-family: var(--font-manga);
+}
+
 .projects-comic-layout {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -288,6 +298,277 @@
   right: 10px;
   width: 50px;
   height: 30px;
+}
+
+/* Theme variations for project cards */
+.comic-panel.fire {
+  border-color: var(--manga-red);
+  background: linear-gradient(135deg, var(--bg-panel) 0%, #ffe6e6 100%);
+}
+
+.comic-panel.fire .panel-number {
+  background: var(--manga-red);
+}
+
+.comic-panel.fire .project-title {
+  text-decoration-color: var(--manga-red);
+}
+
+.comic-panel.fire-bubble {
+  background: linear-gradient(135deg, var(--bg-main) 0%, #ffcccc 100%) !important;
+  border-color: var(--manga-red) !important;
+}
+
+.comic-panel.electric {
+  border-color: var(--manga-blue);
+  background: linear-gradient(135deg, var(--bg-panel) 0%, #e6f3ff 100%);
+}
+
+.comic-panel.electric .panel-number {
+  background: var(--manga-blue);
+}
+
+.comic-panel.electric .project-title {
+  text-decoration-color: var(--manga-blue);
+}
+
+.comic-panel.electric-bubble {
+  background: linear-gradient(135deg, var(--bg-main) 0%, #cce6ff 100%) !important;
+  border-color: var(--manga-blue) !important;
+}
+
+.comic-panel.wind {
+  border-color: var(--manga-green);
+  background: linear-gradient(135deg, var(--bg-panel) 0%, #e6ffe6 100%);
+}
+
+.comic-panel.wind .panel-number {
+  background: var(--manga-green);
+}
+
+.comic-panel.wind .project-title {
+  text-decoration-color: var(--manga-green);
+}
+
+.comic-panel.wind-bubble {
+  background: linear-gradient(135deg, var(--bg-main) 0%, #ccffcc 100%) !important;
+  border-color: var(--manga-green) !important;
+}
+
+.comic-panel.earth {
+  border-color: #8B4513;
+  background: linear-gradient(135deg, var(--bg-panel) 0%, #f4e4bc 100%);
+}
+
+.comic-panel.earth .panel-number {
+  background: #8B4513;
+}
+
+.comic-panel.earth .project-title {
+  text-decoration-color: #8B4513;
+}
+
+.comic-panel.earth-bubble {
+  background: linear-gradient(135deg, var(--bg-main) 0%, #e6d4a3 100%) !important;
+  border-color: #8B4513 !important;
+}
+
+.comic-panel.water {
+  border-color: #00CED1;
+  background: linear-gradient(135deg, var(--bg-panel) 0%, #e0f7ff 100%);
+}
+
+.comic-panel.water .panel-number {
+  background: #00CED1;
+}
+
+.comic-panel.water .project-title {
+  text-decoration-color: #00CED1;
+}
+
+.comic-panel.water-bubble {
+  background: linear-gradient(135deg, var(--bg-main) 0%, #b3e6ff 100%) !important;
+  border-color: #00CED1 !important;
+}
+
+.comic-panel.light {
+  border-color: var(--manga-yellow);
+  background: linear-gradient(135deg, var(--bg-panel) 0%, #fffde6 100%);
+}
+
+.comic-panel.light .panel-number {
+  background: var(--manga-yellow);
+  color: var(--manga-black);
+}
+
+.comic-panel.light .project-title {
+  text-decoration-color: var(--manga-yellow);
+}
+
+.comic-panel.light-bubble {
+  background: linear-gradient(135deg, var(--bg-main) 0%, #ffffcc 100%) !important;
+  border-color: var(--manga-yellow) !important;
+}
+
+/* Color variations for elements */
+.sound-effect.red {
+  background: var(--manga-red);
+}
+
+.sound-effect.blue {
+  background: var(--manga-blue);
+}
+
+.sound-effect.green {
+  background: var(--manga-green);
+}
+
+.sound-effect.brown {
+  background: #8B4513;
+}
+
+.sound-effect.cyan {
+  background: #00CED1;
+}
+
+.sound-effect.yellow {
+  background: var(--manga-yellow);
+  color: var(--manga-black);
+}
+
+.tech-badge.red {
+  background: var(--manga-red);
+}
+
+.tech-badge.blue {
+  background: var(--manga-blue);
+}
+
+.tech-badge.green {
+  background: var(--manga-green);
+}
+
+.tech-badge.brown {
+  background: #8B4513;
+}
+
+.tech-badge.cyan {
+  background: #00CED1;
+}
+
+.tech-badge.yellow {
+  background: var(--manga-yellow);
+  color: var(--manga-black);
+}
+
+.project-link.red {
+  background: var(--manga-red);
+}
+
+.project-link.blue {
+  background: var(--manga-blue);
+}
+
+.project-link.green {
+  background: var(--manga-green);
+}
+
+.project-link.brown {
+  background: #8B4513;
+}
+
+.project-link.cyan {
+  background: #00CED1;
+}
+
+.project-link.yellow {
+  background: var(--manga-yellow);
+  color: var(--manga-black);
+}
+
+.project-link.red:hover {
+  background: #cc0000;
+}
+
+.project-link.blue:hover {
+  background: #0066cc;
+}
+
+.project-link.green:hover {
+  background: #009900;
+}
+
+.project-link.brown:hover {
+  background: #654321;
+}
+
+.project-link.cyan:hover {
+  background: #00aaaa;
+}
+
+.project-link.yellow:hover {
+  background: #cccc00;
+}
+
+/* Speed lines variations */
+.speed-lines.fire::before {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(255,0,0,0.2) 5px,
+    rgba(255,0,0,0.2) 10px
+  );
+}
+
+.speed-lines.electric::before {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(0,0,255,0.2) 5px,
+    rgba(0,0,255,0.2) 10px
+  );
+}
+
+.speed-lines.wind::before {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(0,255,0,0.2) 5px,
+    rgba(0,255,0,0.2) 10px
+  );
+}
+
+.speed-lines.earth::before {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(139,69,19,0.2) 5px,
+    rgba(139,69,19,0.2) 10px
+  );
+}
+
+.speed-lines.water::before {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(0,206,209,0.2) 5px,
+    rgba(0,206,209,0.2) 10px
+  );
+}
+
+.speed-lines.light::before {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(255,255,0,0.2) 5px,
+    rgba(255,255,0,0.2) 10px
+  );
 }
 
 /* Responsive adjustments */
