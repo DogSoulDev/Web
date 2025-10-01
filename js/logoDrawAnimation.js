@@ -40,7 +40,7 @@ class LogoDrawAnimation {
 
   async loadSVG() {
     try {
-      const response = await fetch('img/avatar.svg');
+      const response = await fetch('img/test.svg');
       const svgText = await response.text();
       
       const logoContainer = document.getElementById('logo-animated');
@@ -66,21 +66,25 @@ class LogoDrawAnimation {
   }
 
   prepareSVG() {
-    // Ocultar el rectángulo blanco de fondo
+    // Ocultar el rectángulo blanco de fondo si existe
     const rect = this.svg.querySelector('rect');
     if (rect) {
       rect.style.display = 'none';
     }
 
-    // Obtener el grupo principal con los paths
-    const mainGroup = this.svg.querySelector('g');
-    if (!mainGroup) return;
+    // Obtener TODOS los paths del SVG (incluso en grupos anidados)
+    const paths = this.svg.querySelectorAll('path');
+    
+    if (paths.length === 0) {
+      console.warn('No se encontraron paths en el SVG');
+      this.hideAnimation();
+      return;
+    }
 
-    // Obtener todos los paths originales
-    const paths = mainGroup.querySelectorAll('path');
+    console.log(`Preparando animación para ${paths.length} trazos`);
 
     // Preparar cada path para la animación
-    paths.forEach(path => {
+    paths.forEach((path, index) => {
       // Guardar el fill original
       const originalFill = path.getAttribute('fill');
       path.dataset.originalFill = originalFill;
@@ -88,13 +92,18 @@ class LogoDrawAnimation {
       // Configurar para animación de stroke (responsive)
       path.setAttribute('fill', 'none');
       path.setAttribute('stroke', this.FIRST_DRAW_COLOR);
-      path.setAttribute('stroke-width', this.isMobile ? '1.5' : '2');
+      path.setAttribute('stroke-width', this.isMobile ? '2' : '3');
+      path.setAttribute('stroke-linecap', 'round');
+      path.setAttribute('stroke-linejoin', 'round');
       
+      // Calcular longitud del path y configurar dasharray
       const length = path.getTotalLength();
       path.style.strokeDasharray = `${length}`;
       path.style.strokeDashoffset = `${length}`;
       
       this.strokes.push(path);
+      
+      console.log(`Path ${index + 1}: longitud = ${length.toFixed(2)}px`);
     });
   }
 
