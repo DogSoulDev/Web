@@ -73,15 +73,10 @@ class LogoDrawAnimation {
 
     // Obtener el grupo principal con los paths
     const mainGroup = this.svg.querySelector('g');
-    if (!mainGroup) {
-      console.error('No se encontró el grupo principal');
-      return;
-    }
+    if (!mainGroup) return;
 
     // Obtener todos los paths originales
     const paths = mainGroup.querySelectorAll('path');
-    
-    console.log('Paths encontrados:', paths.length);
 
     // Preparar cada path para la animación
     paths.forEach(path => {
@@ -100,18 +95,13 @@ class LogoDrawAnimation {
       
       this.strokes.push(path);
     });
-
-    console.log('Strokes preparados:', this.strokes.length);
   }
 
   animate() {
     if (this.strokes.length === 0) {
-      console.error('No hay strokes para animar');
       this.hideAnimation();
       return;
     }
-
-    console.log('Iniciando animación con', this.strokes.length, 'strokes');
 
     // Calcular duración por trazo
     const durationPerStroke = this.TOTAL_ANIMATION_TIME / this.strokes.length;
@@ -129,7 +119,6 @@ class LogoDrawAnimation {
 
     // Restaurar fills originales y ocultar animación
     setTimeout(() => {
-      console.log('Restaurando fills originales');
       this.strokes.forEach(stroke => {
         stroke.style.transition = 'all 0.5s ease';
         stroke.setAttribute('stroke', 'none');

@@ -212,21 +212,30 @@
   overflow: hidden;
 }
 
-/* Estilo manga japonés para education cards */
+/* Estilo manga japonés limpio y elegante para education cards */
 .education-panel {
-  background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
-  border: 4px solid var(--manga-black);
-  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.15);
+  background: #fff;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  position: relative;
+  overflow: visible;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
+/* Decoración manga en las esquinas */
 .education-panel::before {
   content: "";
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, transparent 30%, rgba(0, 0, 0, 0.05) 30%, rgba(0, 0, 0, 0.05) 70%, transparent 70%);
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: 
+    linear-gradient(to right, #000 4px, transparent 4px) 0 0,
+    linear-gradient(to bottom, #000 4px, transparent 4px) 0 0,
+    linear-gradient(to right, #000 4px, transparent 4px) 100% 100%,
+    linear-gradient(to bottom, #000 4px, transparent 4px) 100% 100%;
+  background-repeat: no-repeat;
   background-size: 20px 20px;
   opacity: 0;
   transition: opacity 0.3s;
@@ -240,7 +249,8 @@
 
 .education-panel:hover {
   transform: translate(-4px, -4px);
-  box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 12px 12px 0 #000;
+  background: #fffef5;
 }
 
 .experience-content,
@@ -302,62 +312,71 @@
   margin-top: 20px;
 }
 
-/* Botón Learn More estilo manga japonés moderno */
+/* Botón Learn More estilo manga japonés - elegante y moderno */
 .education-link {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  background: #000;
-  color: #fff;
+  gap: 10px;
+  background: transparent;
+  color: #000;
   font-family: var(--font-manga);
   font-weight: bold;
-  padding: 12px 24px;
+  padding: 12px 28px;
   text-decoration: none;
-  border: none;
+  border: 3px solid #000;
   border-radius: 0;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
   font-size: 0.9rem;
   cursor: pointer;
+  box-shadow: 5px 5px 0 #000;
 }
 
 .education-link::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 0;
+  left: -100%;
   width: 100%;
   height: 100%;
-  background: #fff;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  background: #000;
+  transition: left 0.4s cubic-bezier(0.23, 1, 0.320, 1);
   z-index: -1;
 }
 
-.education-link::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 2px solid #000;
-  opacity: 0;
-  transition: opacity 0.4s;
-}
-
 .education-link:hover::before {
-  transform: scaleX(1);
-}
-
-.education-link:hover::after {
-  opacity: 1;
+  left: 0;
 }
 
 .education-link:hover {
-  color: #000;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 #000;
+}
+
+.education-link .link-text {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.education-link .action-lines {
+  position: relative;
+  z-index: 1;
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.education-link:hover .action-lines {
+  transform: translateX(5px);
+  animation: manga-lines 0.6s ease infinite;
+}
+
+@keyframes manga-lines {
+  0%, 100% { transform: translateX(5px); }
+  50% { transform: translateX(10px); }
 }
 
 /* Manga-style Projects Section */
@@ -963,10 +982,10 @@
 }
 
 /* ========================================
-   BOTONES ANIMADOS ÚNICOS PARA PROYECTOS - EFECTO SPOTLIGHT
+   BOTONES ANIMADOS ÚNICOS PARA PROYECTOS - EFECTO SPOTLIGHT CINEMA
    ======================================== */
 
-/* Base común para todos los botones de proyecto con efecto spotlight */
+/* Base común para todos los botones de proyecto con efecto spotlight de cine */
 .project-link-btn {
   position: relative;
   display: inline-flex;
@@ -980,14 +999,16 @@
   font-size: 0.95rem;
   text-decoration: none;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
   z-index: 1;
   color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Efecto de foco de cine - círculo de luz que se expande */
 .project-link-btn::before {
   content: "";
   position: absolute;
@@ -996,15 +1017,45 @@
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
   transform: translate(-50%, -50%);
-  transition: width 0.6s ease, height 0.6s ease;
+  transition: width 0.7s cubic-bezier(0.23, 1, 0.320, 1), height 0.7s cubic-bezier(0.23, 1, 0.320, 1);
   z-index: -1;
+  opacity: 0;
 }
 
 .project-link-btn:hover::before {
-  width: 300px;
-  height: 300px;
+  width: 400px;
+  height: 400px;
+  opacity: 1;
+}
+
+/* Efecto de haz de luz cinematográfico */
+.project-link-btn::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(255, 255, 255, 0.1) 45deg, transparent 90deg);
+  animation: cinema-light 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.project-link-btn:hover::after {
+  opacity: 1;
+}
+
+@keyframes cinema-light {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .project-link-btn .btn-text {
@@ -1101,26 +1152,27 @@
   width: 100%;
 }
 
-/* Botón de GitHub Stars - Pequeño y discreto con estrella brillante */
+/* Botón de GitHub Stars - Pequeño, discreto y elegante con estrella brillante */
 .github-star-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 8px 16px;
+  gap: 5px;
+  padding: 6px 12px;
   background: #fff;
-  border: 2px solid #000;
+  border: 1.5px solid #000;
   color: #000;
   font-family: var(--font-manga);
-  font-weight: bold;
-  font-size: 0.8rem;
+  font-weight: 600;
+  font-size: 0.75rem;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
   position: relative;
   overflow: hidden;
-  box-shadow: 2px 2px 0 #000;
-  border-radius: 4px;
+  box-shadow: 1px 1px 0 #000;
+  border-radius: 6px;
+  opacity: 0.9;
 }
 
 .github-star-btn::before {
@@ -1142,7 +1194,9 @@
 .github-star-btn:hover {
   color: #fff;
   transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 #000;
+  box-shadow: 2px 2px 0 #000;
+  opacity: 1;
+  border-color: #000;
 }
 
 .github-star-btn .star-icon,
@@ -1154,19 +1208,19 @@
 }
 
 .github-star-btn .star-icon {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   stroke: currentColor;
   fill: none;
-  transition: fill 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+  transition: fill 0.4s ease, transform 0.4s ease, filter 0.4s ease;
 }
 
-/* Efecto de brillo en la estrella al hover */
+/* Efecto de brillo intenso en la estrella al hover */
 .github-star-btn:hover .star-icon {
   fill: currentColor;
-  transform: rotate(360deg) scale(1.2);
-  filter: drop-shadow(0 0 8px currentColor);
-  animation: star-sparkle 0.6s ease;
+  transform: rotate(360deg) scale(1.3);
+  filter: drop-shadow(0 0 4px currentColor) drop-shadow(0 0 8px currentColor) drop-shadow(0 0 12px currentColor);
+  animation: star-sparkle 0.8s ease infinite;
 }
 
 .github-star-btn .star-count {
@@ -1182,13 +1236,23 @@
   letter-spacing: 0.5px;
 }
 
-/* Animación de brillo para la estrella */
+/* Animación de brillo intenso para la estrella - efecto sparkle */
 @keyframes star-sparkle {
   0%, 100% {
-    filter: drop-shadow(0 0 8px currentColor);
+    filter: drop-shadow(0 0 4px currentColor) drop-shadow(0 0 8px currentColor);
+    transform: rotate(360deg) scale(1.3);
+  }
+  25% {
+    filter: drop-shadow(0 0 6px currentColor) drop-shadow(0 0 12px currentColor) drop-shadow(0 0 16px currentColor);
+    transform: rotate(360deg) scale(1.35);
   }
   50% {
-    filter: drop-shadow(0 0 15px currentColor) drop-shadow(0 0 20px currentColor);
+    filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 16px currentColor) drop-shadow(0 0 24px currentColor);
+    transform: rotate(360deg) scale(1.4);
+  }
+  75% {
+    filter: drop-shadow(0 0 6px currentColor) drop-shadow(0 0 12px currentColor) drop-shadow(0 0 16px currentColor);
+    transform: rotate(360deg) scale(1.35);
   }
 }
 
@@ -1627,66 +1691,363 @@
 }
 
 /* ===================================
-   CONTACT ICONS - ANIMATED SVG
-   Efecto de animación en iconos
+   CONTACT FORM - MANGA JAPANESE STYLE
+   Formulario seguro con estilo manga
    =================================== */
 
-.contact-icon-container {
+.contact-manga-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Social Links con Emojis */
+.contact-social-links {
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
+  gap: 2rem;
+  margin-bottom: 3rem;
 }
 
-.contact-icon {
-  width: 60px;
-  height: 60px;
-  stroke: var(--manga-black);
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: #fff;
+  border: 3px solid #000;
+  text-decoration: none;
+  font-family: var(--font-manga);
+  font-weight: bold;
+  font-size: 1rem;
+  color: #000;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  box-shadow: 4px 4px 0 #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  transition: left 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: 0;
+}
+
+.github-link::before {
+  background: #333;
+}
+
+.linkedin-link::before {
+  background: #0077b5;
+}
+
+.social-link:hover::before {
+  left: 0;
+}
+
+.social-link:hover {
+  color: #fff;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000;
+}
+
+.social-emoji {
+  font-size: 1.5rem;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.social-text {
+  position: relative;
+  z-index: 1;
+}
+
+.social-link:hover .social-emoji {
+  transform: scale(1.3) rotate(10deg);
+  animation: emoji-bounce 0.6s ease;
+}
+
+@keyframes emoji-bounce {
+  0%, 100% { transform: scale(1.3) rotate(10deg) translateY(0); }
+  50% { transform: scale(1.3) rotate(10deg) translateY(-5px); }
+}
+
+/* Contact Form Wrapper - Estilo manga */
+.contact-form-wrapper {
+  background: #fff;
+  border: 4px solid #000;
+  box-shadow: 10px 10px 0 #000;
+  padding: 2.5rem;
+  position: relative;
+}
+
+.contact-form-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 2px solid #000;
+  pointer-events: none;
+}
+
+.contact-form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid #000;
+}
+
+.contact-form-title {
+  font-family: var(--font-manga);
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.contact-form-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Form Styles */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-manga);
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.label-icon {
+  font-size: 1.2rem;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+  color: #000;
+  background: #fff;
+  border: 3px solid #000;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  box-shadow: 3px 3px 0 #000;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 #000;
+  border-color: #000;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  max-height: 300px;
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+}
+
+/* Submit Button - Manga Style */
+.contact-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 40px;
+  background: #000;
+  color: #fff;
+  font-family: var(--font-manga);
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  box-shadow: 6px 6px 0 #000;
+  position: relative;
+  overflow: hidden;
+  align-self: center;
+}
+
+.contact-submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.contact-submit-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.contact-submit-btn:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 #000;
+}
+
+.contact-submit-btn:active {
+  transform: translate(0, 0);
+  box-shadow: 3px 3px 0 #000;
+}
+
+.contact-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-arrow {
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.contact-submit-btn:hover .btn-arrow {
+  transform: translateX(5px);
+  animation: arrow-move 0.6s ease infinite;
+}
+
+@keyframes arrow-move {
+  0%, 100% { transform: translateX(5px); }
+  50% { transform: translateX(10px); }
+}
+
+/* Form Status Messages */
+.form-status {
+  text-align: center;
+  padding: 12px;
+  font-family: var(--font-manga);
+  font-weight: bold;
+  font-size: 0.95rem;
+  border: 2px solid transparent;
+  margin-top: 1rem;
   transition: all 0.3s ease;
-  cursor: pointer;
 }
 
-/* Animación hover - líneas de dibujo */
-.contact-speech-bubble:hover .contact-icon {
-  animation: iconDraw 1s ease-in-out;
+.form-status.success {
+  background: #d4edda;
+  color: #155724;
+  border-color: #155724;
 }
 
-@keyframes iconDraw {
-  0% {
-    stroke-dasharray: 0 1000;
-    stroke-dashoffset: 0;
-    stroke: var(--manga-red);
+.form-status.error {
+  background: #f8d7da;
+  color: #721c24;
+  border-color: #721c24;
+}
+
+/* Form Footer */
+.contact-form-footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 3px solid #000;
+  text-align: center;
+}
+
+.contact-email-direct {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #333;
+  margin: 0;
+}
+
+.email-icon {
+  font-size: 1.3rem;
+}
+
+.contact-email-direct a {
+  color: #000;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.contact-email-direct a:hover {
+  color: #0077b5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contact-manga-container {
+    padding: 1rem;
   }
-  50% {
-    stroke-dasharray: 1000 0;
-    stroke-dashoffset: 0;
-    stroke: var(--manga-blue);
+
+  .contact-social-links {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
   }
-  100% {
-    stroke-dasharray: 1000 0;
-    stroke-dashoffset: 0;
-    stroke: var(--manga-black);
+
+  .social-link {
+    width: 100%;
+    max-width: 250px;
+    justify-content: center;
+  }
+
+  .contact-form-wrapper {
+    padding: 1.5rem;
+    box-shadow: 6px 6px 0 #000;
+  }
+
+  .contact-form-title {
+    font-size: 1.5rem;
+  }
+
+  .contact-submit-btn {
+    width: 100%;
+    padding: 14px 30px;
+  }
+
+  .contact-email-direct {
+    flex-direction: column;
+    gap: 5px;
   }
 }
 
-/* Iconos específicos con colores */
-.contact-speech-bubble.email:hover .contact-icon {
-  stroke: var(--manga-red);
-  transform: scale(1.2) rotate(5deg);
-}
-
-.contact-speech-bubble.phone:hover .contact-icon {
-  stroke: var(--manga-blue);
-  transform: scale(1.2) rotate(-5deg);
-}
-
-.contact-speech-bubble.website:hover .contact-icon {
-  stroke: var(--manga-green);
-  transform: scale(1.2) rotate(10deg);
-}
-
-.contact-speech-bubble {
-  cursor: pointer;
-}
+/* ===================================
+   CONTACT ICONS - ANIMATED SVG (OLD - REMOVED)
+   =================================== */
 
 /* ===================================
    NOTES WHITEBOARD - Interactive Canvas
