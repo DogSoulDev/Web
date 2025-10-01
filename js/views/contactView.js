@@ -8,7 +8,12 @@ export class ContactView {
     setTimeout(() => {
       const form = document.getElementById('contact-form');
       if (form) {
-        form.addEventListener('submit', this.handleSubmit.bind(this));
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          this.handleSubmit(e);
+          return false;
+        }, false);
       }
     }, 100);
   }
@@ -28,9 +33,6 @@ export class ContactView {
   }
 
   async handleSubmit(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    
     const form = e.target;
     const submitBtn = form.querySelector('.contact-submit-btn');
     const statusMsg = form.querySelector('.form-status');

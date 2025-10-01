@@ -109,32 +109,9 @@
   box-shadow: 0 6px 0 var(--manga-black);
 }
 
-/* Estrellas decorativas en los títulos */
+/* Estrellas decorativas en los títulos - REMOVED */
 .section-title::before {
-  content: '★';
-  position: absolute;
-  left: 10%;
-  top: 50%;
-  transform: translateY(-50%) rotate(-15deg);
-  font-size: 1.5rem;
-  color: var(--manga-red);
-  opacity: 0.6;
-}
-
-.projects .section-title::before {
-  content: '⚡';
-}
-
-.education .section-title::before {
-  content: '📚';
-}
-
-.contact .section-title::before {
-  content: '✉';
-}
-
-.notes .section-title::before {
-  content: '🧠';
+  display: none;
 }
 
 /* Responsive Design */

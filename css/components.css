@@ -695,8 +695,8 @@
 }
 
 .panel-number {
-  background: var(--manga-red);
-  color: var(--bg-main);
+  background: transparent;
+  color: var(--manga-black);
   font-family: var(--font-manga);
   font-size: 1.2rem;
   font-weight: bold;
@@ -1014,19 +1014,19 @@
   width: 120px;
   background-color: #0a0a0a;
   border-radius: 5px;
-  color: #0f0f0f;
+  color: #888888;
   font-weight: 700;
   font-family: var(--font-manga);
   font-size: 0.75rem;
   transition: 300ms;
-  outline: #0f0f0f 2px solid;
+  outline: #888888 2px solid;
   outline-offset: 20px;
 }
 
 .light-button a.bt .button-holder svg {
   height: 35px;
   width: 35px;
-  stroke: #0f0f0f;
+  stroke: #888888;
   fill: none;
   transition: 300ms;
   margin-bottom: 5px;
