@@ -120,82 +120,203 @@
   color: var(--text-muted);
 }
 
-/* Skill speech bubbles */
+/* ============================================
+   MANGA JAPANESE STYLE SPEECH BUBBLES
+   Authentic manga balloon styles
+   ============================================ */
+
+/* Base bubble - Classic manga style with irregular organic shape */
 .skill-speech-bubble {
   background: var(--bg-main);
-  border: 2px solid var(--manga-black);
-  border-radius: 15px;
-  padding: 15px;
+  border: 3px solid var(--manga-black);
+  border-radius: 45% 55% 52% 48% / 48% 62% 38% 52%;
+  padding: 18px 20px;
   position: relative;
-  margin: 10px;
-  box-shadow: 3px 3px 0 var(--manga-gray);
+  margin: 15px;
+  box-shadow: 4px 4px 0 var(--manga-black);
   font-family: var(--font-manga);
   text-align: center;
-  min-height: 80px;
+  min-height: 85px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition: all 0.3s ease;
+  overflow: visible;
+}
+
+.skill-speech-bubble:hover {
+  transform: rotate(-2deg) scale(1.05);
+  box-shadow: 6px 6px 0 var(--manga-black);
 }
 
 .skill-speech-bubble h4 {
   margin: 0 0 5px 0;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .skill-speech-bubble p {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
+  font-weight: 600;
 }
 
-/* Different tail positions */
-.skill-speech-bubble.top::before,
-.skill-speech-bubble.top::after {
-  content: '';
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-}
-
+/* ===== VARIATION 1: Classic Speech Bubble (with tail) ===== */
 .skill-speech-bubble.top::before {
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid var(--manga-black);
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 30%;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 20px solid var(--manga-black);
+  transform: rotate(15deg);
 }
 
 .skill-speech-bubble.top::after {
-  top: -7px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid var(--bg-main);
-}
-
-.skill-speech-bubble.bottom::before,
-.skill-speech-bubble.bottom::after {
   content: '';
   position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: -16px;
+  left: calc(30% + 2px);
   width: 0;
   height: 0;
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+  border-bottom: 17px solid var(--bg-main);
+  transform: rotate(15deg);
+}
+
+/* ===== VARIATION 2: Thought Bubble (with small circles) ===== */
+.skill-speech-bubble.bottom {
+  border-radius: 50%;
 }
 
 .skill-speech-bubble.bottom::before {
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid var(--manga-black);
+  content: '';
+  position: absolute;
+  bottom: -25px;
+  left: 25%;
+  width: 18px;
+  height: 18px;
+  background: var(--bg-main);
+  border: 3px solid var(--manga-black);
+  border-radius: 50%;
 }
 
 .skill-speech-bubble.bottom::after {
-  bottom: -7px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid var(--bg-main);
+  content: '';
+  position: absolute;
+  bottom: -38px;
+  left: 15%;
+  width: 12px;
+  height: 12px;
+  background: var(--bg-main);
+  border: 3px solid var(--manga-black);
+  border-radius: 50%;
+}
+
+/* ===== VARIATION 3: Shout/Action Bubble (spiky edges) ===== */
+.skill-speech-bubble.shout {
+  background: var(--bg-main);
+  border: none;
+  border-radius: 0;
+  clip-path: polygon(
+    10% 0%, 20% 2%, 30% 0%, 40% 2%, 50% 0%, 60% 2%, 70% 0%, 80% 2%, 90% 0%, 100% 5%,
+    98% 15%, 100% 25%, 98% 35%, 100% 45%, 98% 55%, 100% 65%, 98% 75%, 100% 85%, 95% 100%,
+    85% 98%, 75% 100%, 65% 98%, 55% 100%, 45% 98%, 35% 100%, 25% 98%, 15% 100%, 5% 95%,
+    0% 85%, 2% 75%, 0% 65%, 2% 55%, 0% 45%, 2% 35%, 0% 25%, 2% 15%, 0% 5%
+  );
+  box-shadow: 0 0 0 3px var(--manga-black);
+}
+
+.skill-speech-bubble.shout:hover {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+/* ===== VARIATION 4: Whisper Bubble (dashed border) ===== */
+.skill-speech-bubble.whisper {
+  border: 3px dashed var(--manga-black);
+  border-radius: 48% 52% 50% 50% / 52% 48% 52% 48%;
+  opacity: 0.9;
+}
+
+.skill-speech-bubble.whisper h4 {
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+/* ===== VARIATION 5: Explosion Bubble (action effect) ===== */
+.skill-speech-bubble.explosion {
+  background: var(--bg-main);
+  border: 4px solid var(--manga-black);
+  border-radius: 0;
+  clip-path: polygon(
+    50% 0%, 61% 5%, 70% 0%, 79% 5%, 85% 0%, 95% 10%, 100% 15%, 95% 25%, 100% 35%,
+    95% 45%, 100% 55%, 95% 65%, 100% 75%, 90% 85%, 85% 90%, 75% 85%, 70% 95%,
+    60% 90%, 50% 100%, 40% 90%, 30% 95%, 25% 85%, 15% 90%, 10% 85%, 0% 75%,
+    5% 65%, 0% 55%, 5% 45%, 0% 35%, 5% 25%, 0% 15%, 10% 5%, 15% 0%, 25% 5%, 39% 0%
+  );
+  position: relative;
+}
+
+/* Speed lines effect for explosion bubbles */
+.skill-speech-bubble.explosion::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 5px,
+      rgba(0,0,0,0.05) 5px,
+      rgba(0,0,0,0.05) 7px
+    );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===== VARIATION 6: Rectangular Manga Panel Style ===== */
+.skill-speech-bubble.panel {
+  border-radius: 5px;
+  border: 4px solid var(--manga-black);
+  background: linear-gradient(135deg, var(--bg-main) 0%, rgba(255,255,255,0.95) 100%);
+  box-shadow: 5px 5px 0 var(--manga-black), 
+              inset 0 0 20px rgba(0,0,0,0.05);
+}
+
+/* ===== VARIATION 7: Cloud-like Bubble ===== */
+.skill-speech-bubble.cloud {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  background: radial-gradient(circle at 30% 30%, var(--bg-main), rgba(255,255,255,0.9));
+}
+
+/* ===== Random rotation variations for natural look ===== */
+.skill-speech-bubble:nth-child(2n) {
+  transform: rotate(1deg);
+}
+
+.skill-speech-bubble:nth-child(3n) {
+  transform: rotate(-1deg);
+}
+
+.skill-speech-bubble:nth-child(5n) {
+  transform: rotate(2deg);
 }
 
 .skill-speech-bubble.left::before,

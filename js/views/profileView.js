@@ -45,10 +45,11 @@ export class ProfileView extends BaseView {
           <h3 class="skills-title">Skills</h3>
           <div class="skills-grid">
             ${skills.map((skill, index) => {
-              const positions = ['top', 'bottom', 'left', 'right'];
-              const position = positions[index % positions.length];
+              // Array of authentic manga bubble styles for variety
+              const bubbleStyles = ['top', 'bottom', 'shout', 'whisper', 'explosion', 'panel', 'cloud'];
+              const style = bubbleStyles[index % bubbleStyles.length];
               return `
-                <div class="skill-speech-bubble ${position}">
+                <div class="skill-speech-bubble ${style}">
                   <h4>${skill.name}</h4>
                   <p>${skill.level}</p>
                 </div>
