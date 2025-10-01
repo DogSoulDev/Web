@@ -99,14 +99,6 @@ This project is licensed under **MIT License with AI Training Restriction**.
 
 See [LICENSE](./LICENSE) file for full legal terms.
 
-## 🌐 Deployment
-
-**GitHub Pages:**
-1. Push to `main` branch
-2. Go to Settings → Pages
-3. Set source to `main` branch
-4. Access at `https://<username>.github.io/<repo-name>/`
-
 ## 👨‍💻 Author
 
 **DogSoulDev (DsD)**  
@@ -119,5 +111,5 @@ Javier Fernández - Cybersecurity Professional
 ---
 
 **© 2025 DogSoulDev (DsD)**  
-Built with ❤️ using vanilla JavaScript | MVC Architecture | 100% SOLID Compliant  
+Built using vanilla JavaScript | MVC Architecture | 100% SOLID Compliant  
 🚫 Protected against AI training | ⚖️ MIT License with restrictions
