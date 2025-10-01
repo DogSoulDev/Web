@@ -10,6 +10,7 @@
 /**
  * Responsive breakpoints
  * Used across CSS and JavaScript
+ * Must match CSS custom properties in base.css
  */
 export const BREAKPOINTS = {
   MOBILE_SMALL: 360,
@@ -17,6 +18,19 @@ export const BREAKPOINTS = {
   TABLET: 768,
   DESKTOP: 1024,
   DESKTOP_LARGE: 1440
+};
+
+/**
+ * Spacing scale
+ * Matches CSS custom properties
+ */
+export const SPACING = {
+  XS: '0.25rem',
+  SM: '0.5rem',
+  MD: '1rem',
+  LG: '1.5rem',
+  XL: '2rem',
+  XXL: '3rem'
 };
 
 /**
