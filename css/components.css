@@ -365,8 +365,7 @@
   padding: 0;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
-  overflow: hidden;
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
+  overflow: visible;
   background-image: radial-gradient(circle at 3px 3px, rgba(0,0,0,0.03) 1px, transparent 0);
   background-size: 20px 20px;
 }
@@ -522,9 +521,8 @@
   padding: 20px;
   box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
   transition: transform 0.3s, box-shadow 0.3s;
-  overflow: hidden;
+  overflow: visible;
   z-index: 1;
-  clip-path: polygon(0 0, 100% 0, 100% 90%, 90% 100%, 0 100%);
   background-image: radial-gradient(circle at 3px 3px, rgba(0,0,0,0.03) 1px, transparent 0);
   background-size: 20px 20px;
 }
@@ -1074,7 +1072,11 @@
    =================================== */
 
 .experience-manga {
-  background: #f5f5dc;
+  background: 
+    linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.02) 50%, transparent 100%),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px),
+    #f5f5dc;
   padding: 2rem;
   position: relative;
   overflow: visible;
@@ -1145,11 +1147,12 @@
   position: relative;
   height: 100%;
   border: 3px solid var(--manga-black);
-  padding: 20px;
+  padding: 30px 20px 20px 20px;
   background: white;
   box-shadow: 
     inset 0 0 0 2px white,
     inset 0 0 0 5px var(--manga-black);
+  overflow: visible;
 }
 
 .panel-content {
@@ -1165,8 +1168,8 @@
 /* Etiqueta de número de panel */
 .panel-number-tag {
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: 5px;
+  right: 10px;
   background: var(--manga-black);
   color: white;
   padding: 5px 15px;
@@ -1322,3 +1325,212 @@
     padding: 12px;
   }
 }
+
+/* ===================================
+   CONTACT ICONS - ANIMATED SVG
+   Efecto de animación en iconos
+   =================================== */
+
+.contact-icon-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.contact-icon {
+  width: 60px;
+  height: 60px;
+  stroke: var(--manga-black);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Animación hover - líneas de dibujo */
+.contact-speech-bubble:hover .contact-icon {
+  animation: iconDraw 1s ease-in-out;
+}
+
+@keyframes iconDraw {
+  0% {
+    stroke-dasharray: 0 1000;
+    stroke-dashoffset: 0;
+    stroke: var(--manga-red);
+  }
+  50% {
+    stroke-dasharray: 1000 0;
+    stroke-dashoffset: 0;
+    stroke: var(--manga-blue);
+  }
+  100% {
+    stroke-dasharray: 1000 0;
+    stroke-dashoffset: 0;
+    stroke: var(--manga-black);
+  }
+}
+
+/* Iconos específicos con colores */
+.contact-speech-bubble.email:hover .contact-icon {
+  stroke: var(--manga-red);
+  transform: scale(1.2) rotate(5deg);
+}
+
+.contact-speech-bubble.phone:hover .contact-icon {
+  stroke: var(--manga-blue);
+  transform: scale(1.2) rotate(-5deg);
+}
+
+.contact-speech-bubble.website:hover .contact-icon {
+  stroke: var(--manga-green);
+  transform: scale(1.2) rotate(10deg);
+}
+
+.contact-speech-bubble {
+  cursor: pointer;
+}
+
+/* ===================================
+   NOTES WHITEBOARD - Interactive Canvas
+   Estilo Obsidian para notas conectadas
+   =================================== */
+
+.notes-whiteboard {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.notes-description {
+  text-align: center;
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.whiteboard-container {
+  background: white;
+  border: 4px solid var(--manga-black);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+#notesCanvas {
+  width: 100%;
+  height: 600px;
+  border: 2px solid var(--manga-gray);
+  border-radius: 4px;
+  cursor: crosshair;
+  background: #fafafa;
+}
+
+.whiteboard-controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.control-btn {
+  background: var(--manga-black);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-family: var(--font-manga);
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.control-btn:hover {
+  background: var(--manga-red);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.control-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.notes-instructions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.instruction-bubble {
+  background: white;
+  border: 3px solid var(--manga-black);
+  border-radius: 15px;
+  padding: 20px 30px;
+  max-width: 600px;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+}
+
+.instruction-bubble p {
+  font-family: var(--font-manga);
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: var(--manga-black);
+}
+
+.instruction-bubble ul {
+  list-style: none;
+  padding: 0;
+}
+
+.instruction-bubble li {
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: var(--manga-black);
+  border-bottom: 1px solid var(--manga-gray);
+}
+
+.instruction-bubble li:last-child {
+  border-bottom: none;
+}
+
+.notes-persistence {
+  margin-top: 15px;
+  padding: 15px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .notes-whiteboard {
+    padding: 1rem;
+  }
+
+  #notesCanvas {
+    height: 400px;
+  }
+
+  .whiteboard-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .control-btn {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .instruction-bubble {
+    padding: 15px 20px;
+  }
+}
+
+

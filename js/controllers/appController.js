@@ -2,6 +2,7 @@ import { ProfileView } from '../views/profileView.js';
 import { ProjectsView } from '../views/projectsView.js';
 import { ExperienceView } from '../views/experienceView.js';
 import { EducationView } from '../views/educationView.js';
+import { NotesView } from '../views/notesView.js';
 import { ContactView } from '../views/contactView.js';
 
 export class AppController {
@@ -13,6 +14,7 @@ export class AppController {
       projects: new ProjectsView(),
       experience: new ExperienceView(),
       education: new EducationView(),
+      notes: new NotesView(),
       contact: new ContactView()
     };
   }
@@ -41,5 +43,10 @@ export class AppController {
     const view = this.views[section];
     const html = await view.render();
     this.appElement.innerHTML = html;
+    
+    // Llamar afterRender si existe (para inicializar canvas)
+    if (view.afterRender) {
+      view.afterRender();
+    }
   }
 }
