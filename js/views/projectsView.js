@@ -55,17 +55,22 @@ export class ProjectsView {
                     ${project.tech.map(tech => `<span class="tech-badge">${tech}</span>`).join('')}
                   </div>
                   <div class="project-actions">
-                    <a href="${project.url}" target="_blank" class="project-link-btn ${buttonClass}">
-                      <span class="btn-text">VIEW PROJECT</span>
-                      <span class="btn-icon">→</span>
-                    </a>
-                    <a href="${project.url}/stargazers" target="_blank" class="github-star-btn" data-repo="${project.repoName}">
-                      <svg class="star-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                      <span class="star-count">${project.stars}</span>
-                      <span class="star-text">Star</span>
-                    </a>
+                    <div class="light-button">
+                      <a href="${project.url}" target="_blank" class="bt ${buttonClass}">
+                        <div class="light-holder">
+                          <div class="dot"></div>
+                          <div class="light"></div>
+                        </div>
+                        <div class="button-holder">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                          </svg>
+                          <p>VIEW PROJECT</p>
+                        </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
                 <span></span>

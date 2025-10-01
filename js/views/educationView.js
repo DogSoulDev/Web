@@ -13,9 +13,6 @@ export class EducationView {
         <div class="education-grid">
           ${education.map((edu, index) => `
             <div class="comic-panel education-panel">
-              <div class="panel-header">
-                <span class="panel-number">${index + 1}</span>
-              </div>
               <div class="education-content">
                 <h3 class="education-title">${edu.degree}</h3>
                 <div class="education-meta">

@@ -976,310 +976,255 @@
 }
 
 /* ========================================
-   BOTONES ANIMADOS ÚNICOS PARA PROYECTOS - EFECTO SPOTLIGHT CINEMA
-   ======================================== */
-
-/* Base común para todos los botones de proyecto con efecto spotlight de cine */
-.project-link-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 16px 36px;
-  margin-top: 15px;
-  font-family: var(--font-manga);
-  font-weight: bold;
-  font-size: 1rem;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border: none;
-  cursor: pointer;
-  overflow: hidden;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
-  z-index: 1;
-  color: white;
-  border-radius: 8px;
-}
-
-/* Capa base del botón */
-.project-link-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  z-index: -2;
-}
-
-/* Efecto de foco de cine - círculo de luz que se expande desde el centro */
-.project-link-btn::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0.2) 60%, transparent 100%);
-  transform: translate(-50%, -50%);
-  transition: width 0.8s cubic-bezier(0.23, 1, 0.320, 1), height 0.8s cubic-bezier(0.23, 1, 0.320, 1);
-  z-index: -1;
-  opacity: 0;
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.6), 0 0 80px rgba(255, 255, 255, 0.4);
-}
-
-.project-link-btn:hover::after {
-  width: 500px;
-  height: 500px;
-  opacity: 1;
-}
-
-.project-link-btn .btn-text {
-  position: relative;
-  z-index: 2;
-  transition: all 0.3s ease;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.project-link-btn .btn-icon {
-  position: relative;
-  z-index: 2;
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-}
-
-.project-link-btn:hover .btn-icon {
-  transform: translateX(5px);
-  animation: arrow-pulse 0.8s ease infinite;
-}
-
-@keyframes arrow-pulse {
-  0%, 100% { transform: translateX(5px); }
-  50% { transform: translateX(10px); }
-}
-
-.project-link-btn:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-}
-
-.project-link-btn:active {
-  transform: translateY(-1px) scale(1.01);
-}
-
-/* Estilo 1: Azul Eléctrico con Spotlight */
-.btn-style-1 {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-.btn-style-1:hover {
-  box-shadow: 0 15px 50px rgba(102, 126, 234, 0.6);
-}
-
-/* Estilo 2: Verde Neón con Spotlight */
-.btn-style-2 {
-  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-  box-shadow: 0 6px 20px rgba(56, 239, 125, 0.4);
-}
-
-.btn-style-2:hover {
-  box-shadow: 0 15px 50px rgba(56, 239, 125, 0.6);
-}
-
-/* Estilo 3: Rojo Manga con Spotlight */
-.btn-style-3 {
-  background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
-  box-shadow: 0 6px 20px rgba(255, 65, 108, 0.4);
-}
-
-.btn-style-3:hover {
-  box-shadow: 0 15px 50px rgba(255, 65, 108, 0.6);
-}
-
-/* Estilo 4: Púrpura Cyber con Spotlight */
-.btn-style-4 {
-  background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
-  box-shadow: 0 6px 20px rgba(142, 45, 226, 0.4);
-}
-
-.btn-style-4:hover {
-  box-shadow: 0 15px 50px rgba(142, 45, 226, 0.6);
-}
-
-/* Estilo 5: Naranja Fire con Spotlight */
-.btn-style-5 {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  box-shadow: 0 6px 20px rgba(245, 87, 108, 0.4);
-}
-
-.btn-style-5:hover {
-  box-shadow: 0 15px 50px rgba(245, 87, 108, 0.6);
-}
-
-/* Estilo 6: Cyan Tech con Spotlight */
-.btn-style-6 {
-  background: linear-gradient(135deg, #13547a 0%, #80d0c7 100%);
-  box-shadow: 0 6px 20px rgba(128, 208, 199, 0.4);
-}
-
-.btn-style-6:hover {
-  box-shadow: 0 15px 50px rgba(128, 208, 199, 0.6);
-}
-
-/* ========================================
-   CONTENEDOR DE ACCIONES Y BOTÓN DE GITHUB STARS
+   BOTONES CINEMA SPOTLIGHT - PROJECTS
+   Efecto de foco de cine con luz que ilumina
    ======================================== */
 
 .project-actions {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 15px;
-  width: 100%;
-}
-
-/* Botón de GitHub Stars - Pequeño, discreto y elegante con estrella brillante */
-.github-star-btn {
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
-  gap: 5px;
-  padding: 6px 12px;
-  background: #fff;
-  border: 1.5px solid #000;
-  color: #000;
-  font-family: var(--font-manga);
-  font-weight: 600;
-  font-size: 0.75rem;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.light-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.light-button a.bt {
+  position: relative;
+  height: 150px;
+  display: flex;
+  align-items: flex-end;
   text-decoration: none;
+  background: none;
+  border: none;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
-  position: relative;
-  overflow: hidden;
-  box-shadow: 1px 1px 0 #000;
-  border-radius: 6px;
-  opacity: 0.9;
-}
-
-.github-star-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  transition: left 0.4s ease;
-  z-index: 0;
-}
-
-.github-star-btn:hover::before {
-  left: 0;
-}
-
-.github-star-btn:hover {
-  color: #fff;
-  transform: translate(-1px, -1px);
-  box-shadow: 2px 2px 0 #000;
-  opacity: 1;
-  border-color: #000;
-}
-
-.github-star-btn .star-icon,
-.github-star-btn .star-count,
-.github-star-btn .star-text {
-  position: relative;
-  z-index: 1;
   transition: all 0.3s ease;
 }
 
-.github-star-btn .star-icon {
-  width: 14px;
-  height: 14px;
-  stroke: currentColor;
-  fill: none;
-  transition: fill 0.4s ease, transform 0.4s ease, filter 0.4s ease;
-}
-
-/* Efecto de brillo intenso en la estrella al hover */
-.github-star-btn:hover .star-icon {
-  fill: currentColor;
-  transform: rotate(360deg) scale(1.3);
-  filter: drop-shadow(0 0 4px currentColor) drop-shadow(0 0 8px currentColor) drop-shadow(0 0 12px currentColor);
-  animation: star-sparkle 0.8s ease infinite;
-}
-
-.github-star-btn .star-count {
-  font-size: 0.85rem;
-  font-weight: bold;
-  min-width: 18px;
-  text-align: center;
-}
-
-.github-star-btn .star-text {
+.light-button a.bt .button-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 120px;
+  background-color: #0a0a0a;
+  border-radius: 5px;
+  color: #0f0f0f;
+  font-weight: 700;
+  font-family: var(--font-manga);
   font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  transition: 300ms;
+  outline: #0f0f0f 2px solid;
+  outline-offset: 20px;
 }
 
-/* Animación de brillo intenso para la estrella - efecto sparkle */
-@keyframes star-sparkle {
-  0%, 100% {
-    filter: drop-shadow(0 0 4px currentColor) drop-shadow(0 0 8px currentColor);
-    transform: rotate(360deg) scale(1.3);
-  }
-  25% {
-    filter: drop-shadow(0 0 6px currentColor) drop-shadow(0 0 12px currentColor) drop-shadow(0 0 16px currentColor);
-    transform: rotate(360deg) scale(1.35);
-  }
-  50% {
-    filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 16px currentColor) drop-shadow(0 0 24px currentColor);
-    transform: rotate(360deg) scale(1.4);
-  }
-  75% {
-    filter: drop-shadow(0 0 6px currentColor) drop-shadow(0 0 12px currentColor) drop-shadow(0 0 16px currentColor);
-    transform: rotate(360deg) scale(1.35);
-  }
+.light-button a.bt .button-holder svg {
+  height: 35px;
+  width: 35px;
+  stroke: #0f0f0f;
+  fill: none;
+  transition: 300ms;
+  margin-bottom: 5px;
 }
 
-/* Animación de pulso para el contador de estrellas */
-@keyframes star-pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
+.light-button a.bt .button-holder p {
+  margin: 0;
+  padding: 0;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  transition: 300ms;
 }
 
-.github-star-btn:active .star-count {
-  animation: star-pulse 0.3s ease;
+.light-button a.bt .light-holder {
+  position: absolute;
+  height: 150px;
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
 }
 
-/* Responsive para botones */
+.light-button a.bt .light-holder .dot {
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #0a0a0a;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.light-button a.bt .light-holder .light {
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 150px;
+  clip-path: polygon(50% 0%, 25% 100%, 75% 100%);
+  background: transparent;
+  transition: 300ms;
+}
+
+/* Estilos de color para cada proyecto */
+.light-button a.bt.btn-style-1:hover .button-holder svg,
+.light-button a.bt.btn-style-1:hover .button-holder p {
+  stroke: rgba(102, 126, 234, 1);
+  color: rgba(102, 126, 234, 1);
+}
+
+.light-button a.bt.btn-style-1:hover .button-holder {
+  color: rgba(102, 126, 234, 1);
+  outline: rgba(102, 126, 234, 1) 2px solid;
+  outline-offset: 2px;
+}
+
+.light-button a.bt.btn-style-1:hover .light-holder .light {
+  background: linear-gradient(
+    180deg,
+    rgba(102, 126, 234, 1) 0%,
+    rgba(102, 126, 234, 0.3) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.light-button a.bt.btn-style-2:hover .button-holder svg,
+.light-button a.bt.btn-style-2:hover .button-holder p {
+  stroke: rgba(56, 239, 125, 1);
+  color: rgba(56, 239, 125, 1);
+}
+
+.light-button a.bt.btn-style-2:hover .button-holder {
+  color: rgba(56, 239, 125, 1);
+  outline: rgba(56, 239, 125, 1) 2px solid;
+  outline-offset: 2px;
+}
+
+.light-button a.bt.btn-style-2:hover .light-holder .light {
+  background: linear-gradient(
+    180deg,
+    rgba(56, 239, 125, 1) 0%,
+    rgba(56, 239, 125, 0.3) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.light-button a.bt.btn-style-3:hover .button-holder svg,
+.light-button a.bt.btn-style-3:hover .button-holder p {
+  stroke: rgba(255, 65, 108, 1);
+  color: rgba(255, 65, 108, 1);
+}
+
+.light-button a.bt.btn-style-3:hover .button-holder {
+  color: rgba(255, 65, 108, 1);
+  outline: rgba(255, 65, 108, 1) 2px solid;
+  outline-offset: 2px;
+}
+
+.light-button a.bt.btn-style-3:hover .light-holder .light {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 65, 108, 1) 0%,
+    rgba(255, 65, 108, 0.3) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.light-button a.bt.btn-style-4:hover .button-holder svg,
+.light-button a.bt.btn-style-4:hover .button-holder p {
+  stroke: rgba(142, 45, 226, 1);
+  color: rgba(142, 45, 226, 1);
+}
+
+.light-button a.bt.btn-style-4:hover .button-holder {
+  color: rgba(142, 45, 226, 1);
+  outline: rgba(142, 45, 226, 1) 2px solid;
+  outline-offset: 2px;
+}
+
+.light-button a.bt.btn-style-4:hover .light-holder .light {
+  background: linear-gradient(
+    180deg,
+    rgba(142, 45, 226, 1) 0%,
+    rgba(142, 45, 226, 0.3) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.light-button a.bt.btn-style-5:hover .button-holder svg,
+.light-button a.bt.btn-style-5:hover .button-holder p {
+  stroke: rgba(245, 87, 108, 1);
+  color: rgba(245, 87, 108, 1);
+}
+
+.light-button a.bt.btn-style-5:hover .button-holder {
+  color: rgba(245, 87, 108, 1);
+  outline: rgba(245, 87, 108, 1) 2px solid;
+  outline-offset: 2px;
+}
+
+.light-button a.bt.btn-style-5:hover .light-holder .light {
+  background: linear-gradient(
+    180deg,
+    rgba(245, 87, 108, 1) 0%,
+    rgba(245, 87, 108, 0.3) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.light-button a.bt.btn-style-6:hover .button-holder svg,
+.light-button a.bt.btn-style-6:hover .button-holder p {
+  stroke: rgba(128, 208, 199, 1);
+  color: rgba(128, 208, 199, 1);
+}
+
+.light-button a.bt.btn-style-6:hover .button-holder {
+  color: rgba(128, 208, 199, 1);
+  outline: rgba(128, 208, 199, 1) 2px solid;
+  outline-offset: 2px;
+}
+
+.light-button a.bt.btn-style-6:hover .light-holder .light {
+  background: linear-gradient(
+    180deg,
+    rgba(128, 208, 199, 1) 0%,
+    rgba(128, 208, 199, 0.3) 75%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .project-link-btn {
-    padding: 12px 24px;
-    font-size: 0.9rem;
+  .light-button a.bt {
+    height: 120px;
   }
-  
-  .github-star-btn {
-    padding: 8px 16px;
-    font-size: 0.85rem;
+
+  .light-button a.bt .button-holder {
+    height: 70px;
+    width: 100px;
   }
-  
-  .github-star-btn .star-icon {
-    width: 18px;
-    height: 18px;
+
+  .light-button a.bt .button-holder svg {
+    height: 30px;
+    width: 30px;
   }
-  
-  .project-actions {
-    gap: 8px;
+
+  .light-button a.bt .button-holder p {
+    font-size: 0.65rem;
+  }
+
+  .light-button a.bt .light-holder {
+    height: 120px;
+    width: 100px;
+  }
+
+  .light-button a.bt .light-holder .light {
+    width: 120px;
+    height: 120px;
   }
 }
 

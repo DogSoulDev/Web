@@ -62,7 +62,40 @@ export class ContactView {
     submitBtn.querySelector('.btn-text').textContent = 'SENDING...';
     
     try {
-      // Create mailto link with sanitized data
+      // Send email using Formspree (free service that sends to dogsouldev@protonmail.com)
+      const response = await fetch('https://formspree.io/f/xanyogkg', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          message: message,
+          _replyto: email,
+          _subject: `Portfolio Contact from ${name}`
+        })
+      });
+      
+      if (response.ok) {
+        // Show success message
+        this.showStatus(statusMsg, '✅ Message sent successfully! I will contact you soon.', 'success');
+        
+        // Reset form after short delay
+        setTimeout(() => {
+          form.reset();
+          submitBtn.disabled = false;
+          submitBtn.querySelector('.btn-text').textContent = originalText;
+          this.showStatus(statusMsg, '', '');
+        }, 3000);
+      } else {
+        throw new Error('Failed to send message');
+      }
+      
+    } catch (error) {
+      console.error('Error sending message:', error);
+      // Fallback to mailto if fetch fails
       const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
       const body = encodeURIComponent(
         `Name: ${name}\n` +
@@ -72,27 +105,20 @@ export class ContactView {
       
       const mailtoLink = `mailto:dogsouldev@protonmail.com?subject=${subject}&body=${body}`;
       
-      // Open email client in new window to prevent navigation
+      // Open email client
       const link = document.createElement('a');
       link.href = mailtoLink;
       link.target = '_blank';
       link.click();
       
-      // Show success message
       this.showStatus(statusMsg, 'Opening your email client...', 'success');
       
-      // Reset form after short delay
       setTimeout(() => {
         form.reset();
         submitBtn.disabled = false;
         submitBtn.querySelector('.btn-text').textContent = originalText;
         this.showStatus(statusMsg, '', '');
       }, 3000);
-      
-    } catch (error) {
-      this.showStatus(statusMsg, 'An error occurred. Please try again.', 'error');
-      submitBtn.disabled = false;
-      submitBtn.querySelector('.btn-text').textContent = originalText;
     }
     
     return false;
