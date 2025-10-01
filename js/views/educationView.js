@@ -1,8 +1,13 @@
 import { EducationModel } from '../models/educationModel.js';
+import { BaseView } from './BaseView.js';
 
-export class EducationView {
+/**
+ * Education View
+ * Follows MVC pattern and extends BaseView for DRY
+ */
+export class EducationView extends BaseView {
   constructor() {
-    this.model = new EducationModel();
+    super(new EducationModel());
   }
 
   render() {

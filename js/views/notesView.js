@@ -1,8 +1,13 @@
 import { NotesModel } from '../models/notesModel.js';
+import { BaseView } from './BaseView.js';
 
-export class NotesView {
+/**
+ * Notes View
+ * Follows MVC pattern and extends BaseView for DRY
+ */
+export class NotesView extends BaseView {
   constructor() {
-    this.model = new NotesModel();
+    super(new NotesModel());
   }
 
   render() {

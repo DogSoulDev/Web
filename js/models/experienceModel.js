@@ -1,4 +1,13 @@
+/**
+ * Experience Model
+ * Manages professional experience data
+ * Follows Single Responsibility Principle - only handles experience data
+ */
 export class ExperienceModel {
+  /**
+   * Get professional experience
+   * @returns {Array<Object>} Array of experience objects
+   */
   getExperience() {
     return [
       {

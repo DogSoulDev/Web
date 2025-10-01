@@ -1,4 +1,13 @@
+/**
+ * Education Model
+ * Manages education data
+ * Follows Single Responsibility Principle - only handles education data
+ */
 export class EducationModel {
+  /**
+   * Get education history
+   * @returns {Array<Object>} Array of education objects
+   */
   getEducation() {
     return [
       {

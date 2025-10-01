@@ -1,8 +1,13 @@
 import { ExperienceModel } from '../models/experienceModel.js';
+import { BaseView } from './BaseView.js';
 
-export class ExperienceView {
+/**
+ * Experience View
+ * Follows MVC pattern and extends BaseView for DRY
+ */
+export class ExperienceView extends BaseView {
   constructor() {
-    this.model = new ExperienceModel();
+    super(new ExperienceModel());
   }
 
   render() {

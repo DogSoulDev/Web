@@ -1,8 +1,13 @@
 import { AboutModel } from '../models/aboutModel.js';
+import { BaseView } from './BaseView.js';
 
-export class AboutView {
+/**
+ * About View
+ * Follows MVC pattern and extends BaseView for DRY
+ */
+export class AboutView extends BaseView {
   constructor() {
-    this.model = new AboutModel();
+    super(new AboutModel());
   }
 
   render() {
@@ -11,7 +16,7 @@ export class AboutView {
       <div class="section about">
         <h2 class="section-title">About Me</h2>
         <div class="speech-bubble">
-          <p>${about.content.replace(/\n/g, '<br>')}</p>
+          <p>${this.escapeHtml(about.content).replace(/\n/g, '<br>')}</p>
         </div>
       </div>
     `;

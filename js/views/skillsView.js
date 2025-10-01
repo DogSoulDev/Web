@@ -1,8 +1,13 @@
 import { SkillsModel } from '../models/skillsModel.js';
+import { BaseView } from './BaseView.js';
 
-export class SkillsView {
+/**
+ * Skills View
+ * Follows MVC pattern and extends BaseView for DRY
+ */
+export class SkillsView extends BaseView {
   constructor() {
-    this.model = new SkillsModel();
+    super(new SkillsModel());
   }
 
   render() {
@@ -13,8 +18,8 @@ export class SkillsView {
         <ul class="skills-list">
           ${skills.map(skill => `
             <li class="skill-item">
-              <h3>${skill.name}</h3>
-              <p>${skill.level}</p>
+              <h3>${this.escapeHtml(skill.name)}</h3>
+              <p>${this.escapeHtml(skill.level)}</p>
             </li>
           `).join('')}
         </ul>

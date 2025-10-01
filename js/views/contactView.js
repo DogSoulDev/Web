@@ -1,6 +1,13 @@
-export class ContactView {
+import { BaseView } from './BaseView.js';
+
+/**
+ * Contact View
+ * Follows MVC pattern and extends BaseView for DRY
+ * Formspree handles form submission directly (no model needed)
+ */
+export class ContactView extends BaseView {
   constructor() {
-    // No need for setup, Formspree handles submission directly
+    super(null); // No model needed for contact form
   }
 
   render() {

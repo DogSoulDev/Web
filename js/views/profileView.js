@@ -1,16 +1,21 @@
 import { ProfileModel } from '../models/profileModel.js';
 import { AboutModel } from '../models/aboutModel.js';
 import { SkillsModel } from '../models/skillsModel.js';
+import { BaseView } from './BaseView.js';
 
-export class ProfileView {
+/**
+ * Profile View
+ * Follows MVC pattern and extends BaseView for DRY
+ */
+export class ProfileView extends BaseView {
   constructor() {
-    this.profileModel = new ProfileModel();
+    super(new ProfileModel());
     this.aboutModel = new AboutModel();
     this.skillsModel = new SkillsModel();
   }
 
   render() {
-    const profile = this.profileModel.getProfile();
+    const profile = this.model.getProfile();
     const about = this.aboutModel.getAbout();
     const skills = this.skillsModel.getSkills();
     return `

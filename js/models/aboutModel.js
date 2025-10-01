@@ -1,4 +1,13 @@
+/**
+ * About Model
+ * Manages about section data
+ * Follows Single Responsibility Principle - only handles about data
+ */
 export class AboutModel {
+  /**
+   * Get about information
+   * @returns {Object} About data object with title and content
+   */
   getAbout() {
     return {
       title: 'About Me',

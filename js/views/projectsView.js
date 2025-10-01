@@ -1,38 +1,21 @@
 import { ProjectsModel } from '../models/projectsModel.js';
+import { BaseView } from './BaseView.js';
+import { IconMapper } from '../utils/iconMapper.js';
+import { ProjectsController } from '../controllers/projectsController.js';
 
-export class ProjectsView {
+/**
+ * Projects View
+ * Follows MVC pattern - only responsible for rendering HTML
+ * No business logic or DOM manipulation
+ */
+export class ProjectsView extends BaseView {
   constructor() {
-    this.model = new ProjectsModel();
+    super(new ProjectsModel());
+    this.controller = new ProjectsController();
   }
 
   async render() {
     const projects = await this.model.getProjects();
-
-    const getIcon = (tech) => {
-      const iconMap = {
-        'JavaScript': 'js.svg',
-        'HTML': 'html.svg',
-        'CSS': 'ui.svg',
-        'React': 'design.svg',
-        'Node.js': 'js.svg',
-        'Python': 'art.svg',
-        'Git': 'github.svg',
-        'MongoDB': 'portfolio.svg',
-        'Express': 'js.svg',
-        'TypeScript': 'js.svg'
-      };
-      return iconMap[tech] || 'manga.svg';
-    };
-
-    // Estilos de botones únicos para cada proyecto
-    const buttonStyles = [
-      'btn-style-1', // Azul eléctrico con glow
-      'btn-style-2', // Verde neón con pulso
-      'btn-style-3', // Rojo manga con border animado
-      'btn-style-4', // Púrpura cyber con particles
-      'btn-style-5', // Naranja fire con waves
-      'btn-style-6'  // Cyan tech con scan effect
-    ];
 
     return `
       <div class="section projects">
@@ -40,23 +23,23 @@ export class ProjectsView {
         <main class="projects-main" style="display: none;">
           ${projects.map((project, index) => {
             const primaryTech = project.tech[0];
-            const icon = getIcon(primaryTech);
+            const icon = IconMapper.getTechIcon(primaryTech);
             const extraSpans = index === 2 ? '<span></span><span></span>' : '';
-            const buttonClass = buttonStyles[index % buttonStyles.length];
+            const buttonClass = IconMapper.getButtonStyle(index);
             return `
               <button class="project-panel" data-index="${index}">
                 <div class="project-video">
                   <div class="project-icon-container">
-                    <img class="project-icon" src="icons/${icon}" alt="${primaryTech}" />
+                    <img class="project-icon" src="icons/${icon}" alt="${this.escapeHtml(primaryTech)}" />
                   </div>
-                  <h3 class="project-title">${project.title}</h3>
-                  <p class="project-description">${project.description}</p>
+                  <h3 class="project-title">${this.escapeHtml(project.title)}</h3>
+                  <p class="project-description">${this.escapeHtml(project.description)}</p>
                   <div class="tech-stack">
-                    ${project.tech.map(tech => `<span class="tech-badge">${tech}</span>`).join('')}
+                    ${project.tech.map(tech => `<span class="tech-badge">${this.escapeHtml(tech)}</span>`).join('')}
                   </div>
                   <div class="project-actions">
                     <div class="light-button">
-                      <a href="${project.url}" target="_blank" class="bt ${buttonClass}">
+                      <a href="${this.escapeHtml(project.url)}" target="_blank" class="bt ${buttonClass}">
                         <div class="light-holder">
                           <div class="dot"></div>
                           <div class="light"></div>
@@ -79,43 +62,14 @@ export class ProjectsView {
             `;
           }).join('')}
         </main>
-        <script>
-          let isVideoPlaying = false;
-
-          function startVideo(panel) {
-            isVideoPlaying = true;
-            let video = panel.querySelector(".project-video");
-            video.classList.add("is-playing");
-            panel.setAttribute("disabled", "");
-            // Simulate video duration
-            setTimeout(() => {
-              enableVideo(panel);
-            }, 4000); // 4 seconds to show content
-          }
-
-          function enableVideo(panel) {
-            isVideoPlaying = false;
-            panel.removeAttribute("disabled");
-            panel.classList.remove("is-playing");
-            panel.classList.add("is-ended");
-            let video = panel.querySelector(".project-video");
-            video.classList.remove("is-playing");
-          }
-
-          document.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll(".project-panel").forEach((panel) => {
-              panel.addEventListener("click", () => {
-                if (!isVideoPlaying) startVideo(panel);
-              });
-            });
-
-            // Show the main after "loading"
-            setTimeout(() => {
-              document.querySelector(".projects-main").removeAttribute("style");
-            }, 500);
-          });
-        </script>
       </div>
     `;
+  }
+
+  /**
+   * Called after render - initializes the controller
+   */
+  afterRender() {
+    this.controller.init();
   }
 }

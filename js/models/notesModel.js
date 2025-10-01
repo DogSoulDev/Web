@@ -1,4 +1,13 @@
+/**
+ * Notes Model
+ * Manages cybersecurity knowledge network data
+ * Follows Single Responsibility Principle - only handles notes/knowledge data
+ */
 export class NotesModel {
+  /**
+   * Get notes configuration and data for neural network visualization
+   * @returns {Object} Notes configuration with nodes and settings
+   */
   getNotes() {
     return {
       title: 'Cybersecurity Knowledge Network',

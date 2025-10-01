@@ -1,4 +1,13 @@
+/**
+ * Projects Model
+ * Manages project data from GitHub API
+ * Follows Single Responsibility Principle - only handles project data fetching
+ */
 export class ProjectsModel {
+  /**
+   * Fetch projects from GitHub API
+   * @returns {Promise<Array<Object>>} Array of project objects
+   */
   async getProjects() {
     try {
       const response = await fetch('https://api.github.com/users/DogSoulDev/repos?sort=updated&per_page=6');

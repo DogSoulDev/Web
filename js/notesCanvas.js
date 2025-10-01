@@ -1,7 +1,21 @@
-// Neural Network Visualization - Estilo manga (blanco y negro)
+/**
+ * Neural Network Visualization
+ * Renders an interactive network of cybersecurity knowledge nodes
+ * Follows Single Responsibility Principle - only handles visualization
+ * Manga-style (black and white) aesthetic
+ */
 class NetworkVisualization {
+  /**
+   * Create a network visualization
+   * @param {string} canvasId - ID of the canvas element
+   * @param {Object} data - Data containing nodes and configuration
+   */
   constructor(canvasId, data) {
     this.canvas = document.getElementById(canvasId);
+    if (!this.canvas) {
+      throw new Error(`Canvas element with id "${canvasId}" not found`);
+    }
+    
     this.ctx = this.canvas.getContext('2d');
     this.data = data;
     this.config = data.config;
@@ -15,12 +29,28 @@ class NetworkVisualization {
     this.init();
   }
   
+  /**
+   * Initialize the visualization
+   */
   init() {
     // Configurar canvas responsivo
     this.resize();
     window.addEventListener('resize', () => this.resize());
     
     // Crear nodos con posiciones aleatorias y velocidades
+    this.initializeNodes();
+    
+    // Event listeners
+    this.bindEvents();
+    
+    // Iniciar animación
+    this.animate();
+  }
+
+  /**
+   * Initialize all nodes with random positions and velocities
+   */
+  initializeNodes() {
     this.data.nodes.forEach(nodeData => {
       const node = {
         ...nodeData,
@@ -34,22 +64,30 @@ class NetworkVisualization {
       };
       this.nodes.push(node);
     });
-    
-    // Event listeners
+  }
+
+  /**
+   * Bind mouse event listeners
+   */
+  bindEvents() {
     this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
     this.canvas.addEventListener('mouseleave', () => this.handleMouseLeave());
     this.canvas.addEventListener('click', (e) => this.handleClick(e));
-    
-    // Iniciar animación
-    this.animate();
   }
   
+  /**
+   * Resize canvas to fit container
+   */
   resize() {
     const container = this.canvas.parentElement;
     this.canvas.width = container.clientWidth;
     this.canvas.height = Math.max(container.clientHeight, 600);
   }
   
+  /**
+   * Handle mouse move event
+   * @param {MouseEvent} e - Mouse event
+   */
   handleMouseMove(e) {
     const rect = this.canvas.getBoundingClientRect();
     this.mouseX = e.clientX - rect.left;
@@ -80,12 +118,19 @@ class NetworkVisualization {
     }
   }
   
+  /**
+   * Handle mouse leave event
+   */
   handleMouseLeave() {
     this.hoveredNode = null;
     this.hideNodeInfo();
     this.canvas.style.cursor = 'default';
   }
   
+  /**
+   * Handle click event
+   * @param {MouseEvent} e - Mouse event
+   */
   handleClick(e) {
     if (this.hoveredNode) {
       // Hacer scroll suave al panel de información en móvil
@@ -96,6 +141,10 @@ class NetworkVisualization {
     }
   }
   
+  /**
+   * Show node information panel
+   * @param {Object} node - Node to display information for
+   */
   showNodeInfo(node) {
     const infoPanel = document.getElementById('nodeInfo');
     const titleEl = document.getElementById('nodeTitle');
@@ -113,11 +162,17 @@ class NetworkVisualization {
     infoPanel.classList.add('visible');
   }
   
+  /**
+   * Hide node information panel
+   */
   hideNodeInfo() {
     const infoPanel = document.getElementById('nodeInfo');
     infoPanel.classList.remove('visible');
   }
   
+  /**
+   * Update all nodes positions and connections
+   */
   updateNodes() {
     this.nodes.forEach(node => {
       // Movimiento orgánico
@@ -157,6 +212,9 @@ class NetworkVisualization {
     });
   }
   
+  /**
+   * Update particles animation
+   */
   updateParticles() {
     // Crear partículas en conexiones activas (cuando se hace hover)
     if (this.hoveredNode && this.animationFrame % 3 === 0) {
@@ -187,10 +245,20 @@ class NetworkVisualization {
     });
   }
   
+  /**
+   * Linear interpolation helper
+   * @param {number} start - Start value
+   * @param {number} end - End value
+   * @param {number} t - Time/progress (0-1)
+   * @returns {number} Interpolated value
+   */
   lerp(start, end, t) {
     return start + (end - start) * t;
   }
   
+  /**
+   * Draw the entire network
+   */
   draw() {
     // Fondo negro
     this.ctx.fillStyle = '#000';
@@ -275,6 +343,10 @@ class NetworkVisualization {
     this.ctx.shadowBlur = 0;
   }
   
+  /**
+   * Draw a single node
+   * @param {Object} node - Node to draw
+   */
   drawNode(node) {
     const isHovered = this.hoveredNode === node;
     const pulseAmount = Math.sin(node.pulse) * 2;
@@ -311,6 +383,10 @@ class NetworkVisualization {
     this.ctx.fill();
   }
   
+  /**
+   * Draw node label
+   * @param {Object} node - Node to draw label for
+   */
   drawLabel(node) {
     const isHovered = this.hoveredNode === node;
     
@@ -340,6 +416,9 @@ class NetworkVisualization {
     }
   }
   
+  /**
+   * Main animation loop
+   */
   animate() {
     this.animationFrame++;
     

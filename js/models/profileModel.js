@@ -1,4 +1,13 @@
+/**
+ * Profile Model
+ * Manages profile data
+ * Follows Single Responsibility Principle - only handles profile data
+ */
 export class ProfileModel {
+  /**
+   * Get profile information
+   * @returns {Object} Profile data object
+   */
   getProfile() {
     return {
       name: 'Javier Fernández (DogSoulDev / DsD)',

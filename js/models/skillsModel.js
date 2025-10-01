@@ -1,4 +1,13 @@
+/**
+ * Skills Model
+ * Manages skills data
+ * Follows Single Responsibility Principle - only handles skills data
+ */
 export class SkillsModel {
+  /**
+   * Get skills list
+   * @returns {Array<Object>} Array of skill objects with name and level
+   */
   getSkills() {
     return [
       { name: 'Penetration Testing', level: 'Expert' },
