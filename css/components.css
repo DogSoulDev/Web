@@ -150,7 +150,7 @@
   border: 2px solid var(--manga-black);
   border-radius: 50%;
   object-fit: cover;
-  background: var(--manga-gray);
+  background: #ffffff;
 }
 
 .avatar-container {
