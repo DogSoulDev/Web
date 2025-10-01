@@ -81,8 +81,6 @@ class LogoDrawAnimation {
       return;
     }
 
-    console.log(`Preparando animación para ${paths.length} trazos`);
-
     // Preparar cada path para la animación
     paths.forEach((path, index) => {
       // Guardar el fill original
@@ -102,8 +100,6 @@ class LogoDrawAnimation {
       path.style.strokeDashoffset = `${length}`;
       
       this.strokes.push(path);
-      
-      console.log(`Path ${index + 1}: longitud = ${length.toFixed(2)}px`);
     });
   }
 

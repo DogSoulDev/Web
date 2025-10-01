@@ -95,11 +95,6 @@ export class ProfileView extends BaseView {
     if (toggle) {
       toggle.addEventListener('change', (e) => {
         // Toggle functionality - can be extended later
-        if (e.target.checked) {
-          console.log('Neural Network toggle activated');
-        } else {
-          console.log('Neural Network toggle deactivated');
-        }
       });
     }
   }
