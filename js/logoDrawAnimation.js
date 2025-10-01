@@ -10,12 +10,13 @@ class LogoDrawAnimation {
     this.strokes = [];
     this.fillsGroup = null;
     
-    // Configuración
+    // Configuración responsive
+    this.isMobile = window.innerWidth <= 768;
     this.FIRST_DRAW_COLOR = '#ffffff';
     this.FINAL_STROKE_COLOR = '#000000';
-    this.ANIMATION_DURATION = 2000; // ms por trazo
-    this.FILL_DELAY = 400; // ms después del último trazo
-    this.TOTAL_ANIMATION_TIME = 6000; // 6 segundos total
+    this.ANIMATION_DURATION = this.isMobile ? 1500 : 2000; // ms por trazo
+    this.FILL_DELAY = this.isMobile ? 300 : 400; // ms después del último trazo
+    this.TOTAL_ANIMATION_TIME = this.isMobile ? 4000 : 6000; // Más rápido en móviles
     
     this.init();
   }
@@ -84,10 +85,10 @@ class LogoDrawAnimation {
       const originalFill = path.getAttribute('fill');
       path.dataset.originalFill = originalFill;
       
-      // Configurar para animación de stroke
+      // Configurar para animación de stroke (responsive)
       path.setAttribute('fill', 'none');
       path.setAttribute('stroke', this.FIRST_DRAW_COLOR);
-      path.setAttribute('stroke-width', '2');
+      path.setAttribute('stroke-width', this.isMobile ? '1.5' : '2');
       
       const length = path.getTotalLength();
       path.style.strokeDasharray = `${length}`;

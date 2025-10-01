@@ -24,10 +24,11 @@
 }
 
 #logo-animated {
-  width: 80%;
+  width: 60%;
   max-width: 500px;
   height: auto;
   filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.2));
+  transition: width 0.3s ease;
 }
 
 /* Estilos para los paths del SVG */
@@ -76,13 +77,53 @@
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  #logo-animated {
+    width: 70%;
+    max-width: 450px;
+  }
+}
+
 @media (max-width: 768px) {
   #logo-animated {
-    width: 90%;
+    width: 75%;
+    max-width: 400px;
   }
   
   .loading-text {
     font-size: 1.2rem;
     bottom: 80px;
+  }
+  
+  .logo-animation-container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #logo-animated {
+    width: 85%;
+    max-width: 320px;
+  }
+  
+  .loading-text {
+    font-size: 1rem;
+    bottom: 60px;
+  }
+  
+  #logo-animated path {
+    stroke-width: 1.5;
+  }
+}
+
+@media (max-width: 360px) {
+  #logo-animated {
+    width: 90%;
+    max-width: 280px;
+  }
+  
+  .loading-text {
+    font-size: 0.9rem;
+    bottom: 50px;
   }
 }
