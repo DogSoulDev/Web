@@ -34,15 +34,15 @@ export class ContactView extends BaseView {
           <!-- Contact Form - Manga Style -->
           <div class="contact-form-wrapper">
             <div class="contact-form-header">
-              <h3 class="contact-form-title">🔐 Let's Connect!</h3>
-              <p class="contact-form-subtitle">Send me a secure message and I'll get back to you soon</p>
+              <h3 class="contact-form-title">🎌 Let's Connect!</h3>
+              <p class="contact-form-subtitle">Send me a message and I'll get back to you soon</p>
             </div>
             
             <!-- Formspree Direct Form -->
             <form action="https://formspree.io/f/mpwydvop" method="POST" class="contact-form">
               <div class="form-group">
                 <label for="contact-name" class="form-label">
-                  <span class="label-icon">🕵️</span>
+                  <span class="label-icon">�</span>
                   NAME
                 </label>
                 <input 
@@ -58,7 +58,7 @@ export class ContactView extends BaseView {
 
               <div class="form-group">
                 <label for="contact-email" class="form-label">
-                  <span class="label-icon">📡</span>
+                  <span class="label-icon">✉️</span>
                   EMAIL
                 </label>
                 <input 
@@ -74,7 +74,7 @@ export class ContactView extends BaseView {
 
               <div class="form-group">
                 <label for="contact-message" class="form-label">
-                  <span class="label-icon">🔑</span>
+                  <span class="label-icon">�</span>
                   MESSAGE
                 </label>
                 <textarea 
@@ -96,7 +96,7 @@ export class ContactView extends BaseView {
 
             <div class="contact-form-footer">
               <p class="contact-email-direct">
-                <span class="email-icon">🛡️</span>
+                <span class="email-icon">�</span>
                 Or email directly: <a href="mailto:dogsouldev@protonmail.com">dogsouldev@protonmail.com</a>
               </p>
             </div>

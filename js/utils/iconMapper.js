@@ -5,19 +5,18 @@
 export class IconMapper {
   static getTechIcon(tech) {
     const iconMap = {
-      'JavaScript': '🔓',      // Unlocked padlock - web hacking
-      'HTML': '🌐',            // Globe - web security
-      'CSS': '🎨',             // Art palette - design
-      'React': '⚛️',           // Atom - React
-      'Node.js': '🛡️',         // Shield - backend security
-      'Python': '🐍',          // Snake - Python scripting
-      'Git': '🔐',             // Locked with key - version control security
-      'MongoDB': '🗄️',         // File cabinet - database
-      'Express': '⚡',         // Lightning - fast backend
-      'TypeScript': '🔑',      // Key - typed security
-      'Various': '🎯'          // Target - penetration testing
+      'JavaScript': 'js.svg',
+      'HTML': 'html.svg',
+      'CSS': 'ui.svg',
+      'React': 'design.svg',
+      'Node.js': 'js.svg',
+      'Python': 'art.svg',
+      'Git': 'github.svg',
+      'MongoDB': 'portfolio.svg',
+      'Express': 'js.svg',
+      'TypeScript': 'js.svg'
     };
-    return iconMap[tech] || '🔒';  // Locked padlock - default cybersecurity
+    return iconMap[tech] || 'manga.svg';
   }
 
   static getButtonStyle(index) {
