@@ -1,14 +1,13 @@
 import { CANVAS, MESSAGES, BREAKPOINTS } from './config/appConfig.js';
 
 /**
- * Neural Network Visualization
- * Renders an interactive network of cybersecurity knowledge nodes
- * Follows Single Responsibility Principle - only handles visualization
+ * 3D Neural Network Visualization
+ * Interactive 3D network with rotating nodes and starfield background
  * Manga-style (black and white) aesthetic
  */
 class NetworkVisualization {
   /**
-   * Create a network visualization
+   * Create a 3D network visualization
    * @param {string} canvasId - ID of the canvas element
    * @param {Object} data - Data containing nodes and configuration
    */
@@ -21,18 +20,30 @@ class NetworkVisualization {
     this.ctx = this.canvas.getContext('2d');
     this.data = data;
     this.config = data.config;
+    
+    // 3D space properties
     this.nodes = [];
+    this.stars = [];
     this.particles = [];
     this.hoveredNode = null;
-    this.animationFrame = 0;
+    
+    // Camera and rotation
+    this.camera = { x: 0, y: 0, z: -500 };
+    this.rotation = { x: 0, y: 0 };
+    this.targetRotation = { x: 0, y: 0 };
+    this.autoRotate = true;
+    this.autoRotateSpeed = 0.002;
+    
+    // Mouse interaction
     this.mouseX = 0;
     this.mouseY = 0;
-    this.scale = 1;
-    this.offsetX = 0;
-    this.offsetY = 0;
     this.isDragging = false;
     this.lastMouseX = 0;
     this.lastMouseY = 0;
+    
+    // Zoom
+    this.scale = 1;
+    this.targetScale = 1;
     
     this.init();
   }
@@ -41,37 +52,102 @@ class NetworkVisualization {
    * Initialize the visualization
    */
   init() {
-    // Configurar canvas responsivo
     this.resize();
     window.addEventListener('resize', () => this.resize());
     
-    // Crear nodos con posiciones aleatorias y velocidades
-    this.initializeNodes();
-    
-    // Event listeners
+    this.initializeStars();
+    this.initializeNodes3D();
     this.bindEvents();
-    
-    // Iniciar animación
     this.animate();
   }
 
   /**
-   * Initialize all nodes with random positions and velocities
+   * Create starfield background
    */
-  initializeNodes() {
-    this.data.nodes.forEach(nodeData => {
+  initializeStars() {
+    const starCount = 200;
+    for (let i = 0; i < starCount; i++) {
+      this.stars.push({
+        x: (Math.random() - 0.5) * 2000,
+        y: (Math.random() - 0.5) * 2000,
+        z: (Math.random() - 0.5) * 2000,
+        size: Math.random() * 2 + 0.5,
+        brightness: Math.random() * 0.5 + 0.5
+      });
+    }
+  }
+
+  /**
+   * Initialize nodes in 3D space (sphere distribution)
+   */
+  initializeNodes3D() {
+    const radius = 300;
+    this.data.nodes.forEach((nodeData, index) => {
+      // Distribute nodes on a sphere using Fibonacci sphere algorithm
+      const phi = Math.acos(1 - 2 * (index + 0.5) / this.data.nodes.length);
+      const theta = Math.PI * (1 + Math.sqrt(5)) * index;
+      
       const node = {
         ...nodeData,
-        x: Math.random() * this.canvas.width,
-        y: Math.random() * this.canvas.height,
-        vx: (Math.random() - 0.5) * this.config.nodeSpeed,
-        vy: (Math.random() - 0.5) * this.config.nodeSpeed,
+        // 3D coordinates
+        x: radius * Math.sin(phi) * Math.cos(theta),
+        y: radius * Math.sin(phi) * Math.sin(theta),
+        z: radius * Math.cos(phi),
+        // Velocity for subtle floating effect
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        vz: (Math.random() - 0.5) * 0.3,
         radius: this.config.nodeRadius,
         pulse: Math.random() * Math.PI * 2,
         connections: []
       };
       this.nodes.push(node);
     });
+    
+    // Create connections between nearby nodes
+    this.createConnections();
+  }
+
+  /**
+   * Create connections between nearby nodes in 3D space
+   */
+  createConnections() {
+    const connectionDistance = 150;
+    
+    for (let i = 0; i < this.nodes.length; i++) {
+      for (let j = i + 1; j < this.nodes.length; j++) {
+        const dx = this.nodes[i].x - this.nodes[j].x;
+        const dy = this.nodes[i].y - this.nodes[j].y;
+        const dz = this.nodes[i].z - this.nodes[j].z;
+        const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        
+        if (distance < connectionDistance) {
+          this.nodes[i].connections.push(j);
+        }
+      }
+    }
+  }
+
+  /**
+   * Project 3D point to 2D screen coordinates
+   */
+  project3D(x, y, z) {
+    // Apply rotation
+    const rotatedX = x * Math.cos(this.rotation.y) - z * Math.sin(this.rotation.y);
+    const rotatedZ = x * Math.sin(this.rotation.y) + z * Math.cos(this.rotation.y);
+    const rotatedY = y * Math.cos(this.rotation.x) - rotatedZ * Math.sin(this.rotation.x);
+    const finalZ = y * Math.sin(this.rotation.x) + rotatedZ * Math.cos(this.rotation.x);
+    
+    // Apply camera
+    const perspective = 800;
+    const scale = perspective / (perspective + finalZ + this.camera.z);
+    
+    return {
+      x: (rotatedX * scale * this.scale) + this.canvas.width / 2,
+      y: (rotatedY * scale * this.scale) + this.canvas.height / 2,
+      z: finalZ,
+      scale: scale
+    };
   }
 
   /**
@@ -80,62 +156,58 @@ class NetworkVisualization {
   bindEvents() {
     this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
     this.canvas.addEventListener('mouseleave', () => this.handleMouseLeave());
-    this.canvas.addEventListener('click', (e) => this.handleClick(e));
-    this.canvas.addEventListener('wheel', (e) => this.handleWheel(e));
     this.canvas.addEventListener('mousedown', (e) => this.handleMouseDown(e));
-    this.canvas.addEventListener('mouseup', (e) => this.handleMouseUp(e));
-  }
-  
-  /**
-   * Resize canvas to fit container
-   */
-  resize() {
-    const container = this.canvas.parentElement;
-    this.canvas.width = container.clientWidth;
-    this.canvas.height = Math.max(container.clientHeight, CANVAS.MIN_HEIGHT);
-  }
-  
-  /**
-   * Reset zoom and pan to initial state
-   */
-  resetView() {
-    this.scale = 1;
-    this.offsetX = 0;
-    this.offsetY = 0;
+    this.canvas.addEventListener('mouseup', (e) => this.handleMouseUp());
+    this.canvas.addEventListener('wheel', (e) => this.handleWheel(e));
+    this.canvas.addEventListener('click', (e) => this.handleClick(e));
   }
   
   /**
    * Handle mouse move event
-   * @param {MouseEvent} e - Mouse event
    */
   handleMouseMove(e) {
     const rect = this.canvas.getBoundingClientRect();
     this.mouseX = e.clientX - rect.left;
     this.mouseY = e.clientY - rect.top;
     
-    // Handle panning
     if (this.isDragging) {
       const dx = this.mouseX - this.lastMouseX;
       const dy = this.mouseY - this.lastMouseY;
-      this.offsetX += dx;
-      this.offsetY += dy;
+      
+      this.targetRotation.y += dx * 0.005;
+      this.targetRotation.x += dy * 0.005;
+      
+      // Limit X rotation to prevent flipping
+      this.targetRotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, this.targetRotation.x));
+      
+      this.autoRotate = false;
       this.lastMouseX = this.mouseX;
       this.lastMouseY = this.mouseY;
-      return;
+      this.canvas.style.cursor = 'grabbing';
+    } else {
+      // Check for node hover
+      this.checkNodeHover();
     }
-    
-    // Ajustar coordenadas del mouse para zoom y pan
-    const adjustedX = (this.mouseX - this.offsetX) / this.scale;
-    const adjustedY = (this.mouseY - this.offsetY) / this.scale;
-    
-    // Detectar hover sobre nodos
+  }
+
+  /**
+   * Check if mouse is hovering over a node
+   */
+  checkNodeHover() {
     let foundHover = false;
+    
     for (const node of this.nodes) {
-      const dx = adjustedX - node.x;
-      const dy = adjustedY - node.y;
+      const projected = this.project3D(node.x, node.y, node.z);
+      
+      if (projected.z < 0) continue; // Behind camera
+      
+      const dx = this.mouseX - projected.x;
+      const dy = this.mouseY - projected.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
       
-      if (distance < node.radius + CANVAS.NODE_HOVER_RADIUS_OFFSET) {
+      const nodeRadius = node.radius * projected.scale * this.scale;
+      
+      if (distance < nodeRadius + CANVAS.NODE_HOVER_RADIUS_OFFSET) {
         if (this.hoveredNode !== node) {
           this.hoveredNode = node;
           this.showNodeInfo(node);
@@ -149,7 +221,7 @@ class NetworkVisualization {
     if (!foundHover && this.hoveredNode) {
       this.hoveredNode = null;
       this.hideNodeInfo();
-      this.canvas.style.cursor = 'default';
+      this.canvas.style.cursor = 'grab';
     }
   }
   
@@ -159,51 +231,12 @@ class NetworkVisualization {
   handleMouseLeave() {
     this.hoveredNode = null;
     this.hideNodeInfo();
-    this.canvas.style.cursor = 'default';
+    this.isDragging = false;
+    this.canvas.style.cursor = 'grab';
   }
   
   /**
-   * Handle click event
-   * @param {MouseEvent} e - Mouse event
-   */
-  handleClick(e) {
-    if (this.hoveredNode && !this.isDragging) {
-      // Hacer scroll suave al panel de información en móvil
-      const infoPanel = document.getElementById('nodeInfo');
-      if (window.innerWidth <= BREAKPOINTS.TABLET) {
-        infoPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    }
-  }
-  
-  /**
-   * Handle wheel event for zooming
-   * @param {WheelEvent} e - Wheel event
-   */
-  handleWheel(e) {
-    e.preventDefault();
-    
-    const rect = this.canvas.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    
-    const zoomFactor = 1 + CANVAS.ZOOM_SENSITIVITY;
-    const zoom = e.deltaY < 0 ? zoomFactor : 1 / zoomFactor;
-    const newScale = Math.min(
-      Math.max(CANVAS.ZOOM_MIN, this.scale * zoom), 
-      CANVAS.ZOOM_MAX
-    );
-    
-    // Ajustar offset para hacer zoom hacia el puntero del mouse
-    this.offsetX = mouseX - (mouseX - this.offsetX) * (newScale / this.scale);
-    this.offsetY = mouseY - (mouseY - this.offsetY) * (newScale / this.scale);
-    
-    this.scale = newScale;
-  }
-  
-  /**
-   * Handle mouse down event for panning
-   * @param {MouseEvent} e - Mouse event
+   * Handle mouse down event
    */
   handleMouseDown(e) {
     const rect = this.canvas.getBoundingClientRect();
@@ -215,32 +248,74 @@ class NetworkVisualization {
   
   /**
    * Handle mouse up event
-   * @param {MouseEvent} e - Mouse event
    */
-  handleMouseUp(e) {
+  handleMouseUp() {
     this.isDragging = false;
-    this.canvas.style.cursor = this.hoveredNode ? 'pointer' : 'default';
+    this.canvas.style.cursor = 'grab';
+  }
+  
+  /**
+   * Handle wheel event for zooming
+   */
+  handleWheel(e) {
+    e.preventDefault();
+    
+    const zoomFactor = 1 + CANVAS.ZOOM_SENSITIVITY;
+    const zoom = e.deltaY < 0 ? zoomFactor : 1 / zoomFactor;
+    this.targetScale = Math.min(
+      Math.max(CANVAS.ZOOM_MIN, this.targetScale * zoom),
+      CANVAS.ZOOM_MAX
+    );
+  }
+  
+  /**
+   * Handle click event
+   */
+  handleClick(e) {
+    if (this.hoveredNode && !this.isDragging) {
+      if (window.innerWidth <= BREAKPOINTS.TABLET) {
+        const infoPanel = document.getElementById('nodeInfo');
+        if (infoPanel) {
+          infoPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }
+    }
+  }
+  
+  /**
+   * Resize canvas to fit container
+   */
+  resize() {
+    const container = this.canvas.parentElement;
+    this.canvas.width = container.clientWidth;
+    this.canvas.height = Math.max(container.clientHeight, CANVAS.MIN_HEIGHT);
+  }
+  
+  /**
+   * Reset view to initial state
+   */
+  resetView() {
+    this.targetScale = 1;
+    this.targetRotation = { x: 0, y: 0 };
+    this.autoRotate = true;
   }
   
   /**
    * Show node information panel
-   * @param {Object} node - Node to display information for
    */
   showNodeInfo(node) {
     const infoPanel = document.getElementById('nodeInfo');
     const titleEl = document.getElementById('nodeTitle');
     const descEl = document.getElementById('nodeDescription');
     
-    titleEl.textContent = node.label;
-    
-    // Si hay content HTML detallado, usarlo; sino, usar info simple
-    if (node.content) {
-      descEl.innerHTML = node.content;
-    } else {
-      descEl.innerHTML = `<p>${node.info}</p>`;
+    if (infoPanel && titleEl && descEl) {
+      titleEl.textContent = node.label;
+      descEl.innerHTML = `
+        <p><strong>Category:</strong> ${node.category}</p>
+        <p><strong>Info:</strong> ${node.info}</p>
+      `;
+      infoPanel.classList.remove('hidden');
     }
-    
-    infoPanel.classList.add('visible');
   }
   
   /**
@@ -248,283 +323,181 @@ class NetworkVisualization {
    */
   hideNodeInfo() {
     const infoPanel = document.getElementById('nodeInfo');
-    infoPanel.classList.remove('visible');
+    if (infoPanel) {
+      infoPanel.classList.add('hidden');
+    }
   }
   
   /**
-   * Update all nodes positions and connections
+   * Update node positions with subtle floating effect
    */
   updateNodes() {
     this.nodes.forEach(node => {
-      // Movimiento orgánico
       node.x += node.vx;
       node.y += node.vy;
+      node.z += node.vz;
       
-      // Rebote en los bordes
-      if (node.x <= node.radius || node.x >= this.canvas.width - node.radius) {
-        node.vx *= -1;
-        node.x = Math.max(node.radius, Math.min(this.canvas.width - node.radius, node.x));
+      // Bounce back towards origin if too far
+      const distance = Math.sqrt(node.x * node.x + node.y * node.y + node.z * node.z);
+      if (distance > 350) {
+        node.vx *= -0.5;
+        node.vy *= -0.5;
+        node.vz *= -0.5;
       }
-      if (node.y <= node.radius || node.y >= this.canvas.height - node.radius) {
-        node.vy *= -1;
-        node.y = Math.max(node.radius, Math.min(this.canvas.height - node.radius, node.y));
+      
+      // No pulse animation - nodes remain static
+    });
+  }
+  
+  /**
+   * Draw starfield background
+   */
+  drawStars() {
+    this.stars.forEach(star => {
+      const projected = this.project3D(star.x, star.y, star.z);
+      
+      if (projected.z > -500 && projected.z < 500) {
+        const alpha = star.brightness * (1 - Math.abs(projected.z) / 500);
+        const size = star.size * projected.scale * this.scale;
+        
+        this.ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+        this.ctx.beginPath();
+        this.ctx.arc(projected.x, projected.y, size, 0, Math.PI * 2);
+        this.ctx.fill();
+      }
+    });
+  }
+  
+  /**
+   * Draw connections between nodes
+   */
+  drawConnections() {
+    this.nodes.forEach((node, index) => {
+      const projectedNode = this.project3D(node.x, node.y, node.z);
+      
+      if (projectedNode.z < 0) return; // Behind camera
+      
+      node.connections.forEach(connIndex => {
+        const connNode = this.nodes[connIndex];
+        const projectedConn = this.project3D(connNode.x, connNode.y, connNode.z);
+        
+        if (projectedConn.z < 0) return; // Behind camera
+        
+        // Calculate opacity based on depth
+        const avgZ = (projectedNode.z + projectedConn.z) / 2;
+        const opacity = Math.max(0.1, 1 - (Math.abs(avgZ) / 400));
+        
+        // Highlight connections of hovered node
+        const isHovered = this.hoveredNode === node || this.hoveredNode === connNode;
+        const lineWidth = isHovered ? 2 : 1;
+        const alpha = isHovered ? opacity * 0.8 : opacity * 0.3;
+        
+        this.ctx.strokeStyle = `rgba(0, 0, 0, ${alpha})`;
+        this.ctx.lineWidth = lineWidth;
+        this.ctx.beginPath();
+        this.ctx.moveTo(projectedNode.x, projectedNode.y);
+        this.ctx.lineTo(projectedConn.x, projectedConn.y);
+        this.ctx.stroke();
+      });
+    });
+  }
+  
+  /**
+   * Draw nodes
+   */
+  drawNodes() {
+    // Sort nodes by Z depth for proper rendering
+    const sortedNodes = [...this.nodes].sort((a, b) => {
+      const aProj = this.project3D(a.x, a.y, a.z);
+      const bProj = this.project3D(b.x, b.y, b.z);
+      return bProj.z - aProj.z; // Far to near
+    });
+    
+    sortedNodes.forEach(node => {
+      const projected = this.project3D(node.x, node.y, node.z);
+      
+      if (projected.z < 0) return; // Behind camera
+      
+      const radius = node.radius * projected.scale * this.scale;
+      const isHovered = this.hoveredNode === node;
+      
+      // Calculate opacity based on depth
+      const opacity = Math.max(0.3, 1 - (Math.abs(projected.z) / 400));
+      
+      // No pulse effect - static nodes for easier clicking
+      const pulseSize = 0;
+      
+      // Draw node glow when hovered
+      if (isHovered) {
+        this.ctx.fillStyle = `rgba(0, 0, 0, ${opacity * 0.1})`;
+        this.ctx.beginPath();
+        this.ctx.arc(projected.x, projected.y, radius + pulseSize + 10, 0, Math.PI * 2);
+        this.ctx.fill();
       }
       
-      // Actualizar pulso
-      node.pulse += 0.03;
+      // Draw node
+      this.ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+      this.ctx.strokeStyle = `rgba(0, 0, 0, ${opacity})`;
+      this.ctx.lineWidth = isHovered ? 3 : 2;
       
-      // Calcular conexiones dinámicas (solo con nodos cercanos)
-      node.connections = [];
-      this.nodes.forEach(otherNode => {
-        if (node.id !== otherNode.id) {
-          const dx = otherNode.x - node.x;
-          const dy = otherNode.y - node.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < this.config.maxDistance) {
-            node.connections.push({
-              node: otherNode,
-              distance: distance,
-              opacity: (1 - distance / this.config.maxDistance) * this.config.connectionOpacity
-            });
-          }
-        }
-      });
-    });
-  }
-  
-  /**
-   * Update particles animation
-   */
-  updateParticles() {
-    // Crear partículas en conexiones activas (cuando se hace hover)
-    if (this.hoveredNode && this.animationFrame % 3 === 0) {
-      this.hoveredNode.connections.forEach(conn => {
-        if (Math.random() > 0.7) { // No todas las conexiones a la vez
-          this.particles.push({
-            x: this.hoveredNode.x,
-            y: this.hoveredNode.y,
-            targetX: conn.node.x,
-            targetY: conn.node.y,
-            progress: 0,
-            life: 1
-          });
-        }
-      });
-    }
-    
-    // Actualizar partículas existentes
-    this.particles = this.particles.filter(particle => {
-      particle.progress += this.config.particleSpeed;
-      particle.life -= 0.01;
-      
-      // Interpolación lineal hacia el objetivo
-      particle.x = this.lerp(particle.x, particle.targetX, particle.progress);
-      particle.y = this.lerp(particle.y, particle.targetY, particle.progress);
-      
-      return particle.progress < 1 && particle.life > 0;
-    });
-  }
-  
-  /**
-   * Linear interpolation helper
-   * @param {number} start - Start value
-   * @param {number} end - End value
-   * @param {number} t - Time/progress (0-1)
-   * @returns {number} Interpolated value
-   */
-  lerp(start, end, t) {
-    return start + (end - start) * t;
-  }
-  
-  /**
-   * Draw the entire network
-   */
-  draw() {
-    // Fondo negro
-    this.ctx.fillStyle = '#000';
-    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-    
-    // Guardar el estado del contexto
-    this.ctx.save();
-    
-    // Aplicar transformaciones de zoom y pan
-    this.ctx.translate(this.offsetX, this.offsetY);
-    this.ctx.scale(this.scale, this.scale);
-    
-    // Grid sutil de fondo (estilo manga)
-    this.drawGrid();
-    
-    // Dibujar conexiones
-    this.nodes.forEach(node => {
-      node.connections.forEach(conn => {
-        this.drawConnection(node, conn);
-      });
-    });
-    
-    // Dibujar partículas
-    this.particles.forEach(particle => {
-      this.drawParticle(particle);
-    });
-    
-    // Dibujar nodos
-    this.nodes.forEach(node => {
-      this.drawNode(node);
-    });
-    
-    // Dibujar etiquetas
-    this.nodes.forEach(node => {
-      this.drawLabel(node);
-    });
-    
-    // Restaurar el estado del contexto
-    this.ctx.restore();
-  }
-  
-  drawGrid() {
-    const gridSize = 50;
-    this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
-    this.ctx.lineWidth = 1;
-    
-    // Líneas verticales
-    for (let x = 0; x < this.canvas.width; x += gridSize) {
       this.ctx.beginPath();
-      this.ctx.moveTo(x, 0);
-      this.ctx.lineTo(x, this.canvas.height);
-      this.ctx.stroke();
-    }
-    
-    // Líneas horizontales
-    for (let y = 0; y < this.canvas.height; y += gridSize) {
-      this.ctx.beginPath();
-      this.ctx.moveTo(0, y);
-      this.ctx.lineTo(this.canvas.width, y);
-      this.ctx.stroke();
-    }
-  }
-  
-  drawConnection(node, conn) {
-    const isHovered = this.hoveredNode === node || this.hoveredNode === conn.node;
-    
-    this.ctx.beginPath();
-    this.ctx.moveTo(node.x, node.y);
-    this.ctx.lineTo(conn.node.x, conn.node.y);
-    
-    // Más brillante si está en hover
-    const opacity = isHovered ? conn.opacity * 3 : conn.opacity;
-    const width = isHovered ? 2 : 1;
-    
-    this.ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
-    this.ctx.lineWidth = width;
-    this.ctx.stroke();
-  }
-  
-  drawParticle(particle) {
-    const size = particle.life * 3;
-    
-    this.ctx.beginPath();
-    this.ctx.arc(particle.x, particle.y, size, 0, Math.PI * 2);
-    this.ctx.fillStyle = `rgba(255, 255, 255, ${particle.life})`;
-    this.ctx.fill();
-    
-    // Glow effect
-    this.ctx.shadowBlur = 10;
-    this.ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
-    this.ctx.fill();
-    this.ctx.shadowBlur = 0;
-  }
-  
-  /**
-   * Draw a single node
-   * @param {Object} node - Node to draw
-   */
-  drawNode(node) {
-    const isHovered = this.hoveredNode === node;
-    const pulseAmount = Math.sin(node.pulse) * 2;
-    const radius = node.radius + pulseAmount;
-    
-    // Glow más intenso en hover
-    if (isHovered) {
-      const gradient = this.ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, radius * 2);
-      gradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
-      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-      this.ctx.fillStyle = gradient;
-      this.ctx.beginPath();
-      this.ctx.arc(node.x, node.y, radius * 2, 0, Math.PI * 2);
+      this.ctx.arc(projected.x, projected.y, radius + pulseSize, 0, Math.PI * 2);
       this.ctx.fill();
-    }
-    
-    // Círculo del nodo
-    this.ctx.beginPath();
-    this.ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
-    
-    // Relleno
-    this.ctx.fillStyle = isHovered ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.1)';
-    this.ctx.fill();
-    
-    // Borde
-    this.ctx.strokeStyle = isHovered ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.6)';
-    this.ctx.lineWidth = isHovered ? 3 : 2;
-    this.ctx.stroke();
-    
-    // Punto central
-    this.ctx.beginPath();
-    this.ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
-    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-    this.ctx.fill();
-  }
-  
-  /**
-   * Draw node label
-   * @param {Object} node - Node to draw label for
-   */
-  drawLabel(node) {
-    const isHovered = this.hoveredNode === node;
-    
-    // Configurar texto
-    this.ctx.font = isHovered ? 'bold 14px "Fredoka One", sans-serif' : '12px "Fredoka One", sans-serif';
-    this.ctx.textAlign = 'center';
-    this.ctx.textBaseline = 'middle';
-    
-    // Sombra para legibilidad
-    this.ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-    this.ctx.shadowBlur = 4;
-    this.ctx.shadowOffsetX = 0;
-    this.ctx.shadowOffsetY = 0;
-    
-    // Texto
-    this.ctx.fillStyle = isHovered ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.8)';
-    this.ctx.fillText(node.label, node.x, node.y - node.radius - 12);
-    
-    // Reset shadow
-    this.ctx.shadowBlur = 0;
-    
-    // Categoría (solo en hover)
-    if (isHovered && node.category) {
-      this.ctx.font = '10px "Fredoka One", sans-serif';
-      this.ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
-      this.ctx.fillText(node.category, node.x, node.y + node.radius + 12);
-    }
+      this.ctx.stroke();
+      
+      // Draw label when hovered or when zoomed in
+      if (isHovered || this.scale > 1.5) {
+        const fontSize = Math.max(10, 12 * projected.scale * this.scale);
+        this.ctx.font = `bold ${fontSize}px 'Press Start 2P', monospace`;
+        this.ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`;
+        this.ctx.textAlign = 'center';
+        this.ctx.textBaseline = 'middle';
+        
+        // Text shadow for readability
+        this.ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+        this.ctx.shadowBlur = 4;
+        
+        this.ctx.fillText(node.label, projected.x, projected.y - radius - 15);
+        
+        this.ctx.shadowBlur = 0;
+      }
+    });
   }
   
   /**
    * Main animation loop
    */
   animate() {
-    this.animationFrame++;
-    
-    // Actualizar
-    this.updateNodes();
-    this.updateParticles();
-    
-    // Dibujar
-    this.draw();
-    
-    // Loop
     requestAnimationFrame(() => this.animate());
+    
+    // Clear canvas
+    this.ctx.fillStyle = '#f5f5dc'; // Manga paper color
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    
+    // Smooth rotation interpolation
+    this.rotation.x += (this.targetRotation.x - this.rotation.x) * 0.1;
+    this.rotation.y += (this.targetRotation.y - this.rotation.y) * 0.1;
+    
+    // Auto-rotate when not dragging
+    if (this.autoRotate) {
+      this.targetRotation.y += this.autoRotateSpeed;
+    }
+    
+    // Smooth zoom interpolation
+    this.scale += (this.targetScale - this.scale) * 0.1;
+    
+    // Update nodes
+    this.updateNodes();
+    
+    // Draw in order: stars → connections → nodes
+    this.drawStars();
+    this.drawConnections();
+    this.drawNodes();
   }
 }
 
-// Exportar como módulo ES6
+// Export as default
 export default NetworkVisualization;
+
+// Also export as named export for compatibility
 export { NetworkVisualization };

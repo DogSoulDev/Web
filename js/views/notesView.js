@@ -53,11 +53,6 @@ export class NotesView extends BaseView {
             `).join('')}
           </div>
         </div>
-        
-        <div class="network-legend">
-          <p>💡 <strong>${MESSAGES.INFO.HOVER_NODES}</strong></p>
-          <p>🖱️ <strong>${MESSAGES.INFO.ZOOM_PAN}</strong></p>
-        </div>
       </div>
     `;
   }
