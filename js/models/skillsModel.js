@@ -11,21 +11,22 @@ export class SkillsModel {
   getSkills() {
     return [
       { name: 'Penetration Testing', level: 'Expert' },
-      { name: 'Cybersecurity Incident Response', level: 'Expert' },
-      { name: 'Linux', level: 'Advanced' },
-      { name: 'Vulnerabilities Analysis', level: 'Expert' },
-      { name: 'Information Security Management', level: 'Advanced' },
+      { name: 'Vulnerability Analysis', level: 'Expert' },
+      { name: 'Incident Response', level: 'Expert' },
+      { name: 'Linux Security', level: 'Advanced' },
+      { name: 'Network Security', level: 'Advanced' },
       { name: 'Malware Analysis', level: 'Advanced' },
-      { name: 'Security in Linux-based Architectures', level: 'Advanced' },
-      { name: 'Corporate Network Security', level: 'Advanced' },
-      { name: 'OSINT Security, Open Source Research', level: 'Advanced' },
+      { name: 'Python & Bash Scripting', level: 'Advanced' },
+      { name: 'Cryptography', level: 'Advanced' },
+      { name: 'OSINT (Open Source Intelligence)', level: 'Advanced' },
       { name: 'Web Security', level: 'Advanced' },
-      { name: 'Cryptography', level: 'Intermediate' },
-      { name: 'Python', level: 'Advanced' },
-      { name: 'Bash', level: 'Advanced' },
-      { name: 'Git', level: 'Proficient' },
-      { name: 'Programming', level: 'Advanced' },
-      { name: 'Full-Stack Development (HTML, CSS, JS, React, PHP, Laravel, MongoDB, Express, Node.js)', level: 'Advanced' }
+      { name: 'Security in Linux-based Architectures', level: 'Advanced' },
+      { name: 'Information Security Management', level: 'Advanced' },
+      { name: 'Full-Stack Development', level: 'Advanced' },
+      { name: 'React, Node.js, Express', level: 'Advanced' },
+      { name: 'PHP, Laravel', level: 'Advanced' },
+      { name: 'MongoDB, Database Design', level: 'Proficient' },
+      { name: 'Git Version Control', level: 'Proficient' }
     ];
   }
 }

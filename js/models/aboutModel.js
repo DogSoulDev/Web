@@ -11,23 +11,24 @@ export class AboutModel {
   getAbout() {
     return {
       title: 'About Me',
-      content: `Aspiring Cybersecurity Analyst with a strong academic foundation: a Master's Degree in Cybersecurity, a Master's in Software Development, and a Higher Technical Degree in IT Systems Management. My technical skills are complemented by a strong team orientation and determination—qualities developed through dedicated sports participation. I enjoy collaborative problem-solving and have the drive to achieve challenging objectives in vulnerability analysis and risk mitigation. Looking to apply this combination of technical skills and a team-first, goal-driven approach to strengthen organizational security.
+      content: `Highly accomplished Cybersecurity professional backed by a triple academic foundation: a Master's Degree in Cybersecurity, a Master's in Software Development, and a Higher Technical Degree in IT Systems Management. My technical expertise is complemented by a strong team orientation and relentless determination—qualities forged through dedicated sports participation. I excel at collaborative problem-solving and possess the willpower to achieve challenging objectives in vulnerability analysis and complex risk mitigation. Seeking to leverage this blend of advanced technical skills and a proven team-first, goal-driven mindset to enhance organizational security.
 
-Work permit: Spanish | Gender: Male | Date of birth: 31/10/1985 | Place of birth: La Coruña, Spain | Nationality: Spanish | Home: 15008, La Coruña, Spain
+Personal Information:
+• Work permit: Spanish | Gender: Male | Date of birth: 31/10/1985
+• Place of birth: Vigo, Spain | Nationality: Spanish
+• Home: La Coruña, Spain | Email: dogsouldev@protonmail.com | Phone: (+34) 637029755
 
 Languages:
-- Mother tongue: Spanish
-- English: LISTENING C1 READING C1 WRITING C1 SPOKEN PRODUCTION B2 SPOKEN INTERACTION B2
-- Galician: LISTENING B2 READING B2 WRITING B2 SPOKEN PRODUCTION A2 SPOKEN INTERACTION A2
-- Catalan: LISTENING B2 READING B2 WRITING B2 SPOKEN PRODUCTION A2 SPOKEN INTERACTION A2
+• Mother tongue: Spanish
+• English: LISTENING C1, READING C1, WRITING C1, SPOKEN PRODUCTION B2, SPOKEN INTERACTION B2
 
 Driving Licence: Cars B
 
 Hobbies and Interests:
-- Sport: Dedicated sports participation has helped develop core competencies. My sports background is reflected in a team-first mentality, determination to achieve goals, and a focus on continuous personal improvement.
-- Traveling: Extensive experience living and traveling across multiple countries has cultivated cultural awareness, adaptability, and critical thinking.
-- Reading: Interests focus on Technical Literature (IT/Cybersecurity) and Japanese Manga.
-- Music: Particularly Blues, Rock, and Metal. Playing the guitar has sharpened concentration and creative problem-solving.`
+• Sport: Dedicated sports participation has been instrumental in developing core professional competencies reflected in team-first mentality, relentless determination, and strong focus on continuous personal improvement.
+• Traveling: Extensive personal experience living and traveling across multiple countries has cultivated high degree of cultural awareness, adaptability, and critical thinking, translating into strong cross-cultural communication skills and ability to exercise sound judgment in complex, diverse, and fast-paced international environments.
+• Reading: Technical Literature (IT/Cybersecurity) and Japanese Manga.
+• Music: Blues, Rock, and Metal. Playing guitar has sharpened concentration, fine motor skills, and creative problem-solving ability, highlighting capacity for methodical practice, disciplined execution, and continuous mastery.`
     };
   }
 }

@@ -30,7 +30,7 @@ export class ProjectsView extends BaseView {
               <button class="project-panel" data-index="${index}">
                 <div class="project-video">
                   <div class="project-icon-container">
-                    <img class="project-icon" src="icons/${icon}" alt="${this.escapeHtml(primaryTech)}" />
+                    <span class="project-emoji-icon">${icon}</span>
                   </div>
                   <h3 class="project-title">${this.escapeHtml(project.title)}</h3>
                   <p class="project-description">${this.escapeHtml(project.description)}</p>
