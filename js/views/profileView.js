@@ -77,6 +77,6 @@ export class ProfileView extends BaseView {
     if (this.animatedText) {
       this.animatedText.destroy();
     }
-    this.animatedText = new AnimatedText('animatedText', 'INTERACTIVE TEXT');
+    this.animatedText = new AnimatedText('animatedText', 'Ethical Hacker & Developer', 150);
   }
 }
