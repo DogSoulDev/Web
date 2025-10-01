@@ -62,21 +62,24 @@ export class ContactView {
     submitBtn.querySelector('.btn-text').textContent = 'SENDING...';
     
     try {
-      // Send email using Formspree (free service that sends to dogsouldev@protonmail.com)
+      // Create FormData object for Formspree
+      const formData = new FormData();
+      formData.append('name', name);
+      formData.append('email', email);
+      formData.append('message', message);
+      formData.append('_replyto', email);
+      formData.append('_subject', `Portfolio Contact from ${name}`);
+      
+      // Send to Formspree
       const response = await fetch('https://formspree.io/f/mpwydvop', {
         method: 'POST',
+        body: formData,
         headers: {
-          'Content-Type': 'application/json',
           'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          message: message,
-          _replyto: email,
-          _subject: `Portfolio Contact from ${name}`
-        })
+        }
       });
+      
+      const data = await response.json();
       
       if (response.ok) {
         // Show success message
@@ -90,35 +93,14 @@ export class ContactView {
           this.showStatus(statusMsg, '', '');
         }, 3000);
       } else {
-        throw new Error('Failed to send message');
+        throw new Error(data.error || 'Failed to send message');
       }
       
     } catch (error) {
       console.error('Error sending message:', error);
-      // Fallback to mailto if fetch fails
-      const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-      const body = encodeURIComponent(
-        `Name: ${name}\n` +
-        `Email: ${email}\n` +
-        `\nMessage:\n${message}`
-      );
-      
-      const mailtoLink = `mailto:dogsouldev@protonmail.com?subject=${subject}&body=${body}`;
-      
-      // Open email client
-      const link = document.createElement('a');
-      link.href = mailtoLink;
-      link.target = '_blank';
-      link.click();
-      
-      this.showStatus(statusMsg, 'Opening your email client...', 'success');
-      
-      setTimeout(() => {
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.querySelector('.btn-text').textContent = originalText;
-        this.showStatus(statusMsg, '', '');
-      }, 3000);
+      this.showStatus(statusMsg, '❌ Failed to send message. Please try again or use email directly.', 'error');
+      submitBtn.disabled = false;
+      submitBtn.querySelector('.btn-text').textContent = originalText;
     }
     
     return false;
