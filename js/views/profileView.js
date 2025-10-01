@@ -3,6 +3,7 @@ import { AboutModel } from '../models/aboutModel.js';
 import { SkillsModel } from '../models/skillsModel.js';
 import { BaseView } from './BaseView.js';
 import { ParticleNetwork } from '../particleNetwork.js';
+import { AnimatedText } from '../animatedText.js';
 
 /**
  * Profile View
@@ -14,6 +15,7 @@ export class ProfileView extends BaseView {
     this.aboutModel = new AboutModel();
     this.skillsModel = new SkillsModel();
     this.particleNetwork = null;
+    this.animatedText = null;
   }
 
   render() {
@@ -34,6 +36,9 @@ export class ProfileView extends BaseView {
         </div>
         <div class="particle-network-container">
           <canvas id="particleCanvas"></canvas>
+        </div>
+        <div class="animated-text-container">
+          <div id="animatedText"></div>
         </div>
         <p class="profile-desc">${profile.description}</p>
         <div class="speech-bubble about-bubble">
@@ -67,5 +72,11 @@ export class ProfileView extends BaseView {
       this.particleNetwork.destroy();
     }
     this.particleNetwork = new ParticleNetwork('particleCanvas');
+    
+    // Initialize animated text
+    if (this.animatedText) {
+      this.animatedText.destroy();
+    }
+    this.animatedText = new AnimatedText('animatedText', 'INTERACTIVE TEXT');
   }
 }

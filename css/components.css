@@ -12,15 +12,33 @@
   gap: 2rem;
 }
 
-.navbar-logo {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
+/* GitHub Follow Button */
+.github-follow-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #1a1a1a;
+  color: #ffffff;
+  border: 2px solid #000;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: var(--font-manga);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-logo:hover {
-  transform: scale(1.1) rotate(5deg);
+.github-follow-btn:hover {
+  background: #2d2d2d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.github-follow-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 .navbar-list {
@@ -81,11 +99,6 @@
     padding: 1rem 0;
   }
 
-  .navbar-logo {
-    width: 45px;
-    height: 45px;
-  }
-
   .navbar-list {
     flex-direction: row;
     flex-wrap: wrap;
@@ -99,16 +112,16 @@
     padding: 0.5rem 1rem;
     font-size: 0.95rem;
   }
+  
+  .github-follow-btn {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+  }
 }
 
 @media (max-width: 480px) {
   .navbar {
     padding: 0.75rem 0.5rem;
-  }
-
-  .navbar-logo {
-    width: 40px;
-    height: 40px;
   }
 
   .navbar-list {
@@ -793,15 +806,13 @@
 }
 
 .tech-badge {
-  background: var(--manga-green);
-  color: var(--bg-main);
+  color: var(--text-muted);
   font-family: var(--font-manga);
-  font-size: 0.8rem;
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 0;
-  border: 1px solid var(--manga-black);
-  box-shadow: 1px 1px 0 var(--manga-gray);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 2px 0;
+  display: inline;
+  margin-right: 8px;
 }
 
 .project-link {
@@ -1244,205 +1255,46 @@
   margin-top: 20px;
 }
 
-.light-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.light-button a.bt {
+/* View Project Button - Modern Design from UIverse */
+.view-project-btn {
+  display: inline-block;
   position: relative;
-  height: 150px;
-  display: flex;
-  align-items: flex-end;
-  text-decoration: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.light-button a.bt .button-holder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80px;
-  width: 120px;
-  background-color: #0a0a0a;
-  border-radius: 5px;
-  color: #888888;
-  font-weight: 700;
-  font-family: var(--font-manga);
-  font-size: 0.75rem;
-  transition: 300ms;
-  outline: #888888 2px solid;
-  outline-offset: 20px;
-}
-
-.light-button a.bt .button-holder svg {
-  height: 35px;
-  width: 35px;
-  stroke: #888888;
-  fill: none;
-  transition: 300ms;
-  margin-bottom: 5px;
-}
-
-.light-button a.bt .button-holder p {
-  margin: 0;
-  padding: 0;
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  transition: 300ms;
-}
-
-.light-button a.bt .light-holder {
-  position: absolute;
-  height: 150px;
-  width: 120px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  pointer-events: none;
-}
-
-.light-button a.bt .light-holder .dot {
-  position: absolute;
-  top: 0;
-  width: 10px;
-  height: 10px;
-  background-color: #0a0a0a;
+  padding: 12px 28px;
   border-radius: 10px;
-  z-index: 2;
+  font-family: var(--font-manga);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  overflow: hidden;
+  transition: all 0.5s;
+  z-index: 1;
+  color: #000;
+  border: 2px solid #000;
+  background: #fff;
 }
 
-.light-button a.bt .light-holder .light {
+.view-project-btn::before {
+  content: '';
   position: absolute;
   top: 0;
-  width: 150px;
-  height: 150px;
-  clip-path: polygon(50% 0%, 25% 100%, 75% 100%);
-  background: transparent;
-  transition: 300ms;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #000;
+  transition: all 0.5s;
+  border-radius: 10px;
+  z-index: -1;
 }
 
-/* Estilos de color para cada proyecto */
-.light-button a.bt.btn-style-1:hover .button-holder svg,
-.light-button a.bt.btn-style-1:hover .button-holder p {
-  stroke: rgba(102, 126, 234, 1);
-  color: rgba(102, 126, 234, 1);
+.view-project-btn:hover {
+  color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
-.light-button a.bt.btn-style-1:hover .button-holder {
-  color: rgba(102, 126, 234, 1);
-  outline: rgba(102, 126, 234, 1) 2px solid;
-  outline-offset: 2px;
-}
-
-.light-button a.bt.btn-style-1:hover .light-holder .light {
-  background: linear-gradient(
-    180deg,
-    rgba(102, 126, 234, 1) 0%,
-    rgba(102, 126, 234, 0.3) 75%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-.light-button a.bt.btn-style-2:hover .button-holder svg,
-.light-button a.bt.btn-style-2:hover .button-holder p {
-  stroke: rgba(56, 239, 125, 1);
-  color: rgba(56, 239, 125, 1);
-}
-
-.light-button a.bt.btn-style-2:hover .button-holder {
-  color: rgba(56, 239, 125, 1);
-  outline: rgba(56, 239, 125, 1) 2px solid;
-  outline-offset: 2px;
-}
-
-.light-button a.bt.btn-style-2:hover .light-holder .light {
-  background: linear-gradient(
-    180deg,
-    rgba(56, 239, 125, 1) 0%,
-    rgba(56, 239, 125, 0.3) 75%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-.light-button a.bt.btn-style-3:hover .button-holder svg,
-.light-button a.bt.btn-style-3:hover .button-holder p {
-  stroke: rgba(255, 65, 108, 1);
-  color: rgba(255, 65, 108, 1);
-}
-
-.light-button a.bt.btn-style-3:hover .button-holder {
-  color: rgba(255, 65, 108, 1);
-  outline: rgba(255, 65, 108, 1) 2px solid;
-  outline-offset: 2px;
-}
-
-.light-button a.bt.btn-style-3:hover .light-holder .light {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 65, 108, 1) 0%,
-    rgba(255, 65, 108, 0.3) 75%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-.light-button a.bt.btn-style-4:hover .button-holder svg,
-.light-button a.bt.btn-style-4:hover .button-holder p {
-  stroke: rgba(142, 45, 226, 1);
-  color: rgba(142, 45, 226, 1);
-}
-
-.light-button a.bt.btn-style-4:hover .button-holder {
-  color: rgba(142, 45, 226, 1);
-  outline: rgba(142, 45, 226, 1) 2px solid;
-  outline-offset: 2px;
-}
-
-.light-button a.bt.btn-style-4:hover .light-holder .light {
-  background: linear-gradient(
-    180deg,
-    rgba(142, 45, 226, 1) 0%,
-    rgba(142, 45, 226, 0.3) 75%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-.light-button a.bt.btn-style-5:hover .button-holder svg,
-.light-button a.bt.btn-style-5:hover .button-holder p {
-  stroke: rgba(245, 87, 108, 1);
-  color: rgba(245, 87, 108, 1);
-}
-
-.light-button a.bt.btn-style-5:hover .button-holder {
-  color: rgba(245, 87, 108, 1);
-  outline: rgba(245, 87, 108, 1) 2px solid;
-  outline-offset: 2px;
-}
-
-.light-button a.bt.btn-style-5:hover .light-holder .light {
-  background: linear-gradient(
-    180deg,
-    rgba(245, 87, 108, 1) 0%,
-    rgba(245, 87, 108, 0.3) 75%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-.light-button a.bt.btn-style-6:hover .button-holder svg,
-.light-button a.bt.btn-style-6:hover .button-holder p {
-  stroke: rgba(128, 208, 199, 1);
-  color: rgba(128, 208, 199, 1);
-}
-
-.light-button a.bt.btn-style-6:hover .button-holder {
-  color: rgba(128, 208, 199, 1);
-  outline: rgba(128, 208, 199, 1) 2px solid;
-  outline-offset: 2px;
+.view-project-btn:hover::before {
+  width: 100%;
 }
 
 .light-button a.bt.btn-style-6:hover .light-holder .light {
