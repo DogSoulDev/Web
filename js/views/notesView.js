@@ -61,19 +61,46 @@ export class NotesView extends BaseView {
   }
 
   afterRender() {
+    console.log('[NotesView] afterRender called');
+    
     // Pequeño delay para asegurar que el DOM esté completamente listo
     setTimeout(() => {
+      console.log('[NotesView] Starting visualization initialization');
+      
+      // Verificar que el canvas existe
+      const canvas = document.getElementById('networkCanvas');
+      if (!canvas) {
+        console.error('[NotesView] Canvas element not found!');
+        this.showVisualizationError();
+        return;
+      }
+      console.log('[NotesView] Canvas element found:', canvas);
+      
       // Importar dinámicamente el módulo de visualización
       import('../notesCanvas.js').then(module => {
+        console.log('[NotesView] notesCanvas.js loaded successfully', module);
+        
         const notes = this.model.getNotes();
+        console.log('[NotesView] Notes data:', notes);
+        console.log('[NotesView] Number of nodes:', notes.nodes?.length);
+        
         const NetworkVisualization = module.default || module.NetworkVisualization;
+        console.log('[NotesView] NetworkVisualization class:', NetworkVisualization);
+        
+        if (!NetworkVisualization) {
+          throw new Error('NetworkVisualization class not found in module');
+        }
+        
         const network = new NetworkVisualization('networkCanvas', notes);
+        console.log('[NotesView] NetworkVisualization instance created:', network);
         
         // Initialize controller with network instance
         this.controller = new NotesController(network);
         this.controller.init();
+        console.log('[NotesView] Controller initialized');
       }).catch(error => {
-        console.error('Error loading NetworkVisualization:', error);
+        console.error('[NotesView] Error loading NetworkVisualization:', error);
+        console.error('[NotesView] Error stack:', error.stack);
         this.showVisualizationError();
       });
     }, 100);
