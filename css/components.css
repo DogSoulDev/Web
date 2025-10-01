@@ -35,20 +35,42 @@
 }
 
 .nav-btn {
+  position: relative;
   background: var(--bg-main);
-  border: 1px solid var(--manga-black);
+  border: 3px solid var(--manga-black);
   color: var(--manga-black);
   font-family: var(--font-manga);
   font-size: 1.1rem;
   padding: 0.5rem 1.2rem;
   cursor: pointer;
-  border-radius: 4px;
-  transition: background 0.3s;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  box-shadow: 4px 4px 0 var(--manga-black);
+  overflow: hidden;
 }
 
-.nav-btn.active, .nav-btn:hover {
-  background: var(--manga-blue);
+.nav-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--manga-black);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.nav-btn:hover::before,
+.nav-btn.active::before {
+  left: 0;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
   color: var(--bg-main);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--manga-black);
 }
 
 /* Responsive navbar */
@@ -1165,11 +1187,128 @@
   transition: top 0.6s ease;
 }
 
+/* ========================================
+   CONTENEDOR DE ACCIONES Y BOTÓN DE GITHUB STARS
+   ======================================== */
+
+.project-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+/* Botón de GitHub Stars - Estilo manga blanco y negro */
+.github-star-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #fff;
+  border: 3px solid #000;
+  color: #000;
+  font-family: var(--font-manga);
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.github-star-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  transition: left 0.4s ease;
+  z-index: 0;
+}
+
+.github-star-btn:hover::before {
+  left: 0;
+}
+
+.github-star-btn:hover {
+  color: #fff;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000;
+}
+
+.github-star-btn .star-icon,
+.github-star-btn .star-count,
+.github-star-btn .star-text {
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.github-star-btn .star-icon {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  transition: fill 0.3s ease, transform 0.3s ease;
+}
+
+.github-star-btn:hover .star-icon {
+  fill: currentColor;
+  transform: rotate(360deg) scale(1.1);
+}
+
+.github-star-btn .star-count {
+  font-size: 1rem;
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+}
+
+.github-star-btn .star-text {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Animación de pulso para el contador de estrellas */
+@keyframes star-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.github-star-btn:active .star-count {
+  animation: star-pulse 0.3s ease;
+}
+
 /* Responsive para botones */
 @media (max-width: 768px) {
   .project-link-btn {
     padding: 12px 24px;
     font-size: 0.9rem;
+  }
+  
+  .github-star-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .github-star-btn .star-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .project-actions {
+    gap: 8px;
   }
 }
 

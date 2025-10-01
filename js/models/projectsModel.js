@@ -8,7 +8,9 @@ export class ProjectsModel {
         title: repo.name,
         description: repo.description || 'A creative project.',
         url: repo.html_url,
-        tech: repo.language ? [repo.language] : ['Various']
+        tech: repo.language ? [repo.language] : ['Various'],
+        stars: repo.stargazers_count || 0,
+        repoName: repo.full_name // DogSoulDev/nombre-repo
       }));
     } catch (error) {
       console.error('Error fetching projects:', error);
@@ -17,13 +19,17 @@ export class ProjectsModel {
           title: 'Manga Web Portfolio',
           description: 'A clean, manga-inspired portfolio site.',
           url: '#',
-          tech: ['HTML', 'CSS', 'JavaScript']
+          tech: ['HTML', 'CSS', 'JavaScript'],
+          stars: 0,
+          repoName: 'DogSoulDev/Web'
         },
         {
           title: 'Illustrated Blog',
           description: 'Blog with manga illustrations.',
           url: '#',
-          tech: ['HTML', 'CSS']
+          tech: ['HTML', 'CSS'],
+          stars: 0,
+          repoName: 'DogSoulDev/blog'
         }
       ];
     }
