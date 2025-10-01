@@ -18,7 +18,6 @@ export class ProfileView {
         <div class="header">
           <div class="avatar-container">
             <img src="${profile.img}" alt="Avatar" class="profile-img speed-lines">
-            <div class="sound-effect">HI!</div>
           </div>
           <div class="name-section">
             <h1 class="title">${profile.name}</h1>
@@ -26,9 +25,10 @@ export class ProfileView {
             <p class="subtitle">${profile.subtitle}</p>
           </div>
         </div>
-        <div class="action-quote">
-          <div class="speech-bubble action-bubble">
-            <p>"I love breaking things!"</p>
+        <div class="manga-glitch-container">
+          <div class="glitch-wrapper">
+            <div class="glitch" data-text="BREAKING LIMITS">BREAKING LIMITS</div>
+            <div class="sub-glitch">// pushing boundaries</div>
           </div>
         </div>
         <p class="profile-desc">${profile.description}</p>
