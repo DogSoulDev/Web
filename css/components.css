@@ -205,11 +205,49 @@
 .experience-panel,
 .education-panel {
   min-height: 250px;
+  position: relative;
+  background: var(--bg-panel);
+  border: 3px solid var(--manga-black);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden;
+}
+
+/* Estilo manga japonés para education cards */
+.education-panel {
+  background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+  border: 4px solid var(--manga-black);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.15);
+}
+
+.education-panel::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, transparent 30%, rgba(0, 0, 0, 0.05) 30%, rgba(0, 0, 0, 0.05) 70%, transparent 70%);
+  background-size: 20px 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.education-panel:hover::before {
+  opacity: 1;
+}
+
+.education-panel:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.2);
 }
 
 .experience-content,
 .education-content {
   padding: 15px;
+  position: relative;
+  z-index: 1;
 }
 
 .experience-title,
@@ -264,27 +302,62 @@
   margin-top: 20px;
 }
 
+/* Botón Learn More estilo manga japonés moderno */
 .education-link {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: var(--manga-green);
-  color: var(--bg-main);
+  justify-content: center;
+  gap: 8px;
+  background: #000;
+  color: #fff;
   font-family: var(--font-manga);
   font-weight: bold;
-  padding: 8px 16px;
+  padding: 12px 24px;
   text-decoration: none;
-  border: 2px solid var(--manga-black);
+  border: none;
   border-radius: 0;
-  box-shadow: 2px 2px 0 var(--manga-gray);
-  transition: all 0.2s;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
   font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.education-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  z-index: -1;
+}
+
+.education-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid #000;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.education-link:hover::before {
+  transform: scaleX(1);
+}
+
+.education-link:hover::after {
+  opacity: 1;
 }
 
 .education-link:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 var(--manga-gray);
-  background: #009900;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Manga-style Projects Section */
@@ -339,28 +412,16 @@
 
 .manga-title {
   text-align: center;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   margin-bottom: 30px;
   text-decoration: none !important;
   position: relative;
 }
 
-.manga-title::before,
-.manga-title::after {
-  content: '✦';
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.5rem;
-  color: var(--manga-red);
-}
-
-.manga-title::before {
-  left: -40px;
-}
-
-.manga-title::after {
-  right: -40px;
+/* Estrellas eliminadas para Experience */
+.experience .manga-title::before,
+.experience .manga-title::after {
+  content: none;
 }
 
 .projects-manga-flow {
@@ -902,10 +963,10 @@
 }
 
 /* ========================================
-   BOTONES ANIMADOS ÚNICOS PARA PROYECTOS
+   BOTONES ANIMADOS ÚNICOS PARA PROYECTOS - EFECTO SPOTLIGHT
    ======================================== */
 
-/* Base común para todos los botones de proyecto */
+/* Base común para todos los botones de proyecto con efecto spotlight */
 .project-link-btn {
   position: relative;
   display: inline-flex;
@@ -922,8 +983,28 @@
   border-radius: 8px;
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
   z-index: 1;
+  color: white;
+}
+
+.project-link-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+  z-index: -1;
+}
+
+.project-link-btn:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .project-link-btn .btn-text {
@@ -943,248 +1024,69 @@
   transform: translateX(5px);
 }
 
-/* Estilo 1: Azul Eléctrico con Glow Pulsante */
-.btn-style-1 {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
-  animation: pulse-glow-1 2s ease-in-out infinite;
+.project-link-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
-.btn-style-1::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
+/* Estilo 1: Azul Eléctrico con Spotlight */
+.btn-style-1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
 .btn-style-1:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 30px rgba(102, 126, 234, 0.6);
+  box-shadow: 0 10px 40px rgba(102, 126, 234, 0.6);
 }
 
-.btn-style-1:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-@keyframes pulse-glow-1 {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(102, 126, 234, 0.8);
-  }
-}
-
-/* Estilo 2: Verde Neón con Pulso Energético */
+/* Estilo 2: Verde Neón con Spotlight */
 .btn-style-2 {
   background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-  color: white;
-  border: 2px solid #38ef7d;
-  box-shadow: 0 0 15px rgba(56, 239, 125, 0.5);
-}
-
-.btn-style-2::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  background: linear-gradient(135deg, #38ef7d, #11998e);
-  border-radius: 8px;
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: -1;
-  animation: border-pulse 2s ease-in-out infinite;
+  box-shadow: 0 4px 15px rgba(56, 239, 125, 0.4);
 }
 
 .btn-style-2:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 30px rgba(56, 239, 125, 0.8);
+  box-shadow: 0 10px 40px rgba(56, 239, 125, 0.6);
 }
 
-.btn-style-2:hover::after {
-  opacity: 1;
-}
-
-@keyframes border-pulse {
-  0%, 100% {
-    filter: blur(5px);
-  }
-  50% {
-    filter: blur(10px);
-  }
-}
-
-/* Estilo 3: Rojo Manga con Border Animado */
+/* Estilo 3: Rojo Manga con Spotlight */
 .btn-style-3 {
-  background: var(--manga-red);
-  color: white;
-  border: 3px solid var(--manga-black);
-  box-shadow: 4px 4px 0 var(--manga-black);
-  border-radius: 0;
-}
-
-.btn-style-3::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 3px solid white;
-  border-radius: 0;
-  opacity: 0;
-  animation: border-dash 1.5s linear infinite;
+  background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+  box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
 }
 
 .btn-style-3:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--manga-black);
-  background: #ff0000;
+  box-shadow: 0 10px 40px rgba(255, 65, 108, 0.6);
 }
 
-.btn-style-3:hover::before {
-  opacity: 1;
-  animation-play-state: running;
-}
-
-@keyframes border-dash {
-  0% {
-    clip-path: polygon(0 0, 100% 0, 100% 3px, 0 3px);
-  }
-  25% {
-    clip-path: polygon(100% 0, 100% 100%, calc(100% - 3px) 100%, calc(100% - 3px) 0);
-  }
-  50% {
-    clip-path: polygon(100% 100%, 0 100%, 0 calc(100% - 3px), 100% calc(100% - 3px));
-  }
-  75% {
-    clip-path: polygon(0 100%, 0 0, 3px 0, 3px 100%);
-  }
-  100% {
-    clip-path: polygon(0 0, 100% 0, 100% 3px, 0 3px);
-  }
-}
-
-/* Estilo 4: Púrpura Cyber con Particles */
+/* Estilo 4: Púrpura Cyber con Spotlight */
 .btn-style-4 {
   background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
-  color: white;
-  border: 2px solid #8e2de2;
-  box-shadow: 0 0 25px rgba(142, 45, 226, 0.4);
-}
-
-.btn-style-4::before,
-.btn-style-4::after {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0;
-  transition: all 0.5s;
-}
-
-.btn-style-4::before {
-  top: -5px;
-  left: 20%;
-}
-
-.btn-style-4::after {
-  bottom: -5px;
-  right: 20%;
+  box-shadow: 0 4px 15px rgba(142, 45, 226, 0.4);
 }
 
 .btn-style-4:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 35px rgba(142, 45, 226, 0.7);
+  box-shadow: 0 10px 40px rgba(142, 45, 226, 0.6);
 }
 
-.btn-style-4:hover::before {
-  opacity: 1;
-  top: -15px;
-  animation: particle-float 1s ease-out;
-}
-
-.btn-style-4:hover::after {
-  opacity: 1;
-  bottom: -15px;
-  animation: particle-float 1s ease-out;
-}
-
-@keyframes particle-float {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-20px) scale(0);
-    opacity: 0;
-  }
-}
-
-/* Estilo 5: Naranja Fire con Waves */
+/* Estilo 5: Naranja Fire con Spotlight */
 .btn-style-5 {
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: white;
-  border: 2px solid #f5576c;
-  box-shadow: 0 5px 20px rgba(245, 87, 108, 0.4);
-}
-
-.btn-style-5::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.5s;
+  box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4);
 }
 
 .btn-style-5:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 30px rgba(245, 87, 108, 0.6);
+  box-shadow: 0 10px 40px rgba(245, 87, 108, 0.6);
 }
 
-.btn-style-5:hover::before {
-  left: 100%;
-}
-
-/* Estilo 6: Cyan Tech con Scan Effect */
+/* Estilo 6: Cyan Tech con Spotlight */
 .btn-style-6 {
   background: linear-gradient(135deg, #13547a 0%, #80d0c7 100%);
-  color: white;
-  border: 2px solid #80d0c7;
-  box-shadow: 0 0 20px rgba(128, 208, 199, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-style-6::before {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-  transition: top 0.4s ease;
+  box-shadow: 0 4px 15px rgba(128, 208, 199, 0.4);
 }
 
 .btn-style-6:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 35px rgba(128, 208, 199, 0.6);
-}
-
-.btn-style-6:hover::before {
-  top: 100%;
-  transition: top 0.6s ease;
+  box-shadow: 0 10px 40px rgba(128, 208, 199, 0.6);
 }
 
 /* ========================================
@@ -1199,25 +1101,26 @@
   width: 100%;
 }
 
-/* Botón de GitHub Stars - Estilo manga blanco y negro */
+/* Botón de GitHub Stars - Pequeño y discreto con estrella brillante */
 .github-star-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 10px 20px;
+  gap: 6px;
+  padding: 8px 16px;
   background: #fff;
-  border: 3px solid #000;
+  border: 2px solid #000;
   color: #000;
   font-family: var(--font-manga);
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  box-shadow: 4px 4px 0 #000;
+  box-shadow: 2px 2px 0 #000;
+  border-radius: 4px;
 }
 
 .github-star-btn::before {
@@ -1238,8 +1141,8 @@
 
 .github-star-btn:hover {
   color: #fff;
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 #000;
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 #000;
 }
 
 .github-star-btn .star-icon,
@@ -1251,29 +1154,42 @@
 }
 
 .github-star-btn .star-icon {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   stroke: currentColor;
   fill: none;
-  transition: fill 0.3s ease, transform 0.3s ease;
+  transition: fill 0.3s ease, transform 0.3s ease, filter 0.3s ease;
 }
 
+/* Efecto de brillo en la estrella al hover */
 .github-star-btn:hover .star-icon {
   fill: currentColor;
-  transform: rotate(360deg) scale(1.1);
+  transform: rotate(360deg) scale(1.2);
+  filter: drop-shadow(0 0 8px currentColor);
+  animation: star-sparkle 0.6s ease;
 }
 
 .github-star-btn .star-count {
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: bold;
-  min-width: 20px;
+  min-width: 18px;
   text-align: center;
 }
 
 .github-star-btn .star-text {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+/* Animación de brillo para la estrella */
+@keyframes star-sparkle {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+  50% {
+    filter: drop-shadow(0 0 15px currentColor) drop-shadow(0 0 20px currentColor);
+  }
 }
 
 /* Animación de pulso para el contador de estrellas */
