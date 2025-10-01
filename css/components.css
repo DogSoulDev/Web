@@ -257,26 +257,15 @@
   align-items: center;
   margin: 30px 0;
   padding: 20px;
-  gap: 20px;
-}
-
-.neural-toggle-label {
-  font-family: var(--font-manga);
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: var(--manga-black);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
 .switch {
   font-size: 17px;
   position: relative;
   display: inline-block;
-  width: 20em;
-  height: 12em;
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
   user-select: none;
 }
 
@@ -304,8 +293,8 @@
 }
 
 .toggle .toggle-canvas-container {
-  flex: 1;
   width: 100%;
+  height: 100%;
   position: relative;
   background: #ffffff;
 }
@@ -318,47 +307,18 @@
   cursor: crosshair;
 }
 
-.toggle .toggle-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  background: #f0f0f0;
-  border-top: 2px solid #000;
-  font-family: var(--font-manga);
-  font-weight: bold;
-  font-size: 0.9rem;
-  color: #000;
-  text-transform: uppercase;
-}
-
-.switch input:checked + .toggle .toggle-controls {
-  background: #487bdb;
-  color: #fff;
-}
-
 /* Responsive Toggle */
 @media (max-width: 768px) {
   .switch {
     width: 100%;
-    max-width: 18em;
-    height: 10em;
-  }
-  
-  .toggle .toggle-controls {
-    font-size: 0.8rem;
-    padding: 8px;
+    max-width: 100%;
+    height: 300px;
   }
 }
 
 @media (max-width: 480px) {
   .switch {
-    height: 8em;
-  }
-  
-  .toggle .toggle-controls {
-    font-size: 0.7rem;
-    padding: 6px;
+    height: 250px;
   }
 }
 
