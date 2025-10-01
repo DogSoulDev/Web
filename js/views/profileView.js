@@ -60,6 +60,7 @@ export class ProfileView extends BaseView {
           <p>© 2025 DogSoulDev. All rights reserved.</p>
         </div>
         <div class="neural-toggle-container">
+          <div class="neural-toggle-label">⚡ Neural Network ⚡</div>
           <label class="switch">
             <input class="cb" type="checkbox" id="neuralToggle" />
             <div class="toggle">

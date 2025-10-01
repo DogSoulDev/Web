@@ -260,6 +260,17 @@
   gap: 20px;
 }
 
+.neural-toggle-label {
+  font-family: var(--font-manga);
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--manga-black);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
 .switch {
   font-size: 17px;
   position: relative;
@@ -1354,80 +1365,52 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
-/* View Project Button - UIverse vinodjangid07/wonderful-yak-52 */
+/* View Project Button - UIverse kamehame-ha/kind-otter-31 */
 .view-project-btn {
+  padding: 0.8em 1.8em;
+  border: 3px solid var(--manga-black);
   position: relative;
-  padding: 12px 24px;
-  border-radius: 7px;
-  border: 2px solid rgb(61, 106, 255);
-  font-size: 16px;
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 2px;
-  background: rgba(0, 0, 0, 0.8);
-  color: #ffffff;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s ease-in;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  background-color: transparent;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
   font-family: var(--font-manga);
+  transition: 0.3s;
+  z-index: 1;
+  color: var(--manga-black);
   cursor: pointer;
-}
-
-.view-project-btn svg {
-  width: 24px;
-  height: 24px;
-  transition: transform 0.3s ease;
-}
-
-.view-project-btn:hover {
-  background: rgb(61, 106, 255);
-  box-shadow: 0 0 30px 5px rgba(0, 142, 236, 0.815);
-  transition: all 0.2s ease-out;
-}
-
-.view-project-btn:hover svg {
-  transform: translateX(4px);
-}
-
-.view-project-btn:hover::before {
-  animation: sh02 0.5s 0s linear;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .view-project-btn::before {
   content: '';
-  display: block;
-  width: 0px;
-  height: 86%;
+  width: 0;
+  height: 300%;
   position: absolute;
-  top: 7%;
-  left: 0%;
-  opacity: 0;
-  background: #fff;
-  box-shadow: 0 0 50px 30px #fff;
-  transform: skewX(-20deg);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: var(--manga-black);
+  transition: 0.5s ease;
+  display: block;
+  z-index: -1;
 }
 
-@keyframes sh02 {
-  from {
-    opacity: 0;
-    left: 0%;
-  }
+.view-project-btn:hover::before {
+  width: 105%;
+}
 
-  50% {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-    left: 100%;
-  }
+.view-project-btn:hover {
+  color: var(--bg-main);
+  border-color: var(--manga-black);
 }
 
 .light-button a.bt.btn-style-6:hover .light-holder .light {
