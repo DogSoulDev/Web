@@ -58,18 +58,21 @@ export class NotesView extends BaseView {
   }
 
   afterRender() {
-    // Importar dinámicamente el módulo de visualización
-    import('../notesCanvas.js').then(module => {
-      const notes = this.model.getNotes();
-      const NetworkVisualization = module.default || module.NetworkVisualization;
-      this.network = new NetworkVisualization('networkCanvas', notes);
-      
-      // Bind event listeners
-      this.bindKnowledgeListEvents();
-    }).catch(error => {
-      console.error('Error loading NetworkVisualization:', error);
-      this.showVisualizationError();
-    });
+    // Pequeño delay para asegurar que el DOM esté completamente listo
+    setTimeout(() => {
+      // Importar dinámicamente el módulo de visualización
+      import('../notesCanvas.js').then(module => {
+        const notes = this.model.getNotes();
+        const NetworkVisualization = module.default || module.NetworkVisualization;
+        this.network = new NetworkVisualization('networkCanvas', notes);
+        
+        // Bind event listeners
+        this.bindKnowledgeListEvents();
+      }).catch(error => {
+        console.error('Error loading NetworkVisualization:', error);
+        this.showVisualizationError();
+      });
+    }, 100);
   }
 
   /**
