@@ -1,0 +1,88 @@
+/* ===================================
+   LOGO DRAWING ANIMATION
+   Efecto de dibujo progresivo estilo Goku
+   =================================== */
+
+.logo-animation-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.logo-animation-container.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#logo-animated {
+  width: 80%;
+  max-width: 500px;
+  height: auto;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+}
+
+/* Estilos para los paths del SVG */
+#logo-animated path {
+  fill: transparent;
+  stroke: #ffffff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Grupo de rellenos (aparece después) */
+#logo-animated #fills path {
+  stroke: none;
+  fill: #000000;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+#logo-animated #fills.show {
+  opacity: 1;
+}
+
+#logo-animated #fills path {
+  opacity: 1;
+}
+
+/* Mensaje de carga */
+.loading-text {
+  position: absolute;
+  bottom: 100px;
+  color: white;
+  font-family: var(--font-manga);
+  font-size: 1.5rem;
+  text-align: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #logo-animated {
+    width: 90%;
+  }
+  
+  .loading-text {
+    font-size: 1.2rem;
+    bottom: 80px;
+  }
+}
