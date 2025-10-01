@@ -62,6 +62,15 @@ export class ProfileView extends BaseView {
         <div class="copyright">
           <p>© 2025 DogSoulDev. All rights reserved.</p>
         </div>
+        <div class="neural-toggle-container">
+          <label class="switch">
+            <input class="cb" type="checkbox" id="neuralToggle" />
+            <span class="toggle">
+              <span class="left">off</span>
+              <span class="right">on</span>
+            </span>
+          </label>
+        </div>
       </div>
     `;
   }
@@ -77,6 +86,21 @@ export class ProfileView extends BaseView {
     if (this.animatedText) {
       this.animatedText.destroy();
     }
-    this.animatedText = new AnimatedText('animatedText', 'Ethical Hacker & Developer', 150);
+    this.animatedText = new AnimatedText('animatedText', 'Ethical Hacker', 150);
+    
+    // Bind neural toggle
+    this.bindNeuralToggle();
+  }
+  
+  bindNeuralToggle() {
+    const toggle = document.getElementById('neuralToggle');
+    if (toggle) {
+      toggle.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          // Redirect to neural network page
+          window.location.href = 'neural.html';
+        }
+      });
+    }
   }
 }

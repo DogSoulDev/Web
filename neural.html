@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neural Network Visualization - DogSoulDev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="icons/portfolio.svg">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0e27;
+      overflow: hidden;
+      position: relative;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100vh;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .back-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateX(-5px);
+    }
+
+    .info-panel {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      max-width: 300px;
+      padding: 20px;
+      background: rgba(15, 20, 35, 0.95);
+      border: 1px solid rgba(80, 150, 255, 0.4);
+      border-radius: 12px;
+      color: #fff;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .info-panel h2 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #5a9aff;
+    }
+
+    .info-panel p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 8px;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .control-btn {
+      padding: 10px 20px;
+      background: rgba(80, 150, 255, 0.15);
+      border: 1px solid rgba(80, 150, 255, 0.4);
+      border-radius: 6px;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .control-btn:hover {
+      background: rgba(80, 150, 255, 0.25);
+      border-color: rgba(80, 150, 255, 0.6);
+    }
+
+    @media (max-width: 768px) {
+      .info-panel {
+        display: none;
+      }
+
+      .back-button {
+        padding: 10px 18px;
+        font-size: 14px;
+      }
+
+      .controls {
+        flex-direction: column;
+        bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-button">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+    Back to Portfolio
+  </a>
+
+  <div class="info-panel">
+    <h2>Interactive Neural Network</h2>
+    <p><strong>Click & Drag</strong> nodes to move them</p>
+    <p><strong>Scroll</strong> to zoom in/out</p>
+    <p><strong>Hover</strong> over nodes to highlight connections</p>
+  </div>
+
+  <canvas id="canvas"></canvas>
+
+  <div class="controls">
+    <button class="control-btn" id="resetBtn">Reset View</button>
+    <button class="control-btn" id="addNodeBtn">Add Node</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Resize canvas
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // Node class
+    class Node {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = 5;
+        this.connections = [];
+      }
+
+      update(width, height) {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        // Bounce off walls
+        if (this.x < this.radius || this.x > width - this.radius) {
+          this.vx *= -1;
+          this.x = Math.max(this.radius, Math.min(width - this.radius, this.x));
+        }
+        if (this.y < this.radius || this.y > height - this.radius) {
+          this.vy *= -1;
+          this.y = Math.max(this.radius, Math.min(height - this.radius, this.y));
+        }
+
+        // Damping
+        this.vx *= 0.99;
+        this.vy *= 0.99;
+      }
+
+      draw(ctx, isHovered = false) {
+        // Glow effect if hovered
+        if (isHovered) {
+          const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, 15);
+          gradient.addColorStop(0, 'rgba(80, 150, 255, 0.4)');
+          gradient.addColorStop(1, 'rgba(80, 150, 255, 0)');
+          ctx.fillStyle = gradient;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, 15, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Node circle
+        ctx.fillStyle = isHovered ? '#5a9aff' : '#4080ff';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Node border
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+    }
+
+    // Initialize nodes
+    const nodes = [];
+    const nodeCount = 100;
+
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push(new Node(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height
+      ));
+    }
+
+    // Create connections (straight lines)
+    nodes.forEach((node, i) => {
+      const connectionCount = Math.floor(Math.random() * 3) + 1;
+      for (let j = 0; j < connectionCount; j++) {
+        const targetIndex = Math.floor(Math.random() * nodes.length);
+        if (targetIndex !== i && !node.connections.includes(targetIndex)) {
+          node.connections.push(targetIndex);
+        }
+      }
+    });
+
+    // Mouse interaction
+    let mouse = { x: 0, y: 0 };
+    let hoveredNode = null;
+    let draggedNode = null;
+
+    canvas.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+
+      if (draggedNode) {
+        draggedNode.x = mouse.x;
+        draggedNode.y = mouse.y;
+        draggedNode.vx = 0;
+        draggedNode.vy = 0;
+      } else {
+        // Check for hover
+        hoveredNode = null;
+        for (let i = 0; i < nodes.length; i++) {
+          const dx = nodes[i].x - mouse.x;
+          const dy = nodes[i].y - mouse.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < nodes[i].radius + 5) {
+            hoveredNode = i;
+            canvas.style.cursor = 'grab';
+            break;
+          }
+        }
+        if (hoveredNode === null) {
+          canvas.style.cursor = 'default';
+        }
+      }
+
+      // Mouse repulsion
+      nodes.forEach(node => {
+        const dx = node.x - mouse.x;
+        const dy = node.y - mouse.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < 100 && !draggedNode) {
+          const force = (100 - distance) / 100;
+          node.vx += (dx / distance) * force * 0.3;
+          node.vy += (dy / distance) * force * 0.3;
+        }
+      });
+    });
+
+    canvas.addEventListener('mousedown', () => {
+      if (hoveredNode !== null) {
+        draggedNode = nodes[hoveredNode];
+        canvas.style.cursor = 'grabbing';
+      }
+    });
+
+    canvas.addEventListener('mouseup', () => {
+      draggedNode = null;
+      canvas.style.cursor = hoveredNode !== null ? 'grab' : 'default';
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      draggedNode = null;
+      hoveredNode = null;
+      canvas.style.cursor = 'default';
+    });
+
+    // Controls
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      nodes.forEach(node => {
+        node.x = Math.random() * canvas.width;
+        node.y = Math.random() * canvas.height;
+        node.vx = (Math.random() - 0.5) * 0.5;
+        node.vy = (Math.random() - 0.5) * 0.5;
+      });
+    });
+
+    document.getElementById('addNodeBtn').addEventListener('click', () => {
+      const newNode = new Node(
+        canvas.width / 2 + (Math.random() - 0.5) * 200,
+        canvas.height / 2 + (Math.random() - 0.5) * 200
+      );
+      const connectionCount = Math.floor(Math.random() * 3) + 1;
+      for (let i = 0; i < connectionCount; i++) {
+        const targetIndex = Math.floor(Math.random() * nodes.length);
+        if (!newNode.connections.includes(targetIndex)) {
+          newNode.connections.push(targetIndex);
+        }
+      }
+      nodes.push(newNode);
+    });
+
+    // Animation loop
+    function animate() {
+      // Clear canvas
+      ctx.fillStyle = '#0a0e27';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Update nodes
+      nodes.forEach(node => {
+        if (node !== draggedNode) {
+          node.update(canvas.width, canvas.height);
+        }
+      });
+
+      // Draw connections (straight lines)
+      nodes.forEach((node, i) => {
+        node.connections.forEach(targetIndex => {
+          if (targetIndex < nodes.length) {
+            const target = nodes[targetIndex];
+            const dx = target.x - node.x;
+            const dy = target.y - node.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            // Calculate opacity based on distance
+            const opacity = Math.max(0, 1 - distance / 300) * 0.3;
+
+            // Highlight if hovered
+            const isHighlighted = hoveredNode === i || hoveredNode === targetIndex;
+            const finalOpacity = isHighlighted ? opacity * 2 : opacity;
+
+            ctx.strokeStyle = `rgba(80, 150, 255, ${finalOpacity})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(node.x, node.y);
+            ctx.lineTo(target.x, target.y);
+            ctx.stroke();
+          }
+        });
+      });
+
+      // Draw nodes
+      nodes.forEach((node, i) => {
+        node.draw(ctx, hoveredNode === i);
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>

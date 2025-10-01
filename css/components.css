@@ -249,6 +249,129 @@
   font-family: var(--font-manga);
 }
 
+/* Neural Toggle Switch - UIverse r7chardgh/dry-rabbit-69 */
+.neural-toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  padding: 20px;
+}
+
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 5em;
+  height: 2.5em;
+  user-select: none;
+}
+
+.switch .cb {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle {
+  position: absolute;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background-color: #373737;
+  border-radius: 0.1em;
+  transition: 0.4s;
+  text-transform: uppercase;
+  font-weight: 700;
+  overflow: hidden;
+  box-shadow: -0.3em 0 0 0 #373737, -0.3em 0.3em 0 0 #373737,
+    0.3em 0 0 0 #373737, 0.3em 0.3em 0 0 #373737, 0 0.3em 0 0 #373737;
+}
+
+.toggle > .left {
+  position: absolute;
+  display: flex;
+  width: 50%;
+  height: 88%;
+  background-color: #f3f3f3;
+  color: #373737;
+  left: 0;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+  transform-origin: right;
+  transform: rotateX(10deg);
+  transform-style: preserve-3d;
+  transition: all 150ms;
+}
+
+.left::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgb(206, 206, 206);
+  transform-origin: center left;
+  transform: rotateY(90deg);
+}
+
+.left::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgb(112, 112, 112);
+  transform-origin: center bottom;
+  transform: rotateX(90deg);
+}
+
+.toggle > .right {
+  position: absolute;
+  display: flex;
+  width: 50%;
+  height: 88%;
+  background-color: #f3f3f3;
+  color: rgb(206, 206, 206);
+  right: 1px;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+  transform-origin: left;
+  transform: rotateX(10deg) rotateY(-45deg);
+  transform-style: preserve-3d;
+  transition: all 150ms;
+}
+
+.right::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgb(206, 206, 206);
+  transform-origin: center right;
+  transform: rotateY(-90deg);
+}
+
+.right::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgb(112, 112, 112);
+  transform-origin: center bottom;
+  transform: rotateX(90deg);
+}
+
+.switch input:checked + .toggle > .left {
+  transform: rotateX(10deg) rotateY(45deg);
+  color: rgb(206, 206, 206);
+}
+
+.switch input:checked + .toggle > .right {
+  transform: rotateX(10deg) rotateY(0deg);
+  color: #487bdb;
+}
+
 /* ========================================
    EDUCATION FLIP CARDS - Manga Style
    Cards con efecto flip 3D estilo manga japonés
@@ -1255,51 +1378,41 @@
   margin-top: 20px;
 }
 
-/* View Project Button - Exact copy from UIverse shy-turtle-26 */
+/* View Project Button - GitHub style from UIverse Creatlydev/rare-treefrog-56 */
 .view-project-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 0 36px;
-  border: 4px solid;
-  border-color: transparent;
-  font-size: 16px;
-  background-color: inherit;
-  border-radius: 100px;
-  font-weight: 600;
-  color: #e8e8e8;
-  box-shadow: 0 0 0 2px #e8e8e8;
   cursor: pointer;
-  overflow: hidden;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  gap: 0.5rem;
+  border: none;
+  transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+  border-radius: 100px;
+  font-weight: 800;
+  place-content: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.825rem;
+  line-height: 1rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  color: #fff;
   text-decoration: none;
   font-family: var(--font-manga);
-  height: 50px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  align-items: center;
 }
 
-.view-project-btn .icon {
-  width: 24px;
-  height: 24px;
-  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+.view-project-btn svg {
+  width: 16px;
+  height: 16px;
 }
 
 .view-project-btn:hover {
-  box-shadow: 0 0 0 12px transparent;
-  color: #212121;
-  border-radius: 12px;
-}
-
-.view-project-btn:hover .icon {
-  transform: translate(4px);
-}
-
-.view-project-btn:active {
-  scale: 0.95;
-  box-shadow: 0 0 0 4px #e8e8e8;
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(252, 232, 3, 0.08);
+  color: #fce803;
+  transform: translate(0, -0.25rem);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .light-button a.bt.btn-style-6:hover .light-holder .light {
@@ -2297,531 +2410,6 @@
 /* ===================================
    CONTACT ICONS - ANIMATED SVG (OLD - REMOVED)
    =================================== */
-
-/* ===================================
-   NOTES WHITEBOARD - Interactive Canvas
-   Estilo Obsidian para notas conectadas
-   =================================== */
-
-/* Notes Network Visualization Styles */
-.notes-network {
-  background: #0a0e27;
-  padding: 2rem;
-  border-radius: 0;
-  min-height: 100vh;
-  position: relative;
-}
-
-.notes-network .section-title {
-  color: #ffffff;
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
-.notes-description {
-  text-align: center;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  font-family: var(--font-manga);
-}
-
-.network-container {
-  background: #0a0e27;
-  border: 1px solid rgba(80, 150, 255, 0.3);
-  border-radius: 8px;
-  padding: 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  position: relative;
-  overflow: hidden;
-}
-
-#networkCanvas {
-  width: 100%;
-  height: 600px;
-  border-radius: 8px;
-  cursor: default;
-  display: block;
-}
-
-/* Node Info Panel - Simple Dark */
-#nodeInfo {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(15, 20, 35, 0.95);
-  border: 1px solid rgba(80, 150, 255, 0.4);
-  border-radius: 8px;
-  padding: 20px;
-  max-width: 300px;
-  max-height: 80%;
-  overflow-y: auto;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transform: translateY(-10px);
-  pointer-events: none;
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-#nodeInfo.visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-#nodeInfo h3 {
-  margin: 0 0 12px 0;
-  font-family: var(--font-manga);
-  font-size: 1.3rem;
-  color: #5a9aff;
-  border-bottom: 1px solid rgba(80, 150, 255, 0.3);
-  padding-bottom: 8px;
-}
-
-#nodeInfo h4 {
-  margin: 12px 0 6px 0;
-  font-size: 1rem;
-  color: #ffffff;
-  font-weight: 600;
-}
-
-#nodeInfo p {
-  margin: 0 0 10px 0;
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-#nodeInfo strong {
-  color: #5a9aff;
-  font-weight: 600;
-}
-
-/* Scrollbar simple */
-#nodeInfo::-webkit-scrollbar {
-  width: 4px;
-}
-
-#nodeInfo::-webkit-scrollbar-track {
-  background: rgba(80, 150, 255, 0.1);
-}
-
-#nodeInfo::-webkit-scrollbar-thumb {
-  background: rgba(80, 150, 255, 0.5);
-  border-radius: 2px;
-}
-
-#nodeInfo::-webkit-scrollbar-thumb:hover {
-  background: rgba(80, 150, 255, 0.7);
-}
-
-/* Network Controls - Simple */
-.network-controls {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.notes-control-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background: rgba(80, 150, 255, 0.15);
-  border: 1px solid rgba(80, 150, 255, 0.4);
-  border-radius: 6px;
-  color: #ffffff;
-  font-family: var(--font-manga);
-  font-weight: 500;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.notes-control-btn::before {
-  display: none;
-}
-
-.notes-control-btn:hover {
-  background: rgba(80, 150, 255, 0.25);
-  border-color: rgba(80, 150, 255, 0.6);
-  box-shadow: 0 0 15px rgba(80, 150, 255, 0.4);
-}
-
-.notes-control-btn:active {
-  transform: scale(0.95);
-}
-
-.notes-control-btn span {
-  font-size: 1.2rem;
-  transition: all 0.5s;
-}
-
-/* Knowledge List - Simple Dark */
-.knowledge-list {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 800px;
-  max-height: 85vh;
-  background: rgba(15, 20, 35, 0.98);
-  border: 1px solid rgba(100, 150, 255, 0.3);
-  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.9);
-  z-index: 1000;
-  overflow: hidden;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.knowledge-list.hidden {
-  display: none;
-}
-
-.knowledge-list-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 2rem;
-  background: rgba(100, 150, 255, 0.1);
-  border-bottom: 1px solid rgba(100, 150, 255, 0.2);
-}
-
-.knowledge-list-header h3 {
-  margin: 0;
-  font-family: var(--font-manga);
-  font-size: 1.3rem;
-  color: #6496ff;
-}
-
-.close-list-btn {
-  width: 32px;
-  height: 32px;
-  background: transparent;
-  border: 1px solid rgba(100, 150, 255, 0.3);
-  color: #ffffff;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  line-height: 1;
-}
-
-.close-list-btn:hover {
-  background: rgba(100, 150, 255, 0.2);
-  border-color: rgba(100, 150, 255, 0.5);
-  transform: rotate(90deg);
-}
-
-.knowledge-list-content {
-  max-height: calc(85vh - 100px);
-  overflow-y: auto;
-  padding: 1.5rem;
-  background: transparent;
-}
-
-.knowledge-item {
-  padding: 1.2rem;
-  margin-bottom: 1rem;
-  background: rgba(20, 30, 50, 0.5);
-  border: 1px solid rgba(100, 150, 255, 0.2);
-  border-left: 3px solid #6496ff;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-.knowledge-item:hover {
-  background: rgba(20, 30, 50, 0.8);
-  border-color: rgba(100, 150, 255, 0.4);
-  transform: translateX(5px);
-}
-
-.knowledge-item-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.knowledge-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 28px;
-  height: 28px;
-  background: rgba(100, 150, 255, 0.2);
-  color: #6496ff;
-  font-family: var(--font-manga);
-  font-weight: bold;
-  font-size: 0.85rem;
-  border-radius: 50%;
-  border: 1px solid rgba(100, 150, 255, 0.3);
-}
-
-.knowledge-item-header h4 {
-  margin: 0;
-  font-family: var(--font-manga);
-  font-size: 1.1rem;
-  color: #ffffff;
-}
-
-.knowledge-category {
-  color: #6496ff;
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin: 0.5rem 0;
-  padding-left: 3rem;
-}
-
-.knowledge-info {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
-  line-height: 1.5;
-  margin: 0.5rem 0 0 0;
-  padding-left: 3rem;
-}
-
-/* Scrollbar simple para la lista */
-.knowledge-list-content::-webkit-scrollbar {
-  width: 6px;
-}
-
-.knowledge-list-content::-webkit-scrollbar-track {
-  background: rgba(100, 150, 255, 0.1);
-}
-
-.knowledge-list-content::-webkit-scrollbar-thumb {
-  background: rgba(100, 150, 255, 0.4);
-  border-radius: 3px;
-}
-
-.knowledge-list-content::-webkit-scrollbar-thumb:hover {
-  background: #333;
-}
-
-/* Network Legend */
-.network-legend {
-  margin-top: 1.5rem;
-  text-align: center;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-}
-
-.network-legend p {
-  color: rgba(255, 255, 255, 0.8);
-  font-family: var(--font-manga);
-  font-size: 0.95rem;
-  margin: 5px 0;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .notes-network {
-    padding: 1rem;
-  }
-
-  #networkCanvas {
-    height: 500px;
-  }
-
-  #nodeInfo {
-    position: fixed;
-    top: auto;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    max-width: none;
-    max-height: 60vh;
-    margin: 0;
-    border-radius: 15px 15px 0 0;
-    border-bottom: none;
-    padding: 15px;
-  }
-
-  #nodeInfo h3 {
-    font-size: 1.2rem;
-  }
-
-  #nodeInfo h4 {
-    font-size: 1rem;
-  }
-
-  #nodeInfo p,
-  #nodeInfo li {
-    font-size: 0.9rem;
-  }
-
-  .network-legend {
-    font-size: 0.85rem;
-    padding: 10px;
-  }
-  
-  .network-legend p {
-    margin: 5px 0;
-  }
-
-  .notes-description {
-    font-size: 1rem;
-  }
-  
-  .network-controls {
-    gap: 0.75rem;
-  }
-  
-  .notes-control-btn {
-    padding: 10px 18px;
-    font-size: 0.85rem;
-  }
-  
-  .knowledge-list {
-    width: 95%;
-    max-height: 90vh;
-  }
-  
-  .knowledge-list-header {
-    padding: 1rem 1.5rem;
-  }
-  
-  .knowledge-list-header h3 {
-    font-size: 1.2rem;
-  }
-  
-  .knowledge-list-content {
-    padding: 1.5rem;
-  }
-  
-  .knowledge-item {
-    padding: 1rem;
-  }
-  
-  .knowledge-item-header h4 {
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .notes-network {
-    padding: 0.5rem;
-  }
-
-  #networkCanvas {
-    height: 400px;
-  }
-
-  #nodeInfo {
-    max-height: 50vh;
-    padding: 12px;
-  }
-
-  #nodeInfo h3 {
-    font-size: 1.1rem;
-    padding-bottom: 8px;
-  }
-
-  #nodeInfo h4 {
-    font-size: 0.95rem;
-    margin: 12px 0 6px 0;
-  }
-
-  #nodeInfo p,
-  #nodeInfo li {
-    font-size: 0.85rem;
-  }
-
-  .notes-description {
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .network-legend {
-    font-size: 0.8rem;
-    padding: 8px;
-  }
-  
-  .network-controls {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .notes-control-btn {
-    width: 100%;
-    max-width: 300px;
-    padding: 10px 16px;
-    font-size: 0.8rem;
-  }
-  
-  .knowledge-list {
-    width: 98%;
-    max-height: 95vh;
-  }
-  
-  .knowledge-list-header {
-    padding: 0.75rem 1rem;
-  }
-  
-  .knowledge-list-header h3 {
-    font-size: 1rem;
-  }
-  
-  .knowledge-list-content {
-    padding: 1rem;
-  }
-  
-  .knowledge-item {
-    padding: 0.75rem;
-    border-left-width: 5px;
-  }
-  
-  .knowledge-number {
-    min-width: 30px;
-    height: 30px;
-    font-size: 0.8rem;
-  }
-  
-  .knowledge-item-header h4 {
-    font-size: 1rem;
-  }
-  
-  .knowledge-category,
-  .knowledge-info {
-    padding-left: 2.5rem;
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 360px) {
-  #networkCanvas {
-    height: 350px;
-  }
-
-  #nodeInfo {
-    max-height: 45vh;
-    padding: 10px;
-  }
-
-  #nodeInfo h3 {
-    font-size: 1rem;
-  }
-
-  .notes-description {
-    font-size: 0.9rem;
-  }
-}
 
 /* ========================================
    MANGA SPEECH BUBBLES - Universal Component
