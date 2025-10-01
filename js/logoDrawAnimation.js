@@ -33,7 +33,7 @@ class LogoDrawAnimation {
     this.container.className = 'logo-animation-container';
     this.container.innerHTML = `
       <div id="logo-animated"></div>
-      <div class="loading-text">DogSoul Dev</div>
+      <div class="loading-text">DogSoulDev</div>
     `;
     document.body.appendChild(this.container);
   }
