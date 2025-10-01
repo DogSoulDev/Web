@@ -1,7 +1,10 @@
+import { ANIMATION, CSS_CLASSES } from '../config/appConfig.js';
+
 /**
  * Projects Controller
  * Handles all DOM interactions and events for Projects section
  * Follows MVC pattern - separates business logic from view
+ * Follows SOLID principles - Single Responsibility
  */
 export class ProjectsController {
   constructor() {
@@ -43,11 +46,18 @@ export class ProjectsController {
   startVideo(panel) {
     this.isVideoPlaying = true;
     const video = panel.querySelector('.project-video');
-    video.classList.add('is-playing');
-    panel.setAttribute('disabled', '');
     
-    // Simulate video duration (4 seconds)
-    setTimeout(() => this.enableVideo(panel), 4000);
+    if (!video) {
+      console.error('Video element not found in panel');
+      this.isVideoPlaying = false;
+      return;
+    }
+    
+    video.classList.add(CSS_CLASSES.IS_PLAYING);
+    panel.setAttribute('disabled', 'true');
+    
+    // Simulate video duration
+    setTimeout(() => this.enableVideo(panel), ANIMATION.PROJECT_VIDEO_DURATION);
   }
 
   /**
@@ -57,11 +67,13 @@ export class ProjectsController {
   enableVideo(panel) {
     this.isVideoPlaying = false;
     panel.removeAttribute('disabled');
-    panel.classList.remove('is-playing');
-    panel.classList.add('is-ended');
+    panel.classList.remove(CSS_CLASSES.IS_PLAYING);
+    panel.classList.add(CSS_CLASSES.IS_ENDED);
     
     const video = panel.querySelector('.project-video');
-    video.classList.remove('is-playing');
+    if (video) {
+      video.classList.remove(CSS_CLASSES.IS_PLAYING);
+    }
   }
 
   /**
@@ -73,6 +85,6 @@ export class ProjectsController {
       if (main) {
         main.style.display = 'grid';
       }
-    }, 500);
+    }, ANIMATION.MAIN_CONTENT_DELAY);
   }
 }

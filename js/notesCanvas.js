@@ -1,3 +1,5 @@
+import { CANVAS, MESSAGES, BREAKPOINTS } from './config/appConfig.js';
+
 /**
  * Neural Network Visualization
  * Renders an interactive network of cybersecurity knowledge nodes
@@ -13,7 +15,7 @@ class NetworkVisualization {
   constructor(canvasId, data) {
     this.canvas = document.getElementById(canvasId);
     if (!this.canvas) {
-      throw new Error(`Canvas element with id "${canvasId}" not found`);
+      throw new Error(MESSAGES.ERROR.CANVAS_NOT_FOUND + `: "${canvasId}"`);
     }
     
     this.ctx = this.canvas.getContext('2d');
@@ -25,6 +27,12 @@ class NetworkVisualization {
     this.animationFrame = 0;
     this.mouseX = 0;
     this.mouseY = 0;
+    this.scale = 1;
+    this.offsetX = 0;
+    this.offsetY = 0;
+    this.isDragging = false;
+    this.lastMouseX = 0;
+    this.lastMouseY = 0;
     
     this.init();
   }
@@ -73,6 +81,9 @@ class NetworkVisualization {
     this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
     this.canvas.addEventListener('mouseleave', () => this.handleMouseLeave());
     this.canvas.addEventListener('click', (e) => this.handleClick(e));
+    this.canvas.addEventListener('wheel', (e) => this.handleWheel(e));
+    this.canvas.addEventListener('mousedown', (e) => this.handleMouseDown(e));
+    this.canvas.addEventListener('mouseup', (e) => this.handleMouseUp(e));
   }
   
   /**
@@ -81,7 +92,16 @@ class NetworkVisualization {
   resize() {
     const container = this.canvas.parentElement;
     this.canvas.width = container.clientWidth;
-    this.canvas.height = Math.max(container.clientHeight, 600);
+    this.canvas.height = Math.max(container.clientHeight, CANVAS.MIN_HEIGHT);
+  }
+  
+  /**
+   * Reset zoom and pan to initial state
+   */
+  resetView() {
+    this.scale = 1;
+    this.offsetX = 0;
+    this.offsetY = 0;
   }
   
   /**
@@ -93,14 +113,29 @@ class NetworkVisualization {
     this.mouseX = e.clientX - rect.left;
     this.mouseY = e.clientY - rect.top;
     
+    // Handle panning
+    if (this.isDragging) {
+      const dx = this.mouseX - this.lastMouseX;
+      const dy = this.mouseY - this.lastMouseY;
+      this.offsetX += dx;
+      this.offsetY += dy;
+      this.lastMouseX = this.mouseX;
+      this.lastMouseY = this.mouseY;
+      return;
+    }
+    
+    // Ajustar coordenadas del mouse para zoom y pan
+    const adjustedX = (this.mouseX - this.offsetX) / this.scale;
+    const adjustedY = (this.mouseY - this.offsetY) / this.scale;
+    
     // Detectar hover sobre nodos
     let foundHover = false;
     for (const node of this.nodes) {
-      const dx = this.mouseX - node.x;
-      const dy = this.mouseY - node.y;
+      const dx = adjustedX - node.x;
+      const dy = adjustedY - node.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
       
-      if (distance < node.radius + 5) {
+      if (distance < node.radius + CANVAS.NODE_HOVER_RADIUS_OFFSET) {
         if (this.hoveredNode !== node) {
           this.hoveredNode = node;
           this.showNodeInfo(node);
@@ -132,13 +167,59 @@ class NetworkVisualization {
    * @param {MouseEvent} e - Mouse event
    */
   handleClick(e) {
-    if (this.hoveredNode) {
+    if (this.hoveredNode && !this.isDragging) {
       // Hacer scroll suave al panel de información en móvil
       const infoPanel = document.getElementById('nodeInfo');
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= BREAKPOINTS.TABLET) {
         infoPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     }
+  }
+  
+  /**
+   * Handle wheel event for zooming
+   * @param {WheelEvent} e - Wheel event
+   */
+  handleWheel(e) {
+    e.preventDefault();
+    
+    const rect = this.canvas.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    const zoomFactor = 1 + CANVAS.ZOOM_SENSITIVITY;
+    const zoom = e.deltaY < 0 ? zoomFactor : 1 / zoomFactor;
+    const newScale = Math.min(
+      Math.max(CANVAS.ZOOM_MIN, this.scale * zoom), 
+      CANVAS.ZOOM_MAX
+    );
+    
+    // Ajustar offset para hacer zoom hacia el puntero del mouse
+    this.offsetX = mouseX - (mouseX - this.offsetX) * (newScale / this.scale);
+    this.offsetY = mouseY - (mouseY - this.offsetY) * (newScale / this.scale);
+    
+    this.scale = newScale;
+  }
+  
+  /**
+   * Handle mouse down event for panning
+   * @param {MouseEvent} e - Mouse event
+   */
+  handleMouseDown(e) {
+    const rect = this.canvas.getBoundingClientRect();
+    this.lastMouseX = e.clientX - rect.left;
+    this.lastMouseY = e.clientY - rect.top;
+    this.isDragging = true;
+    this.canvas.style.cursor = 'grabbing';
+  }
+  
+  /**
+   * Handle mouse up event
+   * @param {MouseEvent} e - Mouse event
+   */
+  handleMouseUp(e) {
+    this.isDragging = false;
+    this.canvas.style.cursor = this.hoveredNode ? 'pointer' : 'default';
   }
   
   /**
@@ -264,6 +345,13 @@ class NetworkVisualization {
     this.ctx.fillStyle = '#000';
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
     
+    // Guardar el estado del contexto
+    this.ctx.save();
+    
+    // Aplicar transformaciones de zoom y pan
+    this.ctx.translate(this.offsetX, this.offsetY);
+    this.ctx.scale(this.scale, this.scale);
+    
     // Grid sutil de fondo (estilo manga)
     this.drawGrid();
     
@@ -288,6 +376,9 @@ class NetworkVisualization {
     this.nodes.forEach(node => {
       this.drawLabel(node);
     });
+    
+    // Restaurar el estado del contexto
+    this.ctx.restore();
   }
   
   drawGrid() {

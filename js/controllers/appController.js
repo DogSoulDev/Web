@@ -4,6 +4,7 @@ import { ExperienceView } from '../views/experienceView.js';
 import { EducationView } from '../views/educationView.js';
 import { NotesView } from '../views/notesView.js';
 import { ContactView } from '../views/contactView.js';
+import { CSS_CLASSES, MESSAGES } from '../config/appConfig.js';
 
 /**
  * App Controller
@@ -78,12 +79,12 @@ export class AppController {
    */
   updateNavigation(activeSection) {
     document.querySelectorAll('.nav-btn').forEach(btn => {
-      btn.classList.remove('active');
+      btn.classList.remove(CSS_CLASSES.ACTIVE);
     });
     
     const activeBtn = document.querySelector(`[data-section="${activeSection}"]`);
     if (activeBtn) {
-      activeBtn.classList.add('active');
+      activeBtn.classList.add(CSS_CLASSES.ACTIVE);
     }
   }
 
@@ -95,7 +96,8 @@ export class AppController {
     const view = this.views[section];
     
     if (!view) {
-      console.error(`View for section "${section}" not found`);
+      console.error(`${MESSAGES.ERROR.SECTION_NOT_FOUND}: "${section}"`);
+      this.renderError();
       return;
     }
     
@@ -119,9 +121,9 @@ export class AppController {
    */
   renderError() {
     this.appElement.innerHTML = `
-      <div class="error-container">
+      <div class="${CSS_CLASSES.ERROR_CONTAINER}">
         <h2>Oops! Something went wrong</h2>
-        <p>Please try refreshing the page.</p>
+        <p>${MESSAGES.INFO.REFRESH_PAGE}</p>
       </div>
     `;
   }

@@ -15,8 +15,8 @@ export class NotesModel {
       // Configuración de la red neuronal
       config: {
         maxDistance: 250,        // Distancia máxima para conectar nodos automáticamente
-        nodeSpeed: 0.5,          // Velocidad de movimiento orgánico
-        particleSpeed: 0.03,     // Velocidad de partículas en las conexiones
+        nodeSpeed: 0.2,          // Velocidad de movimiento orgánico (más lento)
+        particleSpeed: 0.02,     // Velocidad de partículas en las conexiones
         nodeRadius: 6,           // Radio de los nodos
         connectionOpacity: 0.2,  // Opacidad base de las conexiones
         particlesPerConnection: 2

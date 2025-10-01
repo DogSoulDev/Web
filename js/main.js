@@ -13,6 +13,7 @@
  */
 
 import { AppController } from './controllers/appController.js';
+import { MESSAGES, CSS_CLASSES } from './config/appConfig.js';
 
 /**
  * Application Entry Point
@@ -28,12 +29,12 @@ async function initApp() {
     const app = new AppController();
     await app.init();
   } catch (error) {
-    console.error('Failed to initialize application:', error);
+    console.error(MESSAGES.ERROR.LOAD_APP, error);
     // Show error message to user
     document.getElementById('app').innerHTML = `
-      <div class="error-container">
-        <h2>Failed to load application</h2>
-        <p>Please refresh the page to try again.</p>
+      <div class="${CSS_CLASSES.ERROR_CONTAINER}">
+        <h2>${MESSAGES.ERROR.LOAD_APP}</h2>
+        <p>${MESSAGES.INFO.REFRESH_PAGE}</p>
       </div>
     `;
   }
