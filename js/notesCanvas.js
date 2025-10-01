@@ -383,9 +383,9 @@ class NetworkVisualization {
     this.stars.forEach(star => {
       const projected = this.project3D(star.x, star.y, star.z);
       
-      if (projected.z > -500 && projected.z < 500) {
+      if (projected.z > -500 && projected.z < 500 && projected.scale > 0) {
         const alpha = star.brightness * (1 - Math.abs(projected.z) / 500);
-        const size = star.size * projected.scale * this.scale;
+        const size = Math.abs(star.size * projected.scale * this.scale);
         
         this.ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
         this.ctx.beginPath();

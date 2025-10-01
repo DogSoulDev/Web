@@ -23,7 +23,7 @@
   --manga-gray: #bdc3c7;
   --text-main: #1a1a1a;
   --text-muted: #7f8c8d;
-  --font-manga: 'Fredoka One', cursive;
+  --font-manga: 'Roboto Mono', monospace;
   
   /* Manga page colors */
   --manga-paper: #fffef5;

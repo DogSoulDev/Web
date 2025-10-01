@@ -2,6 +2,7 @@ import { ProfileModel } from '../models/profileModel.js';
 import { AboutModel } from '../models/aboutModel.js';
 import { SkillsModel } from '../models/skillsModel.js';
 import { BaseView } from './BaseView.js';
+import { ParticleNetwork } from '../particleNetwork.js';
 
 /**
  * Profile View
@@ -12,6 +13,7 @@ export class ProfileView extends BaseView {
     super(new ProfileModel());
     this.aboutModel = new AboutModel();
     this.skillsModel = new SkillsModel();
+    this.particleNetwork = null;
   }
 
   render() {
@@ -30,11 +32,8 @@ export class ProfileView extends BaseView {
             <p class="subtitle">${profile.subtitle}</p>
           </div>
         </div>
-        <div class="manga-glitch-container">
-          <div class="glitch-wrapper">
-            <div class="glitch" data-text="BREAKING LIMITS">BREAKING LIMITS</div>
-            <div class="sub-glitch">// pushing boundaries</div>
-          </div>
+        <div class="particle-network-container">
+          <canvas id="particleCanvas"></canvas>
         </div>
         <p class="profile-desc">${profile.description}</p>
         <div class="speech-bubble about-bubble">
@@ -60,5 +59,13 @@ export class ProfileView extends BaseView {
         </div>
       </div>
     `;
+  }
+
+  afterRender() {
+    // Initialize particle network
+    if (this.particleNetwork) {
+      this.particleNetwork.destroy();
+    }
+    this.particleNetwork = new ParticleNetwork('particleCanvas');
   }
 }
