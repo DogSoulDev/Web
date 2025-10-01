@@ -69,6 +69,12 @@
   border-radius: 0;
 }
 
+/* Hide PANEL text for education cards */
+.education-panel::before {
+  content: '' !important;
+  display: none !important;
+}
+
 .speed-lines {
   position: relative;
 }

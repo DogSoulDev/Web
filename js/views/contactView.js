@@ -1,116 +1,6 @@
 export class ContactView {
   constructor() {
-    this.setupFormHandler();
-  }
-
-  setupFormHandler() {
-    // Setup form submission handler after DOM loads
-    setTimeout(() => {
-      const form = document.getElementById('contact-form');
-      if (form) {
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          this.handleSubmit(e);
-          return false;
-        }, false);
-      }
-    }, 100);
-  }
-
-  sanitizeInput(input) {
-    // Remove HTML tags and dangerous characters
-    const div = document.createElement('div');
-    div.textContent = input;
-    return div.innerHTML
-      .replace(/[<>'"]/g, '')
-      .trim();
-  }
-
-  validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-  }
-
-  async handleSubmit(e) {
-    const form = e.target;
-    const submitBtn = form.querySelector('.contact-submit-btn');
-    const statusMsg = form.querySelector('.form-status');
-    
-    // Get and sanitize form data
-    const name = this.sanitizeInput(form.querySelector('#contact-name').value);
-    const email = this.sanitizeInput(form.querySelector('#contact-email').value);
-    const message = this.sanitizeInput(form.querySelector('#contact-message').value);
-    
-    // Validate inputs
-    if (!name || name.length < 2) {
-      this.showStatus(statusMsg, 'Please enter a valid name', 'error');
-      return false;
-    }
-    
-    if (!this.validateEmail(email)) {
-      this.showStatus(statusMsg, 'Please enter a valid email address', 'error');
-      return false;
-    }
-    
-    if (!message || message.length < 10) {
-      this.showStatus(statusMsg, 'Message must be at least 10 characters', 'error');
-      return false;
-    }
-    
-    // Prevent multiple submissions
-    submitBtn.disabled = true;
-    const originalText = submitBtn.querySelector('.btn-text').textContent;
-    submitBtn.querySelector('.btn-text').textContent = 'SENDING...';
-    
-    try {
-      // Create FormData object for Formspree
-      const formData = new FormData();
-      formData.append('name', name);
-      formData.append('email', email);
-      formData.append('message', message);
-      formData.append('_replyto', email);
-      formData.append('_subject', `Portfolio Contact from ${name}`);
-      
-      // Send to Formspree
-      const response = await fetch('https://formspree.io/f/mpwydvop', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-      
-      const data = await response.json();
-      
-      if (response.ok) {
-        // Show success message
-        this.showStatus(statusMsg, '✅ Message sent successfully! I will contact you soon.', 'success');
-        
-        // Reset form after short delay
-        setTimeout(() => {
-          form.reset();
-          submitBtn.disabled = false;
-          submitBtn.querySelector('.btn-text').textContent = originalText;
-          this.showStatus(statusMsg, '', '');
-        }, 3000);
-      } else {
-        throw new Error(data.error || 'Failed to send message');
-      }
-      
-    } catch (error) {
-      console.error('Error sending message:', error);
-      this.showStatus(statusMsg, '❌ Failed to send message. Please try again or use email directly.', 'error');
-      submitBtn.disabled = false;
-      submitBtn.querySelector('.btn-text').textContent = originalText;
-    }
-    
-    return false;
-  }
-  
-  showStatus(element, message, type) {
-    element.textContent = message;
-    element.className = `form-status ${type}`;
+    // Formspree widget handles all form functionality
   }
 
   render() {
@@ -134,71 +24,16 @@ export class ContactView {
             </a>
           </div>
 
-          <!-- Contact Form - Manga Style -->
+          <!-- Contact Form - Formspree Widget -->
           <div class="contact-form-wrapper">
             <div class="contact-form-header">
               <h3 class="contact-form-title">📬 Let's Connect!</h3>
-              <p class="contact-form-subtitle">Send me a message and I'll get back to you soon</p>
+              <p class="contact-form-subtitle">Click the button below to send me a message</p>
             </div>
             
-            <form id="contact-form" class="contact-form" novalidate>
-              <div class="form-group">
-                <label for="contact-name" class="form-label">
-                  <span class="label-icon">👤</span>
-                  NAME
-                </label>
-                <input 
-                  type="text" 
-                  id="contact-name" 
-                  name="name" 
-                  class="form-input"
-                  placeholder="Your name..." 
-                  required
-                  maxlength="100"
-                  autocomplete="name"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="contact-email" class="form-label">
-                  <span class="label-icon">✉️</span>
-                  EMAIL
-                </label>
-                <input 
-                  type="email" 
-                  id="contact-email" 
-                  name="email" 
-                  class="form-input"
-                  placeholder="your.email@example.com" 
-                  required
-                  maxlength="100"
-                  autocomplete="email"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="contact-message" class="form-label">
-                  <span class="label-icon">💬</span>
-                  MESSAGE
-                </label>
-                <textarea 
-                  id="contact-message" 
-                  name="message" 
-                  class="form-textarea"
-                  placeholder="Write your message here..." 
-                  required
-                  maxlength="1000"
-                  rows="6"
-                ></textarea>
-              </div>
-
-              <div class="form-status"></div>
-
-              <button type="submit" class="contact-submit-btn">
-                <span class="btn-text">SEND MESSAGE</span>
-                <span class="btn-arrow">→</span>
-              </button>
-            </form>
+            <div class="formspree-container">
+              <!-- Formspree widget will appear here -->
+            </div>
 
             <div class="contact-form-footer">
               <p class="contact-email-direct">
@@ -209,6 +44,40 @@ export class ContactView {
           </div>
         </div>
       </div>
+      
+      <!-- Formspree Widget Script -->
+      <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
+      <script>
+        window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
+        formbutton("create", {
+          action: "https://formspree.io/f/mpwydvop",
+          title: "How can we help?",
+          fields: [
+            { 
+              type: "email", 
+              label: "Email:", 
+              name: "email",
+              required: true,
+              placeholder: "your@email.com"
+            },
+            {
+              type: "textarea",
+              label: "Message:",
+              name: "message",
+              placeholder: "What's on your mind?",
+            },
+            { type: "submit" }      
+          ],
+          styles: {
+            title: {
+              backgroundColor: "gray"
+            },
+            button: {
+              backgroundColor: "gray"
+            }
+          }
+        });
+      </script>
     `;
   }
 }
