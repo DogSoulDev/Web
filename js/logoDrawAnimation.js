@@ -65,9 +65,18 @@ class LogoDrawAnimation {
   }
 
   prepareSVG() {
+    // Ocultar el rectángulo blanco de fondo
+    const rect = this.svg.querySelector('rect');
+    if (rect) {
+      rect.style.opacity = '0';
+    }
+
     // Obtener el grupo principal con los paths
     const mainGroup = this.svg.querySelector('g');
     if (!mainGroup) return;
+
+    // Ocultar paths originales inmediatamente
+    mainGroup.style.opacity = '0';
 
     // Crear grupo de strokes (para animación)
     const strokesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -101,10 +110,9 @@ class LogoDrawAnimation {
       this.fillsGroup.appendChild(fillPath);
     });
 
-    // Limpiar y añadir nuevos grupos
-    mainGroup.innerHTML = '';
-    mainGroup.appendChild(strokesGroup);
-    mainGroup.appendChild(this.fillsGroup);
+    // Añadir nuevos grupos al SVG (no al mainGroup)
+    this.svg.appendChild(strokesGroup);
+    this.svg.appendChild(this.fillsGroup);
   }
 
   animate() {
