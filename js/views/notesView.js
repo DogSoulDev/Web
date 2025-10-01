@@ -8,47 +8,30 @@ export class NotesView {
   render() {
     const notes = this.model.getNotes();
     return `
-      <div class="section notes-whiteboard">
+      <div class="section notes-network">
         <h2 class="section-title manga-title">${notes.title}</h2>
         <p class="notes-description">${notes.description}</p>
         
-        <div class="whiteboard-container">
-          <canvas id="notesCanvas"></canvas>
-          <div class="whiteboard-controls">
-            <button class="control-btn" id="addNode">➕ Add Note</button>
-            <button class="control-btn" id="clearCanvas">🗑️ Clear All</button>
-            <button class="control-btn" id="resetCanvas">🔄 Reset</button>
+        <div class="network-container">
+          <canvas id="networkCanvas"></canvas>
+          <div id="nodeInfo" class="node-info-panel hidden">
+            <h3 id="nodeTitle"></h3>
+            <p id="nodeDescription"></p>
           </div>
         </div>
         
-        <div class="notes-instructions">
-          <div class="instruction-bubble">
-            <p><strong>💡 Instructions (Desktop):</strong></p>
-            <ul>
-              <li>🖱️ <strong>Drag:</strong> Click and drag notes to reposition</li>
-              <li>🔗 <strong>Connect:</strong> Hold Shift + Click on two notes to connect</li>
-              <li>➕ <strong>Add:</strong> Double-click empty space to add new note</li>
-              <li>❌ <strong>Delete:</strong> Select note and press Delete key</li>
-            </ul>
-            <p><strong>📱 Instructions (Mobile):</strong></p>
-            <ul>
-              <li>👆 <strong>Move:</strong> Tap and drag notes</li>
-              <li>🔗 <strong>Connect:</strong> Long press (1s) on a note, drag to another</li>
-              <li>➕ <strong>Add:</strong> Double tap empty space</li>
-              <li>🗑️ <strong>Delete:</strong> Use "Clear All" button</li>
-            </ul>
-            <p class="notes-persistence">✨ <strong>All changes are saved automatically and visible to everyone!</strong></p>
-          </div>
+        <div class="network-legend">
+          <p>💡 <strong>Hover over nodes</strong> to see detailed information</p>
+          <p>🔗 <strong>Lines represent</strong> connections and dependencies</p>
         </div>
       </div>
     `;
   }
 
   afterRender() {
-    // Inicializar el canvas después de renderizar
-    if (typeof NotesCanvas !== 'undefined') {
+    if (typeof NetworkVisualization !== 'undefined') {
       const notes = this.model.getNotes();
-      new NotesCanvas('notesCanvas', notes.initialNodes);
+      new NetworkVisualization('networkCanvas', notes);
     }
   }
 }

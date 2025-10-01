@@ -1,375 +1,241 @@
-/**
- * Notes Canvas - Interactive Whiteboard
- * Estilo Obsidian con persistencia y soporte táctil
- */
-
-class NotesCanvas {
-  constructor(canvasId, initialNodes = []) {
+// Neural Network Visualization - Estilo manga (blanco y negro)
+class NetworkVisualization {
+  constructor(canvasId, data) {
     this.canvas = document.getElementById(canvasId);
-    if (!this.canvas) return;
-
     this.ctx = this.canvas.getContext('2d');
+    this.data = data;
+    this.config = data.config;
     this.nodes = [];
-    this.connections = [];
-    this.selectedNode = null;
-    this.draggingNode = null;
-    this.connectingFrom = null;
-    this.mousePos = { x: 0, y: 0 };
-    this.touchStartTime = 0;
-    this.lastTap = 0;
-
-    // Configuración
-    this.nodeRadius = 60;
-    this.fontSize = 14;
-    this.colors = ['#FF6B6B', '#4ECDC4', '#FFE66D', '#95E1D3', '#F38181', '#A8E6CF'];
-    this.storageKey = 'notesCanvasData';
-
-    this.init(initialNodes);
+    this.particles = [];
+    this.hoveredNode = null;
+    this.animationFrame = 0;
+    this.mouseX = 0;
+    this.mouseY = 0;
+    
+    this.init();
   }
-
-  init(initialNodes) {
-    this.resizeCanvas();
-    window.addEventListener('resize', () => this.resizeCanvas());
-
-    // Cargar datos guardados
-    this.loadFromStorage(initialNodes);
-
-    // Event listeners - Mouse
-    this.canvas.addEventListener('mousedown', (e) => this.handleMouseDown(e));
+  
+  init() {
+    // Configurar canvas responsivo
+    this.resize();
+    window.addEventListener('resize', () => this.resize());
+    
+    // Crear nodos con posiciones aleatorias y velocidades
+    this.data.nodes.forEach(nodeData => {
+      const node = {
+        ...nodeData,
+        x: Math.random() * this.canvas.width,
+        y: Math.random() * this.canvas.height,
+        vx: (Math.random() - 0.5) * this.config.nodeSpeed,
+        vy: (Math.random() - 0.5) * this.config.nodeSpeed,
+        radius: this.config.nodeRadius,
+        pulse: Math.random() * Math.PI * 2,
+        connections: []
+      };
+      this.nodes.push(node);
+    });
+    
+    // Event listeners
     this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
-    this.canvas.addEventListener('mouseup', (e) => this.handleMouseUp(e));
-    this.canvas.addEventListener('dblclick', (e) => this.handleDoubleClick(e));
+    this.canvas.addEventListener('mouseleave', () => this.handleMouseLeave());
+    this.canvas.addEventListener('click', (e) => this.handleClick(e));
     
-    // Event listeners - Touch
-    this.canvas.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: false });
-    this.canvas.addEventListener('touchmove', (e) => this.handleTouchMove(e), { passive: false });
-    this.canvas.addEventListener('touchend', (e) => this.handleTouchEnd(e), { passive: false });
-    
-    document.addEventListener('keydown', (e) => this.handleKeyDown(e));
-
-    // Botones
-    document.getElementById('addNode')?.addEventListener('click', () => this.addRandomNode());
-    document.getElementById('clearCanvas')?.addEventListener('click', () => this.clearAll());
-    document.getElementById('resetCanvas')?.addEventListener('click', () => this.reset(initialNodes));
-
-    this.draw();
+    // Iniciar animación
+    this.animate();
   }
-
-  // PERSISTENCIA
-  saveToStorage() {
-    const data = {
-      nodes: this.nodes,
-      connections: this.connections.map(conn => ({
-        fromId: conn.from.id,
-        toId: conn.to.id
-      }))
-    };
-    localStorage.setItem(this.storageKey, JSON.stringify(data));
-  }
-
-  loadFromStorage(initialNodes) {
-    const saved = localStorage.getItem(this.storageKey);
-    
-    if (saved) {
-      try {
-        const data = JSON.parse(saved);
-        this.nodes = data.nodes.map(node => ({
-          ...node,
-          radius: this.nodeRadius
-        }));
-        
-        data.connections.forEach(conn => {
-          const from = this.nodes.find(n => n.id === conn.fromId);
-          const to = this.nodes.find(n => n.id === conn.toId);
-          if (from && to) {
-            this.connections.push({ from, to });
-          }
-        });
-      } catch (e) {
-        this.nodes = initialNodes.map(node => ({
-          ...node,
-          radius: this.nodeRadius
-        }));
-      }
-    } else {
-      this.nodes = initialNodes.map(node => ({
-        ...node,
-        radius: this.nodeRadius
-      }));
-      this.saveToStorage();
-    }
-  }
-
-  // SOPORTE TÁCTIL
-  getTouchPos(e) {
-    const rect = this.canvas.getBoundingClientRect();
-    const touch = e.touches[0] || e.changedTouches[0];
-    return {
-      x: touch.clientX - rect.left,
-      y: touch.clientY - rect.top
-    };
-  }
-
-  handleTouchStart(e) {
-    e.preventDefault();
-    const pos = this.getTouchPos(e);
-    const clickedNode = this.getNodeAt(pos.x, pos.y);
-    
-    const currentTime = new Date().getTime();
-    const tapLength = currentTime - this.lastTap;
-    
-    if (tapLength < 300 && tapLength > 0 && !clickedNode) {
-      this.handleDoubleTap(pos.x, pos.y);
-      this.lastTap = 0;
-    } else {
-      this.lastTap = currentTime;
-      
-      if (clickedNode) {
-        this.touchStartTime = currentTime;
-        this.selectedNode = clickedNode;
-        this.draggingNode = clickedNode;
-      }
-    }
-    
-    this.draw();
-  }
-
-  handleTouchMove(e) {
-    e.preventDefault();
-    const pos = this.getTouchPos(e);
-    this.mousePos = pos;
-
-    if (this.draggingNode) {
-      this.draggingNode.x = pos.x;
-      this.draggingNode.y = pos.y;
-      this.draw();
-    }
-  }
-
-  handleTouchEnd(e) {
-    e.preventDefault();
-    
-    const touchDuration = new Date().getTime() - this.touchStartTime;
-    
-    if (touchDuration > 500 && this.selectedNode) {
-      const pos = this.getTouchPos(e);
-      const targetNode = this.getNodeAt(pos.x, pos.y);
-      
-      if (targetNode && targetNode !== this.selectedNode) {
-        this.createConnection(this.selectedNode, targetNode);
-      }
-    }
-
-    if (this.draggingNode) {
-      this.saveToStorage();
-    }
-
-    this.draggingNode = null;
-    this.connectingFrom = null;
-    this.draw();
-  }
-
-  handleDoubleTap(x, y) {
-    const text = prompt('Enter note text:');
-    if (text) {
-      this.addNode(x, y, text);
-    }
-  }
-
-  // EVENTOS MOUSE
-  resizeCanvas() {
+  
+  resize() {
     const container = this.canvas.parentElement;
     this.canvas.width = container.clientWidth;
-    this.canvas.height = Math.min(600, window.innerHeight - 300);
-    this.draw();
+    this.canvas.height = Math.max(container.clientHeight, 600);
   }
-
-  handleMouseDown(e) {
-    const rect = this.canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const clickedNode = this.getNodeAt(x, y);
-
-    if (clickedNode) {
-      if (e.shiftKey) {
-        this.connectingFrom = clickedNode;
-      } else {
-        this.draggingNode = clickedNode;
-        this.selectedNode = clickedNode;
-      }
-    } else {
-      this.selectedNode = null;
-    }
-
-    this.draw();
-  }
-
+  
   handleMouseMove(e) {
     const rect = this.canvas.getBoundingClientRect();
-    this.mousePos.x = e.clientX - rect.left;
-    this.mousePos.y = e.clientY - rect.top;
-
-    if (this.draggingNode) {
-      this.draggingNode.x = this.mousePos.x;
-      this.draggingNode.y = this.mousePos.y;
-      this.draw();
-    } else if (this.connectingFrom) {
-      this.draw();
-    }
-  }
-
-  handleMouseUp(e) {
-    if (this.connectingFrom) {
-      const rect = this.canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const targetNode = this.getNodeAt(x, y);
-
-      if (targetNode && targetNode !== this.connectingFrom) {
-        this.createConnection(this.connectingFrom, targetNode);
+    this.mouseX = e.clientX - rect.left;
+    this.mouseY = e.clientY - rect.top;
+    
+    // Detectar hover sobre nodos
+    let foundHover = false;
+    for (const node of this.nodes) {
+      const dx = this.mouseX - node.x;
+      const dy = this.mouseY - node.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance < node.radius + 5) {
+        if (this.hoveredNode !== node) {
+          this.hoveredNode = node;
+          this.showNodeInfo(node);
+        }
+        foundHover = true;
+        this.canvas.style.cursor = 'pointer';
+        break;
       }
-
-      this.connectingFrom = null;
     }
-
-    if (this.draggingNode) {
-      this.saveToStorage();
+    
+    if (!foundHover && this.hoveredNode) {
+      this.hoveredNode = null;
+      this.hideNodeInfo();
+      this.canvas.style.cursor = 'default';
     }
-
-    this.draggingNode = null;
-    this.draw();
   }
-
-  handleDoubleClick(e) {
-    const rect = this.canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const clickedNode = this.getNodeAt(x, y);
-
-    if (!clickedNode) {
-      const text = prompt('Enter note text:');
-      if (text) {
-        this.addNode(x, y, text);
+  
+  handleMouseLeave() {
+    this.hoveredNode = null;
+    this.hideNodeInfo();
+    this.canvas.style.cursor = 'default';
+  }
+  
+  handleClick(e) {
+    if (this.hoveredNode) {
+      // Hacer scroll suave al panel de información en móvil
+      const infoPanel = document.getElementById('nodeInfo');
+      if (window.innerWidth <= 768) {
+        infoPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     }
   }
-
-  handleKeyDown(e) {
-    if (e.key === 'Delete' && this.selectedNode) {
-      this.nodes = this.nodes.filter(node => node !== this.selectedNode);
-      this.connections = this.connections.filter(conn =>
-        conn.from !== this.selectedNode && conn.to !== this.selectedNode
-      );
-      this.selectedNode = null;
-      this.saveToStorage();
-      this.draw();
+  
+  showNodeInfo(node) {
+    const infoPanel = document.getElementById('nodeInfo');
+    const titleEl = document.getElementById('nodeTitle');
+    const descEl = document.getElementById('nodeDescription');
+    
+    titleEl.textContent = node.label;
+    
+    // Si hay content HTML detallado, usarlo; sino, usar info simple
+    if (node.content) {
+      descEl.innerHTML = node.content;
+    } else {
+      descEl.innerHTML = `<p>${node.info}</p>`;
     }
+    
+    infoPanel.classList.add('visible');
   }
-
-  // UTILIDADES
-  getNodeAt(x, y) {
-    return this.nodes.find(node => {
-      const dx = x - node.x;
-      const dy = y - node.y;
-      return Math.sqrt(dx * dx + dy * dy) <= node.radius;
+  
+  hideNodeInfo() {
+    const infoPanel = document.getElementById('nodeInfo');
+    infoPanel.classList.remove('visible');
+  }
+  
+  updateNodes() {
+    this.nodes.forEach(node => {
+      // Movimiento orgánico
+      node.x += node.vx;
+      node.y += node.vy;
+      
+      // Rebote en los bordes
+      if (node.x <= node.radius || node.x >= this.canvas.width - node.radius) {
+        node.vx *= -1;
+        node.x = Math.max(node.radius, Math.min(this.canvas.width - node.radius, node.x));
+      }
+      if (node.y <= node.radius || node.y >= this.canvas.height - node.radius) {
+        node.vy *= -1;
+        node.y = Math.max(node.radius, Math.min(this.canvas.height - node.radius, node.y));
+      }
+      
+      // Actualizar pulso
+      node.pulse += 0.03;
+      
+      // Calcular conexiones dinámicas (solo con nodos cercanos)
+      node.connections = [];
+      this.nodes.forEach(otherNode => {
+        if (node.id !== otherNode.id) {
+          const dx = otherNode.x - node.x;
+          const dy = otherNode.y - node.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < this.config.maxDistance) {
+            node.connections.push({
+              node: otherNode,
+              distance: distance,
+              opacity: (1 - distance / this.config.maxDistance) * this.config.connectionOpacity
+            });
+          }
+        }
+      });
     });
   }
-
-  createConnection(from, to) {
-    const exists = this.connections.some(conn =>
-      (conn.from === from && conn.to === to) ||
-      (conn.from === to && conn.to === from)
-    );
-
-    if (!exists) {
-      this.connections.push({ from, to });
-      this.saveToStorage();
+  
+  updateParticles() {
+    // Crear partículas en conexiones activas (cuando se hace hover)
+    if (this.hoveredNode && this.animationFrame % 3 === 0) {
+      this.hoveredNode.connections.forEach(conn => {
+        if (Math.random() > 0.7) { // No todas las conexiones a la vez
+          this.particles.push({
+            x: this.hoveredNode.x,
+            y: this.hoveredNode.y,
+            targetX: conn.node.x,
+            targetY: conn.node.y,
+            progress: 0,
+            life: 1
+          });
+        }
+      });
     }
+    
+    // Actualizar partículas existentes
+    this.particles = this.particles.filter(particle => {
+      particle.progress += this.config.particleSpeed;
+      particle.life -= 0.01;
+      
+      // Interpolación lineal hacia el objetivo
+      particle.x = this.lerp(particle.x, particle.targetX, particle.progress);
+      particle.y = this.lerp(particle.y, particle.targetY, particle.progress);
+      
+      return particle.progress < 1 && particle.life > 0;
+    });
   }
-
-  addNode(x, y, text, color = null) {
-    const newNode = {
-      id: Date.now(),
-      x: x,
-      y: y,
-      text: text,
-      color: color || this.colors[Math.floor(Math.random() * this.colors.length)],
-      radius: this.nodeRadius
-    };
-    this.nodes.push(newNode);
-    this.saveToStorage();
-    this.draw();
+  
+  lerp(start, end, t) {
+    return start + (end - start) * t;
   }
-
-  addRandomNode() {
-    const x = Math.random() * (this.canvas.width - 200) + 100;
-    const y = Math.random() * (this.canvas.height - 200) + 100;
-    const text = prompt('Enter note text:');
-    if (text) {
-      this.addNode(x, y, text);
-    }
-  }
-
-  clearAll() {
-    if (confirm('Clear all notes? This affects all users.')) {
-      this.nodes = [];
-      this.connections = [];
-      this.selectedNode = null;
-      this.saveToStorage();
-      this.draw();
-    }
-  }
-
-  reset(initialNodes) {
-    if (confirm('Reset to initial state? This affects all users.')) {
-      this.nodes = initialNodes.map(node => ({
-        ...node,
-        radius: this.nodeRadius
-      }));
-      this.connections = [];
-      this.selectedNode = null;
-      this.saveToStorage();
-      this.draw();
-    }
-  }
-
-  // DIBUJO
+  
   draw() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.ctx.fillStyle = '#fafafa';
+    // Fondo negro
+    this.ctx.fillStyle = '#000';
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
+    
+    // Grid sutil de fondo (estilo manga)
     this.drawGrid();
-    this.connections.forEach(conn => this.drawConnection(conn));
-
-    if (this.connectingFrom) {
-      this.ctx.strokeStyle = '#999';
-      this.ctx.lineWidth = 2;
-      this.ctx.setLineDash([5, 5]);
-      this.ctx.beginPath();
-      this.ctx.moveTo(this.connectingFrom.x, this.connectingFrom.y);
-      this.ctx.lineTo(this.mousePos.x, this.mousePos.y);
-      this.ctx.stroke();
-      this.ctx.setLineDash([]);
-    }
-
-    this.nodes.forEach(node => this.drawNode(node));
+    
+    // Dibujar conexiones
+    this.nodes.forEach(node => {
+      node.connections.forEach(conn => {
+        this.drawConnection(node, conn);
+      });
+    });
+    
+    // Dibujar partículas
+    this.particles.forEach(particle => {
+      this.drawParticle(particle);
+    });
+    
+    // Dibujar nodos
+    this.nodes.forEach(node => {
+      this.drawNode(node);
+    });
+    
+    // Dibujar etiquetas
+    this.nodes.forEach(node => {
+      this.drawLabel(node);
+    });
   }
-
+  
   drawGrid() {
-    const gridSize = 30;
-    this.ctx.strokeStyle = '#e0e0e0';
+    const gridSize = 50;
+    this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
     this.ctx.lineWidth = 1;
-
+    
+    // Líneas verticales
     for (let x = 0; x < this.canvas.width; x += gridSize) {
       this.ctx.beginPath();
       this.ctx.moveTo(x, 0);
       this.ctx.lineTo(x, this.canvas.height);
       this.ctx.stroke();
     }
-
+    
+    // Líneas horizontales
     for (let y = 0; y < this.canvas.height; y += gridSize) {
       this.ctx.beginPath();
       this.ctx.moveTo(0, y);
@@ -377,83 +243,117 @@ class NotesCanvas {
       this.ctx.stroke();
     }
   }
-
-  drawConnection(conn) {
-    this.ctx.strokeStyle = '#333';
-    this.ctx.lineWidth = 3;
+  
+  drawConnection(node, conn) {
+    const isHovered = this.hoveredNode === node || this.hoveredNode === conn.node;
+    
     this.ctx.beginPath();
-    this.ctx.moveTo(conn.from.x, conn.from.y);
-    this.ctx.lineTo(conn.to.x, conn.to.y);
+    this.ctx.moveTo(node.x, node.y);
+    this.ctx.lineTo(conn.node.x, conn.node.y);
+    
+    // Más brillante si está en hover
+    const opacity = isHovered ? conn.opacity * 3 : conn.opacity;
+    const width = isHovered ? 2 : 1;
+    
+    this.ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+    this.ctx.lineWidth = width;
     this.ctx.stroke();
-
-    const midX = (conn.from.x + conn.to.x) / 2;
-    const midY = (conn.from.y + conn.to.y) / 2;
-    const angle = Math.atan2(conn.to.y - conn.from.y, conn.to.x - conn.from.x);
-
-    this.ctx.save();
-    this.ctx.translate(midX, midY);
-    this.ctx.rotate(angle);
-    this.ctx.fillStyle = '#333';
-    this.ctx.beginPath();
-    this.ctx.moveTo(10, 0);
-    this.ctx.lineTo(-10, -8);
-    this.ctx.lineTo(-10, 8);
-    this.ctx.closePath();
-    this.ctx.fill();
-    this.ctx.restore();
   }
-
-  drawNode(node) {
-    this.ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
-    this.ctx.shadowBlur = 10;
-    this.ctx.shadowOffsetX = 3;
-    this.ctx.shadowOffsetY = 3;
-
-    this.ctx.fillStyle = node.color;
+  
+  drawParticle(particle) {
+    const size = particle.life * 3;
+    
     this.ctx.beginPath();
-    this.ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+    this.ctx.arc(particle.x, particle.y, size, 0, Math.PI * 2);
+    this.ctx.fillStyle = `rgba(255, 255, 255, ${particle.life})`;
     this.ctx.fill();
-
-    if (node === this.selectedNode) {
-      this.ctx.strokeStyle = '#000';
-      this.ctx.lineWidth = 4;
-    } else {
-      this.ctx.strokeStyle = '#333';
-      this.ctx.lineWidth = 2;
+    
+    // Glow effect
+    this.ctx.shadowBlur = 10;
+    this.ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+    this.ctx.fill();
+    this.ctx.shadowBlur = 0;
+  }
+  
+  drawNode(node) {
+    const isHovered = this.hoveredNode === node;
+    const pulseAmount = Math.sin(node.pulse) * 2;
+    const radius = node.radius + pulseAmount;
+    
+    // Glow más intenso en hover
+    if (isHovered) {
+      const gradient = this.ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, radius * 2);
+      gradient.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      this.ctx.fillStyle = gradient;
+      this.ctx.beginPath();
+      this.ctx.arc(node.x, node.y, radius * 2, 0, Math.PI * 2);
+      this.ctx.fill();
     }
+    
+    // Círculo del nodo
+    this.ctx.beginPath();
+    this.ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+    
+    // Relleno
+    this.ctx.fillStyle = isHovered ? 'rgba(255, 255, 255, 0.3)' : 'rgba(255, 255, 255, 0.1)';
+    this.ctx.fill();
+    
+    // Borde
+    this.ctx.strokeStyle = isHovered ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.6)';
+    this.ctx.lineWidth = isHovered ? 3 : 2;
     this.ctx.stroke();
-
-    this.ctx.shadowColor = 'transparent';
-
-    this.ctx.fillStyle = '#000';
-    this.ctx.font = `bold ${this.fontSize}px Arial`;
+    
+    // Punto central
+    this.ctx.beginPath();
+    this.ctx.arc(node.x, node.y, 2, 0, Math.PI * 2);
+    this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+    this.ctx.fill();
+  }
+  
+  drawLabel(node) {
+    const isHovered = this.hoveredNode === node;
+    
+    // Configurar texto
+    this.ctx.font = isHovered ? 'bold 14px "Fredoka One", sans-serif' : '12px "Fredoka One", sans-serif';
     this.ctx.textAlign = 'center';
     this.ctx.textBaseline = 'middle';
-
-    const words = node.text.split(' ');
-    const maxWidth = node.radius * 1.5;
-    let lines = [];
-    let currentLine = '';
-
-    words.forEach(word => {
-      const testLine = currentLine + (currentLine ? ' ' : '') + word;
-      const metrics = this.ctx.measureText(testLine);
-      if (metrics.width > maxWidth && currentLine) {
-        lines.push(currentLine);
-        currentLine = word;
-      } else {
-        currentLine = testLine;
-      }
-    });
-    lines.push(currentLine);
-
-    const lineHeight = this.fontSize + 4;
-    const startY = node.y - ((lines.length - 1) * lineHeight) / 2;
-
-    lines.forEach((line, i) => {
-      this.ctx.fillText(line, node.x, startY + i * lineHeight);
-    });
+    
+    // Sombra para legibilidad
+    this.ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+    this.ctx.shadowBlur = 4;
+    this.ctx.shadowOffsetX = 0;
+    this.ctx.shadowOffsetY = 0;
+    
+    // Texto
+    this.ctx.fillStyle = isHovered ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.8)';
+    this.ctx.fillText(node.label, node.x, node.y - node.radius - 12);
+    
+    // Reset shadow
+    this.ctx.shadowBlur = 0;
+    
+    // Categoría (solo en hover)
+    if (isHovered && node.category) {
+      this.ctx.font = '10px "Fredoka One", sans-serif';
+      this.ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+      this.ctx.fillText(node.category, node.x, node.y + node.radius + 12);
+    }
+  }
+  
+  animate() {
+    this.animationFrame++;
+    
+    // Actualizar
+    this.updateNodes();
+    this.updateParticles();
+    
+    // Dibujar
+    this.draw();
+    
+    // Loop
+    requestAnimationFrame(() => this.animate());
   }
 }
 
-window.NotesCanvas = NotesCanvas;
+// Exportar para uso global
+window.NetworkVisualization = NetworkVisualization;
