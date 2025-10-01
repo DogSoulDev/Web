@@ -1,89 +1,175 @@
-# Cybersecurity Portfolio - Javier Fernández
+# Cybersecurity Portfolio - DogSoulDev# Cybersecurity Portfolio - Javier Fernández
 
-A professional cybersecurity portfolio website with manga-inspired design. Built with vanilla JavaScript following MVC architecture and enterprise-grade code quality standards.
 
-## 🚀 Features
 
-- **Single-Page Application** - Smooth navigation without page reloads
-- **MVC Architecture** - Clean separation of concerns (Models, Views, Controllers)
-- **3D Neural Network Visualization** - Interactive 3D Canvas visualization with 97 cybersecurity knowledge nodes
-- **GitHub Integration** - Dynamic project fetching from GitHub API
-- **Security-First** - Strict CSP, XSS prevention, no unsafe operations
-- **Zero Dependencies** - Pure HTML5, CSS3, and ES6+ JavaScript
-- **Fully Responsive** - Optimized for all devices (360px - 1920px+)
+Portfolio web profesional con diseño manga. Construido con JavaScript vanilla siguiendo arquitectura MVC.A professional cybersecurity portfolio website with manga-inspired design. Built with vanilla JavaScript following MVC architecture and enterprise-grade code quality standards.
+
+
+
+## 🚀 Características## 🚀 Features
+
+
+
+- **Single-Page Application** - Navegación fluida sin recargas- **Single-Page Application** - Smooth navigation without page reloads
+
+- **Arquitectura MVC** - Separación clara de responsabilidades- **MVC Architecture** - Clean separation of concerns (Models, Views, Controllers)
+
+- **Particle Network Canvas** - Visualización interactiva de partículas- **3D Neural Network Visualization** - Interactive 3D Canvas visualization with 97 cybersecurity knowledge nodes
+
+- **Integración GitHub API** - Proyectos dinámicos desde GitHub- **GitHub Integration** - Dynamic project fetching from GitHub API
+
+- **Diseño Manga** - Estética black & white con bordes y sombras- **Security-First** - Strict CSP, XSS prevention, no unsafe operations
+
+- **Totalmente Responsive** - Optimizado para todos los dispositivos- **Zero Dependencies** - Pure HTML5, CSS3, and ES6+ JavaScript
+
+- **Zero Dependencies** - HTML5, CSS3 y ES6+ JavaScript puro- **Fully Responsive** - Optimized for all devices (360px - 1920px+)
+
 - **Manga-Inspired Design** - Unique black & white aesthetic with speed lines and effects
-- **Typewriter Effects** - Dynamic text animations for engaging user experience
 
-## 📱 Responsive Design
+## 📁 Estructura- **Typewriter Effects** - Dynamic text animations for engaging user experience
 
-**100% responsive across all devices:**
-- ✅ **Desktop** (1920px+) - Full multi-column layout
-- ✅ **Laptop** (1366px) - Optimized for smaller screens
-- ✅ **Tablet** (768px) - 2-column grids, compact navigation
-- ✅ **Mobile** (480px) - Single column, touch-optimized
-- ✅ **Small Mobile** (360px) - Ultra-compact, minimal margins
 
-**Key responsive features:**
-- Adaptive grids using `minmax(min(100%, Xpx), 1fr)`
-- Flexible navigation with wrap layout
-- Touch-friendly buttons (>44px targets)
-- Scalable typography and spacing
-- Mobile-optimized forms and canvas
 
-## 📁 Project Structure
+```## 📱 Responsive Design
 
-```
-├── index.html              # Entry point with CSP headers
-├── css/                    # Modular stylesheets (separation of concerns)
-│   ├── base.css           # Reset, CSS variables, scrollbar
+├── index.html
+
+├── css/**100% responsive across all devices:**
+
+│   ├── base.css- ✅ **Desktop** (1920px+) - Full multi-column layout
+
+│   ├── layout.css- ✅ **Laptop** (1366px) - Optimized for smaller screens
+
+│   ├── components.css- ✅ **Tablet** (768px) - 2-column grids, compact navigation
+
+│   ├── effects.css- ✅ **Mobile** (480px) - Single column, touch-optimized
+
+│   ├── logo-draw-animation.css- ✅ **Small Mobile** (360px) - Ultra-compact, minimal margins
+
+│   └── particles.css
+
+├── js/**Key responsive features:**
+
+│   ├── main.js- Adaptive grids using `minmax(min(100%, Xpx), 1fr)`
+
+│   ├── logoDrawAnimation.js- Flexible navigation with wrap layout
+
+│   ├── particleNetwork.js- Touch-friendly buttons (>44px targets)
+
+│   ├── animatedText.js- Scalable typography and spacing
+
+│   ├── config/- Mobile-optimized forms and canvas
+
+│   ├── controllers/
+
+│   ├── models/## 📁 Project Structure
+
+│   ├── views/
+
+│   └── utils/```
+
+├── icons/├── index.html              # Entry point with CSP headers
+
+└── img/├── css/                    # Modular stylesheets (separation of concerns)
+
+```│   ├── base.css           # Reset, CSS variables, scrollbar
+
 │   ├── layout.css         # Layout, grid, responsive breakpoints
-│   ├── components.css     # UI components (navbar, cards, forms)
+
+## 🎯 Secciones│   ├── components.css     # UI components (navbar, cards, forms)
+
 │   ├── effects.css        # Animations (typewriter, glitch, speed-lines)
-│   └── logo-draw-animation.css  # Logo animation with responsive breakpoints
-├── js/
-│   ├── main.js            # Application entry point
-│   ├── config/
-│   │   └── appConfig.js   # Centralized configuration (DRY principle)
+
+- **Profile** - Avatar, bio, skills, particle network canvas│   └── logo-draw-animation.css  # Logo animation with responsive breakpoints
+
+- **Projects** - Portfolio de proyectos con botones animados├── js/
+
+- **Experience** - Historial profesional con flip cards│   ├── main.js            # Application entry point
+
+- **Education** - Formación académica con animaciones 3D│   ├── config/
+
+- **Contact** - Formulario de contacto con Formspree│   │   └── appConfig.js   # Centralized configuration (DRY principle)
+
 │   ├── controllers/       # MVC Controllers (business logic)
-│   │   ├── appController.js      # Main app orchestration
+
+## 🔒 Seguridad│   │   ├── appController.js      # Main app orchestration
+
 │   │   ├── projectsController.js # Project interactions
-│   │   └── notesController.js    # Notes visualization controls
-│   ├── models/            # Data models (data layer)
-│   │   ├── profileModel.js
-│   │   ├── projectsModel.js
+
+- **Content Security Policy (CSP)** - Headers estrictos│   │   └── notesController.js    # Notes visualization controls
+
+- **XSS Prevention** - Input escapado con `escapeHtml()`│   ├── models/            # Data models (data layer)
+
+- **No operaciones inseguras** - Sin `eval()` ni `Function()`│   │   ├── profileModel.js
+
+- **HTTPS Only** - Recursos externos seguros│   │   ├── projectsModel.js
+
 │   │   ├── experienceModel.js
-│   │   ├── educationModel.js
+
+## 💻 Tecnologías│   │   ├── educationModel.js
+
 │   │   ├── notesModel.js         # 97 cybersecurity nodes
-│   │   ├── aboutModel.js
-│   │   └── skillsModel.js
-│   ├── views/             # View renderers (presentation layer)
-│   │   ├── BaseView.js            # Abstract base class (DRY)
-│   │   ├── profileView.js
-│   │   ├── projectsView.js
+
+- **HTML5** - Canvas API, Semantic markup│   │   ├── aboutModel.js
+
+- **CSS3** - Grid, Flexbox, Custom Properties│   │   └── skillsModel.js
+
+- **JavaScript ES6+** - Modules, Classes, Async/Await│   ├── views/             # View renderers (presentation layer)
+
+- **Arquitectura MVC** - Models, Views, Controllers│   │   ├── BaseView.js            # Abstract base class (DRY)
+
+- **GitHub API** - Fetching dinámico de proyectos│   │   ├── profileView.js
+
+- **GitHub Pages** - Hosting estático│   │   ├── projectsView.js
+
 │   │   ├── experienceView.js
-│   │   ├── educationView.js
+
+## 📜 Licencia│   │   ├── educationView.js
+
 │   │   ├── notesView.js
-│   │   ├── contactView.js
+
+**© 2025 DogSoulDev (DsD) - All Rights Reserved**│   │   ├── contactView.js
+
 │   │   └── skillsView.js
-│   ├── utils/             # Utilities
+
+MIT License con restricción de AI Training.│   ├── utils/             # Utilities
+
 │   │   └── iconMapper.js          # Icon/tech mapping utility
-│   ├── notesCanvas.js     # 3D visualization engine
-│   └── logoDrawAnimation.js # Animated logo with device detection
-├── icons/                 # SVG icons (15 custom icons)
+
+- ⚠️ **Prohibido** usar para entrenar modelos AI/ML│   ├── notesCanvas.js     # 3D visualization engine
+
+- ✅ **Permitido** usar y modificar con atribución│   └── logoDrawAnimation.js # Animated logo with device detection
+
+- 📧 **Contacto**: dogsouldev@protonmail.com├── icons/                 # SVG icons (15 custom icons)
+
 └── img/                   # Images and avatar
-```
 
-## 🎯 Sections
+Ver [LICENSE](./LICENSE) para términos completos.```
 
-- **Profile** - Avatar, bio, typewriter effect, skills grid, social links
-- **Projects** - Dynamic portfolio projects with animated panels and GitHub integration
+
+
+## 👨‍💻 Autor## 🎯 Sections
+
+
+
+**DogSoulDev (DsD)**  - **Profile** - Avatar, bio, typewriter effect, skills grid, social links
+
+Javier Fernández - Cybersecurity Professional- **Projects** - Dynamic portfolio projects with animated panels and GitHub integration
+
 - **Experience** - Professional work history with flip cards
-- **Education** - Academic background with 3D flip card animations
-- **Notes** - Interactive 3D neural network visualization with 97 cybersecurity knowledge nodes
+
+- 🐱 GitHub: [@DogSoulDev](https://github.com/DogSoulDev)- **Education** - Academic background with 3D flip card animations
+
+- 📧 Email: dogsouldev@protonmail.com- **Notes** - Interactive 3D neural network visualization with 97 cybersecurity knowledge nodes
+
   - Technologies: XSS, SQL Injection, Buffer Overflow, Cryptography, OSINT, and more
-  - 3D rotating sphere with Fibonacci distribution
+
+---  - 3D rotating sphere with Fibonacci distribution
+
   - Zoom, pan, and rotate controls
-  - Starfield background for depth effect
+
+**© 2025 DogSoulDev** | Vanilla JavaScript | MVC Architecture  - Starfield background for depth effect
+
 - **Contact** - Responsive contact form with Formspree integration
 
 ## 🔒 Security

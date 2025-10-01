@@ -34,7 +34,7 @@ export class ContactView extends BaseView {
           <!-- Contact Form - Manga Style -->
           <div class="contact-form-wrapper">
             <div class="contact-form-header">
-              <h3 class="contact-form-title">📬 Let's Connect!</h3>
+              <h3 class="contact-form-title">🎌 Let's Connect!</h3>
               <p class="contact-form-subtitle">Send me a message and I'll get back to you soon</p>
             </div>
             
