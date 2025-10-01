@@ -68,58 +68,50 @@ class LogoDrawAnimation {
     // Ocultar el rectángulo blanco de fondo
     const rect = this.svg.querySelector('rect');
     if (rect) {
-      rect.style.opacity = '0';
+      rect.style.display = 'none';
     }
 
     // Obtener el grupo principal con los paths
     const mainGroup = this.svg.querySelector('g');
-    if (!mainGroup) return;
+    if (!mainGroup) {
+      console.error('No se encontró el grupo principal');
+      return;
+    }
 
-    // Ocultar paths originales inmediatamente
-    mainGroup.style.opacity = '0';
-
-    // Crear grupo de strokes (para animación)
-    const strokesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    strokesGroup.id = 'strokes';
-    
-    // Crear grupo de fills (para después)
-    this.fillsGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-    this.fillsGroup.id = 'fills';
-    this.fillsGroup.style.opacity = '0';
-
-    // Clonar paths para strokes y fills
+    // Obtener todos los paths originales
     const paths = mainGroup.querySelectorAll('path');
+    
+    console.log('Paths encontrados:', paths.length);
+
+    // Preparar cada path para la animación
     paths.forEach(path => {
-      // Path para stroke (animación)
-      const strokePath = path.cloneNode(true);
-      strokePath.style.fill = 'none';
-      strokePath.style.stroke = this.FIRST_DRAW_COLOR;
-      strokePath.style.strokeWidth = '2';
+      // Guardar el fill original
+      const originalFill = path.getAttribute('fill');
+      path.dataset.originalFill = originalFill;
       
-      const length = strokePath.getTotalLength();
-      strokePath.style.strokeDasharray = length;
-      strokePath.style.strokeDashoffset = length;
+      // Configurar para animación de stroke
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', this.FIRST_DRAW_COLOR);
+      path.setAttribute('stroke-width', '2');
       
-      strokesGroup.appendChild(strokePath);
-      this.strokes.push(strokePath);
+      const length = path.getTotalLength();
+      path.style.strokeDasharray = `${length}`;
+      path.style.strokeDashoffset = `${length}`;
       
-      // Path para fill (relleno final)
-      const fillPath = path.cloneNode(true);
-      fillPath.style.stroke = 'none';
-      fillPath.style.fill = '#000000';
-      this.fillsGroup.appendChild(fillPath);
+      this.strokes.push(path);
     });
 
-    // Añadir nuevos grupos al SVG (no al mainGroup)
-    this.svg.appendChild(strokesGroup);
-    this.svg.appendChild(this.fillsGroup);
+    console.log('Strokes preparados:', this.strokes.length);
   }
 
   animate() {
     if (this.strokes.length === 0) {
+      console.error('No hay strokes para animar');
       this.hideAnimation();
       return;
     }
+
+    console.log('Iniciando animación con', this.strokes.length, 'strokes');
 
     // Calcular duración por trazo
     const durationPerStroke = this.TOTAL_ANIMATION_TIME / this.strokes.length;
@@ -135,23 +127,22 @@ class LogoDrawAnimation {
       delay += durationPerStroke;
     });
 
-    // Mostrar rellenos y ocultar animación
+    // Restaurar fills originales y ocultar animación
     setTimeout(() => {
-      this.showFills();
-      setTimeout(() => this.hideAnimation(), 1000);
+      console.log('Restaurando fills originales');
+      this.strokes.forEach(stroke => {
+        stroke.style.transition = 'all 0.5s ease';
+        stroke.setAttribute('stroke', 'none');
+        stroke.setAttribute('fill', stroke.dataset.originalFill || '#000000');
+      });
+      
+      setTimeout(() => this.hideAnimation(), 800);
     }, delay + this.FILL_DELAY);
   }
 
   drawStroke(stroke, duration) {
     stroke.style.transition = `stroke-dashoffset ${duration}ms ease-in-out`;
     stroke.style.strokeDashoffset = '0';
-  }
-
-  showFills() {
-    if (this.fillsGroup) {
-      this.fillsGroup.style.transition = 'opacity 0.6s ease';
-      this.fillsGroup.style.opacity = '1';
-    }
   }
 
   hideAnimation() {
