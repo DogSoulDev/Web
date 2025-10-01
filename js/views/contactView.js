@@ -1,6 +1,6 @@
 export class ContactView {
   constructor() {
-    // Formspree widget handles all form functionality
+    // No need for setup, Formspree handles submission directly
   }
 
   render() {
@@ -24,16 +24,68 @@ export class ContactView {
             </a>
           </div>
 
-          <!-- Contact Form - Formspree Widget -->
+          <!-- Contact Form - Manga Style -->
           <div class="contact-form-wrapper">
             <div class="contact-form-header">
               <h3 class="contact-form-title">📬 Let's Connect!</h3>
-              <p class="contact-form-subtitle">Click the button below to send me a message</p>
+              <p class="contact-form-subtitle">Send me a message and I'll get back to you soon</p>
             </div>
             
-            <div class="formspree-container">
-              <!-- Formspree widget will appear here -->
-            </div>
+            <!-- Formspree Direct Form -->
+            <form action="https://formspree.io/f/mpwydvop" method="POST" class="contact-form">
+              <div class="form-group">
+                <label for="contact-name" class="form-label">
+                  <span class="label-icon">�</span>
+                  NAME
+                </label>
+                <input 
+                  type="text" 
+                  id="contact-name" 
+                  name="name" 
+                  class="form-input"
+                  placeholder="Your name..." 
+                  required
+                  maxlength="100"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email" class="form-label">
+                  <span class="label-icon">✉️</span>
+                  EMAIL
+                </label>
+                <input 
+                  type="email" 
+                  id="contact-email" 
+                  name="email" 
+                  class="form-input"
+                  placeholder="your.email@example.com" 
+                  required
+                  maxlength="100"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label">
+                  <span class="label-icon">💬</span>
+                  MESSAGE
+                </label>
+                <textarea 
+                  id="contact-message" 
+                  name="message" 
+                  class="form-textarea"
+                  placeholder="Write your message here..." 
+                  required
+                  maxlength="1000"
+                  rows="6"
+                ></textarea>
+              </div>
+
+              <button type="submit" class="contact-submit-btn">
+                <span class="btn-text">SEND MESSAGE</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </form>
 
             <div class="contact-form-footer">
               <p class="contact-email-direct">
@@ -44,40 +96,6 @@ export class ContactView {
           </div>
         </div>
       </div>
-      
-      <!-- Formspree Widget Script -->
-      <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
-      <script>
-        window.formbutton=window.formbutton||function(){(formbutton.q=formbutton.q||[]).push(arguments)};
-        formbutton("create", {
-          action: "https://formspree.io/f/mpwydvop",
-          title: "How can we help?",
-          fields: [
-            { 
-              type: "email", 
-              label: "Email:", 
-              name: "email",
-              required: true,
-              placeholder: "your@email.com"
-            },
-            {
-              type: "textarea",
-              label: "Message:",
-              name: "message",
-              placeholder: "What's on your mind?",
-            },
-            { type: "submit" }      
-          ],
-          styles: {
-            title: {
-              backgroundColor: "gray"
-            },
-            button: {
-              backgroundColor: "gray"
-            }
-          }
-        });
-      </script>
     `;
   }
 }
