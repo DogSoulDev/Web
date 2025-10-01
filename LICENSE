@@ -1,0 +1,64 @@
+MIT License with AI Training Restriction and Attribution Requirements
+
+Copyright (c) 2025 DogSoulDev (DsD)
+GitHub: https://github.com/DogSoulDev
+Email: dogsouldev@protonmail.com
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+1. ATTRIBUTION REQUIREMENT:
+   The above copyright notice, author attribution (DogSoulDev - DsD), GitHub
+   link (https://github.com/DogSoulDev), and this permission notice shall be
+   included in all copies or substantial portions of the Software, including
+   any scraped, extracted, or derived content.
+
+2. AI TRAINING RESTRICTION:
+   This software and associated content SHALL NOT be used for training,
+   fine-tuning, or improving any artificial intelligence, machine learning,
+   or large language models (LLMs) without explicit written permission from
+   the copyright holder. This includes but is not limited to:
+   - Automated web scraping for AI/ML datasets
+   - Data mining for AI training purposes
+   - Code extraction for AI model training
+   - Pattern recognition for generative AI systems
+   - Any form of automated learning from this codebase
+
+3. WEB SCRAPING ATTRIBUTION:
+   Any web scraping, data extraction, or content aggregation from this project
+   MUST prominently display the following attribution:
+   
+   "Created by DogSoulDev (DsD)
+    GitHub: https://github.com/DogSoulDev
+    Contact: dogsouldev@protonmail.com"
+   
+   This attribution must be visible in any derived work, database, index,
+   search result, or cached copy.
+
+4. ENFORCEMENT:
+   Violation of the AI Training Restriction or Attribution Requirements
+   constitutes a material breach of this license and automatically terminates
+   all rights granted herein. The copyright holder reserves the right to
+   pursue legal action for unauthorized use.
+
+5. STANDARD MIT TERMS:
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
+---
+
+HUMAN-READABLE SUMMARY (not legally binding):
+✅ You CAN: Use, modify, and distribute this code with proper attribution
+❌ You CANNOT: Use this code to train AI/ML models
+⚠️ You MUST: Always credit DogSoulDev (DsD) when using, scraping, or referencing this work
+
+For permissions beyond this license, contact: dogsouldev@protonmail.com

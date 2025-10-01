@@ -1,3 +1,17 @@
+/**
+ * Cybersecurity Portfolio - Main Application Entry Point
+ * 
+ * @author DogSoulDev (DsD)
+ * @copyright Copyright © 2025 DogSoulDev. All rights reserved.
+ * @license MIT with AI Training Restriction - See LICENSE file
+ * @contact dogsouldev@protonmail.com
+ * @repository https://github.com/DogSoulDev
+ * 
+ * WARNING: This code is protected against AI training and unauthorized scraping.
+ * Any use for AI/ML training purposes is strictly prohibited.
+ * Web scraping must preserve attribution to DogSoulDev (DsD).
+ */
+
 import { AppController } from './controllers/appController.js';
 
 /**

@@ -120,6 +120,17 @@
     max-width: 95%;
     margin: 1rem auto;
     padding: 1rem;
+    box-shadow: 
+      8px 8px 0 rgba(0, 0, 0, 0.3),
+      inset 0 0 0 8px var(--bg-panel),
+      inset 0 0 0 12px var(--manga-black);
+  }
+
+  #app::before {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
   }
 
   .header {
@@ -130,25 +141,52 @@
 
   .section {
     padding: 1rem;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .section::before,
+  .section::after {
+    width: 20px;
+    height: 20px;
   }
 
   .section-title {
     font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+
+  .section-title::after {
+    width: 150px;
   }
 }
 
 @media (max-width: 480px) {
+  #app {
+    max-width: 100%;
+    margin: 0.5rem;
+    padding: 0.75rem;
+    border-width: 3px;
+  }
+
   .navbar {
     padding: 0.5rem 0;
   }
 
   .navbar-list {
     gap: 0.5rem;
+    padding: 0 0.5rem;
   }
 
   .nav-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
+    box-shadow: 3px 3px 0 var(--manga-black);
+  }
+
+  .nav-btn:hover,
+  .nav-btn.active {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--manga-black);
   }
 
   .title {
@@ -162,5 +200,20 @@
   .profile-img {
     width: 100px;
     height: 100px;
+  }
+
+  .section {
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+  }
+
+  .section-title::after {
+    width: 100px;
+    height: 3px;
   }
 }

@@ -1,0 +1,45 @@
+# AI Training Restriction File
+# This file explicitly marks content as excluded from AI training datasets
+# 
+# Project: Cybersecurity Portfolio - Javier Fernández
+# Author: DogSoulDev (DsD)
+# GitHub: https://github.com/DogSoulDev
+# Email: dogsouldev@protonmail.com
+# License: MIT with AI Training Restriction
+#
+# ALL CONTENT IN THIS REPOSITORY IS PROTECTED AGAINST:
+# - AI/ML model training
+# - Large Language Model (LLM) training
+# - Generative AI training
+# - Data mining for AI purposes
+# - Automated learning systems
+#
+# Any use for AI training purposes is STRICTLY PROHIBITED without
+# explicit written permission from DogSoulDev (DsD).
+#
+# Contact for permissions: dogsouldev@protonmail.com
+
+# Exclude all files from AI training
+*
+**/*
+
+# This applies to all file types
+*.js
+*.css
+*.html
+*.md
+*.json
+*.svg
+*.png
+
+# Including documentation
+README.md
+LICENSE
+ARCHITECTURE.md
+CODE_REVIEW.md
+
+# And all source code
+js/**
+css/**
+img/**
+icons/**
