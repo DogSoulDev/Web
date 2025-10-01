@@ -879,53 +879,298 @@
   color: var(--manga-black);
 }
 
-.project-link.red {
+/* ========================================
+   BOTONES ANIMADOS ÚNICOS PARA PROYECTOS
+   ======================================== */
+
+/* Base común para todos los botones de proyecto */
+.project-link-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 30px;
+  margin-top: 15px;
+  font-family: var(--font-manga);
+  font-weight: bold;
+  font-size: 0.95rem;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.project-link-btn .btn-text {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.project-link-btn .btn-icon {
+  position: relative;
+  z-index: 2;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.project-link-btn:hover .btn-icon {
+  transform: translateX(5px);
+}
+
+/* Estilo 1: Azul Eléctrico con Glow Pulsante */
+.btn-style-1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+  animation: pulse-glow-1 2s ease-in-out infinite;
+}
+
+.btn-style-1::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-style-1:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 30px rgba(102, 126, 234, 0.6);
+}
+
+.btn-style-1:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+@keyframes pulse-glow-1 {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(102, 126, 234, 0.8);
+  }
+}
+
+/* Estilo 2: Verde Neón con Pulso Energético */
+.btn-style-2 {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  border: 2px solid #38ef7d;
+  box-shadow: 0 0 15px rgba(56, 239, 125, 0.5);
+}
+
+.btn-style-2::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, #38ef7d, #11998e);
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+  animation: border-pulse 2s ease-in-out infinite;
+}
+
+.btn-style-2:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(56, 239, 125, 0.8);
+}
+
+.btn-style-2:hover::after {
+  opacity: 1;
+}
+
+@keyframes border-pulse {
+  0%, 100% {
+    filter: blur(5px);
+  }
+  50% {
+    filter: blur(10px);
+  }
+}
+
+/* Estilo 3: Rojo Manga con Border Animado */
+.btn-style-3 {
   background: var(--manga-red);
+  color: white;
+  border: 3px solid var(--manga-black);
+  box-shadow: 4px 4px 0 var(--manga-black);
+  border-radius: 0;
 }
 
-.project-link.blue {
-  background: var(--manga-blue);
+.btn-style-3::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 3px solid white;
+  border-radius: 0;
+  opacity: 0;
+  animation: border-dash 1.5s linear infinite;
 }
 
-.project-link.green {
-  background: var(--manga-green);
+.btn-style-3:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--manga-black);
+  background: #ff0000;
 }
 
-.project-link.brown {
-  background: #8B4513;
+.btn-style-3:hover::before {
+  opacity: 1;
+  animation-play-state: running;
 }
 
-.project-link.cyan {
-  background: #00CED1;
+@keyframes border-dash {
+  0% {
+    clip-path: polygon(0 0, 100% 0, 100% 3px, 0 3px);
+  }
+  25% {
+    clip-path: polygon(100% 0, 100% 100%, calc(100% - 3px) 100%, calc(100% - 3px) 0);
+  }
+  50% {
+    clip-path: polygon(100% 100%, 0 100%, 0 calc(100% - 3px), 100% calc(100% - 3px));
+  }
+  75% {
+    clip-path: polygon(0 100%, 0 0, 3px 0, 3px 100%);
+  }
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 3px, 0 3px);
+  }
 }
 
-.project-link.yellow {
-  background: var(--manga-yellow);
-  color: var(--manga-black);
+/* Estilo 4: Púrpura Cyber con Particles */
+.btn-style-4 {
+  background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
+  color: white;
+  border: 2px solid #8e2de2;
+  box-shadow: 0 0 25px rgba(142, 45, 226, 0.4);
 }
 
-.project-link.red:hover {
-  background: #cc0000;
+.btn-style-4::before,
+.btn-style-4::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.5s;
 }
 
-.project-link.blue:hover {
-  background: #0066cc;
+.btn-style-4::before {
+  top: -5px;
+  left: 20%;
 }
 
-.project-link.green:hover {
-  background: #009900;
+.btn-style-4::after {
+  bottom: -5px;
+  right: 20%;
 }
 
-.project-link.brown:hover {
-  background: #654321;
+.btn-style-4:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 35px rgba(142, 45, 226, 0.7);
 }
 
-.project-link.cyan:hover {
-  background: #00aaaa;
+.btn-style-4:hover::before {
+  opacity: 1;
+  top: -15px;
+  animation: particle-float 1s ease-out;
 }
 
-.project-link.yellow:hover {
-  background: #cccc00;
+.btn-style-4:hover::after {
+  opacity: 1;
+  bottom: -15px;
+  animation: particle-float 1s ease-out;
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20px) scale(0);
+    opacity: 0;
+  }
+}
+
+/* Estilo 5: Naranja Fire con Waves */
+.btn-style-5 {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border: 2px solid #f5576c;
+  box-shadow: 0 5px 20px rgba(245, 87, 108, 0.4);
+}
+
+.btn-style-5::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-style-5:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(245, 87, 108, 0.6);
+}
+
+.btn-style-5:hover::before {
+  left: 100%;
+}
+
+/* Estilo 6: Cyan Tech con Scan Effect */
+.btn-style-6 {
+  background: linear-gradient(135deg, #13547a 0%, #80d0c7 100%);
+  color: white;
+  border: 2px solid #80d0c7;
+  box-shadow: 0 0 20px rgba(128, 208, 199, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-style-6::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  transition: top 0.4s ease;
+}
+
+.btn-style-6:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 35px rgba(128, 208, 199, 0.6);
+}
+
+.btn-style-6:hover::before {
+  top: 100%;
+  transition: top 0.6s ease;
+}
+
+/* Responsive para botones */
+@media (max-width: 768px) {
+  .project-link-btn {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
 }
 
 /* Speed lines variations */

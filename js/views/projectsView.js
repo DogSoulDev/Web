@@ -24,6 +24,16 @@ export class ProjectsView {
       return iconMap[tech] || 'manga.svg';
     };
 
+    // Estilos de botones únicos para cada proyecto
+    const buttonStyles = [
+      'btn-style-1', // Azul eléctrico con glow
+      'btn-style-2', // Verde neón con pulso
+      'btn-style-3', // Rojo manga con border animado
+      'btn-style-4', // Púrpura cyber con particles
+      'btn-style-5', // Naranja fire con waves
+      'btn-style-6'  // Cyan tech con scan effect
+    ];
+
     return `
       <div class="section projects">
         <h2 class="section-title">Projects</h2>
@@ -32,6 +42,7 @@ export class ProjectsView {
             const primaryTech = project.tech[0];
             const icon = getIcon(primaryTech);
             const extraSpans = index === 2 ? '<span></span><span></span>' : '';
+            const buttonClass = buttonStyles[index % buttonStyles.length];
             return `
               <button class="project-panel" data-index="${index}">
                 <div class="project-video">
@@ -43,7 +54,10 @@ export class ProjectsView {
                   <div class="tech-stack">
                     ${project.tech.map(tech => `<span class="tech-badge">${tech}</span>`).join('')}
                   </div>
-                  <a href="${project.url}" target="_blank" class="project-link">VIEW PROJECT</a>
+                  <a href="${project.url}" target="_blank" class="project-link-btn ${buttonClass}">
+                    <span class="btn-text">VIEW PROJECT</span>
+                    <span class="btn-icon">→</span>
+                  </a>
                 </div>
                 <span></span>
                 ${extraSpans}
