@@ -34,8 +34,13 @@ export class ProfileView extends BaseView {
             <p class="subtitle">${profile.subtitle}</p>
           </div>
         </div>
-        <div class="particle-network-container">
-          <canvas id="particleCanvas"></canvas>
+        <div class="neural-toggle-container">
+          <label class="switch">
+            <input class="cb" type="checkbox" id="neuralToggle" />
+            <span class="toggle">
+              <canvas id="particleCanvas"></canvas>
+            </span>
+          </label>
         </div>
         <div class="animated-text-container">
           <div id="animatedText"></div>
@@ -61,15 +66,6 @@ export class ProfileView extends BaseView {
         </div>
         <div class="copyright">
           <p>© 2025 DogSoulDev. All rights reserved.</p>
-        </div>
-        <div class="neural-toggle-container">
-          <label class="switch">
-            <input class="cb" type="checkbox" id="neuralToggle" />
-            <span class="toggle">
-              <span class="left">off</span>
-              <span class="right">on</span>
-            </span>
-          </label>
         </div>
       </div>
     `;
