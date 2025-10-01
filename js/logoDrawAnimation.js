@@ -14,8 +14,8 @@ class LogoDrawAnimation {
     this.FIRST_DRAW_COLOR = '#ffffff';
     this.FINAL_STROKE_COLOR = '#000000';
     this.ANIMATION_DURATION = 2000; // ms por trazo
-    this.FILL_DELAY = 500; // ms después del último trazo
-    this.TOTAL_ANIMATION_TIME = 8000; // 8 segundos total
+    this.FILL_DELAY = 400; // ms después del último trazo
+    this.TOTAL_ANIMATION_TIME = 6000; // 6 segundos total
     
     this.init();
   }
