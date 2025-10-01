@@ -98,9 +98,11 @@ export class ProfileView extends BaseView {
     const toggle = document.getElementById('neuralToggle');
     if (toggle) {
       toggle.addEventListener('change', (e) => {
+        // Toggle functionality - can be extended later
         if (e.target.checked) {
-          // Redirect to neural network page
-          window.location.href = 'neural.html';
+          console.log('Neural Network toggle activated');
+        } else {
+          console.log('Neural Network toggle deactivated');
         }
       });
     }
