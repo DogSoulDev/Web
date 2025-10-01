@@ -63,7 +63,7 @@ export class ContactView {
     
     try {
       // Send email using Formspree (free service that sends to dogsouldev@protonmail.com)
-      const response = await fetch('https://formspree.io/f/xanyogkg', {
+      const response = await fetch('https://formspree.io/f/mpwydvop', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
