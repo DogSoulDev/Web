@@ -151,55 +151,6 @@
   border-radius: 50%;
   object-fit: cover;
   background: var(--manga-gray);
-  animation: avatar-pulse 3s ease-in-out infinite, avatar-rotate 20s linear infinite;
-  transition: all 0.3s ease;
-}
-
-.profile-img:hover {
-  animation: avatar-spin 1s ease-in-out, avatar-glow 2s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
-  transform: scale(1.1);
-}
-
-@keyframes avatar-pulse {
-  0%, 100% {
-    transform: scale(1);
-    filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
-  }
-  50% {
-    transform: scale(1.05);
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
-  }
-}
-
-@keyframes avatar-rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes avatar-spin {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-  50% {
-    transform: rotate(180deg) scale(1.15);
-  }
-  100% {
-    transform: rotate(360deg) scale(1.1);
-  }
-}
-
-@keyframes avatar-glow {
-  0%, 100% {
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.3));
-  }
-  50% {
-    filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.6));
-  }
 }
 
 .avatar-container {
@@ -301,18 +252,20 @@
 /* Neural Toggle Switch - UIverse r7chardgh/dry-rabbit-69 */
 .neural-toggle-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 30px 0;
   padding: 20px;
+  gap: 20px;
 }
 
 .switch {
   font-size: 17px;
   position: relative;
   display: inline-block;
-  width: 5em;
-  height: 2.5em;
+  width: 20em;
+  height: 12em;
   user-select: none;
 }
 
@@ -323,102 +276,79 @@
 }
 
 .toggle {
-  position: absolute;
+  position: relative;
   cursor: pointer;
   width: 100%;
   height: 100%;
-  background-color: #373737;
-  border-radius: 0.1em;
+  background-color: #ffffff;
+  border: 4px solid #000;
+  box-shadow: 8px 8px 0 #000;
+  border-radius: 0;
   transition: 0.4s;
   text-transform: uppercase;
   font-weight: 700;
   overflow: hidden;
-  box-shadow: -0.3em 0 0 0 #373737, -0.3em 0.3em 0 0 #373737,
-    0.3em 0 0 0 #373737, 0.3em 0.3em 0 0 #373737, 0 0.3em 0 0 #373737;
-}
-
-.toggle > .left {
-  position: absolute;
   display: flex;
-  width: 50%;
-  height: 88%;
-  background-color: #f3f3f3;
-  color: #373737;
-  left: 0;
-  bottom: 0;
-  align-items: center;
-  justify-content: center;
-  transform-origin: right;
-  transform: rotateX(10deg);
-  transform-style: preserve-3d;
-  transition: all 150ms;
+  flex-direction: column;
 }
 
-.left::before {
-  position: absolute;
-  content: "";
+.toggle .toggle-canvas-container {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  background: #ffffff;
+}
+
+.toggle #particleCanvasToggle {
   width: 100%;
   height: 100%;
-  background-color: rgb(206, 206, 206);
-  transform-origin: center left;
-  transform: rotateY(90deg);
+  display: block;
+  background: #ffffff;
+  cursor: crosshair;
 }
 
-.left::after {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background-color: rgb(112, 112, 112);
-  transform-origin: center bottom;
-  transform: rotateX(90deg);
-}
-
-.toggle > .right {
-  position: absolute;
+.toggle .toggle-controls {
   display: flex;
-  width: 50%;
-  height: 88%;
-  background-color: #f3f3f3;
-  color: rgb(206, 206, 206);
-  right: 1px;
-  bottom: 0;
-  align-items: center;
   justify-content: center;
-  transform-origin: left;
-  transform: rotateX(10deg) rotateY(-45deg);
-  transform-style: preserve-3d;
-  transition: all 150ms;
+  align-items: center;
+  padding: 10px;
+  background: #f0f0f0;
+  border-top: 2px solid #000;
+  font-family: var(--font-manga);
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #000;
+  text-transform: uppercase;
 }
 
-.right::before {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background-color: rgb(206, 206, 206);
-  transform-origin: center right;
-  transform: rotateY(-90deg);
+.switch input:checked + .toggle .toggle-controls {
+  background: #487bdb;
+  color: #fff;
 }
 
-.right::after {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  background-color: rgb(112, 112, 112);
-  transform-origin: center bottom;
-  transform: rotateX(90deg);
+/* Responsive Toggle */
+@media (max-width: 768px) {
+  .switch {
+    width: 100%;
+    max-width: 18em;
+    height: 10em;
+  }
+  
+  .toggle .toggle-controls {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
 }
 
-.switch input:checked + .toggle > .left {
-  transform: rotateX(10deg) rotateY(45deg);
-  color: rgb(206, 206, 206);
-}
-
-.switch input:checked + .toggle > .right {
-  transform: rotateX(10deg) rotateY(0deg);
-  color: #487bdb;
+@media (max-width: 480px) {
+  .switch {
+    height: 8em;
+  }
+  
+  .toggle .toggle-controls {
+    font-size: 0.7rem;
+    padding: 6px;
+  }
 }
 
 /* ========================================
@@ -1432,15 +1362,15 @@
   position: relative;
   padding: 12px 24px;
   border-radius: 7px;
-  border: 1px solid rgb(61, 106, 255);
+  border: 2px solid rgb(61, 106, 255);
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 2px;
-  background: transparent;
-  color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
   overflow: hidden;
-  box-shadow: 0 0 0 0 transparent;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease-in;
   text-decoration: none;
   display: inline-flex;

@@ -34,9 +34,6 @@ export class ProfileView extends BaseView {
             <p class="subtitle">${profile.subtitle}</p>
           </div>
         </div>
-        <div class="particle-network-container">
-          <canvas id="particleCanvas"></canvas>
-        </div>
         <div class="animated-text-container">
           <div id="animatedText"></div>
         </div>
@@ -65,10 +62,14 @@ export class ProfileView extends BaseView {
         <div class="neural-toggle-container">
           <label class="switch">
             <input class="cb" type="checkbox" id="neuralToggle" />
-            <span class="toggle">
-              <span class="left">off</span>
-              <span class="right">on</span>
-            </span>
+            <div class="toggle">
+              <div class="toggle-canvas-container">
+                <canvas id="particleCanvasToggle"></canvas>
+              </div>
+              <div class="toggle-controls">
+                <span>Click to explore Neural Network</span>
+              </div>
+            </div>
           </label>
         </div>
       </div>
@@ -76,11 +77,11 @@ export class ProfileView extends BaseView {
   }
 
   afterRender() {
-    // Initialize particle network
+    // Initialize particle network in toggle
     if (this.particleNetwork) {
       this.particleNetwork.destroy();
     }
-    this.particleNetwork = new ParticleNetwork('particleCanvas');
+    this.particleNetwork = new ParticleNetwork('particleCanvasToggle');
     
     // Initialize animated text
     if (this.animatedText) {

@@ -40,7 +40,7 @@ class LogoDrawAnimation {
 
   async loadSVG() {
     try {
-      const response = await fetch('img/ddd.svg');
+      const response = await fetch('img/avatar.svg');
       const svgText = await response.text();
       
       const logoContainer = document.getElementById('logo-animated');
