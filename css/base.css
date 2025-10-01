@@ -3,19 +3,75 @@
   --bg-panel: #f5f5f5;
   --manga-black: #1a1a1a;
   --manga-red: #e74c3c;
+  --manga-red-dark: #c0392b;
   --manga-blue: #3498db;
+  --manga-green: #2ecc71;
+  --manga-yellow: #f39c12;
   --manga-gray: #bdc3c7;
   --text-main: #1a1a1a;
   --text-muted: #7f8c8d;
   --font-manga: 'Fredoka One', cursive;
+  
+  /* Manga page colors */
+  --manga-paper: #fffef5;
+  --manga-ink: #000000;
 }
 
 body {
-  background: var(--bg-main);
+  background: 
+    linear-gradient(90deg, transparent 49.5%, rgba(0,0,0,0.03) 49.5%, rgba(0,0,0,0.03) 50.5%, transparent 50.5%),
+    linear-gradient(0deg, transparent 49.5%, rgba(0,0,0,0.03) 49.5%, rgba(0,0,0,0.03) 50.5%, transparent 50.5%),
+    var(--manga-paper);
+  background-size: 50px 50px;
   color: var(--text-main);
   font-family: var(--font-manga);
   margin: 0;
   padding: 0;
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Textura de papel manga en el body */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(0,0,0,0.015) 1px, transparent 1px),
+    radial-gradient(circle at 80% 50%, rgba(0,0,0,0.015) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+/* Custom Scrollbar - Manga Style */
+::-webkit-scrollbar {
+  width: 12px;
+  background: var(--bg-panel);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-panel);
+  border-left: 2px solid var(--manga-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--manga-black);
+  border: 2px solid var(--bg-panel);
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--manga-red);
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--manga-black) var(--bg-panel);
 }

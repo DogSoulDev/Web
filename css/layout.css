@@ -3,9 +3,42 @@
   margin: 2rem auto;
   padding: 2rem;
   background: var(--bg-panel);
-  border: 2px solid var(--manga-black);
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border: 4px solid var(--manga-black);
+  border-radius: 0;
+  box-shadow: 
+    12px 12px 0 rgba(0, 0, 0, 0.3),
+    inset 0 0 0 8px var(--bg-panel),
+    inset 0 0 0 12px var(--manga-black);
+  position: relative;
+}
+
+/* Esquinas decorativas estilo manga */
+#app::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 2px dashed var(--manga-gray);
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Patrón de fondo estilo papel manga */
+#app::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 2px 2px, rgba(0,0,0,0.02) 1px, transparent 0);
+  background-size: 30px 30px;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 0;
 }
 
 .header {
@@ -21,16 +54,87 @@
   margin-bottom: 2rem;
   padding: 1.5rem;
   background: var(--bg-main);
-  border: 1px solid var(--manga-gray);
-  border-radius: 6px;
+  border: 3px solid var(--manga-black);
+  border-radius: 0;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+/* Decoración manga en las secciones */
+.section::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 30px;
+  height: 30px;
+  background: var(--manga-black);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.section::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  width: 30px;
+  height: 30px;
+  background: var(--manga-black);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
 }
 
 .section-title {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: var(--manga-black);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-align: center;
   font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+/* Línea decorativa bajo el título - estilo manga */
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 4px;
+  background: var(--manga-black);
+  box-shadow: 0 6px 0 var(--manga-black);
+}
+
+/* Estrellas decorativas en los títulos */
+.section-title::before {
+  content: '★';
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  transform: translateY(-50%) rotate(-15deg);
+  font-size: 1.5rem;
+  color: var(--manga-red);
+  opacity: 0.6;
+}
+
+.projects .section-title::before {
+  content: '⚡';
+}
+
+.education .section-title::before {
+  content: '📚';
+}
+
+.contact .section-title::before {
+  content: '✉';
+}
+
+.notes .section-title::before {
+  content: '🧠';
 }
 
 /* Responsive Design */
