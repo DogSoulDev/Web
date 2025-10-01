@@ -39,7 +39,10 @@ export class ProjectsView extends BaseView {
                   </div>
                   <div class="project-actions">
                     <a href="${this.escapeHtml(project.url)}" target="_blank" class="view-project-btn">
-                      <span>View Project</span>
+                      <span class="circle" aria-hidden="true">
+                        <span class="icon arrow"></span>
+                      </span>
+                      <span class="button-text">View Project</span>
                     </a>
                   </div>
                 </div>
