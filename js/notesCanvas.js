@@ -355,5 +355,6 @@ class NetworkVisualization {
   }
 }
 
-// Exportar para uso global
-window.NetworkVisualization = NetworkVisualization;
+// Exportar como módulo ES6
+export default NetworkVisualization;
+export { NetworkVisualization };

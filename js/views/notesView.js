@@ -29,9 +29,13 @@ export class NotesView {
   }
 
   afterRender() {
-    if (typeof NetworkVisualization !== 'undefined') {
+    // Importar dinámicamente el módulo de visualización
+    import('../notesCanvas.js').then(module => {
       const notes = this.model.getNotes();
+      const NetworkVisualization = module.default || module.NetworkVisualization;
       new NetworkVisualization('networkCanvas', notes);
-    }
+    }).catch(error => {
+      console.error('Error loading NetworkVisualization:', error);
+    });
   }
 }
