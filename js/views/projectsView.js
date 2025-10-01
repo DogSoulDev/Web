@@ -7,14 +7,6 @@ export class ProjectsView {
 
   async render() {
     const projects = await this.model.getProjects();
-    const cardVariations = [
-      { theme: 'fire', sound: 'BOOM!', color: 'red', size: 'large' },
-      { theme: 'electric', sound: 'ZAP!', color: 'blue', size: 'medium' },
-      { theme: 'wind', sound: 'SWISH!', color: 'green', size: 'small' },
-      { theme: 'earth', sound: 'CRASH!', color: 'brown', size: 'large' },
-      { theme: 'water', sound: 'SPLASH!', color: 'cyan', size: 'medium' },
-      { theme: 'light', sound: 'FLASH!', color: 'yellow', size: 'small' }
-    ];
 
     const getIcon = (tech) => {
       const iconMap = {
@@ -33,50 +25,68 @@ export class ProjectsView {
     };
 
     return `
-      <div class="section projects manga-background">
-        <div class="manga-page-border">
-          <h2 class="section-title manga-title">Projects</h2>
-          <div class="projects-manga-flow">
-            ${projects.map((project, index) => {
-              const variation = cardVariations[index % cardVariations.length];
-              const primaryTech = project.tech[0];
-              const icon = getIcon(primaryTech);
-              return `
-                <div class="comic-panel project-panel ${variation.theme} ${variation.size}">
-                  <div class="panel-header">
-                    <span class="panel-number">${index + 1}</span>
-                    <span class="sound-effect ${variation.color}">${variation.sound}</span>
+      <div class="section projects">
+        <h2 class="section-title">Projects</h2>
+        <main class="projects-main" style="display: none;">
+          ${projects.map((project, index) => {
+            const primaryTech = project.tech[0];
+            const icon = getIcon(primaryTech);
+            const extraSpans = index === 2 ? '<span></span><span></span>' : '';
+            return `
+              <button class="project-panel" data-index="${index}">
+                <div class="project-video">
+                  <div class="project-icon-container">
+                    <img class="project-icon" src="icons/${icon}" alt="${primaryTech}" />
                   </div>
-                  <div class="project-content">
-                    <div class="project-icon-container">
-                      <img class="project-icon" src="icons/${icon}" alt="${primaryTech}" />
-                    </div>
-                    <h3 class="project-title">${project.title}</h3>
-                    <div class="speech-bubble project-desc ${variation.theme}-bubble">
-                      <p>${project.description}</p>
-                    </div>
-                    <div class="tech-stack">
-                      ${project.tech.map(tech => `<span class="tech-badge ${variation.color}">${tech}</span>`).join('')}
-                    </div>
-                    <div class="project-actions">
-                      <a href="${project.url}" target="_blank" class="project-link ${variation.color}">
-                        <span class="link-text">VIEW</span>
-                        <span class="action-lines">▶▶▶</span>
-                      </a>
-                    </div>
+                  <h3 class="project-title">${project.title}</h3>
+                  <p class="project-description">${project.description}</p>
+                  <div class="tech-stack">
+                    ${project.tech.map(tech => `<span class="tech-badge">${tech}</span>`).join('')}
                   </div>
-                  <div class="panel-footer">
-                    <div class="speed-lines ${variation.theme}"></div>
-                  </div>
+                  <a href="${project.url}" target="_blank" class="project-link">VIEW PROJECT</a>
                 </div>
-              `;
-            }).join('')}
-          </div>
-          <div class="manga-page-footer">
-            <div class="page-number">PAGE 1</div>
-            <div class="manga-decoration">✦ ✦ ✦</div>
-          </div>
-        </div>
+                <span></span>
+                ${extraSpans}
+              </button>
+            `;
+          }).join('')}
+        </main>
+        <script>
+          let isVideoPlaying = false;
+
+          function startVideo(panel) {
+            isVideoPlaying = true;
+            let video = panel.querySelector(".project-video");
+            video.classList.add("is-playing");
+            panel.setAttribute("disabled", "");
+            // Simulate video duration
+            setTimeout(() => {
+              enableVideo(panel);
+            }, 4000); // 4 seconds to show content
+          }
+
+          function enableVideo(panel) {
+            isVideoPlaying = false;
+            panel.removeAttribute("disabled");
+            panel.classList.remove("is-playing");
+            panel.classList.add("is-ended");
+            let video = panel.querySelector(".project-video");
+            video.classList.remove("is-playing");
+          }
+
+          document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".project-panel").forEach((panel) => {
+              panel.addEventListener("click", () => {
+                if (!isVideoPlaying) startVideo(panel);
+              });
+            });
+
+            // Show the main after "loading"
+            setTimeout(() => {
+              document.querySelector(".projects-main").removeAttribute("style");
+            }, 500);
+          });
+        </script>
       </div>
     `;
   }
