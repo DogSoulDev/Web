@@ -18,8 +18,21 @@ class NetworkVisualization {
     }
     
     this.ctx = this.canvas.getContext('2d');
+    if (!this.ctx) {
+      throw new Error('Failed to get 2D context from canvas');
+    }
+    
     this.data = data;
     this.config = data.config;
+    
+    // Validate data structure
+    if (!this.data.nodes || !Array.isArray(this.data.nodes) || this.data.nodes.length === 0) {
+      throw new Error('Invalid data: nodes array is required');
+    }
+    
+    if (!this.config) {
+      throw new Error('Invalid data: config object is required');
+    }
     
     // 3D space properties
     this.nodes = [];
@@ -287,8 +300,22 @@ class NetworkVisualization {
    */
   resize() {
     const container = this.canvas.parentElement;
-    this.canvas.width = container.clientWidth;
-    this.canvas.height = Math.max(container.clientHeight, CANVAS.MIN_HEIGHT);
+    if (!container) {
+      console.error('Canvas container not found');
+      return;
+    }
+    
+    const width = container.clientWidth || 800;
+    const height = Math.max(container.clientHeight, CANVAS.MIN_HEIGHT);
+    
+    if (width > 0 && height > 0) {
+      this.canvas.width = width;
+      this.canvas.height = height;
+    } else {
+      // Fallback dimensions
+      this.canvas.width = 800;
+      this.canvas.height = CANVAS.MIN_HEIGHT;
+    }
   }
   
   /**
