@@ -29,6 +29,8 @@
   height: auto;
   filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.2));
   transition: width 0.3s ease;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Estilos para los paths del SVG */
@@ -76,7 +78,7 @@
   }
 }
 
-/* Responsive */
+/* Responsive - Modern Devices (2024-2025) */
 @media (max-width: 1024px) {
   #logo-animated {
     width: 70%;
@@ -84,6 +86,15 @@
   }
 }
 
+/* Tablets & Foldable Open (iPad, Z Fold open) */
+@media (max-width: 884px) {
+  #logo-animated {
+    width: 72%;
+    max-width: 420px;
+  }
+}
+
+/* Small Tablets & Foldable Exterior (Z Fold exterior) */
 @media (max-width: 768px) {
   #logo-animated {
     width: 75%;
@@ -100,7 +111,38 @@
   }
 }
 
-@media (max-width: 480px) {
+/* Foldable Closed (Galaxy Z Flip closed) */
+@media (max-width: 540px) {
+  #logo-animated {
+    width: 80%;
+    max-width: 360px;
+  }
+  
+  .loading-text {
+    font-size: 1.1rem;
+    bottom: 70px;
+  }
+}
+
+/* Large Modern Phones (iPhone Pro Max, Samsung S24 Ultra) */
+@media (max-width: 430px) {
+  #logo-animated {
+    width: 82%;
+    max-width: 340px;
+  }
+  
+  .loading-text {
+    font-size: 1.05rem;
+    bottom: 65px;
+  }
+  
+  #logo-animated path {
+    stroke-width: 1.8;
+  }
+}
+
+/* Standard Modern Phones (iPhone 14/15, Samsung S23/S24) */
+@media (max-width: 393px) {
   #logo-animated {
     width: 85%;
     max-width: 320px;
@@ -112,18 +154,40 @@
   }
   
   #logo-animated path {
+    stroke-width: 1.6;
+  }
+}
+
+/* Small Phones (iPhone SE, older Samsung) */
+@media (max-width: 360px) {
+  #logo-animated {
+    width: 88%;
+    max-width: 290px;
+  }
+  
+  .loading-text {
+    font-size: 0.95rem;
+    bottom: 55px;
+  }
+  
+  #logo-animated path {
     stroke-width: 1.5;
   }
 }
 
-@media (max-width: 360px) {
+/* Very Small Devices */
+@media (max-width: 320px) {
   #logo-animated {
     width: 90%;
-    max-width: 280px;
+    max-width: 260px;
   }
   
   .loading-text {
-    font-size: 0.9rem;
-    bottom: 50px;
+    font-size: 0.85rem;
+    bottom: 45px;
+  }
+  
+  #logo-animated path {
+    stroke-width: 1.3;
   }
 }

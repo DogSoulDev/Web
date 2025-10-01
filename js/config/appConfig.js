@@ -11,13 +11,21 @@
  * Responsive breakpoints
  * Used across CSS and JavaScript
  * Must match CSS custom properties in base.css
+ * Updated for modern devices (2024-2025):
+ * - Foldables: Samsung Galaxy Z Flip/Fold, Pixel Fold
+ * - Modern phones: iPhone 14/15, Samsung S23/S24
+ * - Tablets: iPad, Samsung Tab
  */
 export const BREAKPOINTS = {
-  MOBILE_SMALL: 360,
-  MOBILE: 480,
-  TABLET: 768,
-  DESKTOP: 1024,
-  DESKTOP_LARGE: 1440
+  MOBILE_TINY: 280,        // Very small devices
+  MOBILE_SMALL: 360,       // Standard small phones
+  MOBILE: 393,             // Modern phones (iPhone 14/15, Samsung S23)
+  MOBILE_LARGE: 430,       // Large phones (iPhone Pro Max)
+  FOLDABLE_CLOSED: 540,    // Foldable phones closed (Z Flip)
+  TABLET_SMALL: 768,       // Small tablets, foldable exterior (Z Fold)
+  TABLET: 884,             // Tablets, foldable open
+  DESKTOP: 1024,           // Foldable interior, small desktop
+  DESKTOP_LARGE: 1440      // Large desktop
 };
 
 /**
@@ -110,8 +118,12 @@ export function isViewportBelow(breakpoint) {
 export function getResponsiveValue(values) {
   const width = window.innerWidth;
   
+  if (width <= BREAKPOINTS.MOBILE_TINY) return values.mobileTiny || values.mobileSmall || values.mobile || values.default;
   if (width <= BREAKPOINTS.MOBILE_SMALL) return values.mobileSmall || values.mobile || values.default;
   if (width <= BREAKPOINTS.MOBILE) return values.mobile || values.default;
+  if (width <= BREAKPOINTS.MOBILE_LARGE) return values.mobileLarge || values.mobile || values.default;
+  if (width <= BREAKPOINTS.FOLDABLE_CLOSED) return values.foldableClosed || values.tablet || values.default;
+  if (width <= BREAKPOINTS.TABLET_SMALL) return values.tabletSmall || values.tablet || values.default;
   if (width <= BREAKPOINTS.TABLET) return values.tablet || values.default;
   if (width <= BREAKPOINTS.DESKTOP) return values.desktop || values.default;
   

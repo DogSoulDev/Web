@@ -30,10 +30,15 @@
   --manga-paper: #fffef5;
   --manga-ink: #000000;
   
-  /* Responsive breakpoints (for CSS calculations) */
+  /* Responsive breakpoints (for CSS calculations)
+     Updated for 2024-2025 devices including foldables */
+  --breakpoint-mobile-tiny: 280px;
   --breakpoint-mobile-small: 360px;
-  --breakpoint-mobile: 480px;
-  --breakpoint-tablet: 768px;
+  --breakpoint-mobile: 393px;
+  --breakpoint-mobile-large: 430px;
+  --breakpoint-foldable-closed: 540px;
+  --breakpoint-tablet-small: 768px;
+  --breakpoint-tablet: 884px;
   --breakpoint-desktop: 1024px;
   --breakpoint-desktop-large: 1440px;
   
