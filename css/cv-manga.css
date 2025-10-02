@@ -324,7 +324,7 @@
 }
 
 /* Borde de panel tradicional */
-.panel-border {
+.cv-manga-container .panel-border {
   position: absolute;
   inset: 0;
   border: 6px solid #000;
@@ -335,8 +335,8 @@
     8px 8px 0 rgba(0,0,0,0.15);
 }
 
-/* Contenido del panel */
-.panel-content {
+/* Contenido del panel (solo para CV) */
+.cv-manga-container .panel-content {
   position: relative;
   height: 100%;
   display: flex;
@@ -344,25 +344,24 @@
   justify-content: center;
   align-items: center;
   padding: 30px 20px;
+  background: #fff;
+}
+
+.cv-manga-container .panel-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: 
     radial-gradient(circle at 20% 20%, transparent 1px, #000 1px, #000 2px, transparent 2px),
     radial-gradient(circle at 80% 80%, transparent 1px, #000 1px, #000 2px, transparent 2px);
   background-size: 8px 8px;
   background-position: 0 0, 4px 4px;
-  background-color: #fff;
   opacity: 0.03;
-}
-
-.panel-content::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #fff;
-  opacity: 0.97;
   z-index: 0;
+  pointer-events: none;
 }
 
-.panel-content > * {
+.cv-manga-container .panel-content > * {
   position: relative;
   z-index: 1;
 }
@@ -402,18 +401,18 @@
 }
 
 /* Icono grande del panel */
-.panel-icon {
+.cv-manga-container .panel-icon {
   font-size: 80px;
   margin: 20px 0;
   filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.1));
 }
 
 /* Texto del panel */
-.panel-text {
+.cv-manga-container .panel-text {
   text-align: center;
 }
 
-.panel-title {
+.cv-manga-container .panel-title {
   font-size: 24px;
   font-weight: 900;
   color: #000;
@@ -426,7 +425,7 @@
     -1px -1px 0 rgba(0,0,0,0.1);
 }
 
-.panel-subtitle {
+.cv-manga-container .panel-subtitle {
   font-size: 14px;
   color: #666;
   font-weight: 700;
@@ -572,7 +571,7 @@
   z-index: 2;
 }
 
-.panel-thick-border {
+.cv-manga-container .panel-thick-border {
   border: 8px solid #000;
   background: #fff;
   padding: 50px 40px;
@@ -583,22 +582,22 @@
   position: relative;
 }
 
-.panel-thick-border::before,
-.panel-thick-border::after {
+.cv-manga-container .panel-thick-border::before,
+.cv-manga-container .panel-thick-border::after {
   content: '';
   position: absolute;
   background: #d32f2f;
   z-index: -1;
 }
 
-.panel-thick-border::before {
+.cv-manga-container .panel-thick-border::before {
   top: -4px;
   left: -4px;
   right: -4px;
   height: 4px;
 }
 
-.panel-thick-border::after {
+.cv-manga-container .panel-thick-border::after {
   left: -4px;
   top: -4px;
   bottom: -4px;
@@ -870,3 +869,4 @@
     font-size: 18px;
   }
 }
+
