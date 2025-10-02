@@ -26,15 +26,22 @@
 }
 
 #logo-animated {
-  width: 60%;
-  max-width: 500px;
-  max-height: 70vh;
+  width: min(70vw, 400px);
   height: auto;
+  max-width: 400px;
+  max-height: min(60svh, 400px);
   filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.2));
   transition: width 0.3s ease;
   display: block;
   margin: 0 auto;
   object-fit: contain;
+}
+
+#logo-animated svg {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* Estilos para los paths del SVG */
@@ -83,73 +90,36 @@
 }
 
 /* Responsive - Modern Devices (2024-2025) */
-@media (max-width: 1024px) {
+/* Using mobile-first approach with modern viewport units */
+
+/* Tablets and larger */
+@media (min-width: 768px) {
   #logo-animated {
-    width: 70%;
-    max-width: 450px;
+    width: min(60vw, 450px);
+    max-height: min(65svh, 450px);
   }
 }
 
-/* Tablets & Foldable Open (iPad, Z Fold open) */
-@media (max-width: 884px) {
+@media (min-width: 1024px) {
   #logo-animated {
-    width: 72%;
-    max-width: 420px;
-  }
-}
-
-/* Small Tablets & Foldable Exterior (Z Fold exterior) */
-@media (max-width: 768px) {
-  #logo-animated {
-    width: 75%;
-    max-width: 400px;
-  }
-  
-  .loading-text {
-    font-size: 1.2rem;
-    bottom: 80px;
+    width: min(50vw, 500px);
+    max-height: min(70svh, 500px);
   }
   
   .logo-animation-container {
-    padding: 20px;
+    padding: 40px 20px;
   }
 }
 
-/* Foldable Closed (Galaxy Z Flip closed) */
-@media (max-width: 540px) {
-  #logo-animated {
-    width: 80%;
-    max-width: 360px;
+/* Mobile devices - Universal fix */
+@media (max-width: 767px) {
+  .logo-animation-container {
+    padding: 20px 15px;
   }
   
-  .loading-text {
-    font-size: 1.1rem;
-    bottom: 70px;
-  }
-}
-
-/* Large Modern Phones (iPhone Pro Max, Samsung S24 Ultra) */
-@media (max-width: 430px) {
   #logo-animated {
-    width: 82%;
-    max-width: 340px;
-  }
-  
-  .loading-text {
-    font-size: 1.05rem;
-    bottom: 65px;
-  }
-  
-  #logo-animated path {
-    stroke-width: 1.8;
-  }
-}
-
-/* Standard Modern Phones (iPhone 14/15, Samsung S23/S24) */
-@media (max-width: 393px) {
-  #logo-animated {
-    width: 85%;
-    max-width: 320px;
+    width: min(75vw, 320px);
+    max-height: min(50svh, 320px);
   }
   
   .loading-text {
@@ -158,80 +128,65 @@
   }
   
   #logo-animated path {
+    stroke-width: 1.8;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 430px) {
+  #logo-animated {
+    width: min(80vw, 280px);
+    max-height: min(45svh, 280px);
+  }
+  
+  .loading-text {
+    font-size: 0.9rem;
+    bottom: 50px;
+  }
+  
+  #logo-animated path {
     stroke-width: 1.6;
   }
 }
 
-/* Small Phones (iPhone SE, older Samsung) */
+/* Very narrow screens (Foldables, small phones) */
 @media (max-width: 360px) {
+  .logo-animation-container {
+    padding: 15px 10px;
+  }
+  
   #logo-animated {
-    width: 88%;
-    max-width: 290px;
+    width: min(85vw, 240px);
+    max-height: min(40svh, 240px);
   }
   
   .loading-text {
-    font-size: 0.95rem;
-    bottom: 55px;
+    font-size: 0.8rem;
+    bottom: 40px;
   }
   
   #logo-animated path {
-    stroke-width: 1.5;
+    stroke-width: 1.4;
   }
 }
 
-/* Very Small Devices */
-@media (max-width: 320px) {
-  #logo-animated {
-    width: 90%;
-    max-width: 260px;
-  }
-  
-  .loading-text {
-    font-size: 0.85rem;
-    bottom: 45px;
-  }
-  
-  #logo-animated path {
-    stroke-width: 1.3;
-  }
-}
-
-/* Galaxy Z Fold 6 Cover Display (Extra Narrow ~280px width, tall ~968px height) */
+/* Extra narrow screens (Galaxy Z Fold 6 cover display) */
 @media (max-width: 280px) {
   .logo-animation-container {
-    padding: 10px 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    padding: 10px 8px;
   }
   
   #logo-animated {
-    width: 85%;
-    max-width: 230px;
-    max-height: 230px;
-    height: auto;
+    width: min(90vw, 220px);
+    max-height: min(35svh, 220px);
   }
   
   .loading-text {
-    font-size: 0.65rem;
-    position: static;
-    margin-top: 10px;
-    bottom: auto;
+    font-size: 0.7rem;
+    bottom: 30px;
   }
   
   #logo-animated path {
-    stroke-width: 1;
-  }
-}
-
-/* Extra safeguard for very narrow screens */
-@media (max-width: 280px) and (min-height: 800px) {
-  /* For tall narrow screens like Z Fold 6 cover display */
-  #logo-animated {
-    width: 80%;
-    max-width: 210px;
-    max-height: 210px;
+    stroke-width: 1.2;
   }
 }

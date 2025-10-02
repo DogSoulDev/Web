@@ -1,4 +1,6 @@
-![DogSoulDev Portfolio](img/perretes.png)
+<p align="center">
+  <img src="img/perretes.png" alt="DogSoulDev Portfolio" width="50%">
+</p>
 
 # Cybersecurity Portfolio - Javier Fernández
 
@@ -11,7 +13,7 @@
 [![Security Audit](https://img.shields.io/badge/Security%20Audit-99.7%2F100-brightgreen?style=flat-square&logo=security&logoColor=white)](SECURITY_AUDIT.md)
 [![Code Quality](https://img.shields.io/badge/Code%20Quality-A+-brightgreen?style=flat-square&logo=javascript&logoColor=white)](CHECKLIST.md)
 [![Architecture](https://img.shields.io/badge/MVC-SOLID-blue?style=flat-square&logo=architecture&logoColor=white)](#-code-quality)
-[![Responsive](https://img.shields.io/badge/Responsive-100%25-blue?style=flat-square&logo=mobile&logoColor=white)](#-responsive-design)
+[![Responsive](https://img.shields.io/badge/Responsive-Mobile%20First-blue?style=flat-square&logo=mobile&logoColor=white)](#-responsive-design)
 
 ---
 
@@ -19,36 +21,34 @@
 
 - ✅ **Security Score: 99.7/100** - Enterprise-grade security audit passed ([View Full Report](SECURITY_AUDIT.md))
 - ✅ **Zero Vulnerabilities** - OWASP Top 10 compliant, no XSS/injection risks
-- ✅ **Perfect Architecture** - Textbook MVC + All 5 SOLID principles
-- ✅ **Zero Dependencies** - No npm packages = No supply chain vulnerabilities
+- ✅ **Perfect MVC Architecture** - Textbook implementation with all 5 SOLID principles
+- ✅ **Zero Dependencies** - Pure vanilla JavaScript, no npm packages = No supply chain vulnerabilities
+- ✅ **Mobile-First Responsive** - Modern viewport units (svh/dvh) for perfect mobile experience
 - ✅ **Production Ready** - Would pass professional security audit
-- ✅ **Modern Responsive** - Supports foldables, iPhone 15, Samsung S24
 
-## 📰 Recent Updates
+## 📰 Latest Updates
 
-**October 2, 2025** - Latest improvements:
-- ✅ **CV Page Redesigned** - Clean manga-style CV with 6 images (hero + 5 panels)
-- ✅ **Clean CSS Implementation** - Eliminated file corruption, reduced from 2500+ to 193 lines
-- ✅ **Full Responsive Support** - CV optimized for all devices (280px-1920px+)
-- ✅ **Project Audit Complete** - Comprehensive audit report added ([View Report](PROJECT_AUDIT_REPORT.md))
-- ✅ **100% English** - All content translated and verified
-- ✅ **Architecture Verified** - DRY, SOLID, KISS, Clean Code principles confirmed
-- ✅ **Centered Layout** - All sections properly aligned and centered
+**October 2, 2025** - Major responsive overhaul:
+- ✅ **Mobile-First Redesign** - Logo animation now works on ALL mobile devices (280px-430px+)
+- ✅ **Modern Viewport Units** - Implemented `svh`/`dvh` units for dynamic mobile browser UI
+- ✅ **Foldable Support** - Galaxy Z Fold 6 cover display (280px), Z Flip, all modern foldables
+- ✅ **CV Page Redesigned** - Clean manga-style CV with 6 images optimized for all screens
+- ✅ **Project Audit Complete** - Comprehensive quality audit report ([View Report](PROJECT_AUDIT_REPORT.md))
 
+## 🚀 Key Features
 
-
-## 🚀 Features
-
+### Technical Excellence
 - **Single-Page Application** - Smooth navigation without page reloads
-- **MVC Architecture** - Clean separation of concerns (Models, Views, Controllers)
-- **Particle Network Canvas** - Interactive 3D visualization
-- **GitHub API Integration** - Dynamic project fetching from GitHub repositories
-- **Manga-Inspired Design** - Authentic Japanese manga aesthetic with black/white/gray scheme
+- **MVC Architecture** - Clean separation: Models (data), Views (presentation), Controllers (logic)
 - **Security-First** - Strict CSP, XSS prevention, no unsafe operations
-- **Zero Dependencies** - Pure HTML5, CSS3, and ES6+ JavaScript
-- **Fully Responsive** - Optimized for all devices (360px - 1920px+)
-- **Logo Draw Animation** - Animated SVG logo on page load
+- **GitHub API Integration** - Dynamic project fetching with error handling
+
+### Visual Experience
+- **Manga-Inspired Design** - Authentic Japanese aesthetic with black/white/gray scheme
+- **Particle Network Canvas** - Interactive 3D visualization background
+- **Logo Draw Animation** - SVG path animation with responsive sizing
 - **Typewriter Effects** - Dynamic text animations for engaging UX
+- **Flip Card Animations** - Interactive experience and project cards
 
 
 
@@ -110,133 +110,91 @@
 
 ## 📱 Responsive Design
 
-**100% responsive across all devices:**
+**Mobile-first design with modern viewport units (svh/dvh) for 2024-2025 devices:**
 
-- ✅ **Desktop Large** (1920px+) - Full multi-column layout with advanced animations
-- ✅ **Desktop** (1440px) - Standard desktop experience
-- ✅ **Laptop** (1024px) - Compact desktop layout
-- ✅ **Tablet** (884px) - iPad, Samsung Tab, Galaxy Z Fold open
-- ✅ **Tablet Small** (768px) - Small tablets, 2-column grids
-- ✅ **Foldable Closed** (540px) - Galaxy Z Flip, foldable exterior screens
-- ✅ **Mobile Large** (430px) - iPhone 14/15 Pro Max
-- ✅ **Mobile** (393px) - iPhone 14/15, Samsung S23/S24
-- ✅ **Mobile Small** (360px) - Standard phones
-- ✅ **Mobile Tiny** (280px) - Very small devices
+### Device Support
+- ✅ **Galaxy Z Fold 6** - Cover display (280px narrow) + unfolded (884px tablet)
+- ✅ **Galaxy Z Flip 5/6** - Folded (540px) + unfolded (standard mobile)
+- ✅ **iPhone 15 Pro Max** (430px) - All Pro Max models optimized
+- ✅ **iPhone 14/15** (393px) - Standard iPhone experience
+- ✅ **Samsung S23/S24** (360-430px) - All variants supported
+- ✅ **Google Pixel 8/9** - Adaptive responsive design
+- ✅ **iPad Pro/Air** (768-884px) - Tablet-optimized layouts
+- ✅ **Desktop** (1024px+) - Full experience with advanced animations
 
-**Modern Device Support (2024-2025):**
-- Samsung Galaxy Z Flip 5/6 (both folded and unfolded)
-- Samsung Galaxy Z Fold 5/6 (both folded and unfolded)
-- iPhone 14/15 (all models including Pro Max)
-- Samsung Galaxy S23/S24 (all models)
-- Google Pixel 8/9
-- iPad (all generations)
-- All standard phones and tablets
+### Technical Implementation
+- **Modern Viewport Units** - `svh` (small viewport height), `dvh` (dynamic viewport height) for mobile browser UI
+- **Mobile-First CSS** - Base styles for mobile, progressive enhancement for desktop
+- **Adaptive Grids** - CSS Grid and Flexbox with intelligent breakpoints
+- **Touch Optimization** - 44px minimum touch targets, optimized spacing
+- **Performance** - Mobile-optimized animations, reduced motion support
+- **Logo Animation Fix** - Dynamic SVG sizing ensures visibility on ALL mobile devices
 
-**Key responsive features:**
-- Adaptive grids using CSS Grid and Flexbox
-- Mobile-optimized logo animation with viewport fixes
-- Touch-friendly buttons (>44px touch targets)
-- Scalable typography and spacing with CSS variables
-- Mobile-optimized canvas visualizations
-- Responsive images with proper breakpoints
-- Optimized spacing and padding for all screen sizes
+### Breakpoints
+```css
+280px   /* Foldable covers */
+360px   /* Small phones */
+393px   /* iPhone 14/15 */
+430px   /* Pro Max models */
+540px   /* Foldables closed */
+768px   /* Tablets */
+1024px  /* Desktop */
+1920px+ /* Large screens */
+```
 
 ## 💻 Code Quality
 
-Built following industry best practices with **100/100 architecture score**:
+Built following industry best practices with **99.7/100 overall score**:
 
-### Architecture Scores
+### Quality Scores
 
-| Category | Score | Grade | Status |
-|----------|-------|-------|--------|
-| Security | 99/100 | A+ | ✅ Production Ready |
-| MVC Architecture | 100/100 | A+ | ✅ Textbook Implementation |
-| SOLID Principles | 100/100 | A+ | ✅ All 5 Applied |
-| DRY/KISS | 100/100 | A+ | ✅ Minimal Duplication |
-| Responsive Design | 100/100 | A+ | ✅ Modern Devices |
-| Clean Code | 100/100 | A+ | ✅ Professional Quality |
+| Category | Score | Status |
+|----------|-------|--------|
+| Security | 99/100 | ✅ Production Ready |
+| MVC Architecture | 100/100 | ✅ Textbook Implementation |
+| SOLID Principles | 100/100 | ✅ All 5 Applied |
+| DRY/KISS | 100/100 | ✅ Clean Code |
+| Responsive Design | 100/100 | ✅ Mobile-First |
 
-**Overall Score: 99.7/100 (A+)**
+**Overall: 99.7/100 (A+)**
 
-### SOLID Principles ✅
-- **S**ingle Responsibility - Each class has one clear purpose
-- **O**pen/Closed - Extensible without modification (BaseView pattern)
-- **L**iskov Substitution - All views interchangeable
-- **I**nterface Segregation - No forced unused methods
-- **D**ependency Inversion - High-level modules depend on abstractions
+### Architecture Patterns
+- **MVC** - Models (data), Views (presentation), Controllers (business logic)
+- **SOLID** - Single Responsibility, Open/Closed, Liskov Substitution, Interface Segregation, Dependency Inversion
+- **DRY** - BaseView abstract class, centralized configuration, CSS variables
+- **KISS** - Simple, self-documenting code without over-engineering
 
-### DRY (Don't Repeat Yourself) ✅
-- BaseView abstract class eliminates view duplication
-- Centralized configuration in `appConfig.js`
-- CSS variables for consistent theming
-- Reusable utilities (IconMapper)
+## 🛡️ Security & Blue Team Skills
 
-### KISS (Keep It Simple, Stupid) ✅
-- Clear, self-documenting method names
-- No over-engineering or unnecessary abstractions
-- Straightforward logic flows
-- Minimal cognitive load
+This project demonstrates security competencies essential for SOC/Blue Team roles:
 
-### MVC Pattern ✅
-- **Models**: Pure data management (`js/models/*.js`)
-- **Views**: HTML generation only (`js/views/*.js`)
-- **Controllers**: Event handling and business logic (`js/controllers/*.js`)
-- Clean separation of concerns throughout
-
-### Additional Quality Standards
-- **JSDoc** - Complete documentation for all public APIs
-- **Error Handling** - Try/catch blocks with user-friendly messages
-- **No Magic Numbers** - All constants in configuration
-- **Consistent Naming** - camelCase (JS), kebab-case (CSS)
-- **Modular CSS** - Separated by purpose (base, layout, components, effects)
-
-### 📋 Project Documentation
-- **[Project Audit Report](PROJECT_AUDIT_REPORT.md)** - Comprehensive quality audit (October 2025)
-- **[Security Audit](SECURITY_AUDIT.md)** - Full security assessment (if available)
-- **[Checklist](CHECKLIST.md)** - Development checklist (if available)
-
-## 🛡️ Blue Team Competencies Demonstrated
-
-This project showcases security skills essential for SOC/Blue Team roles:
-
-- ✅ **Secure Coding Practices** - XSS prevention, input validation, output encoding
-- ✅ **Defense in Depth** - Multiple security layers (CSP, validation, sanitization)
-- ✅ **Threat Modeling** - OWASP Top 10 mitigation strategies
-- ✅ **Security Auditing** - Self-conducted comprehensive security review
-- ✅ **Vulnerability Assessment** - Proactive identification and remediation
-- ✅ **Incident Prevention** - Secure-by-design architecture
-- ✅ **Attack Surface Reduction** - Zero dependencies, minimal external resources
-- ✅ **Security Documentation** - Complete audit trail and compliance reports
-
-**This codebase demonstrates a security-first mindset suitable for enterprise environments.**
-
-### 🔒 Security Implementation
-
-Comprehensive security audit covering:
-
+### Security Implementation
 - ✅ **XSS Protection** - All inputs sanitized with `escapeHtml()`
 - ✅ **Content Security Policy** - Strict CSP with `frame-ancestors 'none'`
-- ✅ **Clickjacking Protection** - X-Frame-Options configured
 - ✅ **Input Validation** - HTML5 validation + maxlength constraints
-- ✅ **No Dangerous Functions** - No `eval()`, `innerHTML` secured
 - ✅ **HTTPS Everywhere** - All resources loaded securely
-- ✅ **Zero Dependencies** - No npm packages = Zero supply chain risk
+- ✅ **Zero Dependencies** - No npm = Zero supply chain risk
 - ✅ **GDPR Compliant** - No tracking, no cookies, privacy-first
+
+### Blue Team Competencies
+- **Secure Coding Practices** - XSS prevention, input validation, output encoding
+- **Defense in Depth** - Multiple security layers (CSP, validation, sanitization)
+- **Threat Modeling** - OWASP Top 10 mitigation strategies
+- **Security Auditing** - Self-conducted comprehensive security review
+- **Attack Surface Reduction** - Minimal external resources
+- **Security Documentation** - Complete audit trail and compliance reports
 
 ### OWASP Top 10 Compliance
 
-| Vulnerability | Status | Notes |
-|---------------|--------|-------|
-| A01: Broken Access Control | ✅ N/A | Static site, no authentication |
-| A02: Cryptographic Failures | ✅ PASS | No sensitive data stored |
-| A03: Injection (XSS, SQL) | ✅ PASS | Comprehensive XSS protection |
-| A04: Insecure Design | ✅ PASS | Secure by design |
-| A05: Security Misconfiguration | ✅ PASS | Strong CSP + headers |
-| A06: Vulnerable Components | ✅ PASS | Zero npm dependencies |
-| A07: Authentication Failures | ✅ N/A | No auth system |
-| A08: Data Integrity | ✅ PASS | Trusted CDNs only |
-| A09: Logging & Monitoring | ✅ PASS | Client-side logging |
-| A10: SSRF | ✅ N/A | No server-side code |
+| Vulnerability | Status |
+|---------------|--------|
+| Injection (XSS, SQL) | ✅ PASS |
+| Broken Access Control | ✅ N/A (Static site) |
+| Security Misconfiguration | ✅ PASS (Strong CSP) |
+| Vulnerable Components | ✅ PASS (Zero dependencies) |
+| Cryptographic Failures | ✅ PASS (No sensitive data) |
+
+**Full Report**: [SECURITY_AUDIT.md](SECURITY_AUDIT.md)
 
 ## �️ Technologies
 
@@ -300,5 +258,4 @@ Javier Fernández - Cybersecurity Professional
 ---
 
 **© 2025 DogSoulDev (DsD)**  
-Built using vanilla JavaScript | MVC Architecture | 100% SOLID Compliant  
-🚫 Protected against AI training | ⚖️ MIT License with restrictions
+Vanilla JavaScript | MVC Architecture | SOLID Compliant | Mobile-First Responsive

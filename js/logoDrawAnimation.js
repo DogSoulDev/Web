@@ -74,6 +74,24 @@ class LogoDrawAnimation {
       rect.style.display = 'none';
     }
 
+    // Force proper SVG dimensions for mobile devices
+    if (window.innerWidth <= 767) {
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate safe size based on smallest viewport dimension
+      // Using svh equivalent calculation as fallback
+      const safeHeight = viewportHeight * 0.5; // 50% of viewport height
+      const safeWidth = viewportWidth * 0.8; // 80% of viewport width
+      const maxSize = Math.min(safeHeight, safeWidth, 320); // Never exceed 320px
+      
+      // Apply dimensions to ensure visibility
+      this.svg.setAttribute('width', maxSize);
+      this.svg.setAttribute('height', maxSize);
+      this.svg.style.maxWidth = `${maxSize}px`;
+      this.svg.style.maxHeight = `${maxSize}px`;
+    }
+
     // Obtener TODOS los paths del SVG (incluso en grupos anidados)
     const paths = this.svg.querySelectorAll('path');
     
@@ -93,7 +111,7 @@ class LogoDrawAnimation {
       path.setAttribute('fill', 'none');
       path.setAttribute('stroke', this.FIRST_DRAW_COLOR);
       // Stroke más fino en pantallas estrechas
-      const strokeWidth = this.isNarrowScreen ? '1.5' : (this.isMobile ? '2' : '3');
+      const strokeWidth = this.isNarrowScreen ? '1.2' : (this.isMobile ? '1.6' : '3');
       path.setAttribute('stroke-width', strokeWidth);
       path.setAttribute('stroke-linecap', 'round');
       path.setAttribute('stroke-linejoin', 'round');
