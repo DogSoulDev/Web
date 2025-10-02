@@ -15,9 +15,12 @@ export class CVView extends BaseView {
                     <p class="intro-text">If you want to hire me, my CV is below.</p>
                 </div>
                 
-                <!-- Main CV Image -->
+                <!-- Main CV Image (First Panel) -->
                 <div class="cv-main-image">
-                    <img src="./img/cv/a.png" alt="CV Main" class="cv-hero-img">
+                    <div class="manga-panel panel-medium cv-hero-panel">
+                        <img src="./img/cv/a.png" alt="CV Main" class="manga-img">
+                        <div class="panel-border"></div>
+                    </div>
                 </div>
                 
                 <!-- Manga CV Comic Style -->
@@ -70,7 +73,7 @@ export class CVView extends BaseView {
     }
 
     afterRender() {
-        // Manga panel animation on scroll
+        // Manga panel animation on scroll (including hero panel)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -79,6 +82,7 @@ export class CVView extends BaseView {
             });
         }, { threshold: 0.1 });
 
+        // Observe all manga panels including the hero panel
         document.querySelectorAll('.manga-panel').forEach(panel => {
             observer.observe(panel);
         });
