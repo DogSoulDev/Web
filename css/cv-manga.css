@@ -382,10 +382,23 @@
   border: 3px solid #fff;
   box-shadow: 0 0 0 3px #000;
   transform: rotate(-5deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 }
 
 .chapter-kanji {
   display: block;
+  font-size: 14px;
+}
+
+.chapter-number {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  opacity: 0.8;
 }
 
 /* Icono grande del panel */
@@ -442,8 +455,8 @@
   opacity: 1;
 }
 
-/* Bocadillo de diálogo */
-.speech-bubble {
+/* Bocadillo de diálogo (solo para CV) */
+.cv-speech-bubble {
   position: absolute;
   top: -20px;
   right: -20px;
@@ -460,7 +473,7 @@
   white-space: nowrap;
 }
 
-.speech-bubble::before {
+.cv-speech-bubble::before {
   content: '';
   position: absolute;
   bottom: -15px;
@@ -472,7 +485,7 @@
   border-top: 20px solid #000;
 }
 
-.speech-bubble::after {
+.cv-speech-bubble::after {
   content: '';
   position: absolute;
   bottom: -8px;
@@ -771,7 +784,7 @@
     font-size: 20px;
   }
   
-  .speech-bubble {
+  .cv-speech-bubble {
     top: -15px;
     right: -15px;
     padding: 10px 15px;

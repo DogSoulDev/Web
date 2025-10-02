@@ -44,8 +44,8 @@ export class CVView extends BaseView {
           <div class="main-title-block">
             <div class="title-badge">VOL.1</div>
             <h1 class="manga-main-title">
-              <span class="title-line-1">THE ETHICAL</span>
-              <span class="title-line-2">HACKER</span>
+              <span class="title-line-1">THE</span>
+              <span class="title-line-2">ETHICAL HACKER</span>
             </h1>
             <div class="subtitle-jp">倫理的ハッカー</div>
           </div>
@@ -87,6 +87,7 @@ export class CVView extends BaseView {
                     <!-- Número de capítulo en kanji -->
                     <div class="chapter-badge">
                       <span class="chapter-kanji">第${this.numberToKanji(chapter.number)}章</span>
+                      <span class="chapter-number">CHAPTER ${chapter.number}</span>
                     </div>
                     
                     <!-- Icono grande -->
@@ -105,7 +106,7 @@ export class CVView extends BaseView {
                 
                 <!-- Bocadillo de diálogo opcional -->
                 ${index === 0 ? `
-                  <div class="speech-bubble bubble-${index}">
+                  <div class="cv-speech-bubble bubble-${index}">
                     <span class="bubble-text">始まり！</span>
                   </div>
                 ` : ''}
