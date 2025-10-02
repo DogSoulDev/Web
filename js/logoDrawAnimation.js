@@ -80,10 +80,10 @@ class LogoDrawAnimation {
       const viewportHeight = window.innerHeight;
       
       // Calculate safe size based on smallest viewport dimension
-      // Using svh equivalent calculation as fallback
-      const safeHeight = viewportHeight * 0.5; // 50% of viewport height
-      const safeWidth = viewportWidth * 0.8; // 80% of viewport width
-      const maxSize = Math.min(safeHeight, safeWidth, 320); // Never exceed 320px
+      // Increased size for better visibility: 55% height, 85% width
+      const safeHeight = viewportHeight * 0.55; // 55% of viewport height
+      const safeWidth = viewportWidth * 0.85; // 85% of viewport width
+      const maxSize = Math.min(safeHeight, safeWidth, 380); // Max 380px for better visibility
       
       // Apply dimensions to ensure visibility
       this.svg.setAttribute('width', maxSize);

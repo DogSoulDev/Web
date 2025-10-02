@@ -36,8 +36,8 @@
 }
 
 .cv-hero-img {
-    max-width: 100%;
-    width: 600px;
+    max-width: 600px;
+    width: 100%;
     height: auto;
     border: 4px solid var(--manga-black);
     box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.2);
@@ -59,6 +59,8 @@
     box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.25);
     overflow: hidden;
     margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
 }
 
 .manga-panel.panel-medium {
@@ -161,10 +163,8 @@
     .cv-section {
         padding: var(--spacing-xl) var(--spacing-md);
     }
-    .cv-hero-img {
-        width: 500px;
-    }
-    .manga-panel.panel-medium {
+    .cv-hero-img,
+    .manga-panel {
         max-width: 550px;
     }
 }
@@ -173,49 +173,49 @@
     .cv-section {
         padding: var(--spacing-lg) var(--spacing-sm);
     }
-    .cv-hero-img {
-        width: 450px;
-    }
-    .manga-panel.panel-medium {
+    .cv-hero-img,
+    .manga-panel {
         max-width: 100%;
     }
 }
 
 @media (max-width: 540px) {
-    .cv-hero-img {
-        width: 350px;
-    }
+    .cv-hero-img,
     .manga-panel {
-        border-width: 2px;
+        max-width: 100%;
+        border-width: 3px;
         box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
     }
 }
 
 @media (max-width: 430px) {
-    .cv-hero-img {
-        max-width: 320px;
+    .cv-hero-img,
+    .manga-panel {
+        max-width: 100%;
+        border-width: 3px;
     }
 }
 
 @media (max-width: 393px) {
-    .cv-hero-img {
-        max-width: 280px;
+    .cv-hero-img,
+    .manga-panel {
+        max-width: 100%;
+        border-width: 2px;
     }
 }
 
 @media (max-width: 360px) {
-    .cv-hero-img {
-        max-width: 260px;
-        border-width: 3px;
-    }
+    .cv-hero-img,
     .manga-panel {
+        max-width: 100%;
         border-width: 2px;
     }
 }
 
 @media (max-width: 320px) {
-    .cv-hero-img {
-        max-width: 240px;
+    .cv-hero-img,
+    .manga-panel {
+        max-width: 100%;
         border-width: 2px;
         box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
     }
@@ -240,8 +240,9 @@
         padding: 0 var(--spacing-xs);
     }
     
-    .cv-hero-img {
-        max-width: 250px;
+    .cv-hero-img,
+    .manga-panel {
+        max-width: 100%;
         border-width: 2px;
         box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
     }
@@ -249,11 +250,6 @@
     .manga-comic {
         padding: 0 var(--spacing-xs);
         gap: var(--spacing-md);
-    }
-    
-    .manga-panel {
-        border-width: 2px;
-        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
     }
     
     .download-section {
