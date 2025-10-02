@@ -3,6 +3,7 @@ import { ProjectsView } from '../views/projectsView.js';
 import { ExperienceView } from '../views/experienceView.js';
 import { EducationView } from '../views/educationView.js';
 import { ContactView } from '../views/contactView.js';
+import { CVView } from '../views/cvView.js';
 import { CSS_CLASSES, MESSAGES } from '../config/appConfig.js';
 
 /**
@@ -30,7 +31,8 @@ export class AppController {
       projects: new ProjectsView(),
       experience: new ExperienceView(),
       education: new EducationView(),
-      contact: new ContactView()
+      contact: new ContactView(),
+      cv: new CVView()
     };
   }
 

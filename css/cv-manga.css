@@ -1,0 +1,551 @@
+/**
+ * CV Manga Styles
+ * Epic manga cover page design for CV section
+ */
+
+/* ============================================
+   CV MANGA CONTAINER
+   ============================================ */
+.cv-manga-container {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--bg-main);
+  overflow-x: hidden;
+}
+
+/* ============================================
+   MANGA COVER HERO SECTION
+   ============================================ */
+.manga-cover-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 50%, #e8e8e8 100%);
+  border-bottom: 8px solid var(--manga-black);
+  overflow: hidden;
+}
+
+/* Speed lines background */
+.speed-lines-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+/* Halftone overlay effect */
+.manga-halftone-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle, transparent 30%, rgba(0,0,0,0.05) 30%),
+    radial-gradient(circle, transparent 30%, rgba(0,0,0,0.05) 30%);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Cover content */
+.cover-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 40px;
+  max-width: 900px;
+}
+
+/* Japanese title */
+.manga-title-jp {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+  font-family: 'MS Gothic', 'Yu Gothic', sans-serif;
+}
+
+.title-main-jp {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 8px;
+  color: var(--manga-red);
+  text-shadow: 3px 3px 0 var(--manga-black);
+  writing-mode: horizontal-tb;
+}
+
+.title-sub-jp {
+  font-size: 1.2rem;
+  color: var(--manga-black);
+  letter-spacing: 4px;
+}
+
+/* English title */
+.manga-title-en {
+  margin: 30px 0;
+  font-family: var(--font-manga);
+  line-height: 1;
+}
+
+.title-the {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--manga-black);
+  letter-spacing: 10px;
+  margin-bottom: 10px;
+}
+
+.title-main {
+  display: block;
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--manga-black);
+  letter-spacing: 5px;
+  text-shadow: 
+    5px 5px 0 var(--manga-red),
+    10px 10px 0 var(--manga-black);
+  transform: scaleY(1.2);
+}
+
+/* Volume badge */
+.volume-badge {
+  display: inline-block;
+  background: var(--manga-red);
+  color: var(--bg-main);
+  padding: 15px 40px;
+  border: 4px solid var(--manga-black);
+  box-shadow: 5px 5px 0 var(--manga-black);
+  margin: 30px 0;
+  transform: rotate(-2deg);
+}
+
+.volume-text {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.volume-subtitle {
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  opacity: 0.9;
+}
+
+/* Character stats box */
+.character-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  max-width: 500px;
+  margin: 40px auto;
+}
+
+.stat-item {
+  background: var(--bg-main);
+  border: 3px solid var(--manga-black);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 4px 4px 0 var(--manga-black);
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--manga-black);
+}
+
+.stat-icon {
+  font-size: 2rem;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--manga-black);
+}
+
+/* Cover tagline */
+.cover-tagline {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--manga-black);
+  margin: 30px 0;
+  font-style: italic;
+}
+
+/* Cover author */
+.cover-author {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-top: 20px;
+  font-weight: 500;
+}
+
+/* Action starburst */
+.action-starburst {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 150px;
+  height: 150px;
+  background: var(--manga-yellow);
+  border: 4px solid var(--manga-black);
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 2s ease-in-out infinite;
+  transform: rotate(-15deg);
+}
+
+.starburst-text {
+  font-size: 0.9rem;
+  font-weight: 900;
+  color: var(--manga-black);
+  text-align: center;
+  letter-spacing: 1px;
+  transform: rotate(15deg);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: rotate(-15deg) scale(1); }
+  50% { transform: rotate(-15deg) scale(1.1); }
+}
+
+/* ============================================
+   CHAPTERS PREVIEW SECTION
+   ============================================ */
+.chapters-preview {
+  padding: 80px 40px;
+  background: var(--bg-main);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--manga-black);
+  margin-bottom: 60px;
+  font-family: var(--font-manga);
+  letter-spacing: 3px;
+}
+
+.title-decoration {
+  color: var(--manga-red);
+  margin: 0 20px;
+  font-size: 2rem;
+}
+
+/* Chapters grid */
+.chapters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.chapter-card {
+  background: var(--bg-main);
+  border: 4px solid var(--manga-black);
+  padding: 30px;
+  text-align: center;
+  box-shadow: 6px 6px 0 var(--manga-black);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.chapter-card.animate-in {
+  animation: slideInUp 0.6s ease forwards;
+}
+
+.chapter-card:nth-child(1).animate-in { animation-delay: 0.1s; }
+.chapter-card:nth-child(2).animate-in { animation-delay: 0.2s; }
+.chapter-card:nth-child(3).animate-in { animation-delay: 0.3s; }
+.chapter-card:nth-child(4).animate-in { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chapter-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.chapter-number {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--manga-red);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.chapter-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--manga-black);
+  margin-bottom: 8px;
+  font-family: var(--font-manga);
+}
+
+.chapter-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 15px;
+}
+
+.chapter-arrow {
+  font-size: 1.5rem;
+  color: var(--manga-red);
+  font-weight: 900;
+}
+
+/* ============================================
+   DOWNLOAD CTA SECTION
+   ============================================ */
+.download-cta {
+  position: relative;
+  padding: 100px 40px;
+  background: linear-gradient(135deg, var(--manga-red) 0%, #cc0000 100%);
+  border-top: 8px solid var(--manga-black);
+  border-bottom: 8px solid var(--manga-black);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.download-cta.animate-in {
+  animation: slideInUp 0.8s ease forwards;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--bg-main);
+  margin-bottom: 15px;
+  font-family: var(--font-manga);
+  text-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+  letter-spacing: 2px;
+}
+
+.cta-subtitle {
+  font-size: 1.2rem;
+  color: var(--bg-main);
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+/* Download button */
+.download-btn {
+  display: inline-block;
+  background: var(--bg-main);
+  color: var(--manga-black);
+  padding: 25px 50px;
+  border: 5px solid var(--manga-black);
+  box-shadow: 8px 8px 0 var(--manga-black);
+  text-decoration: none;
+  font-family: var(--font-manga);
+  font-weight: 900;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.download-btn:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 var(--manga-black);
+}
+
+.download-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 var(--manga-black);
+}
+
+.btn-icon {
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.btn-text {
+  display: block;
+  letter-spacing: 2px;
+}
+
+.btn-subtext {
+  display: block;
+  font-size: 0.7rem;
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Recruiter speech bubble */
+.recruiter-bubble {
+  position: relative;
+  background: var(--bg-main);
+  border: 3px solid var(--manga-black);
+  border-radius: 20px;
+  padding: 20px 30px;
+  margin-top: 50px;
+  box-shadow: 5px 5px 0 var(--manga-black);
+  display: inline-block;
+}
+
+.recruiter-bubble p {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--manga-black);
+  margin: 0;
+  font-style: italic;
+}
+
+.bubble-tail {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 20px solid var(--bg-main);
+}
+
+.bubble-tail::before {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: -18px;
+  width: 0;
+  height: 0;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 23px solid var(--manga-black);
+}
+
+/* CTA decoration */
+.cta-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.speed-line {
+  position: absolute;
+  height: 4px;
+  background: var(--bg-main);
+  transform: skewY(-5deg);
+}
+
+.speed-line:nth-child(1) {
+  top: 20%;
+  left: -20%;
+  width: 140%;
+}
+
+.speed-line:nth-child(2) {
+  top: 50%;
+  left: -20%;
+  width: 140%;
+}
+
+.speed-line:nth-child(3) {
+  top: 80%;
+  left: -20%;
+  width: 140%;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+  .title-main {
+    font-size: 3rem;
+  }
+  
+  .character-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .action-starburst {
+    width: 100px;
+    height: 100px;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .starburst-text {
+    font-size: 0.7rem;
+  }
+  
+  .chapters-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .cta-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-main {
+    font-size: 2.5rem;
+    text-shadow: 
+      3px 3px 0 var(--manga-red),
+      6px 6px 0 var(--manga-black);
+  }
+  
+  .cover-content {
+    padding: 20px;
+  }
+  
+  .download-btn {
+    padding: 20px 30px;
+    font-size: 1.1rem;
+  }
+}
