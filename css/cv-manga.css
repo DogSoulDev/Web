@@ -1,773 +1,859 @@
 /**
- * CV Manga Styles
- * Epic manga cover page design for CV section
+ * CV MANGA PAGE STYLES - AUTHENTIC JAPANESE DESIGN
+ * Inspirado en Weekly Shonen Jump y revistas manga tradicionales
+ * Elementos: Tategaki (escritura vertical), Hanko (sellos), diseño de tankobon
  */
 
 /* ============================================
-   CV MANGA CONTAINER
+   PORTADA ESTILO MANGA JAPONÉS TRADICIONAL
    ============================================ */
+
 .cv-manga-container {
-  width: 100%;
-  min-height: 100vh;
-  background: #ffffff;
+  background: #fff;
+  position: relative;
   overflow-x: hidden;
-  position: relative;
 }
 
-/* Manga halftone dots background */
-.cv-manga-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(circle, rgba(0, 0, 0, 0.12) 1px, transparent 1px);
-  background-size: 6px 6px;
-  opacity: 0.5;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ============================================
-   MANGA COVER HERO SECTION
-   ============================================ */
-.manga-cover-hero {
+/* PÁGINA DE PORTADA - Estilo Weekly Shonen Jump */
+.manga-cover-page {
   position: relative;
   min-height: 100vh;
+  background: 
+    linear-gradient(135deg, #fff 0%, #f5f5f5 50%, #fff 100%);
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 50%, #e8e8e8 100%);
-  border-bottom: 8px solid var(--manga-black);
+  align-items: center;
+  padding: 60px 20px;
   overflow: hidden;
+  
+  /* Textura de papel tradicional japonés */
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
 }
 
-/* Speed lines background */
+/* Fondo de líneas de velocidad */
 .speed-lines-bg {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
-  opacity: 0.3;
-}
-
-/* Halftone overlay effect */
-.manga-halftone-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle, transparent 30%, rgba(0,0,0,0.05) 30%),
-    radial-gradient(circle, transparent 30%, rgba(0,0,0,0.05) 30%);
-  background-size: 10px 10px;
-  background-position: 0 0, 5px 5px;
-  z-index: 2;
+  opacity: 0.15;
+  z-index: 0;
   pointer-events: none;
 }
 
-/* Cover content */
-.cover-content {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  padding: 40px;
-  max-width: 900px;
-}
-
-/* Japanese title */
-.manga-title-jp {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-bottom: 20px;
-  font-family: 'MS Gothic', 'Yu Gothic', sans-serif;
-}
-
-.title-main-jp {
-  font-size: 2rem;
-  font-weight: 900;
-  letter-spacing: 8px;
-  color: var(--manga-red);
-  text-shadow: 3px 3px 0 var(--manga-black);
-  writing-mode: horizontal-tb;
-}
-
-.title-sub-jp {
-  font-size: 1.2rem;
-  color: var(--manga-black);
-  letter-spacing: 4px;
-}
-
-/* English title */
-.manga-title-en {
-  margin: 30px 0;
-  font-family: var(--font-manga);
-  line-height: 1;
-}
-
-.title-the {
-  display: block;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--manga-black);
-  letter-spacing: 10px;
-  margin-bottom: 10px;
-}
-
-.title-main {
-  display: block;
-  font-size: 5rem;
-  font-weight: 900;
-  color: var(--manga-black);
-  letter-spacing: 5px;
-  text-shadow: 
-    5px 5px 0 var(--manga-red),
-    10px 10px 0 var(--manga-black);
-  transform: scaleY(1.2);
-}
-
-/* Volume badge */
-.volume-badge {
-  display: inline-block;
-  background: var(--manga-red);
-  color: var(--bg-main);
-  padding: 15px 40px;
-  border: 4px solid var(--manga-black);
-  box-shadow: 5px 5px 0 var(--manga-black);
-  margin: 30px 0;
-  transform: rotate(-2deg);
-}
-
-.volume-text {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: 900;
-  letter-spacing: 3px;
-}
-
-.volume-subtitle {
-  display: block;
-  font-size: 0.9rem;
-  margin-top: 5px;
-  opacity: 0.9;
-}
-
-/* Character stats box */
-.character-stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  max-width: 500px;
-  margin: 40px auto;
-}
-
-.stat-item {
-  background: var(--bg-main);
-  border: 3px solid var(--manga-black);
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  box-shadow: 4px 4px 0 var(--manga-black);
-  transition: all 0.3s ease;
-}
-
-.stat-item:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--manga-black);
-}
-
-.stat-icon {
-  font-size: 2rem;
-}
-
-.stat-label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  letter-spacing: 2px;
-}
-
-.stat-value {
-  font-size: 1.1rem;
-  font-weight: 900;
-  color: var(--manga-black);
-}
-
-/* Cover tagline */
-.cover-tagline {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--manga-black);
-  margin: 30px 0;
-  font-style: italic;
-}
-
-/* Cover author */
-.cover-author {
-  font-size: 1rem;
-  color: var(--text-muted);
-  margin-top: 20px;
-  font-weight: 500;
-}
-
-/* Action starburst */
-.action-starburst {
+/* TÍTULO VERTICAL JAPONÉS (Tategaki) */
+.tategaki-title {
   position: absolute;
-  top: 50px;
-  right: 50px;
-  width: 150px;
-  height: 150px;
-  background: var(--manga-yellow);
-  border: 4px solid var(--manga-black);
-  clip-path: polygon(
-    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
-  );
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  z-index: 2;
+  font-family: 'Yu Gothic', 'MS Gothic', 'Hiragino Kaku Gothic Pro', sans-serif;
+}
+
+.kanji-large {
+  font-size: 48px;
+  font-weight: 900;
+  color: #000;
+  letter-spacing: 8px;
+  text-shadow: 
+    3px 3px 0 #fff,
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    6px 6px 0 rgba(255,0,0,0.3);
+}
+
+.kanji-subtitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #666;
+  letter-spacing: 4px;
+  margin-top: 20px;
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+  transform: rotate(180deg);
+}
+
+/* SELLO HANKO TRADICIONAL */
+.hanko-seal {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+  border: 4px solid #000;
+  border-radius: 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  animation: pulse 2s ease-in-out infinite;
+  align-items: center;
+  z-index: 3;
+  box-shadow: 
+    4px 4px 0 rgba(0,0,0,0.3),
+    0 0 20px rgba(211,47,47,0.5);
   transform: rotate(-15deg);
 }
 
-.starburst-text {
-  font-size: 0.9rem;
-  font-weight: 900;
-  color: var(--manga-black);
-  text-align: center;
-  letter-spacing: 1px;
-  transform: rotate(15deg);
-}
-
-@keyframes pulse {
-  0%, 100% { transform: rotate(-15deg) scale(1); }
-  50% { transform: rotate(-15deg) scale(1.1); }
-}
-
-/* ============================================
-   TABLE OF CONTENTS SECTION (目次 - MOKUJI)
-   Traditional Manga Magazine Style
-   ============================================ */
-.manga-toc-section {
-  padding: 60px 20px;
-  background: #ffffff;
-  max-width: 900px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-/* TOC Header */
-.toc-header {
-  text-align: center;
-  margin-bottom: 50px;
-  position: relative;
-}
-
-.toc-border-top {
-  width: 100%;
-  height: 8px;
-  background: var(--manga-black);
-  margin-bottom: 20px;
-  position: relative;
-}
-
-.toc-border-top::before,
-.toc-border-top::after {
-  content: '';
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background: var(--manga-black);
-  border-radius: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.toc-border-top::before { left: -7px; }
-.toc-border-top::after { right: -7px; }
-
-.toc-title {
+.seal-inner {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 15px;
-  margin-bottom: 15px;
 }
 
-.toc-jp {
-  font-size: 2.5rem;
+.seal-kanji {
+  font-size: 24px;
   font-weight: 900;
-  color: var(--manga-black);
-  font-family: 'MS Gothic', 'Yu Gothic', sans-serif;
-  writing-mode: horizontal-tb;
-  letter-spacing: 5px;
+  color: #fff;
+  font-family: 'Yu Gothic', 'MS Gothic', sans-serif;
+  line-height: 0.9;
 }
 
-.toc-en {
-  font-size: 1.8rem;
+/* BLOQUE DE TÍTULO PRINCIPAL - Estilo Shonen Jump */
+.main-title-block {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin: 40px 0;
+}
+
+.title-badge {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  font-size: 14px;
   font-weight: 900;
-  color: var(--manga-black);
-  font-family: var(--font-manga);
+  padding: 8px 24px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  border: 4px solid #fff;
+  box-shadow: 
+    0 0 0 4px #000,
+    8px 8px 0 rgba(0,0,0,0.3);
+  transform: rotate(-2deg);
+}
+
+.manga-main-title {
+  font-size: clamp(48px, 10vw, 120px);
+  font-weight: 900;
+  color: #000;
+  line-height: 0.85;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-transform: uppercase;
+  font-family: 'Impact', 'Arial Black', sans-serif;
+  letter-spacing: -2px;
+}
+
+.title-line-1,
+.title-line-2 {
+  display: block;
+  position: relative;
+  text-shadow: 
+    -4px -4px 0 #fff,
+    4px -4px 0 #fff,
+    -4px 4px 0 #fff,
+    4px 4px 0 #fff,
+    -6px 0 0 #fff,
+    6px 0 0 #fff,
+    0 -6px 0 #fff,
+    0 6px 0 #fff,
+    8px 8px 0 rgba(255,0,0,0.5);
+}
+
+.title-line-1 {
+  font-size: 0.5em;
+  letter-spacing: 8px;
+}
+
+.title-line-2 {
+  margin-top: -10px;
+  font-size: 1em;
+}
+
+/* Subtítulo en japonés */
+.subtitle-jp {
+  font-size: 24px;
+  font-weight: 700;
+  color: #d32f2f;
+  margin-top: 10px;
+  font-family: 'Yu Gothic', 'MS Gothic', sans-serif;
   letter-spacing: 4px;
 }
 
-.toc-volume-info {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  letter-spacing: 2px;
+/* PERFIL DE PERSONAJE - Estilo ficha RPG/manga */
+.character-profile {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  border: 6px solid #000;
+  padding: 30px;
+  margin: 40px auto;
+  max-width: 500px;
+  box-shadow: 
+    inset 0 0 20px rgba(0,0,0,0.05),
+    10px 10px 0 rgba(0,0,0,0.2);
 }
 
-.toc-volume-info .divider {
-  margin: 0 10px;
-  color: var(--manga-red);
+.profile-header {
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  background: #000;
+  padding: 10px 20px;
+  text-align: center;
+  margin: -30px -30px 20px -30px;
+  letter-spacing: 3px;
+  font-family: 'Yu Gothic', 'MS Gothic', sans-serif;
 }
 
-/* TOC List (Traditional Vertical Style) */
-.toc-list {
-  background: #ffffff;
-  border: 3px solid var(--manga-black);
-  padding: 30px 20px;
+.stats-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.toc-entry {
+.stat-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 15px;
-  border-bottom: 2px solid #e0e0e0;
-  position: relative;
-  opacity: 0;
-  transform: translateX(-30px);
-  transition: all 0.3s ease;
-}
-
-.toc-entry.animate-in {
-  animation: slideInLeft 0.5s ease forwards;
-}
-
-.toc-entry:nth-child(1).animate-in { animation-delay: 0.1s; }
-.toc-entry:nth-child(2).animate-in { animation-delay: 0.2s; }
-.toc-entry:nth-child(3).animate-in { animation-delay: 0.3s; }
-.toc-entry:nth-child(4).animate-in { animation-delay: 0.4s; }
-
-@keyframes slideInLeft {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.toc-entry:last-child {
-  border-bottom: none;
-}
-
-.toc-entry:hover {
-  background: rgba(0, 0, 0, 0.02);
-}
-
-.entry-left {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex: 1;
-}
-
-.entry-icon {
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 50px;
-}
-
-.entry-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.entry-chapter {
-  font-size: 0.75rem;
+  padding: 12px 15px;
+  background: linear-gradient(90deg, #f5f5f5 0%, #fff 100%);
+  border-left: 4px solid #d32f2f;
+  font-size: 14px;
   font-weight: 700;
-  color: var(--manga-red);
-  letter-spacing: 1px;
-  font-family: 'MS Gothic', 'Yu Gothic', sans-serif;
+  position: relative;
 }
 
-.entry-title {
-  font-size: 1.2rem;
-  font-weight: 900;
-  color: var(--manga-black);
-  font-family: var(--font-manga);
-  letter-spacing: 1px;
+.stat-label-jp {
+  color: #666;
+  font-size: 12px;
+  font-family: 'Yu Gothic', 'MS Gothic', sans-serif;
+  min-width: 100px;
 }
 
-.entry-subtitle {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-
-.entry-dots {
+.stat-dots {
   flex: 1;
-  height: 1px;
-  background-image: repeating-linear-gradient(
-    to right,
-    var(--manga-black) 0,
-    var(--manga-black) 3px,
-    transparent 3px,
-    transparent 8px
-  );
-  margin: 0 15px;
-  opacity: 0.3;
+  text-align: center;
+  color: #ccc;
+  letter-spacing: 4px;
 }
 
-.entry-page {
-  font-size: 1.1rem;
+.stat-value {
+  color: #000;
+  font-size: 16px;
   font-weight: 900;
-  color: var(--manga-black);
-  font-family: var(--font-manga);
-  min-width: 50px;
-  text-align: right;
+  letter-spacing: 1px;
 }
 
-/* Manga Separator */
-.manga-separator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin: 50px 0;
+/* CRÉDITO DE AUTOR */
+.author-credit {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #666;
 }
 
-.separator-star {
-  font-size: 1.5rem;
-  color: var(--manga-black);
+.by-text {
+  font-family: 'Yu Gothic', 'MS Gothic', sans-serif;
+  font-weight: 700;
+  margin-right: 10px;
 }
 
-.separator-line {
-  flex: 1;
-  max-width: 200px;
-  height: 2px;
-  background: var(--manga-black);
+.author-name {
+  font-weight: 900;
+  color: #000;
+  letter-spacing: 2px;
 }
 
 /* ============================================
-   MANGA ENDING SECTION
-   Traditional Manga Last Page Style
+   PÁGINA DE PANELES ESTILO MANGA REAL
    ============================================ */
-.manga-ending-section {
-  padding: 80px 20px;
-  background: #ffffff;
+
+.manga-panels-page {
+  position: relative;
+  background: #fff;
+  padding: 60px 20px;
+  min-height: 100vh;
+}
+
+/* Número de página estilo manga */
+.page-number {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 14px;
+  font-weight: 900;
+  color: #999;
+  letter-spacing: 2px;
+  font-family: 'Courier New', monospace;
+}
+
+/* Layout de paneles estilo manga real */
+.manga-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 40px 0;
+}
+
+/* PANEL DE MANGA */
+.manga-panel {
+  position: relative;
+  background: #fff;
+  aspect-ratio: 3/4;
+  transition: transform 0.3s ease;
+}
+
+.manga-panel:hover {
+  transform: scale(1.02) rotate(-1deg);
+  z-index: 10;
+}
+
+/* Borde de panel tradicional */
+.panel-border {
+  position: absolute;
+  inset: 0;
+  border: 6px solid #000;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 30px rgba(0,0,0,0.1),
+    8px 8px 0 rgba(0,0,0,0.15);
+}
+
+/* Contenido del panel */
+.panel-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 20px;
+  background: 
+    radial-gradient(circle at 20% 20%, transparent 1px, #000 1px, #000 2px, transparent 2px),
+    radial-gradient(circle at 80% 80%, transparent 1px, #000 1px, #000 2px, transparent 2px);
+  background-size: 8px 8px;
+  background-position: 0 0, 4px 4px;
+  background-color: #fff;
+  opacity: 0.03;
+}
+
+.panel-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0.97;
+  z-index: 0;
+}
+
+.panel-content > * {
   position: relative;
   z-index: 1;
 }
 
-.ending-frame {
-  max-width: 800px;
-  margin: 0 auto;
-  border: 8px solid var(--manga-black);
-  background: #ffffff;
-  position: relative;
-}
-
-/* Frame borders with decorative pattern */
-.frame-border-top,
-.frame-border-bottom {
-  width: 100%;
-  height: 15px;
-  background: var(--manga-black);
-  position: relative;
-}
-
-.border-pattern {
+/* Badge de capítulo en kanji */
+.chapter-badge {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 10px,
-    rgba(255, 255, 255, 0.2) 10px,
-    rgba(255, 255, 255, 0.2) 20px
-  );
+  top: 20px;
+  left: 20px;
+  background: #000;
+  color: #fff;
+  padding: 8px 16px;
+  font-family: 'Yu Gothic', 'MS Gothic', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 3px #000;
+  transform: rotate(-5deg);
 }
 
-/* Ending content */
-.ending-content {
-  padding: 60px 40px;
+.chapter-kanji {
+  display: block;
+}
+
+/* Icono grande del panel */
+.panel-icon {
+  font-size: 80px;
+  margin: 20px 0;
+  filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.1));
+}
+
+/* Texto del panel */
+.panel-text {
+  text-align: center;
+}
+
+.panel-title {
+  font-size: 24px;
+  font-weight: 900;
+  color: #000;
+  margin: 15px 0 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: 'Arial Black', sans-serif;
+  text-shadow: 
+    2px 2px 0 #fff,
+    -1px -1px 0 rgba(0,0,0,0.1);
+}
+
+.panel-subtitle {
+  font-size: 14px;
+  color: #666;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-family: 'Yu Gothic', 'MS Gothic', sans-serif;
+}
+
+/* Líneas de velocidad overlay */
+.speed-lines-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(0,0,0,0.02) 10px,
+      rgba(0,0,0,0.02) 11px
+    );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.manga-panel:hover .speed-lines-overlay {
+  opacity: 1;
+}
+
+/* Bocadillo de diálogo */
+.speech-bubble {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  background: #fff;
+  border: 4px solid #000;
+  border-radius: 50%;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: 900;
+  color: #d32f2f;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.2);
+  font-family: 'Yu Gothic', 'MS Gothic', sans-serif;
+  z-index: 5;
+  white-space: nowrap;
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 30%;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 20px solid #000;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: calc(30% + 4px);
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 16px solid #fff;
+}
+
+/* ============================================
+   PÁGINA FINAL ESTILO MANGA TRADICIONAL
+   ============================================ */
+
+.manga-end-page {
+  position: relative;
+  background: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);
+}
+
+/* Símbolo OWARI (完 - Fin) */
+.owari-symbol {
+  text-align: center;
+  margin: 40px 0 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.owari-circle {
+  width: 200px;
+  height: 200px;
+  border: 10px solid #000;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 30px;
+  background: #fff;
+  position: relative;
+  box-shadow: 
+    inset 0 0 30px rgba(0,0,0,0.1),
+    10px 10px 0 rgba(0,0,0,0.15);
+}
+
+.owari-circle::before {
+  content: '';
+  position: absolute;
+  inset: 15px;
+  border: 4px solid #d32f2f;
+  border-radius: 50%;
+}
+
+.owari-kanji {
+  font-size: 100px;
+  font-weight: 900;
+  color: #000;
+  font-family: 'Yu Gothic', 'MS Gothic', sans-serif;
+  text-shadow: 4px 4px 0 rgba(211,47,47,0.2);
+}
+
+.owari-text {
+  font-size: 20px;
+  font-weight: 900;
+  color: #666;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+}
+
+/* PANEL DE DESCARGA ESTILO MANGA */
+.download-manga-panel {
+  max-width: 600px;
+  width: 100%;
+  margin: 40px auto;
+  position: relative;
+  z-index: 2;
+}
+
+.panel-thick-border {
+  border: 8px solid #000;
+  background: #fff;
+  padding: 50px 40px;
+  box-shadow: 
+    inset 0 0 40px rgba(0,0,0,0.05),
+    12px 12px 0 rgba(0,0,0,0.2);
   text-align: center;
   position: relative;
 }
 
-/* "Owari" (The End) Mark */
-.owari-mark {
-  margin-bottom: 30px;
-}
-
-.owari-text {
-  display: inline-block;
-  font-size: 5rem;
-  font-weight: 900;
-  color: var(--manga-black);
-  font-family: 'MS Gothic', 'Yu Gothic', sans-serif;
-  border: 5px solid var(--manga-black);
-  padding: 20px 30px;
-  background: #ffffff;
-  writing-mode: horizontal-tb;
-  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-/* Ending message */
-.ending-message {
-  margin-bottom: 40px;
-}
-
-.ending-title {
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--manga-black);
-  font-family: var(--font-manga);
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-
-.ending-subtitle {
-  font-size: 1.2rem;
-  color: var(--text-muted);
-  font-weight: 700;
-  font-family: 'MS Gothic', 'Yu Gothic', sans-serif;
-  letter-spacing: 2px;
-}
-
-/* Download panel */
-.download-panel {
-  margin: 50px auto;
-  max-width: 600px;
-}
-
-.panel-border {
-  border: 4px solid var(--manga-black);
-  background: #ffffff;
-  padding: 30px;
-  box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.1);
-}
-
-.panel-content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding-bottom: 25px;
-  border-bottom: 3px dashed var(--manga-black);
-  margin-bottom: 25px;
-}
-
-.panel-icon {
-  font-size: 3rem;
-}
-
-.panel-text {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  text-align: left;
-}
-
-.panel-title {
-  font-size: 1.3rem;
-  font-weight: 900;
-  color: var(--manga-black);
-  font-family: var(--font-manga);
-  letter-spacing: 1px;
-}
-
-.panel-subtitle {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
-/* Manga-style download button */
-.download-btn-manga {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  padding: 20px;
-  background: var(--manga-black);
-  color: #ffffff;
-  border: 4px solid var(--manga-black);
-  text-decoration: none;
-  font-family: var(--font-manga);
-  font-weight: 900;
-  font-size: 1.2rem;
-  letter-spacing: 2px;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.download-btn-manga::before {
+.panel-thick-border::before,
+.panel-thick-border::after {
   content: '';
   position: absolute;
+  background: #d32f2f;
+  z-index: -1;
+}
+
+.panel-thick-border::before {
   top: -4px;
   left: -4px;
   right: -4px;
+  height: 4px;
+}
+
+.panel-thick-border::after {
+  left: -4px;
+  top: -4px;
   bottom: -4px;
-  border: 2px solid var(--manga-black);
-  pointer-events: none;
+  width: 4px;
 }
 
-.download-btn-manga:hover {
-  background: var(--manga-red);
-  border-color: var(--manga-red);
-  transform: scale(1.02);
+/* Títulos de descarga */
+.download-title-jp {
+  font-size: 32px;
+  font-weight: 900;
+  color: #000;
+  font-family: 'Yu Gothic', 'MS Gothic', sans-serif;
+  margin-bottom: 10px;
+  letter-spacing: 4px;
 }
 
-.download-btn-manga:active {
-  transform: scale(0.98);
+.download-title-en {
+  font-size: 18px;
+  font-weight: 900;
+  color: #666;
+  letter-spacing: 4px;
+  margin-bottom: 30px;
 }
 
-.btn-arrow {
-  font-size: 1.5rem;
+/* Icono de descarga */
+.download-icon-manga {
+  font-size: 80px;
+  margin: 30px 0;
+  filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.1));
+}
+
+/* Botón estilo sello japonés */
+.download-btn-stamp {
+  display: inline-block;
+  text-decoration: none;
+  margin: 30px 0;
   transition: transform 0.3s ease;
 }
 
-.download-btn-manga:hover .btn-arrow {
-  transform: translateX(5px);
+.download-btn-stamp:hover {
+  transform: scale(1.05) rotate(-2deg);
 }
 
-/* Publication info */
-.publication-info {
+.stamp-border {
+  border: 6px solid #d32f2f;
+  border-radius: 8px;
+  padding: 4px;
+  background: #fff;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.2);
+}
+
+.stamp-inner {
+  background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+  padding: 20px 40px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 3px solid #fff;
+}
+
+.stamp-text-jp {
+  font-size: 24px;
+  font-weight: 900;
+  color: #fff;
+  font-family: 'Yu Gothic', 'MS Gothic', sans-serif;
+  letter-spacing: 6px;
+}
+
+.stamp-text-en {
+  font-size: 14px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 3px;
+}
+
+.download-subtitle {
+  font-size: 14px;
+  color: #999;
+  font-family: 'Yu Gothic', 'MS Gothic', sans-serif;
+  letter-spacing: 2px;
+}
+
+/* Información de publicación estilo manga */
+.manga-publication-info {
+  text-align: center;
+  margin: 60px 0 40px;
+  padding: 30px;
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  position: relative;
+  z-index: 2;
+}
+
+.pub-line {
+  font-size: 12px;
+  color: #666;
+  margin: 8px 0;
+  letter-spacing: 2px;
+  font-family: 'Courier New', monospace;
+}
+
+.pub-line:first-child {
+  font-weight: 900;
+  color: #000;
+  font-size: 14px;
+}
+
+/* Líneas de cierre tradicionales */
+.closing-lines {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
   margin-top: 40px;
-  padding-top: 30px;
-  border-top: 2px solid #e0e0e0;
+  position: relative;
+  z-index: 2;
 }
 
-.publication-info p {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin: 5px 0;
-  font-weight: 600;
-  letter-spacing: 1px;
+.closing-lines .line {
+  width: 200px;
+  height: 3px;
+  background: #000;
+}
+
+.closing-lines .line:nth-child(2) {
+  width: 150px;
+}
+
+.closing-lines .line:nth-child(3) {
+  width: 100px;
 }
 
 /* ============================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN - Móviles
    ============================================ */
+
 @media (max-width: 768px) {
-  .title-main {
-    font-size: 3rem;
-  }
-  
-  .character-stats {
-    grid-template-columns: 1fr;
-  }
-  
-  .action-starburst {
-    width: 100px;
-    height: 100px;
-    top: 20px;
+  .tategaki-title {
     right: 20px;
   }
   
-  .starburst-text {
-    font-size: 0.7rem;
+  .kanji-large {
+    font-size: 32px;
+    letter-spacing: 6px;
   }
   
-  .toc-jp {
-    font-size: 2rem;
+  .hanko-seal {
+    width: 60px;
+    height: 60px;
+    top: 40px;
+    left: 40px;
   }
   
-  .toc-en {
-    font-size: 1.4rem;
+  .seal-kanji {
+    font-size: 18px;
   }
   
-  .entry-title {
-    font-size: 1rem;
+  .manga-main-title {
+    font-size: clamp(36px, 12vw, 80px);
   }
   
-  .owari-text {
-    font-size: 3.5rem;
-    padding: 15px 20px;
+  .character-profile {
+    padding: 20px;
+    margin: 30px 20px;
   }
   
-  .ending-title {
-    font-size: 1.5rem;
+  .profile-header {
+    margin: -20px -20px 15px -20px;
+    font-size: 14px;
   }
   
-  .panel-content {
-    flex-direction: column;
-    text-align: center;
+  .manga-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
   
-  .panel-text {
-    text-align: center;
+  .panel-icon {
+    font-size: 60px;
+  }
+  
+  .panel-title {
+    font-size: 20px;
+  }
+  
+  .speech-bubble {
+    top: -15px;
+    right: -15px;
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  
+  .owari-circle {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .owari-kanji {
+    font-size: 70px;
+  }
+  
+  .panel-thick-border {
+    padding: 30px 20px;
+  }
+  
+  .download-title-jp {
+    font-size: 24px;
+  }
+  
+  .download-icon-manga {
+    font-size: 60px;
   }
 }
 
 @media (max-width: 480px) {
-  .title-main {
-    font-size: 2.5rem;
-    text-shadow: 
-      3px 3px 0 var(--manga-red),
-      6px 6px 0 var(--manga-black);
-  }
-  
-  .cover-content {
-    padding: 20px;
-  }
-  
-  .toc-jp {
-    font-size: 1.5rem;
-  }
-  
-  .toc-en {
-    font-size: 1.1rem;
-  }
-  
-  .toc-list {
+  .cv-manga-container {
     padding: 20px 10px;
   }
   
-  .entry-dots {
-    display: none;
+  .tategaki-title {
+    right: 10px;
   }
   
-  .entry-left {
-    flex-direction: column;
-    align-items: flex-start;
+  .kanji-large {
+    font-size: 24px;
+    letter-spacing: 4px;
   }
   
-  .owari-text {
-    font-size: 2.5rem;
-    padding: 10px 15px;
+  .hanko-seal {
+    width: 50px;
+    height: 50px;
+    top: 30px;
+    left: 30px;
+    border: 3px solid #000;
   }
   
-  .ending-title {
-    font-size: 1.2rem;
+  .seal-kanji {
+    font-size: 14px;
   }
   
-  .ending-content {
-    padding: 40px 20px;
+  .title-badge {
+    font-size: 11px;
+    padding: 6px 16px;
+  }
+  
+  .stat-label-jp {
+    min-width: 70px;
+    font-size: 11px;
+  }
+  
+  .stat-value {
+    font-size: 13px;
+  }
+  
+  .chapter-badge {
+    font-size: 11px;
+    padding: 6px 12px;
   }
   
   .panel-border {
-    padding: 20px;
+    border: 4px solid #000;
   }
   
-  .download-btn-manga {
-    font-size: 1rem;
-    padding: 15px;
+  .download-title-jp {
+    font-size: 20px;
+  }
+  
+  .stamp-text-jp {
+    font-size: 18px;
   }
 }

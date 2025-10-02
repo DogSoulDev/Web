@@ -21,149 +21,150 @@ export class CVView extends BaseView {
     
     return `
       <div class="cv-manga-container">
-        <!-- Manga Cover Hero Section -->
-        <div class="manga-cover-hero">
-          <!-- Background Effects -->
+        <!-- PORTADA ESTILO MANGA JAPONÉS -->
+        <div class="manga-cover-page">
+          <!-- Fondo con texturas tradicionales -->
           <canvas id="speedLinesCanvas" class="speed-lines-bg"></canvas>
-          <div class="manga-halftone-overlay"></div>
           
-          <!-- Main Cover Content -->
-          <div class="cover-content">
-            <!-- Japanese Title -->
-            <div class="manga-title-jp">
-              <span class="title-main-jp">${cvData.mangaTitle.main}</span>
-              <span class="title-sub-jp">${cvData.mangaTitle.sub}</span>
+          <!-- Título vertical japonés (tategaki) -->
+          <div class="tategaki-title">
+            <div class="kanji-large">履歴書</div>
+            <div class="kanji-subtitle">RESUME</div>
+          </div>
+          
+          <!-- Logo/Sello tradicional -->
+          <div class="hanko-seal">
+            <div class="seal-inner">
+              <span class="seal-kanji">承</span>
+              <span class="seal-kanji">認</span>
             </div>
-            
-            <!-- English Title -->
-            <h1 class="manga-title-en">
-              <span class="title-the">THE</span>
-              <span class="title-main">ETHICAL HACKER</span>
+          </div>
+          
+          <!-- Título principal estilo Weekly Shonen Jump -->
+          <div class="main-title-block">
+            <div class="title-badge">VOL.1</div>
+            <h1 class="manga-main-title">
+              <span class="title-line-1">THE ETHICAL</span>
+              <span class="title-line-2">HACKER</span>
             </h1>
-            
-            <!-- Volume Badge -->
-            <div class="volume-badge">
-              <span class="volume-text">VOLUME 1</span>
-              <span class="volume-subtitle">Blue Team Chronicles</span>
-            </div>
-            
-            <!-- Character Stats Box -->
-            <div class="character-stats">
+            <div class="subtitle-jp">倫理的ハッカー</div>
+          </div>
+          
+          <!-- Stats estilo ficha de personaje -->
+          <div class="character-profile">
+            <div class="profile-header">キャラクター情報</div>
+            <div class="stats-grid">
               ${cvData.stats.map(stat => `
-                <div class="stat-item">
-                  <span class="stat-icon">${stat.icon}</span>
-                  <span class="stat-label">${stat.label}</span>
+                <div class="stat-row">
+                  <span class="stat-label-jp">${stat.labelJp || stat.label}</span>
+                  <span class="stat-dots">・・・</span>
                   <span class="stat-value">${stat.value}</span>
                 </div>
               `).join('')}
             </div>
-            
-            <!-- Tagline -->
-            <p class="cover-tagline">${cvData.tagline}</p>
-            
-            <!-- Author Credit -->
-            <p class="cover-author">${cvData.author}</p>
-            
-            <!-- Action Starburst -->
-            <div class="action-starburst">
-              <span class="starburst-text">NOW AVAILABLE!</span>
-            </div>
+          </div>
+          
+          <!-- Sello de autor -->
+          <div class="author-credit">
+            <span class="by-text">著者</span>
+            <span class="author-name">${cvData.author}</span>
           </div>
         </div>
         
-        <!-- Table of Contents Section (目次 - Mokuji) -->
-        <div class="manga-toc-section">
-          <!-- Traditional manga TOC header -->
-          <div class="toc-header">
-            <div class="toc-border-top"></div>
-            <h2 class="toc-title">
-              <span class="toc-jp">目次</span>
-              <span class="toc-en">CONTENTS</span>
-            </h2>
-            <div class="toc-volume-info">
-              <span>VOL.1</span>
-              <span class="divider">|</span>
-              <span>THE ETHICAL HACKER</span>
-            </div>
-          </div>
+        <!-- PÁGINA DE MANGA CON PANELES -->
+        <div class="manga-panels-page">
+          <!-- Número de página estilo manga -->
+          <div class="page-number">P. 002</div>
           
-          <!-- Chapter list (traditional manga style) -->
-          <div class="toc-list">
+          <!-- Grid de paneles estilo manga real -->
+          <div class="manga-layout">
             ${cvData.chapters.map((chapter, index) => `
-              <div class="toc-entry">
-                <div class="entry-left">
-                  <span class="entry-icon">${chapter.icon}</span>
-                  <div class="entry-text">
-                    <div class="entry-chapter">第${this.numberToKanji(chapter.number)}章</div>
-                    <div class="entry-title">${chapter.title}</div>
-                    <div class="entry-subtitle">${chapter.subtitle}</div>
+              <div class="manga-panel panel-${index + 1}">
+                <!-- Borde de panel tradicional -->
+                <div class="panel-border">
+                  <!-- Contenido del panel -->
+                  <div class="panel-content">
+                    <!-- Número de capítulo en kanji -->
+                    <div class="chapter-badge">
+                      <span class="chapter-kanji">第${this.numberToKanji(chapter.number)}章</span>
+                    </div>
+                    
+                    <!-- Icono grande -->
+                    <div class="panel-icon">${chapter.icon}</div>
+                    
+                    <!-- Texto del capítulo -->
+                    <div class="panel-text">
+                      <h3 class="panel-title">${chapter.title}</h3>
+                      <p class="panel-subtitle">${chapter.subtitle}</p>
+                    </div>
+                    
+                    <!-- Efecto de velocidad -->
+                    <div class="speed-lines-overlay"></div>
                   </div>
                 </div>
-                <div class="entry-dots"></div>
-                <div class="entry-page">P.${(index + 1) * 10}</div>
+                
+                <!-- Bocadillo de diálogo opcional -->
+                ${index === 0 ? `
+                  <div class="speech-bubble bubble-${index}">
+                    <span class="bubble-text">始まり！</span>
+                  </div>
+                ` : ''}
               </div>
             `).join('')}
           </div>
-          
-          <!-- Traditional manga separator -->
-          <div class="manga-separator">
-            <span class="separator-star">★</span>
-            <span class="separator-line"></span>
-            <span class="separator-star">★</span>
-          </div>
         </div>
         
-        <!-- Download Section (Manga Ending Page Style) -->
-        <div class="manga-ending-section">
-          <!-- Traditional manga ending frame -->
-          <div class="ending-frame">
-            <!-- Top border decoration -->
-            <div class="frame-border-top">
-              <div class="border-pattern"></div>
+        <!-- PÁGINA FINAL ESTILO MANGA -->
+        <div class="manga-end-page">
+          <!-- Número de página -->
+          <div class="page-number">P. 003</div>
+          
+          <!-- Gran símbolo "完" (Fin) -->
+          <div class="owari-symbol">
+            <div class="owari-circle">
+              <span class="owari-kanji">完</span>
             </div>
-            
-            <!-- Main content -->
-            <div class="ending-content">
-              <!-- Japanese "Owari" symbol -->
-              <div class="owari-mark">
-                <span class="owari-text">完</span>
-              </div>
+            <div class="owari-text">END OF PREVIEW</div>
+          </div>
+          
+          <!-- Panel de descarga estilo manga -->
+          <div class="download-manga-panel">
+            <!-- Borde grueso tradicional -->
+            <div class="panel-thick-border">
+              <!-- Título en japonés -->
+              <div class="download-title-jp">続きはPDFで！</div>
+              <div class="download-title-en">CONTINUE IN PDF</div>
               
-              <!-- Message -->
-              <div class="ending-message">
-                <h2 class="ending-title">STORY CONTINUES...</h2>
-                <p class="ending-subtitle">続きは本編で！</p>
-              </div>
+              <!-- Icono grande -->
+              <div class="download-icon-manga">📥</div>
               
-              <!-- Download panel (manga style) -->
-              <div class="download-panel">
-                <div class="panel-border">
-                  <div class="panel-content">
-                    <div class="panel-icon">📥</div>
-                    <div class="panel-text">
-                      <span class="panel-title">${cvData.downloadText}</span>
-                      <span class="panel-subtitle">Complete Professional Story</span>
-                    </div>
+              <!-- Botón estilo sello -->
+              <a href="${cvData.pdfPath}" download="JavierFernandez_CV.pdf" class="download-btn-stamp">
+                <div class="stamp-border">
+                  <div class="stamp-inner">
+                    <span class="stamp-text-jp">入手</span>
+                    <span class="stamp-text-en">GET CV</span>
                   </div>
-                  <a href="${cvData.pdfPath}" download="JavierFernandez_CV.pdf" class="download-btn-manga">
-                    <span class="btn-text">DOWNLOAD NOW</span>
-                    <span class="btn-arrow">→</span>
-                  </a>
                 </div>
-              </div>
+              </a>
               
-              <!-- Publication info (manga style) -->
-              <div class="publication-info">
-                <p>Published by: DOGSOUL DIGITAL STUDIOS</p>
-                <p>Author: Javier Fernández</p>
-                <p>© 2024 All Rights Reserved</p>
-              </div>
+              <!-- Texto adicional -->
+              <div class="download-subtitle">完全版履歴書</div>
             </div>
-            
-            <!-- Bottom border decoration -->
-            <div class="frame-border-bottom">
-              <div class="border-pattern"></div>
-            </div>
+          </div>
+          
+          <!-- Información de publicación estilo manga -->
+          <div class="manga-publication-info">
+            <div class="pub-line">発行: DOGSOUL DIGITAL STUDIOS</div>
+            <div class="pub-line">著者: Javier Fernández</div>
+            <div class="pub-line">© 2024 All Rights Reserved</div>
+          </div>
+          
+          <!-- Líneas de cierre tradicionales -->
+          <div class="closing-lines">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
           </div>
         </div>
       </div>
