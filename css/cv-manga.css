@@ -1,220 +1,438 @@
-/**/**/**
+/**/**/**/**
 
  * MANGA CV - Visual & Fun Style
 
- * Less Text, More Images! * MANGA CV - Clean & Simple Japanese Comic Style * AUTHENTIC JAPANESE MANGA CV
+ * With Real Manga Images! * MANGA CV - Visual & Fun Style
 
  */
 
- * 2 Pages Maximum • B&W Only • Cybersecurity Focus * Real comic panels • Speech bubbles • B&W style
+ * Less Text, More Images! * MANGA CV - Clean & Simple Japanese Comic Style * AUTHENTIC JAPANESE MANGA CV
 
-/* ============================================
+* {
 
-   BASE */ * Cybersecurity & IT Technician focus
-
-   ============================================ */
-
-* { */
-
-  box-sizing: border-box;
-
-}/* ============================================
-
-
-
-.cv-manga-container {   BASE STYLES/* ============================================
-
-  background: #FFFEF7;
-
-  color: #000;   ============================================ */   BASE - Pure Manga Style
-
-  font-family: Arial, Helvetica, sans-serif;
-
-  max-width: 900px;* {   ============================================ */
-
-  margin: 0 auto;
-
-  padding: 20px;  box-sizing: border-box;:root {
-
-  line-height: 1.6;
-
-}}  --manga-black: #000000;
-
-
-
-/* ============================================  --manga-white: #FFFFFF;
-
-   MANGA PAGE
-
-   ============================================ */.cv-manga-container {  --paper: #FFFEF7;
-
-.manga-page {
-
-  background: #FFF;  background: #FFFEF7;  --border: 3px;
-
-  border: 5px solid #000;
-
-  padding: 30px;  color: #000;}
-
-  margin-bottom: 30px;
-
-  box-shadow: 8px 8px 0 rgba(0,0,0,0.2);  font-family: 'Arial', 'Helvetica', sans-serif;
+  box-sizing: border-box; */
 
 }
 
-  max-width: 900px;.cv-manga-container {
+ * 2 Pages Maximum • B&W Only • Cybersecurity Focus * Real comic panels • Speech bubbles • B&W style
 
-.page-title {
+.cv-manga-container {
 
-  font-size: 36px;  margin: 0 auto;  background: var(--paper);
+  background: #FFFEF7;/* ============================================
 
-  font-weight: 900;
+  color: #000;
 
-  text-align: center;  padding: 20px;  color: var(--manga-black);
+  font-family: Arial, Helvetica, sans-serif;   BASE */ * Cybersecurity & IT Technician focus
 
-  text-transform: uppercase;
+  max-width: 900px;
 
-  border-bottom: 4px solid #000;  line-height: 1.6;  font-family: 'Arial', 'Helvetica', sans-serif;
+  margin: 0 auto;   ============================================ */
 
-  padding-bottom: 15px;
+  padding: 20px;
 
-  margin: 0 0 30px 0;}  max-width: 900px;
+  line-height: 1.6;* { */
 
-  letter-spacing: 3px;
+}
 
-}  margin: 0 auto;
+  box-sizing: border-box;
 
+.manga-page {
 
+  background: #FFF;}/* ============================================
 
-/* ============================================/* ============================================  padding: 20px;
+  border: 5px solid #000;
 
-   VISUAL PANELS (Image-focused)
-
-   ============================================ */   MANGA PAGE  line-height: 1.5;
-
-.visual-panel {
-
-  text-align: center;   ============================================ */}
-
-  padding: 40px 20px;
-
-  position: relative;.manga-page {
+  padding: 30px;
 
   margin-bottom: 30px;
 
-}  background: #FFF;/* ============================================
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.2);.cv-manga-container {   BASE STYLES/* ============================================
+
+}
+
+  background: #FFFEF7;
+
+.page-title {
+
+  font-size: 36px;  color: #000;   ============================================ */   BASE - Pure Manga Style
+
+  font-weight: 900;
+
+  text-align: center;  font-family: Arial, Helvetica, sans-serif;
+
+  text-transform: uppercase;
+
+  border-bottom: 4px solid #000;  max-width: 900px;* {   ============================================ */
+
+  padding-bottom: 15px;
+
+  margin: 0 0 30px 0;  margin: 0 auto;
+
+  letter-spacing: 3px;
+
+}  padding: 20px;  box-sizing: border-box;:root {
 
 
 
-/* ASCII Art Character */  border: 5px solid #000;   MANGA PAGE (Like real manga books)
+.visual-panel {  line-height: 1.6;
 
-.ascii-character {
+  text-align: center;
+
+  padding: 30px 20px;}}  --manga-black: #000000;
+
+  position: relative;
+
+  margin-bottom: 30px;
+
+}
+
+/* ============================================  --manga-white: #FFFFFF;
+
+.speech-bubble {
+
+  background: #FFF;   MANGA PAGE
+
+  border: 3px solid #000;
+
+  border-radius: 25px;   ============================================ */.cv-manga-container {  --paper: #FFFEF7;
+
+  padding: 20px 25px;
+
+  margin: 20px auto;.manga-page {
+
+  max-width: 500px;
+
+  position: relative;  background: #FFF;  background: #FFFEF7;  --border: 3px;
+
+  font-size: 16px;
+
+  font-weight: 500;  border: 5px solid #000;
+
+}
+
+  padding: 30px;  color: #000;}
+
+.speech-bubble::after {
+
+  content: '';  margin-bottom: 30px;
+
+  position: absolute;
+
+  bottom: -20px;  box-shadow: 8px 8px 0 rgba(0,0,0,0.2);  font-family: 'Arial', 'Helvetica', sans-serif;
+
+  left: 50px;
+
+  width: 0;}
+
+  height: 0;
+
+  border-left: 20px solid transparent;  max-width: 900px;.cv-manga-container {
+
+  border-right: 0 solid transparent;
+
+  border-top: 20px solid #000;.page-title {
+
+}
+
+  font-size: 36px;  margin: 0 auto;  background: var(--paper);
+
+.speech-bubble::before {
+
+  content: '';  font-weight: 900;
+
+  position: absolute;
+
+  bottom: -15px;  text-align: center;  padding: 20px;  color: var(--manga-black);
+
+  left: 52px;
+
+  width: 0;  text-transform: uppercase;
+
+  height: 0;
+
+  border-left: 17px solid transparent;  border-bottom: 4px solid #000;  line-height: 1.6;  font-family: 'Arial', 'Helvetica', sans-serif;
+
+  border-right: 0 solid transparent;
+
+  border-top: 17px solid #FFF;  padding-bottom: 15px;
+
+}
+
+  margin: 0 0 30px 0;}  max-width: 900px;
+
+.manga-sfx {
+
+  position: absolute;  letter-spacing: 3px;
+
+  font-size: 36px;
+
+  font-weight: 900;}  margin: 0 auto;
+
+  letter-spacing: 3px;
+
+  opacity: 0.3;
+
+  transform: rotate(-15deg);
+
+  z-index: 10;/* ============================================/* ============================================  padding: 20px;
+
+}
+
+   VISUAL PANELS (Image-focused)
+
+.timeline-compact {
+
+  display: flex;   ============================================ */   MANGA PAGE  line-height: 1.5;
+
+  justify-content: space-around;
+
+  margin: 30px 0;.visual-panel {
+
+  padding: 20px 0;
+
+}  text-align: center;   ============================================ */}
+
+
+
+.timeline-box {  padding: 40px 20px;
+
+  flex: 1;
+
+  text-align: center;  position: relative;.manga-page {
+
+  padding: 15px;
+
+  border: 3px solid #000;  margin-bottom: 30px;
+
+  margin: 0 10px;
+
+  background: #FFF;}  background: #FFF;/* ============================================
+
+}
+
+
+
+.timeline-year {
+
+  font-size: 18px;/* ASCII Art Character */  border: 5px solid #000;   MANGA PAGE (Like real manga books)
+
+  font-weight: 900;
+
+  margin-bottom: 8px;.ascii-character {
+
+}
 
   font-family: 'Courier New', monospace;  padding: 30px;   ============================================ */
 
-  font-size: 10px;
+.timeline-title {
 
-  line-height: 1;  margin-bottom: 30px;.manga-page {
-
-  white-space: pre;
-
-  display: inline-block;  box-shadow: 8px 8px 0 rgba(0,0,0,0.2);  background: var(--manga-white);
+  font-size: 13px;  font-size: 10px;
 
   font-weight: 700;
 
-  margin: 20px 0;}  border: 5px solid var(--manga-black);
+  margin-bottom: 5px;  line-height: 1;  margin-bottom: 30px;.manga-page {
+
+}
+
+  white-space: pre;
+
+/* Manga Images */
+
+.manga-image {  display: inline-block;  box-shadow: 8px 8px 0 rgba(0,0,0,0.2);  background: var(--manga-white);
+
+  max-width: 100%;
+
+  height: auto;  font-weight: 700;
+
+  border: 4px solid #000;
+
+  margin: 20px auto;  margin: 20px 0;}  border: 5px solid var(--manga-black);
+
+  display: block;
+
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.2);}
 
 }
 
   padding: 20px;
 
-/* Simple Icons */
+.manga-image.small {
 
-.manga-icon-large {.page-title {  margin-bottom: 30px;
-
-  display: inline-block;
-
-  width: 120px;  font-size: 32px;  box-shadow: 10px 10px 0 rgba(0,0,0,0.3);
-
-  height: 120px;
-
-  border: 5px solid #000;  font-weight: 900;}
-
-  position: relative;
-
-  margin: 20px;  text-align: center;
-
-  background: #FFF;
-
-}  text-transform: uppercase;/* Page Title */
-
-
-
-/* Computer Icon */  border-bottom: 4px solid #000;.page-title {
-
-.manga-icon-large.computer::before {
-
-  content: '';  padding-bottom: 15px;  font-size: 36px;
-
-  position: absolute;
-
-  width: 80px;  margin: 0 0 25px 0;  font-weight: 900;
-
-  height: 55px;
-
-  border: 4px solid #000;  letter-spacing: 3px;  text-align: center;
-
-  top: 20px;
-
-  left: 50%;}  text-transform: uppercase;
-
-  transform: translateX(-50%);
-
-}  border-bottom: 4px solid var(--manga-black);
-
-
-
-.manga-icon-large.computer::after {/* ============================================  padding-bottom: 10px;
-
-  content: '';
-
-  position: absolute;   MANGA PANELS  margin: 0 0 20px 0;
-
-  width: 50px;
-
-  height: 4px;   ============================================ */  letter-spacing: 2px;
-
-  background: #000;
-
-  bottom: 20px;.manga-panel {}
-
-  left: 50%;
-
-  transform: translateX(-50%);  border: 3px solid #000;
+  max-width: 300px;/* Simple Icons */
 
 }
 
-  padding: 20px;/* ============================================
+.manga-icon-large {.page-title {  margin-bottom: 30px;
 
-/* Shield Icon */
+.manga-image.medium {
 
-.manga-icon-large.shield {  margin-bottom: 20px;   MANGA PANELS (Real comic panels grid)
+  max-width: 500px;  display: inline-block;
 
-  clip-path: polygon(50% 0%, 100% 20%, 100% 70%, 50% 100%, 0% 70%, 0% 20%);
+}
 
-}  background: #FFF;   ============================================ */
+  width: 120px;  font-size: 32px;  box-shadow: 10px 10px 0 rgba(0,0,0,0.3);
+
+.manga-image.large {
+
+  max-width: 700px;  height: 120px;
+
+}
+
+  border: 5px solid #000;  font-weight: 900;}
+
+/* Download Section */
+
+.download-section {  position: relative;
+
+  text-align: center;
+
+  padding: 60px 30px;  margin: 20px;  text-align: center;
+
+  background: #FFF;
+
+  margin: 40px 0;  background: #FFF;
+
+  position: relative;
+
+  border: none;}  text-transform: uppercase;/* Page Title */
+
+}
 
 
 
-.manga-icon-large.shield::before {  position: relative;.panels-grid {
+/* UIverse Style Button */
 
-  content: '🛡';
+.download-btn {/* Computer Icon */  border-bottom: 4px solid #000;.page-title {
 
-  position: absolute;}  display: grid;
+  position: relative;
 
-  font-size: 60px;
+  display: inline-block;.manga-icon-large.computer::before {
 
-  top: 50%;  grid-template-columns: 1fr 1fr;
+  padding: 25px 60px;
+
+  font-size: 18px;  content: '';  padding-bottom: 15px;  font-size: 36px;
+
+  font-weight: 900;
+
+  text-transform: uppercase;  position: absolute;
+
+  letter-spacing: 2px;
+
+  text-decoration: none;  width: 80px;  margin: 0 0 25px 0;  font-weight: 900;
+
+  color: #000;
+
+  background: #FFF;  height: 55px;
+
+  border: 4px solid #000;
+
+  transition: all 0.3s ease;  border: 4px solid #000;  letter-spacing: 3px;  text-align: center;
+
+  cursor: pointer;
+
+  box-shadow: 8px 8px 0 #000;  top: 20px;
+
+}
+
+  left: 50%;}  text-transform: uppercase;
+
+.download-btn:hover {
+
+  transform: translate(4px, 4px);  transform: translateX(-50%);
+
+  box-shadow: 4px 4px 0 #000;
+
+}}  border-bottom: 4px solid var(--manga-black);
+
+
+
+.download-btn:active {
+
+  transform: translate(8px, 8px);
+
+  box-shadow: 0 0 0 #000;.manga-icon-large.computer::after {/* ============================================  padding-bottom: 10px;
+
+}
+
+  content: '';
+
+/* Responsive */
+
+@media (max-width: 768px) {  position: absolute;   MANGA PANELS  margin: 0 0 20px 0;
+
+  .cv-manga-container {
+
+    padding: 10px;  width: 50px;
+
+  }
+
+    height: 4px;   ============================================ */  letter-spacing: 2px;
+
+  .manga-page {
+
+    padding: 20px;  background: #000;
+
+  }
+
+    bottom: 20px;.manga-panel {}
+
+  .page-title {
+
+    font-size: 24px;  left: 50%;
+
+  }
+
+    transform: translateX(-50%);  border: 3px solid #000;
+
+  .timeline-compact {
+
+    flex-direction: column;}
+
+  }
+
+    padding: 20px;/* ============================================
+
+  .timeline-box {
+
+    margin: 10px 0;/* Shield Icon */
+
+  }
+
+}.manga-icon-large.shield {  margin-bottom: 20px;   MANGA PANELS (Real comic panels grid)
+
+
+
+/* Print */  clip-path: polygon(50% 0%, 100% 20%, 100% 70%, 50% 100%, 0% 70%, 0% 20%);
+
+@media print {
+
+  .cv-manga-container {}  background: #FFF;   ============================================ */
+
+    max-width: 100%;
+
+    padding: 0;
+
+  }
+
+  .manga-icon-large.shield::before {  position: relative;.panels-grid {
+
+  .manga-page {
+
+    box-shadow: none;  content: '🛡';
+
+    page-break-after: always;
+
+  }  position: absolute;}  display: grid;
+
+  
+
+  .download-section {  font-size: 60px;
+
+    display: none;
+
+  }  top: 50%;  grid-template-columns: 1fr 1fr;
+
+}
 
   left: 50%;
 

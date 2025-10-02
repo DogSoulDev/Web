@@ -15,17 +15,9 @@ export class CVView extends BaseView {
                     
                     <!-- Visual Hero Panel -->
                     <div class="visual-panel">
-                        <div class="manga-sfx" style="top: 20px; left: 20px;">BOOM!</div>
-                        <div class="manga-sfx" style="top: 20px; right: 20px;">POW!</div>
-                        
-                        <div class="ascii-character">
-    ██████╗██╗   ██╗██████╗ ███████╗██████╗ 
-   ██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗
-   ██║      ╚████╔╝ ██████╔╝█████╗  ██████╔╝
-   ██║       ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗
-   ╚██████╗   ██║   ██████╔╝███████╗██║  ██║
-    ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1578632292335-df3abbb0d586?w=600&h=400&fit=crop" 
+                             alt="Manga Hero" 
+                             class="manga-image medium">
                         
                         <div class="speech-bubble">
                             <strong>Javier - Born 1985</strong><br>
@@ -35,22 +27,9 @@ export class CVView extends BaseView {
                     
                     <!-- Manga Character Image -->
                     <div class="visual-panel">
-                        <div class="ascii-character">
-         _____
-        /     \\
-       | O   O |    Blue Team Defender!
-       |   >   |
-       |  \\_/  |
-        \\_____/
-         |||||
-        /|||||\\
-       / ||||| \\
-      /  |||||  \\
-         |   |
-        /|   |\\
-       / |   | \\
-      /__/   \\__\\
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1613376023733-0a73315d9b06?w=400&h=400&fit=crop" 
+                             alt="Blue Team Defender" 
+                             class="manga-image small">
                     </div>
                     
                     <!-- Mission Panel -->
@@ -102,20 +81,9 @@ export class CVView extends BaseView {
                     
                     <!-- Computer Hacker Image -->
                     <div class="visual-panel">
-                        <div class="ascii-character">
-    ___________________
-   |  _____________  |
-   | |CYBERSEC    | |
-   | |> python    | |
-   | |> bash      | |
-   | |> siem_log  | |
-   | |_____________| |
-   |_________________|
-        _[_______]_
-    ___[___________]___
-   |         [_____]   |
-   |___________________|
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop" 
+                             alt="Cybersecurity Work" 
+                             class="manga-image medium">
                     </div>
                     
                     <!-- Skills Panel -->
@@ -133,9 +101,6 @@ export class CVView extends BaseView {
                 
                 <!-- DOWNLOAD BUTTON -->
                 <div class="download-section">
-                    <div class="manga-sfx" style="top: 20px; left: 30px; font-size: 50px; opacity: 0.2;">CLICK!</div>
-                    <div class="manga-sfx" style="top: 20px; right: 30px; font-size: 50px; opacity: 0.2;">HERE!</div>
-                    
                     <a href="./docs/CV.pdf" download class="download-btn">
                         DOWNLOAD CV
                     </a>
