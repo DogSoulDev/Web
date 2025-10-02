@@ -196,30 +196,42 @@
   }
 }
 
-/* Galaxy Z Fold 6 Cover Display (Extra Narrow) */
+/* Galaxy Z Fold 6 Cover Display (Extra Narrow ~280px width, tall ~968px height) */
 @media (max-width: 280px) {
   .logo-animation-container {
-    padding: 15px 8px;
+    padding: 10px 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
   }
   
   #logo-animated {
-    width: 88%;
-    max-width: 220px;
-    max-height: 55vh;
+    width: 85%;
+    max-width: 230px;
+    max-height: 230px;
+    height: auto;
   }
   
   .loading-text {
-    font-size: 0.7rem;
-    bottom: 30px;
-    position: relative;
-    margin-top: 15px;
+    font-size: 0.65rem;
+    position: static;
+    margin-top: 10px;
+    bottom: auto;
   }
   
   #logo-animated path {
-    stroke-width: 1.1;
+    stroke-width: 1;
+  }
+}
+
+/* Extra safeguard for very narrow screens */
+@media (max-width: 280px) and (min-height: 800px) {
+  /* For tall narrow screens like Z Fold 6 cover display */
+  #logo-animated {
+    width: 80%;
+    max-width: 210px;
+    max-height: 210px;
   }
 }
