@@ -19,7 +19,7 @@ export class ProjectsModel {
         url: repo.html_url,
         tech: repo.language ? [repo.language] : ['Various'],
         stars: repo.stargazers_count || 0,
-        repoName: repo.full_name // DogSoulDev/nombre-repo
+        repoName: repo.full_name // DogSoulDev/repo-name
       }));
     } catch (error) {
       console.error('Error fetching projects:', error);

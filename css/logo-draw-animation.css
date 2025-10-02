@@ -62,7 +62,7 @@
   opacity: 1;
 }
 
-/* Mensaje de carga */
+/* Loading message */
 .loading-text {
   position: absolute;
   bottom: 100px;
