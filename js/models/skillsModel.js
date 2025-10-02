@@ -10,23 +10,21 @@ export class SkillsModel {
    */
   getSkills() {
     return [
-      { name: 'Penetration Testing', level: 'Expert' },
-      { name: 'Vulnerability Analysis', level: 'Expert' },
-      { name: 'Incident Response', level: 'Expert' },
-      { name: 'Linux Security', level: 'Advanced' },
-      { name: 'Network Security', level: 'Advanced' },
+      { name: 'Penetration Testing', level: 'Advanced' },
+      { name: 'Cybersecurity Incident Response', level: 'Advanced' },
+      { name: 'Linux Systems', level: 'Advanced' },
+      { name: 'Vulnerabilities Analysis', level: 'Advanced' },
+      { name: 'Information Security Management', level: 'Advanced' },
       { name: 'Malware Analysis', level: 'Advanced' },
-      { name: 'Python & Bash Scripting', level: 'Advanced' },
-      { name: 'Cryptography', level: 'Advanced' },
+      { name: 'Security in Linux-based Architectures', level: 'Advanced' },
+      { name: 'Corporate Network Security', level: 'Advanced' },
       { name: 'OSINT (Open Source Intelligence)', level: 'Advanced' },
       { name: 'Web Security', level: 'Advanced' },
-      { name: 'Security in Linux-based Architectures', level: 'Advanced' },
-      { name: 'Information Security Management', level: 'Advanced' },
-      { name: 'Full-Stack Development', level: 'Advanced' },
-      { name: 'React, Node.js, Express', level: 'Advanced' },
-      { name: 'PHP, Laravel', level: 'Advanced' },
-      { name: 'MongoDB, Database Design', level: 'Proficient' },
-      { name: 'Git Version Control', level: 'Proficient' }
+      { name: 'Cryptography', level: 'Advanced' },
+      { name: 'Python Scripting', level: 'Advanced' },
+      { name: 'Bash Scripting', level: 'Advanced' },
+      { name: 'Git Version Control', level: 'Proficient' },
+      { name: 'Programming & Development', level: 'Proficient' }
     ];
   }
 }

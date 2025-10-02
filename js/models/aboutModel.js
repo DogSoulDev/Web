@@ -11,7 +11,11 @@ export class AboutModel {
   getAbout() {
     return {
       title: 'About Me',
-      content: `Highly accomplished Cybersecurity professional backed by a triple academic foundation: a Master's Degree in Cybersecurity, a Master's in Software Development, and a Higher Technical Degree in IT Systems Management. My technical expertise is complemented by a strong team orientation and relentless determination—qualities forged through dedicated sports participation. I excel at collaborative problem-solving and possess the willpower to achieve challenging objectives in vulnerability analysis and complex risk mitigation. Seeking to leverage this blend of advanced technical skills and a proven team-first, goal-driven mindset to enhance organizational security.
+      content: `Strategic Blue Team Candidate with a Master's Degree in Cybersecurity and an exceptional 10+ year background in IT Systems Engineering, Network Architecture, and Full-Stack Development. I leverage this deep infrastructure knowledge to provide superior context for threat detection and analysis.
+
+My core value is the ability to quickly triage security alerts and mitigate risks due to a comprehensive understanding of how systems are built, secured, and attacked. I possess hands-on skills in log analysis, security monitoring methodologies, Linux environments, and Python/Bash scripting—all essential for effective SOC operations.
+
+I am results-driven and committed to applying my rigor, methodological approach, and team-first mindset to ensure early threat detection and efficient incident response within a high-tempo security operations center.
 
 Personal Information:
 • Work permit: Spanish | Gender: Male | Date of birth: 31/10/1985
