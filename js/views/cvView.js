@@ -15,7 +15,7 @@ export class CVView extends BaseView {
                     
                     <!-- Visual Hero Panel -->
                     <div class="visual-panel">
-                        <img src="https://images.unsplash.com/photo-1578632292335-df3abbb0d586?w=600&h=400&fit=crop" 
+                        <img src="./img/cv/manga-hero.svg" 
                              alt="Manga Hero" 
                              class="manga-image medium">
                         
@@ -27,7 +27,7 @@ export class CVView extends BaseView {
                     
                     <!-- Manga Character Image -->
                     <div class="visual-panel">
-                        <img src="https://images.unsplash.com/photo-1613376023733-0a73315d9b06?w=400&h=400&fit=crop" 
+                        <img src="./img/cv/manga-shield.svg" 
                              alt="Blue Team Defender" 
                              class="manga-image small">
                     </div>
@@ -81,7 +81,7 @@ export class CVView extends BaseView {
                     
                     <!-- Computer Hacker Image -->
                     <div class="visual-panel">
-                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop" 
+                        <img src="./img/cv/manga-tech.svg" 
                              alt="Cybersecurity Work" 
                              class="manga-image medium">
                     </div>
