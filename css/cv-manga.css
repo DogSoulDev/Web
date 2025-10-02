@@ -88,6 +88,7 @@
     border: none;
     display: flex;
     align-items: center;
+    justify-content: center;
     background: transparent;
     color: #f93d21;
     transition: all 100ms;
@@ -121,29 +122,32 @@
 
 .text-btn {
     position: absolute;
-    transform: translateX(0px);
-    width: 110px;
+    left: 50%;
+    transform: translateX(-50%);
     transition: all 200ms;
     margin: 0;
     font-family: var(--font-manga);
+    text-align: center;
 }
 
 .hidden-text-btn {
     position: absolute;
+    left: 50%;
     transform: translateX(150px);
     opacity: 0;
     transition: all 200ms;
     margin: 0;
     font-family: var(--font-manga);
+    text-align: center;
 }
 
 .btn:hover .text-btn {
-    transform: translateX(-150px);
+    transform: translateX(-200px);
     opacity: 0;
 }
 
 .btn:hover .hidden-text-btn {
-    transform: translateX(0px);
+    transform: translateX(-50%);
     opacity: 1;
 }
 
