@@ -7,18 +7,24 @@ export class CVView extends BaseView {
 
     async render() {
         return `
-            <div class="cv-manga-container">
+            <div class="section cv-section">
+                <h2 class="section-title">My CV</h2>
                 
                 <!-- Intro Text -->
                 <div class="cv-intro">
                     <p class="intro-text">If you want to hire me, my CV is below.</p>
                 </div>
                 
+                <!-- Main CV Image -->
+                <div class="cv-main-image">
+                    <img src="./img/cv/a.png" alt="CV Main" class="cv-hero-img">
+                </div>
+                
                 <!-- Manga CV Comic Style -->
                 <div class="manga-comic">
                     
                     <!-- Panel 1 -->
-                    <div class="manga-panel panel-large">
+                    <div class="manga-panel panel-medium">
                         <img src="./img/cv/a1.png" alt="CV Page 1" class="manga-img">
                         <div class="panel-border"></div>
                     </div>
@@ -36,13 +42,13 @@ export class CVView extends BaseView {
                     </div>
                     
                     <!-- Panel 4 -->
-                    <div class="manga-panel panel-large">
+                    <div class="manga-panel panel-medium">
                         <img src="./img/cv/a4.png" alt="CV Page 4" class="manga-img">
                         <div class="panel-border"></div>
                     </div>
                     
                     <!-- Panel 5 -->
-                    <div class="manga-panel panel-full">
+                    <div class="manga-panel panel-medium">
                         <img src="./img/cv/a5.png" alt="CV Page 5" class="manga-img">
                         <div class="panel-border"></div>
                     </div>
