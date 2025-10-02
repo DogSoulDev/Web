@@ -12,8 +12,7 @@ export class SkillsModel {
     return [
       { name: 'Penetration Testing', level: 'Advanced' },
       { name: 'Cybersecurity Incident Response', level: 'Advanced' },
-      { name: 'Linux Systems', level: 'Advanced' },
-      { name: 'Vulnerabilities Analysis', level: 'Advanced' },
+      { name: 'Linux Administration (CLI)', level: 'Advanced' },
       { name: 'Information Security Management', level: 'Advanced' },
       { name: 'Malware Analysis', level: 'Advanced' },
       { name: 'Security in Linux-based Architectures', level: 'Advanced' },
@@ -24,7 +23,20 @@ export class SkillsModel {
       { name: 'Python Scripting', level: 'Advanced' },
       { name: 'Bash Scripting', level: 'Advanced' },
       { name: 'Git Version Control', level: 'Proficient' },
-      { name: 'Programming & Development', level: 'Proficient' }
+      { name: 'SIEM (Security Information and Event Management)', level: 'Proficient' },
+      { name: 'Log Analysis / Alert Triage', level: 'Proficient' },
+      { name: 'Incident Response (IR) Fundamentals', level: 'Proficient' },
+      { name: 'Threat Intelligence (TI) Integration', level: 'Proficient' },
+      { name: 'Vulnerability Management', level: 'Proficient' },
+      { name: 'Security Monitoring', level: 'Proficient' },
+      { name: 'Networking Protocols (TCP/IP)', level: 'Proficient' },
+      { name: 'Windows Security / Event Log Analysis', level: 'Proficient' },
+      { name: 'Network Security', level: 'Proficient' },
+      { name: 'Cybersecurity Policy & Compliance', level: 'Proficient' },
+      { name: 'Problem-Solving & Critical Thinking', level: 'Expert' },
+      { name: 'Cross-Functional Team Collaboration', level: 'Expert' },
+      { name: 'Documentation & Technical Reporting', level: 'Expert' },
+      { name: 'Risk Mitigation', level: 'Advanced' }
     ];
   }
 }

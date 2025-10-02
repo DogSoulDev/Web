@@ -71,51 +71,99 @@ export class CVView extends BaseView {
           </div>
         </div>
         
-        <!-- Chapters Preview Section -->
-        <div class="chapters-preview">
-          <h2 class="section-title">
-            <span class="title-decoration">≫</span>
-            INSIDE THIS VOLUME
-            <span class="title-decoration">≪</span>
-          </h2>
-          
-          <div class="chapters-grid">
-            ${cvData.chapters.map((chapter, index) => `
-              <div class="chapter-card" data-chapter="${index}">
-                <div class="chapter-icon">${chapter.icon}</div>
-                <div class="chapter-number">${chapter.number}</div>
-                <h3 class="chapter-title">${chapter.title}</h3>
-                <p class="chapter-subtitle">${chapter.subtitle}</p>
-                <div class="chapter-arrow">→</div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-        
-        <!-- Download CTA Section -->
-        <div class="download-cta">
-          <div class="cta-content">
-            <h2 class="cta-title">READY TO READ THE FULL STORY?</h2>
-            <p class="cta-subtitle">Download the complete professional saga</p>
-            
-            <a href="${cvData.pdfPath}" download="JavierFernandez_CV.pdf" class="download-btn">
-              <span class="btn-icon">📥</span>
-              <span class="btn-text">${cvData.downloadText}</span>
-              <span class="btn-subtext">PDF Format • Complete CV</span>
-            </a>
-            
-            <!-- Manga-style speech bubble -->
-            <div class="recruiter-bubble">
-              <p>"This candidate's journey is impressive!"</p>
-              <span class="bubble-tail"></span>
+        <!-- Table of Contents Section (目次 - Mokuji) -->
+        <div class="manga-toc-section">
+          <!-- Traditional manga TOC header -->
+          <div class="toc-header">
+            <div class="toc-border-top"></div>
+            <h2 class="toc-title">
+              <span class="toc-jp">目次</span>
+              <span class="toc-en">CONTENTS</span>
+            </h2>
+            <div class="toc-volume-info">
+              <span>VOL.1</span>
+              <span class="divider">|</span>
+              <span>THE ETHICAL HACKER</span>
             </div>
           </div>
           
-          <!-- Background decoration -->
-          <div class="cta-decoration">
-            <div class="speed-line"></div>
-            <div class="speed-line"></div>
-            <div class="speed-line"></div>
+          <!-- Chapter list (traditional manga style) -->
+          <div class="toc-list">
+            ${cvData.chapters.map((chapter, index) => `
+              <div class="toc-entry">
+                <div class="entry-left">
+                  <span class="entry-icon">${chapter.icon}</span>
+                  <div class="entry-text">
+                    <div class="entry-chapter">第${this.numberToKanji(chapter.number)}章</div>
+                    <div class="entry-title">${chapter.title}</div>
+                    <div class="entry-subtitle">${chapter.subtitle}</div>
+                  </div>
+                </div>
+                <div class="entry-dots"></div>
+                <div class="entry-page">P.${(index + 1) * 10}</div>
+              </div>
+            `).join('')}
+          </div>
+          
+          <!-- Traditional manga separator -->
+          <div class="manga-separator">
+            <span class="separator-star">★</span>
+            <span class="separator-line"></span>
+            <span class="separator-star">★</span>
+          </div>
+        </div>
+        
+        <!-- Download Section (Manga Ending Page Style) -->
+        <div class="manga-ending-section">
+          <!-- Traditional manga ending frame -->
+          <div class="ending-frame">
+            <!-- Top border decoration -->
+            <div class="frame-border-top">
+              <div class="border-pattern"></div>
+            </div>
+            
+            <!-- Main content -->
+            <div class="ending-content">
+              <!-- Japanese "Owari" symbol -->
+              <div class="owari-mark">
+                <span class="owari-text">完</span>
+              </div>
+              
+              <!-- Message -->
+              <div class="ending-message">
+                <h2 class="ending-title">STORY CONTINUES...</h2>
+                <p class="ending-subtitle">続きは本編で！</p>
+              </div>
+              
+              <!-- Download panel (manga style) -->
+              <div class="download-panel">
+                <div class="panel-border">
+                  <div class="panel-content">
+                    <div class="panel-icon">📥</div>
+                    <div class="panel-text">
+                      <span class="panel-title">${cvData.downloadText}</span>
+                      <span class="panel-subtitle">Complete Professional Story</span>
+                    </div>
+                  </div>
+                  <a href="${cvData.pdfPath}" download="JavierFernandez_CV.pdf" class="download-btn-manga">
+                    <span class="btn-text">DOWNLOAD NOW</span>
+                    <span class="btn-arrow">→</span>
+                  </a>
+                </div>
+              </div>
+              
+              <!-- Publication info (manga style) -->
+              <div class="publication-info">
+                <p>Published by: DOGSOUL DIGITAL STUDIOS</p>
+                <p>Author: Javier Fernández</p>
+                <p>© 2024 All Rights Reserved</p>
+              </div>
+            </div>
+            
+            <!-- Bottom border decoration -->
+            <div class="frame-border-bottom">
+              <div class="border-pattern"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -128,8 +176,17 @@ export class CVView extends BaseView {
    */
   afterRender() {
     this.initSpeedLines();
-    this.initHoverEffects();
     this.initScrollAnimations();
+  }
+
+  /**
+   * Convert number to Kanji
+   * @param {number} num - Number to convert
+   * @returns {string} Kanji representation
+   */
+  numberToKanji(num) {
+    const kanji = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+    return kanji[num - 1] || num;
   }
 
   /**
@@ -192,23 +249,6 @@ export class CVView extends BaseView {
   }
 
   /**
-   * Initialize hover effects for chapter cards
-   */
-  initHoverEffects() {
-    const chapterCards = document.querySelectorAll('.chapter-card');
-    
-    chapterCards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-10px) rotate(2deg)';
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0) rotate(0deg)';
-      });
-    });
-  }
-
-  /**
    * Initialize scroll-triggered animations
    */
   initScrollAnimations() {
@@ -221,7 +261,7 @@ export class CVView extends BaseView {
     }, { threshold: 0.1 });
 
     // Observe elements
-    document.querySelectorAll('.chapter-card, .download-cta').forEach(el => {
+    document.querySelectorAll('.toc-entry, .manga-ending-section').forEach(el => {
       observer.observe(el);
     });
   }

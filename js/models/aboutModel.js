@@ -11,7 +11,7 @@ export class AboutModel {
   getAbout() {
     return {
       title: 'About Me',
-      content: `Strategic Blue Team Candidate with a Master's Degree in Cybersecurity and an exceptional 10+ year background in IT Systems Engineering, Network Architecture, and Full-Stack Development. I leverage this deep infrastructure knowledge to provide superior context for threat detection and analysis.
+      content: `Strategic Blue Team Candidate with a Master's Degree in Cybersecurity and an exceptional 10+ year background in IT Systems Engineering, Network Architecture, and Full-Stack Development. I leverage this deep infrastructure knowledge to provide a superior context for threat detection and analysis.
 
 My core value is the ability to quickly triage security alerts and mitigate risks due to a comprehensive understanding of how systems are built, secured, and attacked. I possess hands-on skills in log analysis, security monitoring methodologies, Linux environments, and Python/Bash scripting—all essential for effective SOC operations.
 
