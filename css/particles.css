@@ -56,6 +56,60 @@
   }
 }
 
+@media (max-width: 540px) {
+  #animatedText span {
+    font-size: 1.3rem;
+    letter-spacing: 0.12em;
+  }
+  
+  .animated-text-container {
+    min-height: 55px;
+    padding: 18px 12px;
+    border-width: 3px;
+    box-shadow: 6px 6px 0 #000;
+  }
+  
+  #animatedText {
+    height: 45px;
+  }
+}
+
+@media (max-width: 430px) {
+  #animatedText span {
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .animated-text-container {
+    min-height: 50px;
+    padding: 15px 10px;
+    border-width: 3px;
+    box-shadow: 5px 5px 0 #000;
+  }
+  
+  #animatedText {
+    height: 42px;
+  }
+}
+
+@media (max-width: 360px) {
+  #animatedText span {
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+  }
+  
+  .animated-text-container {
+    min-height: 48px;
+    padding: 12px 8px;
+    border-width: 3px;
+    box-shadow: 5px 5px 0 #000;
+  }
+  
+  #animatedText {
+    height: 40px;
+  }
+}
+
 /* Galaxy Z Fold 6 Cover Display */
 @media (max-width: 280px) {
   #animatedText span {

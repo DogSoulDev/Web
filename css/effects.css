@@ -662,6 +662,74 @@
   .manga-glitch-container {
     padding: 20px 10px;
   }
+  
+  .speech-bubble {
+    padding: 18px;
+    border-width: 2px;
+    box-shadow: 4px 4px 0 var(--manga-gray);
+  }
+}
+
+@media (max-width: 540px) {
+  .skill-speech-bubble {
+    padding: 14px 16px;
+    margin: 12px;
+    min-height: 80px;
+    border-width: 2px;
+    box-shadow: 4px 4px 0 var(--manga-black);
+  }
+  
+  .skill-speech-bubble h4 {
+    font-size: 1rem;
+  }
+  
+  .skill-speech-bubble p {
+    font-size: 0.85rem;
+  }
+  
+  .speech-bubble {
+    padding: 16px;
+    border-width: 2px;
+  }
+}
+
+@media (max-width: 430px) {
+  .skill-speech-bubble {
+    padding: 12px 14px;
+    margin: 10px;
+    min-height: 75px;
+    border-width: 2px;
+    box-shadow: 4px 4px 0 var(--manga-black);
+  }
+  
+  .skill-speech-bubble h4 {
+    font-size: 0.95rem;
+  }
+  
+  .skill-speech-bubble p {
+    font-size: 0.8rem;
+  }
+  
+  .speech-bubble {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 360px) {
+  .skill-speech-bubble {
+    padding: 12px 14px;
+    margin: 8px;
+    min-height: 70px;
+    border-width: 2px;
+  }
+  
+  .skill-speech-bubble h4 {
+    font-size: 0.9rem;
+  }
+  
+  .skill-speech-bubble p {
+    font-size: 0.75rem;
+  }
 }
 
 /* Galaxy Z Fold 6 Cover Display */
