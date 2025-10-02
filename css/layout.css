@@ -353,3 +353,89 @@
     width: 80px;
   }
 }
+
+/* Galaxy Z Fold 6 Cover Display (Extra Narrow ~280px) */
+@media (max-width: 280px) {
+  #app {
+    max-width: 100%;
+    margin: 0.2rem;
+    padding: 0.4rem;
+    border-width: 2px;
+    box-shadow: 
+      6px 6px 0 rgba(0, 0, 0, 0.3),
+      inset 0 0 0 6px var(--bg-panel),
+      inset 0 0 0 8px var(--manga-black);
+  }
+
+  #app::before {
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-width: 1px;
+  }
+
+  .header {
+    gap: 0.5rem;
+  }
+
+  .navbar {
+    padding: 0.5rem 0.25rem;
+  }
+
+  .navbar-list {
+    gap: 0.3rem;
+    padding: 0 0.25rem;
+  }
+
+  .nav-btn {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.75rem;
+    box-shadow: 2px 2px 0 var(--manga-black);
+    border-width: 2px;
+  }
+
+  .nav-btn:hover,
+  .nav-btn.active {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 var(--manga-black);
+  }
+
+  .title {
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+  }
+
+  .profile-img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .section {
+    padding: 0.4rem;
+    margin-bottom: 0.8rem;
+    border-width: 2px;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .section::before,
+  .section::after {
+    width: 15px;
+    height: 15px;
+  }
+
+  .section-title {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    padding-bottom: 0.5rem;
+  }
+
+  .section-title::after {
+    width: 70px;
+    height: 2px;
+  }
+}

@@ -12,11 +12,12 @@
  * Used across CSS and JavaScript
  * Must match CSS custom properties in base.css
  * Updated for modern devices (2024-2025):
- * - Foldables: Samsung Galaxy Z Flip/Fold, Pixel Fold
+ * - Foldables: Samsung Galaxy Z Flip/Fold (including Z Fold 6 cover display)
  * - Modern phones: iPhone 14/15, Samsung S23/S24
  * - Tablets: iPad, Samsung Tab
  */
 export const BREAKPOINTS = {
+  FOLDABLE_COVER: 280,     // Z Fold 6 cover display (narrow ~280px)
   MOBILE_TINY: 280,        // Very small devices
   MOBILE_SMALL: 360,       // Standard small phones
   MOBILE: 393,             // Modern phones (iPhone 14/15, Samsung S23)

@@ -32,6 +32,7 @@
   
   /* Responsive breakpoints (for CSS calculations)
      Updated for 2024-2025 devices including foldables */
+  --breakpoint-foldable-cover: 280px;
   --breakpoint-mobile-tiny: 280px;
   --breakpoint-mobile-small: 360px;
   --breakpoint-mobile: 393px;

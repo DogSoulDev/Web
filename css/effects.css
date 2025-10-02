@@ -663,3 +663,80 @@
     padding: 20px 10px;
   }
 }
+
+/* Galaxy Z Fold 6 Cover Display */
+@media (max-width: 280px) {
+  /* Speech bubbles */
+  .skill-speech-bubble {
+    padding: 12px 15px;
+    margin: 10px;
+    min-height: 70px;
+    border-width: 2px;
+    box-shadow: 3px 3px 0 var(--manga-black);
+  }
+  
+  .skill-speech-bubble:hover {
+    box-shadow: 4px 4px 0 var(--manga-black);
+  }
+  
+  .skill-speech-bubble h4 {
+    font-size: 0.9rem;
+  }
+  
+  .skill-speech-bubble p {
+    font-size: 0.75rem;
+  }
+  
+  /* Glitch effect */
+  .glitch {
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+  }
+  
+  .sub-glitch {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+  
+  .manga-glitch-container {
+    padding: 15px 8px;
+    border-width: 3px;
+    box-shadow: 6px 6px 0 #000;
+  }
+  
+  /* Contact bubbles */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .contact-speech-bubble {
+    padding: 15px;
+    border-width: 2px;
+    box-shadow: 4px 4px 0 var(--manga-gray);
+  }
+  
+  .contact-speech-bubble:hover {
+    box-shadow: 5px 5px 0 var(--manga-gray);
+  }
+  
+  .contact-speech-bubble h4 {
+    font-size: 1rem;
+  }
+  
+  .contact-speech-bubble p {
+    font-size: 0.85rem;
+  }
+  
+  /* Skills grid */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .speech-bubble {
+    padding: 15px;
+    border-width: 2px;
+    box-shadow: 4px 4px 0 var(--manga-gray);
+  }
+}

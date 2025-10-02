@@ -195,3 +195,61 @@
         max-width: 300px;
     }
 }
+
+/* Galaxy Z Fold 6 Cover Display (Extra Narrow ~280px) */
+@media (max-width: 280px) {
+    .cv-section {
+        padding: var(--spacing-md) var(--spacing-xs);
+    }
+    
+    .cv-section .section-title {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .intro-text {
+        font-size: 0.9rem;
+    }
+    
+    .cv-main-image {
+        padding: 0 var(--spacing-xs);
+    }
+    
+    .cv-hero-img {
+        max-width: 250px;
+        border-width: 2px;
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .manga-comic {
+        padding: 0 var(--spacing-xs);
+        gap: var(--spacing-md);
+    }
+    
+    .manga-panel {
+        border-width: 2px;
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+    
+    .download-section {
+        padding: var(--spacing-lg) var(--spacing-xs);
+    }
+    
+    .btn {
+        padding: 20px 40px;
+        font-size: 16px;
+        height: 42px;
+        width: 140px;
+    }
+    
+    .left-span,
+    .right-span {
+        height: 42px;
+        width: 12px;
+    }
+    
+    .text-btn,
+    .hidden-text-btn {
+        font-size: 14px;
+    }
+}
