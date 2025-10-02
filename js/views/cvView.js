@@ -2,8 +2,9 @@ import { BaseView } from './BaseView.js';
 import { CVModel } from '../models/cvModel.js';
 
 /**
- * CV View
- * Renders manga-style CV page with epic cover design
+ * CV View - Comedy Manga Style
+ * Renders fun, humorous manga-style CV page
+ * Inspired by comedy manga like Grand Blue, Komi-san, Yotsuba&!
  * Follows SOLID principles: Single responsibility for CV presentation
  */
 export class CVView extends BaseView {
@@ -21,155 +22,191 @@ export class CVView extends BaseView {
     
     return `
       <div class="cv-manga-container">
-        <!-- PORTADA ESTILO MANGA JAPONÉS -->
-        <div class="manga-cover-page">
-          <!-- Fondo con texturas tradicionales -->
+        <!-- HERO SECTION - FUN & WELCOMING -->
+        <div class="comedy-hero">
+          <!-- Speed lines background -->
           <canvas id="speedLinesCanvas" class="speed-lines-bg"></canvas>
           
-          <!-- Título vertical japonés (tategaki) -->
-          <div class="tategaki-title">
-            <div class="kanji-large">履歴書</div>
-            <div class="kanji-subtitle">RESUME</div>
-          </div>
-          
-          <!-- Logo/Sello tradicional -->
-          <div class="hanko-seal">
-            <div class="seal-inner">
-              <span class="seal-kanji">承</span>
-              <span class="seal-kanji">認</span>
-            </div>
-          </div>
-          
-          <!-- Título principal estilo Weekly Shonen Jump -->
-          <div class="main-title-block">
-            <div class="title-badge">VOL.1</div>
-            <h1 class="manga-main-title">
-              <span class="title-line-1">THE</span>
-              <span class="title-line-2">ETHICAL HACKER</span>
-            </h1>
-            <div class="subtitle-jp">倫理的ハッカー</div>
-          </div>
-          
-          <!-- Stats estilo ficha de personaje -->
-          <div class="character-profile">
-            <div class="profile-header">キャラクター情報</div>
-            <div class="stats-grid">
-              ${cvData.stats.map(stat => `
-                <div class="stat-row">
-                  <span class="stat-label-jp">${stat.labelJp || stat.label}</span>
-                  <span class="stat-dots">・・・</span>
-                  <span class="stat-value">${stat.value}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-          
-          <!-- Sello de autor -->
-          <div class="author-credit">
-            <span class="by-text">著者</span>
-            <span class="author-name">${cvData.author}</span>
-          </div>
-        </div>
-        
-        <!-- PÁGINA DE MANGA CON PANELES -->
-        <div class="manga-panels-page">
-          <!-- Número de página estilo manga -->
-          <div class="page-number">P. 002</div>
-          
-          <!-- Grid de paneles estilo manga real -->
-          <div class="manga-layout">
-            ${cvData.chapters.map((chapter, index) => `
-              <div class="manga-panel panel-${index + 1}">
-                <!-- Borde de panel tradicional -->
-                <div class="panel-border">
-                  <!-- Contenido del panel -->
-                  <div class="panel-content">
-                    <!-- Número de capítulo en kanji -->
-                    <div class="chapter-badge">
-                      <span class="chapter-kanji">第${this.numberToKanji(chapter.number)}章</span>
-                      <span class="chapter-number">CHAPTER ${chapter.number}</span>
-                    </div>
-                    
-                    <!-- Icono grande -->
-                    <div class="panel-icon">${chapter.icon}</div>
-                    
-                    <!-- Texto del capítulo -->
-                    <div class="panel-text">
-                      <h3 class="panel-title">${chapter.title}</h3>
-                      <p class="panel-subtitle">${chapter.subtitle}</p>
-                    </div>
-                    
-                    <!-- Efecto de velocidad -->
-                    <div class="speed-lines-overlay"></div>
-                  </div>
-                </div>
-                
-                <!-- Bocadillo de diálogo opcional -->
-                ${index === 0 ? `
-                  <div class="cv-speech-bubble bubble-${index}">
-                    <span class="bubble-text">始まり！</span>
-                  </div>
-                ` : ''}
+          <!-- Chibi character reaction (optional) -->
+          <div class="chibi-character">
+            <div class="chibi-face">
+              <div class="chibi-eyes">
+                <span class="eye">✨</span>
+                <span class="eye">✨</span>
               </div>
-            `).join('')}
+              <div class="chibi-mouth">▿</div>
+            </div>
+            <div class="chibi-body">👔</div>
+          </div>
+          
+          <!-- Big fun title with sound effect -->
+          <div class="hero-title-block">
+            <div class="sfx-top">キラキラ</div>
+            <h1 class="comedy-main-title">
+              <span class="title-shadow">THE ETHICAL</span>
+              <span class="title-main">HACKER!</span>
+              <span class="title-jp">よろしく！</span>
+            </h1>
+            <div class="sfx-bottom">ドキドキ</div>
+          </div>
+          
+          <!-- Multiple speech bubbles with quick facts -->
+          <div class="bubble-cluster">
+            <div class="mini-bubble bubble-1">
+              <span>🔒 Security</span>
+            </div>
+            <div class="mini-bubble bubble-2">
+              <span>💻 Dev</span>
+            </div>
+            <div class="mini-bubble bubble-3">
+              <span>🎨 Design</span>
+            </div>
+            <div class="mini-bubble bubble-4">
+              <span>⚡ Fast!</span>
+            </div>
+          </div>
+          
+          <!-- Manga symbols floating -->
+          <div class="floating-symbols">
+            <span class="symbol star">⭐</span>
+            <span class="symbol heart">💕</span>
+            <span class="symbol sparkle">✨</span>
+            <span class="symbol sweat">💧</span>
           </div>
         </div>
         
-        <!-- PÁGINA FINAL ESTILO MANGA -->
-        <div class="manga-end-page">
-          <!-- Número de página -->
-          <div class="page-number">P. 003</div>
-          
-          <!-- Gran símbolo "完" (Fin) -->
-          <div class="owari-symbol">
-            <div class="owari-circle">
-              <span class="owari-kanji">完</span>
-            </div>
-            <div class="owari-text">END OF PREVIEW</div>
-          </div>
-          
-          <!-- Panel de descarga estilo manga -->
-          <div class="download-manga-panel">
-            <!-- Borde grueso tradicional -->
-            <div class="panel-thick-border">
-              <!-- Título en japonés -->
-              <div class="download-title-jp">続きはPDFで！</div>
-              <div class="download-title-en">CONTINUE IN PDF</div>
+        <!-- COMEDY CHAPTERS - DYNAMIC PANELS -->
+        <div class="comedy-chapters">
+          ${cvData.chapters.map((chapter, index) => `
+            <div class="comedy-panel panel-${index + 1}" data-chapter="${index}">
+              <!-- Panel background with halftone -->
+              <div class="panel-halftone"></div>
               
-              <!-- Icono grande -->
-              <div class="download-icon-manga">📥</div>
+              <!-- Exaggerated expression -->
+              <div class="expression-icon ${this.getExpressionClass(index)}">
+                ${chapter.icon}
+              </div>
               
-              <!-- Botón estilo sello -->
-              <a href="${cvData.pdfPath}" download="JavierFernandez_CV.pdf" class="download-btn-stamp">
-                <div class="stamp-border">
-                  <div class="stamp-inner">
-                    <span class="stamp-text-jp">入手</span>
-                    <span class="stamp-text-en">GET CV</span>
-                  </div>
+              <!-- Sound effect -->
+              <div class="panel-sfx">
+                ${this.getSoundEffect(index)}
+              </div>
+              
+              <!-- Dynamic speech bubble -->
+              <div class="dynamic-bubble bubble-type-${index % 3}">
+                <div class="bubble-tail"></div>
+                <div class="bubble-content">
+                  <h3 class="bubble-title">${chapter.title}</h3>
+                  <p class="bubble-text">${chapter.subtitle}</p>
+                  <span class="bubble-emoji">${this.getChapterEmoji(index)}</span>
                 </div>
-              </a>
+              </div>
               
-              <!-- Texto adicional -->
-              <div class="download-subtitle">完全版履歴書</div>
+              <!-- Manga motion lines -->
+              <div class="motion-lines"></div>
+              
+              <!-- Chapter number (fun style) -->
+              <div class="chapter-stamp">
+                <span class="stamp-number">#${chapter.number}</span>
+                <span class="stamp-kanji">章</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        
+        <!-- DOWNLOAD SECTION - EXCITED & FUN -->
+        <div class="comedy-download">
+          <!-- Big excited expression -->
+          <div class="excited-face">
+            <div class="face-container">
+              <div class="big-eyes">
+                <span class="eye sparkle">✨👁️✨</span>
+                <span class="eye sparkle">✨👁️✨</span>
+              </div>
+              <div class="big-mouth">⌣</div>
             </div>
           </div>
           
-          <!-- Información de publicación estilo manga -->
-          <div class="manga-publication-info">
-            <div class="pub-line">発行: DOGSOUL DIGITAL STUDIOS</div>
-            <div class="pub-line">著者: Javier Fernández</div>
-            <div class="pub-line">© 2024 All Rights Reserved</div>
+          <!-- Enthusiasm sound effects -->
+          <div class="download-sfx-cluster">
+            <span class="sfx sfx-1">ワクワク!</span>
+            <span class="sfx sfx-2">キラッ✨</span>
+            <span class="sfx sfx-3">ドキドキ💕</span>
           </div>
           
-          <!-- Líneas de cierre tradicionales -->
-          <div class="closing-lines">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
+          <!-- Excited speech bubble -->
+          <div class="download-bubble-excited">
+            <div class="bubble-tail-big"></div>
+            <h2 class="download-title">
+              <span class="title-en">DOWNLOAD NOW!</span>
+              <span class="title-jp">今すぐダウンロード！</span>
+            </h2>
+            
+            <!-- Fun download button -->
+            <a href="${cvData.pdfPath}" download="JavierFernandez_CV.pdf" class="download-btn-fun">
+              <span class="btn-icon">📥</span>
+              <span class="btn-text">GET CV</span>
+              <span class="btn-sparkle">✨</span>
+            </a>
+            
+            <p class="download-subtitle">Full version available!</p>
           </div>
+          
+          <!-- Stars and hearts everywhere -->
+          <div class="celebration-symbols">
+            <span class="celebrate">⭐</span>
+            <span class="celebrate">💕</span>
+            <span class="celebrate">✨</span>
+            <span class="celebrate">🎉</span>
+            <span class="celebrate">⭐</span>
+            <span class="celebrate">💫</span>
+          </div>
+          
+          <!-- Motion lines -->
+          <div class="impact-lines"></div>
+        </div>
+        
+        <!-- FOOTER - CASUAL & FUN -->
+        <div class="comedy-footer">
+          <div class="footer-bubble">
+            <span class="footer-text">Thanks for reading! ありがとう！</span>
+            <span class="footer-emoji">😊</span>
+          </div>
+          <div class="footer-credit">© 2024 Javier Fernández - DOGSOUL DIGITAL 🐕</div>
         </div>
       </div>
     `;
+  }
+
+
+  /**
+   * Get expression class based on chapter
+   * @param {number} index - Chapter index
+   * @returns {string} Expression class
+   */
+  getExpressionClass(index) {
+    const expressions = ['shocked', 'excited', 'confident', 'happy'];
+    return expressions[index % expressions.length];
+  }
+
+  /**
+   * Get sound effect based on chapter
+   * @param {number} index - Chapter index
+   * @returns {string} Japanese sound effect
+   */
+  getSoundEffect(index) {
+    const sfx = ['ドドド', 'キラキラ', 'バーン', 'ワクワク'];
+    return sfx[index % sfx.length];
+  }
+
+  /**
+   * Get chapter emoji
+   * @param {number} index - Chapter index
+   * @returns {string} Emoji
+   */
+  getChapterEmoji(index) {
+    const emojis = ['🔥', '💻', '🎨', '⚡'];
+    return emojis[index % emojis.length];
   }
 
   /**
@@ -178,17 +215,8 @@ export class CVView extends BaseView {
    */
   afterRender() {
     this.initSpeedLines();
+    this.initFloatingSymbols();
     this.initScrollAnimations();
-  }
-
-  /**
-   * Convert number to Kanji
-   * @param {number} num - Number to convert
-   * @returns {string} Kanji representation
-   */
-  numberToKanji(num) {
-    const kanji = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
-    return kanji[num - 1] || num;
   }
 
   /**
@@ -251,6 +279,24 @@ export class CVView extends BaseView {
   }
 
   /**
+   * Initialize floating symbols animation
+   */
+  initFloatingSymbols() {
+    const symbols = document.querySelectorAll('.floating-symbols .symbol, .celebration-symbols .celebrate');
+    
+    symbols.forEach((symbol, index) => {
+      // Random animation delay
+      symbol.style.animationDelay = `${index * 0.2}s`;
+      
+      // Random starting position
+      const randomX = Math.random() * 100;
+      const randomY = Math.random() * 100;
+      symbol.style.left = `${randomX}%`;
+      symbol.style.top = `${randomY}%`;
+    });
+  }
+
+  /**
    * Initialize scroll-triggered animations
    */
   initScrollAnimations() {
@@ -262,8 +308,8 @@ export class CVView extends BaseView {
       });
     }, { threshold: 0.1 });
 
-    // Observe elements
-    document.querySelectorAll('.toc-entry, .manga-ending-section').forEach(el => {
+    // Observe comedy panels
+    document.querySelectorAll('.comedy-panel, .comedy-download').forEach(el => {
       observer.observe(el);
     });
   }
