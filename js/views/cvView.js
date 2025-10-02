@@ -8,6 +8,12 @@ export class CVView extends BaseView {
     async render() {
         return `
             <div class="cv-manga-container">
+                
+                <!-- Intro Text -->
+                <div class="cv-intro">
+                    <p class="intro-text">If you want to hire me, my CV is below.</p>
+                </div>
+                
                 <!-- Manga CV Comic Style -->
                 <div class="manga-comic">
                     
@@ -45,11 +51,11 @@ export class CVView extends BaseView {
                 
                 <!-- Download Button Section -->
                 <div class="download-section">
-                    <button class="download-btn" onclick="window.location.href='./docs/CV.pdf'">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="btn-icon">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                        </svg>
-                        Download CV
+                    <button class="btn" onclick="window.location.href='./docs/CV.pdf'">
+                        <span class="left-span"></span>
+                        <p class="text-btn">Download CV</p>
+                        <p class="hidden-text-btn">Thank you!</p>
+                        <span class="right-span"></span>
                     </button>
                 </div>
                 
