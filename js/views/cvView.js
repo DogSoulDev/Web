@@ -57,12 +57,12 @@ export class CVView extends BaseView {
                 
                 <!-- Download Button Section -->
                 <div class="download-section">
-                    <button class="btn" onclick="window.location.href='./docs/CV.pdf'">
+                    <a href="./docs/CV.pdf" download="Javier_Fernandez_CV.pdf" class="btn">
                         <span class="left-span"></span>
                         <p class="text-btn">Download CV</p>
                         <p class="hidden-text-btn">Thank you!</p>
                         <span class="right-span"></span>
-                    </button>
+                    </a>
                 </div>
                 
             </div>

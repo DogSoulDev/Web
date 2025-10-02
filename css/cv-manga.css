@@ -96,6 +96,7 @@
     height: 50px;
     width: 170px;
     font-family: var(--font-manga);
+    text-decoration: none;
 }
 
 .left-span {
