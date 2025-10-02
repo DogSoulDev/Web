@@ -187,12 +187,37 @@
     }
     .manga-panel {
         border-width: 2px;
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.25);
+    }
+}
+
+@media (max-width: 430px) {
+    .cv-hero-img {
+        max-width: 320px;
     }
 }
 
 @media (max-width: 393px) {
     .cv-hero-img {
-        max-width: 300px;
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 360px) {
+    .cv-hero-img {
+        max-width: 260px;
+        border-width: 3px;
+    }
+    .manga-panel {
+        border-width: 2px;
+    }
+}
+
+@media (max-width: 320px) {
+    .cv-hero-img {
+        max-width: 240px;
+        border-width: 2px;
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
     }
 }
 
