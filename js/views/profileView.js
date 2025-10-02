@@ -66,6 +66,9 @@ export class ProfileView extends BaseView {
             <div class="toggle">
               <div class="toggle-canvas-container">
                 <canvas id="particleCanvasToggle"></canvas>
+                <div class="neural-text-overlay">
+                  <p class="neural-title">Inside a hacker's mind</p>
+                </div>
               </div>
             </div>
           </label>
