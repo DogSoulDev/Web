@@ -27,8 +27,10 @@ export class CVView extends BaseView {
                             <span class="sfx" style="top: 5px; right: 10px;">WHOOSH!</span>
                             <p class="character">Narrator:</p>
                             <div class="bubble">
+                                <span class="manga-icon computer"></span>
                                 "Meet Javier - Born 1985. Not your typical kid. While others played with toys, 
                                 he played with SCREWDRIVERS and computers!"
+                                <span class="manga-icon computer"></span>
                             </div>
                             <div class="bubble">
                                 "From breaking electronics as a curious child... to becoming a MASTER of 
@@ -39,7 +41,9 @@ export class CVView extends BaseView {
                         <!-- Panel 2: Master's Degree -->
                         <div class="panel">
                             <span class="sfx sfx-large" style="top: -5px; left: -5px;">BOOM!</span>
-                            <p class="character">The Training:</p>
+                            <p class="character">
+                                <span class="manga-icon shield"></span> The Training:
+                            </p>
                             <div class="bubble-shout">
                                 Master's in Cybersecurity!
                             </div>
@@ -52,7 +56,9 @@ export class CVView extends BaseView {
                         
                         <!-- Panel 3: Experience Years -->
                         <div class="panel">
-                            <p class="character">The Power:</p>
+                            <p class="character">
+                                <span class="manga-icon lock"></span> The Power:
+                            </p>
                             <div class="bubble">
                                 "10+ years of IT Systems Engineering, Network Architecture, 
                                 and Full-Stack Development!"
@@ -66,7 +72,9 @@ export class CVView extends BaseView {
                         <!-- Panel 4: Mission Statement -->
                         <div class="panel panel-full">
                             <span class="sfx" style="bottom: 10px; right: 10px;">READY!</span>
-                            <p class="character">The Mission:</p>
+                            <p class="character">
+                                <span class="manga-icon bug"></span> The Mission:
+                            </p>
                             <div class="bubble">
                                 "My goal? Join a <strong>Blue Team SOC</strong> to defend against cyber threats! 
                                 Quick triage, risk mitigation, early threat detection - that's my specialty!"
@@ -87,7 +95,9 @@ export class CVView extends BaseView {
                         
                         <!-- Panel 5: Timeline Start -->
                         <div class="panel panel-full">
-                            <p class="character">The Path:</p>
+                            <p class="character">
+                                <span class="manga-icon terminal"></span> The Path:
+                            </p>
                             <div class="timeline">
                                 
                                 <div class="timeline-item">
@@ -123,22 +133,30 @@ export class CVView extends BaseView {
                         <!-- Panel 6: Skills -->
                         <div class="panel panel-full">
                             <span class="sfx" style="top: 5px; right: 5px;">POW!</span>
-                            <p class="character">The Arsenal:</p>
+                            <p class="character">
+                                <span class="manga-icon shield"></span> The Arsenal:
+                            </p>
                             
                             <div class="skills-box">
-                                <div class="skill-category">🛡️ Cybersecurity & Hacking:</div>
+                                <div class="skill-category">
+                                    <span class="manga-icon lock"></span> Cybersecurity & Hacking:
+                                </div>
                                 <div class="skill-list">
                                     Log Analysis • Security Monitoring • Threat Detection • Risk Mitigation
                                     <br>Network Security • Firewalls • Data Encryption • VPN Configuration
                                 </div>
                                 
-                                <div class="skill-category">💻 IT Systems & Networks:</div>
+                                <div class="skill-category">
+                                    <span class="manga-icon network"></span> IT Systems & Networks:
+                                </div>
                                 <div class="skill-list">
                                     Linux Environments • Windows Server • Network Architecture (LAN/WLAN)
                                     <br>Hardware Diagnostics • Microsoldering • System Administration
                                 </div>
                                 
-                                <div class="skill-category">⚙️ Programming & Scripting:</div>
+                                <div class="skill-category">
+                                    <span class="manga-icon terminal"></span> Programming & Scripting:
+                                </div>
                                 <div class="skill-list">
                                     Python • Bash • JavaScript • PHP • SQL
                                     <br>React • Node.js • Laravel • MongoDB
@@ -151,12 +169,12 @@ export class CVView extends BaseView {
                             <p class="character">Beyond the Code:</p>
                             <div class="bubble">
                                 "When I'm not hunting cyber threats, you'll find me playing guitar 
-                                (Blues, Rock, Metal 🎸), hitting the gym 💪, or reading manga and 
-                                cybersecurity books 📚!"
+                                (Blues, Rock, Metal), hitting the gym, or reading manga and 
+                                cybersecurity books!"
                             </div>
                             <div class="bubble">
                                 "I believe in teamwork, continuous improvement, and defending those 
-                                who can't defend themselves. That's the TRUE hacker spirit! ✊"
+                                who can't defend themselves. That's the TRUE hacker spirit!"
                             </div>
                         </div>
                         
@@ -168,19 +186,23 @@ export class CVView extends BaseView {
                     <span class="sfx sfx-large" style="position: absolute; top: 10px; left: 20px;">GRAB!</span>
                     <span class="sfx sfx-large" style="position: absolute; top: 10px; right: 20px;">NOW!</span>
                     
-                    <div class="download-title">Ready to Join Forces?</div>
+                    <div class="download-title">
+                        <span class="manga-icon shield"></span>
+                        Ready to Join Forces?
+                        <span class="manga-icon shield"></span>
+                    </div>
                     
                     <div class="bubble" style="max-width: 600px; margin: 20px auto;">
                         "Want the full professional CV? Download it below! Let's build a safer 
-                        digital world together! 🛡️"
+                        digital world together!"
                     </div>
                     
                     <a href="./docs/CV.pdf" download class="download-btn">
-                        ⚡ Download Full CV ⚡
+                        DOWNLOAD FULL CV
                     </a>
                     
                     <p style="margin-top: 20px; font-size: 13px;">
-                        📧 dogsouldev@protonmail.com | 📞 (+34) 637029755
+                        EMAIL: dogsouldev@protonmail.com | PHONE: (+34) 637029755
                     </p>
                 </div>
                 

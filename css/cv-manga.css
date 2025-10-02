@@ -319,3 +319,180 @@
     display: none;
   }
 }
+
+/* ============================================
+   MANGA ICONS - Pure CSS Art
+   ============================================ */
+.manga-icon {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+/* Shield Icon (Blue Team Defense) */
+.manga-icon.shield {
+  border: 3px solid var(--manga-black);
+  clip-path: polygon(50% 0%, 100% 15%, 100% 70%, 50% 100%, 0% 70%, 0% 15%);
+  background: var(--manga-white);
+}
+.manga-icon.shield::before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 3px solid var(--manga-black);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.manga-icon.shield::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 20px;
+  background: var(--manga-black);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Lock Icon (Encryption/Security) */
+.manga-icon.lock {
+  border: 3px solid var(--manga-black);
+  border-radius: 6px;
+  background: var(--manga-white);
+  margin-top: 12px;
+}
+.manga-icon.lock::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 15px;
+  border: 3px solid var(--manga-black);
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--paper);
+}
+.manga-icon.lock::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--manga-black);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Computer Icon (IT Hardware) */
+.manga-icon.computer {
+  border: 3px solid var(--manga-black);
+  background: var(--manga-white);
+  border-radius: 2px;
+}
+.manga-icon.computer::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: var(--manga-black);
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.manga-icon.computer::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background: var(--manga-black);
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+
+/* Terminal Icon (Coding/Scripts) */
+.manga-icon.terminal {
+  border: 3px solid var(--manga-black);
+  background: var(--manga-white);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.manga-icon.terminal::before {
+  content: '>';
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--manga-black);
+  position: absolute;
+}
+
+/* Bug Icon (Pentesting/Hacking) */
+.manga-icon.bug {
+  background: var(--manga-white);
+  border-radius: 50%;
+  border: 3px solid var(--manga-black);
+}
+.manga-icon.bug::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  border: 3px solid var(--manga-black);
+  border-radius: 50%;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--manga-white);
+}
+.manga-icon.bug::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 3px;
+  background: var(--manga-black);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Network Icon (Networking) */
+.manga-icon.network {
+  background: transparent;
+  border: none;
+}
+.manga-icon.network::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 3px solid var(--manga-black);
+  border-radius: 50%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--manga-white);
+}
+.manga-icon.network::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 24px solid var(--manga-black);
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  clip-path: polygon(30% 0%, 70% 0%, 90% 100%, 10% 100%);
+}
