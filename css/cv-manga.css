@@ -1,322 +1,641 @@
-/**
- * AUTHENTIC JAPANESE MANGA CV
- * Real comic panels • Speech bubbles • B&W style
- * Cybersecurity & IT Technician focus
+/**/**
+
+ * MANGA CV - Clean & Simple Japanese Comic Style * AUTHENTIC JAPANESE MANGA CV
+
+ * 2 Pages Maximum • B&W Only • Cybersecurity Focus * Real comic panels • Speech bubbles • B&W style
+
+ */ * Cybersecurity & IT Technician focus
+
  */
 
 /* ============================================
-   BASE - Pure Manga Style
-   ============================================ */
-:root {
-  --manga-black: #000000;
+
+   BASE STYLES/* ============================================
+
+   ============================================ */   BASE - Pure Manga Style
+
+* {   ============================================ */
+
+  box-sizing: border-box;:root {
+
+}  --manga-black: #000000;
+
   --manga-white: #FFFFFF;
-  --paper: #FFFEF7;
-  --border: 3px;
-}
 
-.cv-manga-container {
-  background: var(--paper);
-  color: var(--manga-black);
+.cv-manga-container {  --paper: #FFFEF7;
+
+  background: #FFFEF7;  --border: 3px;
+
+  color: #000;}
+
   font-family: 'Arial', 'Helvetica', sans-serif;
-  max-width: 900px;
+
+  max-width: 900px;.cv-manga-container {
+
+  margin: 0 auto;  background: var(--paper);
+
+  padding: 20px;  color: var(--manga-black);
+
+  line-height: 1.6;  font-family: 'Arial', 'Helvetica', sans-serif;
+
+}  max-width: 900px;
+
   margin: 0 auto;
-  padding: 20px;
-  line-height: 1.5;
-}
 
-/* ============================================
-   MANGA PAGE (Like real manga books)
-   ============================================ */
+/* ============================================  padding: 20px;
+
+   MANGA PAGE  line-height: 1.5;
+
+   ============================================ */}
+
 .manga-page {
-  background: var(--manga-white);
-  border: 5px solid var(--manga-black);
+
+  background: #FFF;/* ============================================
+
+  border: 5px solid #000;   MANGA PAGE (Like real manga books)
+
+  padding: 30px;   ============================================ */
+
+  margin-bottom: 30px;.manga-page {
+
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.2);  background: var(--manga-white);
+
+}  border: 5px solid var(--manga-black);
+
   padding: 20px;
-  margin-bottom: 30px;
-  box-shadow: 10px 10px 0 rgba(0,0,0,0.3);
-}
 
-/* Page Title */
-.page-title {
-  font-size: 36px;
-  font-weight: 900;
+.page-title {  margin-bottom: 30px;
+
+  font-size: 32px;  box-shadow: 10px 10px 0 rgba(0,0,0,0.3);
+
+  font-weight: 900;}
+
   text-align: center;
-  text-transform: uppercase;
+
+  text-transform: uppercase;/* Page Title */
+
+  border-bottom: 4px solid #000;.page-title {
+
+  padding-bottom: 15px;  font-size: 36px;
+
+  margin: 0 0 25px 0;  font-weight: 900;
+
+  letter-spacing: 3px;  text-align: center;
+
+}  text-transform: uppercase;
+
   border-bottom: 4px solid var(--manga-black);
-  padding-bottom: 10px;
-  margin: 0 0 20px 0;
-  letter-spacing: 2px;
-}
 
-/* ============================================
-   MANGA PANELS (Real comic panels grid)
-   ============================================ */
-.panels-grid {
-  display: grid;
+/* ============================================  padding-bottom: 10px;
+
+   MANGA PANELS  margin: 0 0 20px 0;
+
+   ============================================ */  letter-spacing: 2px;
+
+.manga-panel {}
+
+  border: 3px solid #000;
+
+  padding: 20px;/* ============================================
+
+  margin-bottom: 20px;   MANGA PANELS (Real comic panels grid)
+
+  background: #FFF;   ============================================ */
+
+  position: relative;.panels-grid {
+
+}  display: grid;
+
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin: 20px 0;
-}
 
-.panel {
-  border: 3px solid var(--manga-black);
-  padding: 15px;
-  background: var(--manga-white);
+.panel-title {  gap: 15px;
+
+  font-size: 18px;  margin: 20px 0;
+
+  font-weight: 900;}
+
+  text-transform: uppercase;
+
+  margin-bottom: 15px;.panel {
+
+  padding-bottom: 8px;  border: 3px solid var(--manga-black);
+
+  border-bottom: 2px solid #000;  padding: 15px;
+
+}  background: var(--manga-white);
+
   position: relative;
-  min-height: 150px;
-}
 
-.panel-full {
-  grid-column: 1 / -1;
-}
+/* ============================================  min-height: 150px;
 
-.panel-tall {
-  grid-row: span 2;
-}
+   SPEECH BUBBLES}
 
-/* ============================================
-   SPEECH BUBBLES (Real manga style)
    ============================================ */
-.bubble {
-  background: var(--manga-white);
-  border: 2px solid var(--manga-black);
+
+.speech-bubble {.panel-full {
+
+  background: #FFF;  grid-column: 1 / -1;
+
+  border: 2px solid #000;}
+
   border-radius: 20px;
-  padding: 12px 18px;
-  margin: 10px 0;
-  position: relative;
-  font-size: 14px;
-  line-height: 1.4;
-}
 
-/* Bubble tail */
-.bubble::after {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  left: 30px;
-  width: 20px;
-  height: 20px;
-  background: var(--manga-white);
-  border-right: 2px solid var(--manga-black);
-  border-bottom: 2px solid var(--manga-black);
+  padding: 15px 20px;.panel-tall {
+
+  margin: 15px 0;  grid-row: span 2;
+
+  position: relative;}
+
+  font-size: 15px;
+
+}/* ============================================
+
+   SPEECH BUBBLES (Real manga style)
+
+.speech-bubble::after {   ============================================ */
+
+  content: '';.bubble {
+
+  position: absolute;  background: var(--manga-white);
+
+  bottom: -15px;  border: 2px solid var(--manga-black);
+
+  left: 30px;  border-radius: 20px;
+
+  width: 0;  padding: 12px 18px;
+
+  height: 0;  margin: 10px 0;
+
+  border-left: 15px solid transparent;  position: relative;
+
+  border-right: 0 solid transparent;  font-size: 14px;
+
+  border-top: 15px solid #000;  line-height: 1.4;
+
+}}
+
+
+
+.speech-bubble::before {/* Bubble tail */
+
+  content: '';.bubble::after {
+
+  position: absolute;  content: '';
+
+  bottom: -12px;  position: absolute;
+
+  left: 32px;  bottom: -12px;
+
+  width: 0;  left: 30px;
+
+  height: 0;  width: 20px;
+
+  border-left: 13px solid transparent;  height: 20px;
+
+  border-right: 0 solid transparent;  background: var(--manga-white);
+
+  border-top: 13px solid #FFF;  border-right: 2px solid var(--manga-black);
+
+}  border-bottom: 2px solid var(--manga-black);
+
   transform: rotate(45deg);
-  clip-path: polygon(0 0, 100% 0, 100% 100%);
-}
 
-/* Thought bubble */
-.bubble-thought {
-  border-radius: 40px;
-  border-style: dashed;
+/* Thought Bubble */  clip-path: polygon(0 0, 100% 0, 100% 100%);
+
+.thought-bubble {}
+
+  background: #FFF;
+
+  border: 2px dashed #000;/* Thought bubble */
+
+  border-radius: 20px;.bubble-thought {
+
+  padding: 15px 20px;  border-radius: 40px;
+
+  margin: 15px 0;  border-style: dashed;
+
+  font-style: italic;}
+
 }
 
 .bubble-thought::after {
-  display: none;
-}
 
-.bubble-thought::before {
-  content: '○ ○';
-  position: absolute;
-  bottom: -30px;
-  left: 20px;
-  font-size: 12px;
+/* ============================================  display: none;
+
+   MANGA SFX (Sound Effects)}
+
+   ============================================ */
+
+.manga-sfx {.bubble-thought::before {
+
+  position: absolute;  content: '○ ○';
+
+  font-size: 24px;  position: absolute;
+
+  font-weight: 900;  bottom: -30px;
+
+  letter-spacing: 2px;  left: 20px;
+
+  transform: rotate(-15deg);  font-size: 12px;
+
+  opacity: 0.3;}
+
 }
 
 /* Shout bubble */
-.bubble-shout {
-  border-radius: 5px;
-  border-width: 3px;
-  text-transform: uppercase;
-  font-weight: bold;
-  background: var(--manga-white);
+
+/* ============================================.bubble-shout {
+
+   CONTENT SECTIONS  border-radius: 5px;
+
+   ============================================ */  border-width: 3px;
+
+.content-section {  text-transform: uppercase;
+
+  margin: 20px 0;  font-weight: bold;
+
+}  background: var(--manga-white);
+
 }
 
-/* ============================================
-   MANGA SFX (Sound effects)
-   ============================================ */
-.sfx {
-  position: absolute;
-  font-size: 24px;
-  font-weight: 900;
+.content-section h3 {
+
+  font-size: 16px;/* ============================================
+
+  font-weight: 900;   MANGA SFX (Sound effects)
+
+  text-transform: uppercase;   ============================================ */
+
+  margin-bottom: 10px;.sfx {
+
+  padding-left: 10px;  position: absolute;
+
+  border-left: 4px solid #000;  font-size: 24px;
+
+}  font-weight: 900;
+
   font-style: italic;
-  opacity: 0.6;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  z-index: 10;
+
+.content-section p {  opacity: 0.6;
+
+  margin: 10px 0;  text-transform: uppercase;
+
+  font-size: 14px;  letter-spacing: 3px;
+
+}  z-index: 10;
+
 }
 
-.sfx-large {
-  font-size: 40px;
-  opacity: 0.8;
-}
+.content-section ul {
 
-/* ============================================
-   CHARACTER NAMES (Like manga dialogue)
-   ============================================ */
-.character {
-  font-weight: bold;
+  list-style: none;.sfx-large {
+
+  padding: 0;  font-size: 40px;
+
+  margin: 10px 0;  opacity: 0.8;
+
+}}
+
+
+
+.content-section ul li {/* ============================================
+
+  padding: 5px 0 5px 20px;   CHARACTER NAMES (Like manga dialogue)
+
+  position: relative;   ============================================ */
+
+  font-size: 14px;.character {
+
+}  font-weight: bold;
+
   font-size: 11px;
-  text-transform: uppercase;
-  margin-bottom: 5px;
-  letter-spacing: 1px;
-}
 
-/* ============================================
+.content-section ul li::before {  text-transform: uppercase;
+
+  content: '▸';  margin-bottom: 5px;
+
+  position: absolute;  letter-spacing: 1px;
+
+  left: 0;}
+
+  font-weight: 900;
+
+}/* ============================================
+
    TIMELINE (Manga style)
-   ============================================ */
-.timeline {
-  margin: 15px 0;
-}
 
-.timeline-item {
+/* ============================================   ============================================ */
+
+   TIMELINE.timeline {
+
+   ============================================ */  margin: 15px 0;
+
+.timeline {}
+
+  margin: 20px 0;
+
+}.timeline-item {
+
   border-left: 4px solid var(--manga-black);
-  padding-left: 15px;
-  margin: 15px 0;
-  position: relative;
+
+.timeline-item {  padding-left: 15px;
+
+  margin-bottom: 20px;  margin: 15px 0;
+
+  padding-left: 20px;  position: relative;
+
+  border-left: 3px solid #000;}
+
 }
 
 .timeline-item::before {
-  content: '▶';
-  position: absolute;
-  left: -10px;
-  top: 0;
-  font-size: 12px;
-}
 
-.timeline-year {
-  font-weight: bold;
-  font-size: 16px;
-  margin-bottom: 5px;
+.timeline-year {  content: '▶';
+
+  font-size: 16px;  position: absolute;
+
+  font-weight: 900;  left: -10px;
+
+  margin-bottom: 5px;  top: 0;
+
+}  font-size: 12px;
+
 }
 
 .timeline-title {
-  font-weight: bold;
-  font-size: 14px;
+
+  font-size: 15px;.timeline-year {
+
+  font-weight: 700;  font-weight: bold;
+
+  margin-bottom: 5px;  font-size: 16px;
+
+}  margin-bottom: 5px;
+
+}
+
+.timeline-desc {
+
+  font-size: 14px;.timeline-title {
+
+  color: #333;  font-weight: bold;
+
+}  font-size: 14px;
+
   margin-bottom: 3px;
-}
 
-.timeline-text {
+/* ============================================}
+
+   SKILLS BOX
+
+   ============================================ */.timeline-text {
+
+.skills-grid {  font-size: 13px;
+
+  display: grid;  line-height: 1.4;
+
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));}
+
+  gap: 15px;
+
+  margin: 20px 0;/* ============================================
+
+}   SKILLS BOXES (Simple manga boxes)
+
+   ============================================ */
+
+.skill-category {.skills-box {
+
+  border: 2px solid #000;  border: 2px solid var(--manga-black);
+
+  padding: 15px;  padding: 15px;
+
+  background: #FFF;  margin: 15px 0;
+
+}}
+
+
+
+.skill-category h4 {.skill-category {
+
+  font-size: 14px;  font-weight: bold;
+
+  font-weight: 900;  font-size: 14px;
+
+  text-transform: uppercase;  margin: 10px 0 5px 0;
+
+  margin-bottom: 10px;  text-transform: uppercase;
+
+  padding-bottom: 5px;}
+
+  border-bottom: 2px solid #000;
+
+}.skill-list {
+
   font-size: 13px;
-  line-height: 1.4;
+
+.skill-list {  line-height: 1.6;
+
+  font-size: 13px;  margin-left: 15px;
+
+  line-height: 1.8;}
+
 }
 
 /* ============================================
-   SKILLS BOXES (Simple manga boxes)
-   ============================================ */
-.skills-box {
-  border: 2px solid var(--manga-black);
-  padding: 15px;
-  margin: 15px 0;
-}
 
-.skill-category {
-  font-weight: bold;
-  font-size: 14px;
-  margin: 10px 0 5px 0;
-  text-transform: uppercase;
-}
+/* ============================================   DOWNLOAD SECTION (Final panel)
 
-.skill-list {
-  font-size: 13px;
-  line-height: 1.6;
-  margin-left: 15px;
-}
+   DOWNLOAD SECTION   ============================================ */
 
-/* ============================================
-   DOWNLOAD SECTION (Final panel)
-   ============================================ */
-.download-panel {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 30px;
-  background: var(--manga-white);
-  border: 5px solid var(--manga-black);
-  margin: 20px 0;
-}
+   ============================================ */.download-panel {
 
-.download-title {
-  font-size: 28px;
-  font-weight: 900;
-  margin-bottom: 15px;
-  text-transform: uppercase;
-}
+.download-section {  grid-column: 1 / -1;
 
-.download-btn {
-  display: inline-block;
-  padding: 15px 40px;
-  background: var(--manga-black);
-  color: var(--manga-white);
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-  border: 3px solid var(--manga-black);
-  text-transform: uppercase;
-  margin-top: 15px;
+  text-align: center;  text-align: center;
+
+  padding: 30px;  padding: 30px;
+
+  border: 4px solid #000;  background: var(--manga-white);
+
+  background: #FFF;  border: 5px solid var(--manga-black);
+
+  margin: 30px 0;  margin: 20px 0;
+
+}}
+
+
+
+.download-title {.download-title {
+
+  font-size: 24px;  font-size: 28px;
+
+  font-weight: 900;  font-weight: 900;
+
+  text-transform: uppercase;  margin-bottom: 15px;
+
+  margin-bottom: 20px;  text-transform: uppercase;
+
+}}
+
+
+
+.download-btn {.download-btn {
+
+  display: inline-block;  display: inline-block;
+
+  background: #000;  padding: 15px 40px;
+
+  color: #FFF;  background: var(--manga-black);
+
+  padding: 15px 40px;  color: var(--manga-white);
+
+  text-decoration: none;  text-decoration: none;
+
+  font-weight: 900;  font-size: 18px;
+
+  text-transform: uppercase;  font-weight: bold;
+
+  border: 3px solid #000;  border: 3px solid var(--manga-black);
+
+  transition: all 0.3s;  text-transform: uppercase;
+
+}  margin-top: 15px;
+
   transition: all 0.3s;
-}
 
-.download-btn:hover {
-  background: var(--manga-white);
+.download-btn:hover {}
+
+  background: #FFF;
+
+  color: #000;.download-btn:hover {
+
+}  background: var(--manga-white);
+
   color: var(--manga-black);
-  transform: scale(1.05);
-}
 
-/* ============================================
+.contact-info {  transform: scale(1.05);
+
+  margin-top: 20px;}
+
+  font-size: 14px;
+
+}/* ============================================
+
    THE END (Manga ending symbol)
-   ============================================ */
-.manga-end {
-  text-align: center;
-  padding: 30px;
-  font-size: 32px;
+
+/* ============================================   ============================================ */
+
+   END BOX.manga-end {
+
+   ============================================ */  text-align: center;
+
+.manga-end {  padding: 30px;
+
+  text-align: center;  font-size: 32px;
+
+  padding: 20px;  font-weight: 900;
+
+}}
+
+
+
+.end-box {.end-box {
+
+  display: inline-block;  display: inline-block;
+
+  border: 4px solid #000;  border: 4px solid var(--manga-black);
+
+  padding: 15px 40px;  padding: 20px 40px;
+
+  background: #FFF;  background: var(--manga-white);
+
+  font-size: 24px;}
+
   font-weight: 900;
-}
 
-.end-box {
-  display: inline-block;
-  border: 4px solid var(--manga-black);
-  padding: 20px 40px;
-  background: var(--manga-white);
-}
+}/* ============================================
 
-/* ============================================
    RESPONSIVE
-   ============================================ */
-@media (max-width: 768px) {
-  .panels-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .panel-tall {
-    grid-row: span 1;
-  }
-  
-  .page-title {
-    font-size: 24px;
-  }
-  
-  .cv-manga-container {
-    padding: 10px;
-  }
-  
-  .manga-page {
-    padding: 15px;
-  }
-}
 
-/* ============================================
+/* ============================================   ============================================ */
+
+   RESPONSIVE@media (max-width: 768px) {
+
+   ============================================ */  .panels-grid {
+
+@media (max-width: 768px) {    grid-template-columns: 1fr;
+
+  .cv-manga-container {  }
+
+    padding: 10px;  
+
+  }  .panel-tall {
+
+      grid-row: span 1;
+
+  .manga-page {  }
+
+    padding: 20px;  
+
+  }  .page-title {
+
+      font-size: 24px;
+
+  .page-title {  }
+
+    font-size: 24px;  
+
+  }  .cv-manga-container {
+
+      padding: 10px;
+
+  .skills-grid {  }
+
+    grid-template-columns: 1fr;  
+
+  }  .manga-page {
+
+}    padding: 15px;
+
+  }
+
+/* ============================================}
+
    PRINT STYLES
-   ============================================ */
-@media print {
-  .cv-manga-container {
-    max-width: 100%;
-    padding: 0;
-  }
-  
-  .manga-page {
-    box-shadow: none;
-    page-break-after: always;
-  }
-  
-  .download-panel {
-    display: none;
+
+   ============================================ *//* ============================================
+
+@media print {   PRINT STYLES
+
+  .cv-manga-container {   ============================================ */
+
+    max-width: 100%;@media print {
+
+    padding: 0;  .cv-manga-container {
+
+  }    max-width: 100%;
+
+      padding: 0;
+
+  .manga-page {  }
+
+    box-shadow: none;  
+
+    page-break-after: always;  .manga-page {
+
+  }    box-shadow: none;
+
+      page-break-after: always;
+
+  .download-section {  }
+
+    display: none;  
+
+  }  .download-panel {
+
+}    display: none;
+
   }
 }
 
