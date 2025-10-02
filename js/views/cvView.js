@@ -3,9 +3,9 @@
  * Simple humor • B&W style • English only
  */
 
-import BaseView from './BaseView.js';
+import { BaseView } from './BaseView.js';
 
-export default class CVView extends BaseView {
+export class CVView extends BaseView {
     constructor() {
         super();
     }
