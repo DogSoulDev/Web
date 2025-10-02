@@ -11,7 +11,7 @@ export class CVView extends BaseView {
                 
                 <!-- PAGE 1: THE CYBER DEFENDER -->
                 <div class="manga-page">
-                    <h1 class="page-title">⚡ The Cyber Defender ⚡</h1>
+                    <h1 class="page-title">THE CYBER DEFENDER</h1>
                     
                     <!-- Visual Hero Panel -->
                     <div class="visual-panel">
@@ -29,24 +29,49 @@ export class CVView extends BaseView {
                         
                         <div class="speech-bubble">
                             <strong>Javier - Born 1985</strong><br>
-                            "From hardware geek to ethical hacker!"
+                            From hardware geek to ethical hacker!
+                        </div>
+                    </div>
+                    
+                    <!-- Manga Character Image -->
+                    <div class="visual-panel">
+                        <div class="ascii-character">
+         _____
+        /     \\
+       | O   O |    Blue Team Defender!
+       |   >   |
+       |  \\_/  |
+        \\_____/
+         |||||
+        /|||||\\
+       / ||||| \\
+      /  |||||  \\
+         |   |
+        /|   |\\
+       / |   | \\
+      /__/   \\__\\
                         </div>
                     </div>
                     
                     <!-- Mission Panel -->
                     <div class="visual-panel">
-                        <div class="manga-icon-large shield"></div>
+                        <div class="ascii-character">
+    ╔════════════════════════════════╗
+    ║      BLUE TEAM MISSION         ║
+    ╠════════════════════════════════╣
+    ║  Defending - Hunting - SOC     ║
+    ╚════════════════════════════════╝
+                        </div>
                         
                         <div class="speech-bubble">
-                            <strong>MISSION: Join Blue Team SOC</strong><br>
-                            Defending systems. Hunting threats. Protecting people.
+                            Join Blue Team SOC to defend against cyber threats!
                         </div>
                     </div>
                 </div>
                 
                 <!-- PAGE 2: PROFESSIONAL JOURNEY -->
                 <div class="manga-page">
-                    <h1 class="page-title">🚀 Professional Journey 🚀</h1>
+                    <h1 class="page-title">PROFESSIONAL JOURNEY</h1>
                     
                     <!-- Visual Timeline Panel -->
                     <div class="visual-panel">
@@ -75,61 +100,45 @@ export class CVView extends BaseView {
                         </div>
                     </div>
                     
+                    <!-- Computer Hacker Image -->
+                    <div class="visual-panel">
+                        <div class="ascii-character">
+    ___________________
+   |  _____________  |
+   | |CYBERSEC    | |
+   | |> python    | |
+   | |> bash      | |
+   | |> siem_log  | |
+   | |_____________| |
+   |_________________|
+        _[_______]_
+    ___[___________]___
+   |         [_____]   |
+   |___________________|
+                        </div>
+                    </div>
+                    
                     <!-- Skills Panel -->
                     <div class="visual-panel">
                         <div class="manga-sfx" style="bottom: 20px; left: 20px;">ZAP!</div>
                         
-                        <div class="skills-compact">
-                            <div class="skill-box">
-                                <h3>🔒 Security</h3>
-                                <p>
-                                    SIEM<br>
-                                    Threat Detection<br>
-                                    Log Analysis<br>
-                                    Firewalls
-                                </p>
-                            </div>
-                            
-                            <div class="skill-box">
-                                <h3>💻 Systems</h3>
-                                <p>
-                                    Linux<br>
-                                    Windows Server<br>
-                                    Networks<br>
-                                    Hardware
-                                </p>
-                            </div>
-                            
-                            <div class="skill-box">
-                                <h3>⚙️ Code</h3>
-                                <p>
-                                    Python<br>
-                                    Bash<br>
-                                    JavaScript<br>
-                                    PHP/SQL
-                                </p>
-                            </div>
+                        <div class="speech-bubble" style="max-width: 700px;">
+                            <strong>ARSENAL:</strong><br><br>
+                            SECURITY: SIEM, Threat Detection, Log Analysis, Firewalls<br>
+                            SYSTEMS: Linux, Windows Server, Networks, Hardware<br>
+                            CODE: Python, Bash, JavaScript, PHP, SQL
                         </div>
                     </div>
                 </div>
                 
                 <!-- DOWNLOAD BUTTON -->
                 <div class="download-section">
-                    <div class="manga-sfx" style="top: 20px; left: 30px; font-size: 50px;">GRAB!</div>
-                    <div class="manga-sfx" style="top: 20px; right: 30px; font-size: 50px;">NOW!</div>
-                    
-                    <div class="speech-bubble" style="margin-bottom: 30px;">
-                        <strong>Want the full story?</strong><br>
-                        Download the complete CV!
-                    </div>
+                    <div class="manga-sfx" style="top: 20px; left: 30px; font-size: 50px; opacity: 0.2;">CLICK!</div>
+                    <div class="manga-sfx" style="top: 20px; right: 30px; font-size: 50px; opacity: 0.2;">HERE!</div>
                     
                     <a href="./docs/CV.pdf" download class="download-btn">
-                        📥 DOWNLOAD CV 📥
+                        DOWNLOAD CV
                     </a>
-                    
-                    <p style="margin-top: 30px; font-size: 14px; font-weight: 600;">
-                        📧 dogsouldev@protonmail.com | 📞 (+34) 637 029 755
-                    </p>
                 </div>
                 
             </div>
