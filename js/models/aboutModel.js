@@ -18,7 +18,7 @@ My core value is the ability to quickly triage security alerts and mitigate risk
 I am results-driven and committed to applying my rigor, methodological approach, and team-first mindset to ensure early threat detection and efficient incident response within a high-tempo security operations center.
 
 Personal Information:
-• Work permit: Spanish | Gender: Male | Date of birth: 31/10/1985
+• Work permit: Spanish
 • Place of birth: Vigo, Spain | Nationality: Spanish
 • Home: La Coruña, Spain | Email: dogsouldev@protonmail.com | Phone: (+34) 637029755
 
